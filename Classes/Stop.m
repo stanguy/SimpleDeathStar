@@ -11,6 +11,4 @@
 
 @implementation Stop
 
-@dynamic name;
-
 @end

@@ -6,11 +6,10 @@
 //  Copyright 2010 dthg.net. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "_Stop.h"
 
 
-@interface Stop : NSManagedObject {
+@interface Stop : _Stop {
 }
-@property (nonatomic, retain) NSString* name;
 
 @end

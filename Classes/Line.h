@@ -6,18 +6,12 @@
 //  Copyright 2010 dthg.net. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "_Line.h"
 
 
-@interface Line : NSManagedObject {
+@interface Line : _Line {
 
 }
-@property (nonatomic, retain) NSString* long_name;
-@property (nonatomic, retain) NSString* short_name;
-@property (nonatomic, retain) NSString* usage;
-@property (nonatomic, retain) NSString* bgcolor;
-@property (nonatomic, retain) NSString* fgcolor;
-@property (nonatomic, retain) NSSet* stops;
 
 + (NSFetchedResultsController*) findAll;
 
