@@ -14,8 +14,10 @@
 @interface StopViewController : UITableViewController {
 @private
     Line* line_;
+    NSArray* stops_;
 
 }
 @property (nonatomic, retain) Line* line;
+@property (nonatomic, retain) NSArray* stops;
 
 @end

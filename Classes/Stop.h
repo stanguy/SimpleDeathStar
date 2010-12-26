@@ -10,7 +10,6 @@
 
 
 @interface Stop : NSManagedObject {
-
 }
 @property (nonatomic, retain) NSString* name;
 
