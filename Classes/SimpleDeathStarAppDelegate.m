@@ -132,7 +132,7 @@
         return persistentStoreCoordinator_;
     }
     
-    NSURL *storeURL = [NSURL fileURLWithPath: [[self applicationDocumentsDirectory] stringByAppendingPathComponent: @"Transit.sqlite"]];
+    NSURL *storeURL = [NSURL fileURLWithPath: [[NSBundle mainBundle] pathForResource:@"Transit" ofType:@"sqlite"]];
     
     NSError *error = nil;
     persistentStoreCoordinator_ = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
