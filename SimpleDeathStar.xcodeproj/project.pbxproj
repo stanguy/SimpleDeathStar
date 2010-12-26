@@ -29,6 +29,8 @@
 		9631C12112C758890002EB78 /* City.m in Sources */ = {isa = PBXBuildFile; fileRef = 9631C11912C758890002EB78 /* City.m */; };
 		9631C12212C758890002EB78 /* Direction.m in Sources */ = {isa = PBXBuildFile; fileRef = 9631C11B12C758890002EB78 /* Direction.m */; };
 		9631C12312C758890002EB78 /* StopTime.m in Sources */ = {isa = PBXBuildFile; fileRef = 9631C11D12C758890002EB78 /* StopTime.m */; };
+		9631C13112C77D660002EB78 /* StopTimeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9631C12F12C77D660002EB78 /* StopTimeViewController.m */; };
+		9631C13212C77D660002EB78 /* StopTimeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9631C13012C77D660002EB78 /* StopTimeViewController.xib */; };
 		969229BE12C6B799007C965D /* HomeScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 969229BC12C6B799007C965D /* HomeScreenViewController.m */; };
 		969229BF12C6B799007C965D /* HomeScreenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 969229BD12C6B799007C965D /* HomeScreenViewController.xib */; };
 /* End PBXBuildFile section */
@@ -71,6 +73,9 @@
 		9631C11B12C758890002EB78 /* Direction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Direction.m; sourceTree = "<group>"; };
 		9631C11C12C758890002EB78 /* StopTime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StopTime.h; sourceTree = "<group>"; };
 		9631C11D12C758890002EB78 /* StopTime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StopTime.m; sourceTree = "<group>"; };
+		9631C12E12C77D660002EB78 /* StopTimeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StopTimeViewController.h; sourceTree = "<group>"; };
+		9631C12F12C77D660002EB78 /* StopTimeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StopTimeViewController.m; sourceTree = "<group>"; };
+		9631C13012C77D660002EB78 /* StopTimeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = StopTimeViewController.xib; path = Classes/StopTimeViewController.xib; sourceTree = "<group>"; };
 		9692298C12C6B4A1007C965D /* Transit.xcdatamodel */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.xcdatamodel; path = Transit.xcdatamodel; sourceTree = "<group>"; };
 		969229BB12C6B799007C965D /* HomeScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeScreenViewController.h; sourceTree = "<group>"; };
 		969229BC12C6B799007C965D /* HomeScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeScreenViewController.m; sourceTree = "<group>"; };
@@ -104,6 +109,8 @@
 				962B81A612C6C122007EA09F /* LineViewController.m */,
 				962B82CA12C6D30D007EA09F /* StopViewController.h */,
 				962B82CB12C6D30D007EA09F /* StopViewController.m */,
+				9631C12E12C77D660002EB78 /* StopTimeViewController.h */,
+				9631C12F12C77D660002EB78 /* StopTimeViewController.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -140,6 +147,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				9631C13012C77D660002EB78 /* StopTimeViewController.xib */,
 				962B82CC12C6D30D007EA09F /* StopViewController.xib */,
 				962B81A712C6C122007EA09F /* LineViewController.xib */,
 				969229BD12C6B799007C965D /* HomeScreenViewController.xib */,
@@ -244,6 +252,7 @@
 				969229BF12C6B799007C965D /* HomeScreenViewController.xib in Resources */,
 				962B81A912C6C122007EA09F /* LineViewController.xib in Resources */,
 				962B82CE12C6D30D007EA09F /* StopViewController.xib in Resources */,
+				9631C13212C77D660002EB78 /* StopTimeViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -270,6 +279,7 @@
 				9631C12112C758890002EB78 /* City.m in Sources */,
 				9631C12212C758890002EB78 /* Direction.m in Sources */,
 				9631C12312C758890002EB78 /* StopTime.m in Sources */,
+				9631C13112C77D660002EB78 /* StopTimeViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
