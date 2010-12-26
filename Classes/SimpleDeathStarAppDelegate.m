@@ -12,6 +12,7 @@
 @implementation SimpleDeathStarAppDelegate
 
 @synthesize window;
+@synthesize navigationController;
 
 
 #pragma mark -
@@ -20,7 +21,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {    
     
     // Override point for customization after application launch.
-    
+    [window addSubview:navigationController.view];
     [window makeKeyAndVisible];
     
     return YES;
@@ -194,6 +195,7 @@
     [managedObjectModel_ release];
     [persistentStoreCoordinator_ release];
     
+    [navigationController release];
     [window release];
     [super dealloc];
 }
