@@ -14,6 +14,7 @@
 @implementation LineViewController
 
 @synthesize fetchedResultsController=fetchedResultsController_;
+@synthesize usageType;
 
 #pragma mark -
 #pragma mark View lifecycle
@@ -155,7 +156,9 @@
     if (fetchedResultsController_ != nil) {
         return fetchedResultsController_;
     }
-    return [Line findAll];
+    fetchedResultsController_ = [Line findAll:self.usageType];
+    fetchedResultsController_.delegate = self;
+    return fetchedResultsController_;
 }
 
 #pragma mark -

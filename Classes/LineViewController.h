@@ -9,11 +9,12 @@
 #import <UIKit/UIKit.h>
 
 
-@interface LineViewController : UITableViewController {
+@interface LineViewController : UITableViewController  <NSFetchedResultsControllerDelegate> {
 @private
     NSFetchedResultsController *fetchedResultsController_;
 
 }
 @property (nonatomic, retain) NSFetchedResultsController *fetchedResultsController;
+@property (nonatomic) int usageType;
 
 @end

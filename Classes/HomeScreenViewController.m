@@ -8,7 +8,7 @@
 
 #import "HomeScreenViewController.h"
 #import "LineViewController.h"
-
+#import "Line.h"
 
 @implementation HomeScreenViewController
 
@@ -16,7 +16,14 @@ NSString* menuTitles[] = {
     @"Recherche par lignes",
     @"Recherche par arrêt"
 };
-
+int LineMenuValues[] = {
+    LINE_USAGE_URBAN,
+    LINE_USAGE_SUBURBAN,
+    LINE_USAGE_EXPRESS,
+    LINE_USAGE_SPECIAL,
+    LINE_USAGE_ALL,
+    -1
+};
 
 #pragma mark -
 #pragma mark View lifecycle
@@ -78,9 +85,12 @@ NSString* menuTitles[] = {
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     // Navigation logic may go here. Create and push another view controller.
-    LineViewController* lineViewController = [[LineViewController alloc] initWithNibName:@"LineViewController" bundle:nil];
-    [self.navigationController pushViewController:lineViewController animated:YES];
-    [lineViewController release];
+    if ( LineMenuValues[indexPath.row] > 0 ) {
+        LineViewController* lineViewController = [[LineViewController alloc] initWithNibName:@"LineViewController" bundle:nil];
+        lineViewController.usageType = LineMenuValues[indexPath.row];
+        [self.navigationController pushViewController:lineViewController animated:YES];
+        [lineViewController release];
+    }
 }
 
 

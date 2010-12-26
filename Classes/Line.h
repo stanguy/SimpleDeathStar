@@ -8,11 +8,18 @@
 
 #import "_Line.h"
 
+enum {
+    LINE_USAGE_ALL = 1,
+    LINE_USAGE_URBAN,
+    LINE_USAGE_SUBURBAN,
+    LINE_USAGE_EXPRESS,
+    LINE_USAGE_SPECIAL
+};
 
 @interface Line : _Line {
 
 }
 
-+ (NSFetchedResultsController*) findAll;
++ (NSFetchedResultsController*) findAll:(int) type;
 
 @end

@@ -12,7 +12,7 @@
 @implementation Line
 
 
-+ (NSFetchedResultsController*)findAll {
++ (NSFetchedResultsController*)findAll:(int)type {
     SimpleDeathStarAppDelegate* delegate = (SimpleDeathStarAppDelegate*)[[UIApplication sharedApplication] delegate];
     NSManagedObjectContext* context = [delegate  managedObjectContext];
     
@@ -21,6 +21,29 @@
     // Edit the entity name as appropriate.
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"Line" inManagedObjectContext:context];
     [fetchRequest setEntity:entity];
+    
+    NSPredicate* predicate = nil;
+    NSString* usage = nil;
+    switch (type) {
+        case LINE_USAGE_URBAN:
+            usage = @"urban";
+            break;
+        case LINE_USAGE_SUBURBAN:
+            usage = @"suburban";
+            break;
+        case LINE_USAGE_EXPRESS:
+            usage = @"express";
+            break;
+        case LINE_USAGE_SPECIAL:
+            usage = @"special";
+            break;
+        default:
+            break;
+    }
+    if (nil != usage) {
+        predicate = [NSPredicate predicateWithFormat:@"usage = %@", usage ];
+        [fetchRequest setPredicate:predicate];
+    }
     
     // Set the batch size to a suitable number.
     [fetchRequest setFetchBatchSize:20];
@@ -32,11 +55,14 @@
     
     [fetchRequest setSortDescriptors:sortDescriptors];
     
+    [NSFetchedResultsController deleteCacheWithName:@"Line"];
     // Edit the section name key path and cache name if appropriate.
     // nil for section name key path means "no sections".
-    NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:context sectionNameKeyPath:@"usage" cacheName:@"Root"];
-    aFetchedResultsController.delegate = self;
+    NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:context sectionNameKeyPath:@"usage" cacheName:@"Line"];
     
+    if (predicate != nil) {
+        [predicate release];
+    }
     [fetchRequest release];
     [sortDescriptor2 release];
     [sortDescriptor1 release];
@@ -47,8 +73,6 @@
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
         return nil;
     }
-    [aFetchedResultsController autorelease];
-
     return aFetchedResultsController;
 }
 
