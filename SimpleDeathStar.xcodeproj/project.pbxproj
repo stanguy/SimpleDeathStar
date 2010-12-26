@@ -18,6 +18,9 @@
 		962B81A912C6C122007EA09F /* LineViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 962B81A712C6C122007EA09F /* LineViewController.xib */; };
 		962B81AD12C6C153007EA09F /* Line.m in Sources */ = {isa = PBXBuildFile; fileRef = 962B81AC12C6C153007EA09F /* Line.m */; };
 		962B828412C6CE60007EA09F /* Transit.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 962B828312C6CE60007EA09F /* Transit.xcdatamodeld */; };
+		962B82C112C6D1FB007EA09F /* Stop.m in Sources */ = {isa = PBXBuildFile; fileRef = 962B82C012C6D1FB007EA09F /* Stop.m */; };
+		962B82CD12C6D30D007EA09F /* StopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 962B82CB12C6D30D007EA09F /* StopViewController.m */; };
+		962B82CE12C6D30D007EA09F /* StopViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 962B82CC12C6D30D007EA09F /* StopViewController.xib */; };
 		969229BE12C6B799007C965D /* HomeScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 969229BC12C6B799007C965D /* HomeScreenViewController.m */; };
 		969229BF12C6B799007C965D /* HomeScreenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 969229BD12C6B799007C965D /* HomeScreenViewController.xib */; };
 /* End PBXBuildFile section */
@@ -39,6 +42,11 @@
 		962B81A712C6C122007EA09F /* LineViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = LineViewController.xib; path = Classes/LineViewController.xib; sourceTree = "<group>"; };
 		962B81AB12C6C153007EA09F /* Line.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Line.h; sourceTree = "<group>"; };
 		962B81AC12C6C153007EA09F /* Line.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Line.m; sourceTree = "<group>"; };
+		962B82BF12C6D1FB007EA09F /* Stop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Stop.h; sourceTree = "<group>"; };
+		962B82C012C6D1FB007EA09F /* Stop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Stop.m; sourceTree = "<group>"; };
+		962B82CA12C6D30D007EA09F /* StopViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StopViewController.h; sourceTree = "<group>"; };
+		962B82CB12C6D30D007EA09F /* StopViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StopViewController.m; sourceTree = "<group>"; };
+		962B82CC12C6D30D007EA09F /* StopViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = StopViewController.xib; path = Classes/StopViewController.xib; sourceTree = "<group>"; };
 		9692298C12C6B4A1007C965D /* Transit.xcdatamodel */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.xcdatamodel; path = Transit.xcdatamodel; sourceTree = "<group>"; };
 		969229BB12C6B799007C965D /* HomeScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeScreenViewController.h; sourceTree = "<group>"; };
 		969229BC12C6B799007C965D /* HomeScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeScreenViewController.m; sourceTree = "<group>"; };
@@ -70,6 +78,8 @@
 				969229BC12C6B799007C965D /* HomeScreenViewController.m */,
 				962B81A512C6C122007EA09F /* LineViewController.h */,
 				962B81A612C6C122007EA09F /* LineViewController.m */,
+				962B82CA12C6D30D007EA09F /* StopViewController.h */,
+				962B82CB12C6D30D007EA09F /* StopViewController.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -106,6 +116,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				962B82CC12C6D30D007EA09F /* StopViewController.xib */,
 				962B81A712C6C122007EA09F /* LineViewController.xib */,
 				969229BD12C6B799007C965D /* HomeScreenViewController.xib */,
 				962B828312C6CE60007EA09F /* Transit.xcdatamodeld */,
@@ -131,6 +142,8 @@
 			children = (
 				962B81AB12C6C153007EA09F /* Line.h */,
 				962B81AC12C6C153007EA09F /* Line.m */,
+				962B82BF12C6D1FB007EA09F /* Stop.h */,
+				962B82C012C6D1FB007EA09F /* Stop.m */,
 			);
 			name = ManagedObjects;
 			sourceTree = "<group>";
@@ -190,6 +203,7 @@
 				28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */,
 				969229BF12C6B799007C965D /* HomeScreenViewController.xib in Resources */,
 				962B81A912C6C122007EA09F /* LineViewController.xib in Resources */,
+				962B82CE12C6D30D007EA09F /* StopViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -206,6 +220,8 @@
 				969229BE12C6B799007C965D /* HomeScreenViewController.m in Sources */,
 				962B81A812C6C122007EA09F /* LineViewController.m in Sources */,
 				962B81AD12C6C153007EA09F /* Line.m in Sources */,
+				962B82C112C6D1FB007EA09F /* Stop.m in Sources */,
+				962B82CD12C6D30D007EA09F /* StopViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

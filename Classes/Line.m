@@ -15,6 +15,7 @@
 @dynamic usage;
 @dynamic fgcolor;
 @dynamic bgcolor;
+@dynamic stops;
 
 + (NSFetchedResultsController*)findAll {
     SimpleDeathStarAppDelegate* delegate = (SimpleDeathStarAppDelegate*)[[UIApplication sharedApplication] delegate];

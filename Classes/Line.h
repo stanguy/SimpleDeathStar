@@ -17,7 +17,7 @@
 @property (nonatomic, retain) NSString* usage;
 @property (nonatomic, retain) NSString* bgcolor;
 @property (nonatomic, retain) NSString* fgcolor;
-
+@property (nonatomic, retain) NSSet* stops;
 
 + (NSFetchedResultsController*) findAll;
 

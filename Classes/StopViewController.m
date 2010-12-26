@@ -1,32 +1,31 @@
 //
-//  LineViewController.m
+//  StopViewController.m
 //  SimpleDeathStar
 //
 //  Created by Sebastien Tanguy on 12/26/10.
 //  Copyright 2010 dthg.net. All rights reserved.
 //
 
-#import "LineViewController.h"
 #import "StopViewController.h"
 #import "Line.h"
+#import "Stop.h"
 
 
-@implementation LineViewController
+@implementation StopViewController
 
-@synthesize fetchedResultsController=fetchedResultsController_;
+@synthesize line = line_;
 
 #pragma mark -
 #pragma mark View lifecycle
 
-
+/*
 - (void)viewDidLoad {
     [super viewDidLoad];
 
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    self.navigationItem.title = @"Lignes";
 }
-
+*/
 
 /*
 - (void)viewWillAppear:(BOOL)animated {
@@ -62,14 +61,14 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     // Return the number of sections.
-    return [[self.fetchedResultsController sections] count];
+    return 1;
 }
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
-    id <NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:section];
-    return [sectionInfo numberOfObjects];
+//    NSLog( @"count: %d for %@", [self.line.stops count], self.line.long_name );
+    return [self.line.stops count];
 }
 
 
@@ -85,8 +84,8 @@
     }
     
     // Configure the cell...
-    Line* line = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    cell.textLabel.text = line.long_name;
+    Stop* stop = [[[line_ stops] allObjects] objectAtIndex:indexPath.row];
+    cell.textLabel.text = stop.name;
     
     return cell;
 }
@@ -144,19 +143,8 @@
 	 [self.navigationController pushViewController:detailViewController animated:YES];
 	 [detailViewController release];
 	 */
-    StopViewController* stopViewController = [[StopViewController alloc] initWithNibName:@"StopViewController" bundle:nil];
-    stopViewController.line = [[self fetchedResultsController] objectAtIndexPath:indexPath];
-    [self.navigationController pushViewController:stopViewController animated:YES];
-    [stopViewController release];
 }
 
-
-- (NSFetchedResultsController*)fetchedResultsController{
-    if (fetchedResultsController_ != nil) {
-        return fetchedResultsController_;
-    }
-    return [Line findAll];
-}
 
 #pragma mark -
 #pragma mark Memory management
