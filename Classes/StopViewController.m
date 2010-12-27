@@ -9,11 +9,13 @@
 #import "StopViewController.h"
 #import "Line.h"
 #import "Stop.h"
+#import "City.h"
 #import "StopTimeViewController.h"
 
 @implementation StopViewController
 
 @synthesize line = line_;
+@synthesize city = city_;
 @synthesize stops = stops_;
 
 #pragma mark -
@@ -27,6 +29,8 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     if ( self.line != nil ) {
         self.navigationItem.title = self.line.long_name;
+    } else if ( self.city != nil ) {
+        self.navigationItem.title = self.city.name;
     } else {
         UISearchBar *searchBar = [[UISearchBar alloc] init];
         searchBar.delegate = self; 
@@ -95,7 +99,13 @@
     NSSortDescriptor *sortNameDescriptor = [[[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES] autorelease];
     NSArray *sortDescriptors = [[[NSArray alloc] initWithObjects:sortNameDescriptor, nil] autorelease];
     
-    stops_ =[[self.line.stops allObjects] sortedArrayUsingDescriptors:sortDescriptors];
+    NSArray *objects;
+    if (self.line != nil) {
+        objects = [self.line.stops allObjects];
+    } else if ( self.city != nil) {
+        objects = [self.city.stops allObjects];
+    }
+    stops_ = [objects sortedArrayUsingDescriptors:sortDescriptors];
     [stops_ retain];
     return stops_;
 }

@@ -2,4 +2,6 @@
 
 @interface City : _City {}
 // Custom logic goes here.
+
++(NSFetchedResultsController*) findAll;
 @end

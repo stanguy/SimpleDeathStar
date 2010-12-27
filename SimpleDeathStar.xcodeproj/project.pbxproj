@@ -32,6 +32,8 @@
 		9631C13112C77D660002EB78 /* StopTimeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9631C12F12C77D660002EB78 /* StopTimeViewController.m */; };
 		9631C13212C77D660002EB78 /* StopTimeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9631C13012C77D660002EB78 /* StopTimeViewController.xib */; };
 		9631C3CD12C7A0300002EB78 /* Transit.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 9631C3CC12C7A0300002EB78 /* Transit.sqlite */; };
+		96539CBC12C94C68002FDF29 /* CityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96539CBA12C94C68002FDF29 /* CityViewController.m */; };
+		96539CBD12C94C68002FDF29 /* CityViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96539CBB12C94C68002FDF29 /* CityViewController.xib */; };
 		969229BE12C6B799007C965D /* HomeScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 969229BC12C6B799007C965D /* HomeScreenViewController.m */; };
 		969229BF12C6B799007C965D /* HomeScreenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 969229BD12C6B799007C965D /* HomeScreenViewController.xib */; };
 /* End PBXBuildFile section */
@@ -78,6 +80,9 @@
 		9631C12F12C77D660002EB78 /* StopTimeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StopTimeViewController.m; sourceTree = "<group>"; };
 		9631C13012C77D660002EB78 /* StopTimeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = StopTimeViewController.xib; path = Classes/StopTimeViewController.xib; sourceTree = "<group>"; };
 		9631C3CC12C7A0300002EB78 /* Transit.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = Transit.sqlite; sourceTree = "<group>"; };
+		96539CB912C94C68002FDF29 /* CityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CityViewController.h; sourceTree = "<group>"; };
+		96539CBA12C94C68002FDF29 /* CityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CityViewController.m; sourceTree = "<group>"; };
+		96539CBB12C94C68002FDF29 /* CityViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = CityViewController.xib; path = Classes/CityViewController.xib; sourceTree = "<group>"; };
 		9692298C12C6B4A1007C965D /* Transit.xcdatamodel */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.xcdatamodel; path = Transit.xcdatamodel; sourceTree = "<group>"; };
 		969229BB12C6B799007C965D /* HomeScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeScreenViewController.h; sourceTree = "<group>"; };
 		969229BC12C6B799007C965D /* HomeScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeScreenViewController.m; sourceTree = "<group>"; };
@@ -113,6 +118,8 @@
 				962B82CB12C6D30D007EA09F /* StopViewController.m */,
 				9631C12E12C77D660002EB78 /* StopTimeViewController.h */,
 				9631C12F12C77D660002EB78 /* StopTimeViewController.m */,
+				96539CB912C94C68002FDF29 /* CityViewController.h */,
+				96539CBA12C94C68002FDF29 /* CityViewController.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -149,6 +156,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				96539CBB12C94C68002FDF29 /* CityViewController.xib */,
 				9631C3CC12C7A0300002EB78 /* Transit.sqlite */,
 				9631C13012C77D660002EB78 /* StopTimeViewController.xib */,
 				962B82CC12C6D30D007EA09F /* StopViewController.xib */,
@@ -257,6 +265,7 @@
 				962B82CE12C6D30D007EA09F /* StopViewController.xib in Resources */,
 				9631C13212C77D660002EB78 /* StopTimeViewController.xib in Resources */,
 				9631C3CD12C7A0300002EB78 /* Transit.sqlite in Resources */,
+				96539CBD12C94C68002FDF29 /* CityViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -284,6 +293,7 @@
 				9631C12212C758890002EB78 /* Direction.m in Sources */,
 				9631C12312C758890002EB78 /* StopTime.m in Sources */,
 				9631C13112C77D660002EB78 /* StopTimeViewController.m in Sources */,
+				96539CBC12C94C68002FDF29 /* CityViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

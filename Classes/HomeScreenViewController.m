@@ -9,6 +9,7 @@
 #import "HomeScreenViewController.h"
 #import "LineViewController.h"
 #import "StopViewController.h"
+#import "CityViewController.h"
 #import "Line.h"
 
 @implementation HomeScreenViewController
@@ -94,9 +95,15 @@ int LineMenuValues[] = {
             [lineViewController release];
         }
     } else if ( indexPath.section ==1 ) {
+        if ( indexPath.row == 0 ) {
+            CityViewController* cityViewController = [[CityViewController alloc] initWithNibName:@"CityViewController" bundle:nil];
+            [self.navigationController pushViewController:cityViewController animated:YES];
+            [cityViewController release];
+        } else {
         StopViewController* stopViewController = [[StopViewController alloc] initWithNibName:@"StopViewController" bundle:nil];
         [self.navigationController pushViewController:stopViewController animated:YES];
         [stopViewController release];
+        }
     }
 
 }
