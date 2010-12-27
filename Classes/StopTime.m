@@ -35,7 +35,7 @@
     
     
     // Set the batch size to a suitable number.
-    [fetchRequest setFetchBatchSize:2000];
+    [fetchRequest setFetchBatchSize:20];
     
     // Edit the sort key as appropriate.
     NSSortDescriptor *sortDescriptor1 = [[NSSortDescriptor alloc] initWithKey:@"direction.headsign" ascending:YES];

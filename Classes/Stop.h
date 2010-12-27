@@ -12,4 +12,6 @@
 @interface Stop : _Stop {
 }
 
++ (NSFetchedResultsController*) findAll;
+
 @end

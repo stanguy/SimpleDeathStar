@@ -8,6 +8,7 @@
 
 #import "HomeScreenViewController.h"
 #import "LineViewController.h"
+#import "StopViewController.h"
 #import "Line.h"
 
 @implementation HomeScreenViewController
@@ -85,12 +86,19 @@ int LineMenuValues[] = {
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     // Navigation logic may go here. Create and push another view controller.
-    if ( LineMenuValues[indexPath.row] > 0 ) {
-        LineViewController* lineViewController = [[LineViewController alloc] initWithNibName:@"LineViewController" bundle:nil];
-        lineViewController.usageType = LineMenuValues[indexPath.row];
-        [self.navigationController pushViewController:lineViewController animated:YES];
-        [lineViewController release];
+    if ( indexPath.section == 0 ) {
+        if ( LineMenuValues[indexPath.row] > 0 ) {
+            LineViewController* lineViewController = [[LineViewController alloc] initWithNibName:@"LineViewController" bundle:nil];
+            lineViewController.usageType = LineMenuValues[indexPath.row];
+            [self.navigationController pushViewController:lineViewController animated:YES];
+            [lineViewController release];
+        }
+    } else if ( indexPath.section ==1 ) {
+        StopViewController* stopViewController = [[StopViewController alloc] initWithNibName:@"StopViewController" bundle:nil];
+        [self.navigationController pushViewController:stopViewController animated:YES];
+        [stopViewController release];
     }
+
 }
 
 

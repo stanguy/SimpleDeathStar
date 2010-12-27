@@ -11,7 +11,7 @@
 @class Line;
 
 
-@interface StopViewController : UITableViewController {
+@interface StopViewController : UITableViewController <UISearchBarDelegate> {
 @private
     Line* line_;
     NSArray* stops_;

@@ -25,7 +25,18 @@
 
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    self.navigationItem.title = self.line.long_name;
+    if ( self.line != nil ) {
+        self.navigationItem.title = self.line.long_name;
+    } else {
+        UISearchBar *searchBar = [[UISearchBar alloc] init];
+        searchBar.delegate = self; 
+        searchBar.placeholder = @"Arrêt à rechercher";
+        
+        self.navigationItem.titleView = searchBar;
+        self.navigationItem.titleView.frame = CGRectMake(0, 0, 325, 44);
+        
+        [searchBar release];
+    }
 }
 
 
@@ -70,7 +81,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     // Navigation logic may go here. Create and push another view controller.
-    StopTimeViewController* stoptimeView = [[StopTimeViewController alloc] initWithNibName:@"StopTimeViewcontroller" bundle:nil];
+    StopTimeViewController* stoptimeView = [[StopTimeViewController alloc] initWithNibName:@"StopTimeViewController" bundle:nil];
     stoptimeView.line = self.line;
     stoptimeView.stop = [[self stops] objectAtIndex:indexPath.row];
     [self.navigationController pushViewController:stoptimeView animated:YES];
@@ -89,6 +100,14 @@
     return stops_;
 }
 
+#pragma mark -
+#pragma mark searchBar
+
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
+    searchBar.text = @"";
+    [searchBar setShowsCancelButton:NO animated:YES];
+    [searchBar resignFirstResponder];
+}
 
 #pragma mark -
 #pragma mark Memory management
