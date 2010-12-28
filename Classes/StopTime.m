@@ -29,14 +29,15 @@
     [gregorian release];
     
     int min_arrival = ([dateComponents hour] * 60 + [dateComponents minute]) * 60 + [dateComponents second];
+    int max_arrival = min_arrival + 2 * 60 * 60;
     NSPredicate *predicate ;
     if (line != nil) {
         
     predicate = [NSPredicate predicateWithFormat:
-                              @"line = %@ AND stop = %@ AND arrival > %@ AND calendar & %@ > 0", line, stop, [NSNumber numberWithInt:min_arrival], [NSNumber numberWithInt:lcalendar] ];
+                              @"line = %@ AND stop = %@ AND arrival > %@ AND arrival < %@ AND calendar & %@ > 0", line, stop, [NSNumber numberWithInt:min_arrival], [NSNumber numberWithInt:max_arrival], [NSNumber numberWithInt:lcalendar] ];
     } else {
         predicate = [NSPredicate predicateWithFormat:
-                     @"stop = %@ AND arrival > %@ AND calendar & %@ > 0", stop, [NSNumber numberWithInt:min_arrival], [NSNumber numberWithInt:lcalendar] ];
+                     @"stop = %@ AND arrival > %@ AND arrival < %@ AND calendar & %@ > 0", stop, [NSNumber numberWithInt:min_arrival], [NSNumber numberWithInt:max_arrival], [NSNumber numberWithInt:lcalendar] ];
     }
     [fetchRequest setPredicate:predicate];
     

@@ -104,6 +104,8 @@
         objects = [self.line.stops allObjects];
     } else if ( self.city != nil) {
         objects = [self.city.stops allObjects];
+    } else {
+        objects = [[Stop findAll] fetchedObjects];
     }
     stops_ = [objects sortedArrayUsingDescriptors:sortDescriptors];
     [stops_ retain];
