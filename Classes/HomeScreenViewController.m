@@ -10,13 +10,15 @@
 #import "LineViewController.h"
 #import "StopViewController.h"
 #import "CityViewController.h"
+#import "AboutViewController.h"
 #import "Line.h"
 
 @implementation HomeScreenViewController
 
 NSString* menuTitles[] = {
     @"Recherche par lignes",
-    @"Recherche par arrêt"
+    @"Recherche par arrêt",
+    @""
 };
 int LineMenuValues[] = {
     LINE_USAGE_URBAN,
@@ -38,8 +40,9 @@ int LineMenuValues[] = {
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     self.navigationItem.title = @"Accueil";
     menus_ = [[NSMutableArray alloc] init];
-    [menus_ addObject:[NSArray arrayWithObjects: @"Lignes urbaines", @"Lignes suburbaines", @"Lignes express", @"Lignes spéciales", @"Toutes les lignes", @"Favorites", nil ]];
-    [menus_ addObject:[NSArray arrayWithObjects: @"Arrêts par ville",@"Tous les arrêts", @"Favoris", nil]];
+    [menus_ addObject:[NSArray arrayWithObjects: @"Lignes urbaines", @"Lignes suburbaines", @"Lignes express", @"Lignes spéciales", @"Toutes les lignes", /*@"Favorites",*/ nil ]];
+    [menus_ addObject:[NSArray arrayWithObjects: @"Arrêts par ville",@"Tous les arrêts", /*@"Favoris",*/ nil]];
+    [menus_ addObject:[NSArray arrayWithObjects: @"À propos", nil ]];
 }
 
 
@@ -103,6 +106,10 @@ int LineMenuValues[] = {
         [self.navigationController pushViewController:stopViewController animated:YES];
         [stopViewController release];
         }
+    } else if (indexPath.section == 2) {
+        AboutViewController* aboutVC = [[AboutViewController alloc] initWithNibName:@"AboutViewController" bundle:nil];
+        [self.navigationController pushViewController:aboutVC animated:YES];
+        [aboutVC release];
     }
 
 }
