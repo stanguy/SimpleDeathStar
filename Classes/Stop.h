@@ -13,5 +13,5 @@
 }
 
 + (NSFetchedResultsController*) findAll;
-
++ (NSFetchedResultsController*) findByName:(NSString*) text;
 @end

@@ -11,7 +11,7 @@
 
 @interface HomeScreenViewController : UITableViewController {
 @private
-    NSArray* menus_;
+    NSMutableArray* menus_;
 }
 
 @end

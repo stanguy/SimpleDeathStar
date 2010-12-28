@@ -60,9 +60,6 @@
     // nil for section name key path means "no sections".
     NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:context sectionNameKeyPath:@"usage" cacheName:@"Line"];
     
-    if (predicate != nil) {
-        [predicate release];
-    }
     [fetchRequest release];
     [sortDescriptor2 release];
     [sortDescriptor1 release];
@@ -70,10 +67,11 @@
     
     NSError *error = nil;
     if (![aFetchedResultsController performFetch:&error]) {
+        [aFetchedResultsController release];
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
         return nil;
     }
-    return aFetchedResultsController;
+    return [aFetchedResultsController autorelease];
 }
 
 @end

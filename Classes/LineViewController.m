@@ -82,6 +82,7 @@
         return fetchedResultsController_;
     }
     fetchedResultsController_ = [Line findAll:self.usageType];
+    [fetchedResultsController_ retain];
     fetchedResultsController_.delegate = self;
     return fetchedResultsController_;
 }

@@ -37,10 +37,9 @@ int LineMenuValues[] = {
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     self.navigationItem.title = @"Accueil";
-    NSMutableArray* menus = [[NSMutableArray alloc] init];
-    [menus addObject:[[NSArray alloc] initWithObjects: @"Lignes urbaines", @"Lignes suburbaines", @"Lignes express", @"Lignes spéciales", @"Toutes les lignes", @"Favorites", nil ]];
-    [menus addObject:[[NSArray alloc] initWithObjects: @"Arrêts par ville",@"Tous les arrêts", @"Favoris", nil]];
-    menus_ = menus;
+    menus_ = [[NSMutableArray alloc] init];
+    [menus_ addObject:[NSArray arrayWithObjects: @"Lignes urbaines", @"Lignes suburbaines", @"Lignes express", @"Lignes spéciales", @"Toutes les lignes", @"Favorites", nil ]];
+    [menus_ addObject:[NSArray arrayWithObjects: @"Arrêts par ville",@"Tous les arrêts", @"Favoris", nil]];
 }
 
 
@@ -126,6 +125,7 @@ int LineMenuValues[] = {
 
 
 - (void)dealloc {
+    [menus_ release];
     [super dealloc];
 }
 

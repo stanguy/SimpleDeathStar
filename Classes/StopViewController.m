@@ -121,6 +121,25 @@
     [searchBar resignFirstResponder];
 }
 
+- (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar {
+    [searchBar setShowsCancelButton:YES animated: YES];
+    return YES;
+}
+
+- (void)searchBar:(UISearchBar*)searchBar textDidChange:(NSString*)text {
+    NSLog( @"searching %@", text );
+    NSSortDescriptor *sortNameDescriptor = [[[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES] autorelease];
+    NSArray *sortDescriptors = [[[NSArray alloc] initWithObjects:sortNameDescriptor, nil] autorelease];
+    [stops_ release];
+    if ( [text length] > 0 ) {
+        stops_ = [[[Stop findByName:text] fetchedObjects] sortedArrayUsingDescriptors:sortDescriptors];
+    } else {
+        stops_ = [[[Stop findAll] fetchedObjects] sortedArrayUsingDescriptors:sortDescriptors];
+    }
+    [stops_ retain];
+    [self.tableView reloadData];
+}
+
 #pragma mark -
 #pragma mark Memory management
 

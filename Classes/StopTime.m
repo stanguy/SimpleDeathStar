@@ -32,8 +32,7 @@
     int max_arrival = min_arrival + 2 * 60 * 60;
     NSPredicate *predicate ;
     if (line != nil) {
-        
-    predicate = [NSPredicate predicateWithFormat:
+        predicate = [NSPredicate predicateWithFormat:
                               @"line = %@ AND stop = %@ AND arrival > %@ AND arrival < %@ AND calendar & %@ > 0", line, stop, [NSNumber numberWithInt:min_arrival], [NSNumber numberWithInt:max_arrival], [NSNumber numberWithInt:lcalendar] ];
     } else {
         predicate = [NSPredicate predicateWithFormat:
@@ -57,7 +56,6 @@
     NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:context sectionNameKeyPath:@"direction.headsign" cacheName:@"StopTime"];
     aFetchedResultsController.delegate = self;
     
-    [predicate release];
     [fetchRequest release];
     [sortDescriptor2 release];
     [sortDescriptor1 release];
@@ -65,6 +63,7 @@
     
     NSError *error = nil;
     if (![aFetchedResultsController performFetch:&error]) {
+        [aFetchedResultsController release];
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
         return nil;
     }

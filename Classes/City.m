@@ -14,11 +14,6 @@
     NSEntityDescription *entity = [City entityInManagedObjectContext:context];
     [fetchRequest setEntity:entity];
     
-    NSPredicate* predicate = nil;
-    if (nil != predicate) {
-        [fetchRequest setPredicate:predicate];
-    }
-    
     // Set the batch size to a suitable number.
     [fetchRequest setFetchBatchSize:20];
     
@@ -33,18 +28,16 @@
     // nil for section name key path means "no sections".
     NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:context sectionNameKeyPath:nil cacheName:@"City"];
     
-    if (predicate != nil) {
-        [predicate release];
-    }
     [fetchRequest release];
     [sortDescriptor1 release];
     [sortDescriptors release];
     
     NSError *error = nil;
     if (![aFetchedResultsController performFetch:&error]) {
+        [aFetchedResultsController release];
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
         return nil;
     }
-    return aFetchedResultsController;
+    return [aFetchedResultsController autorelease];
 }
 @end
