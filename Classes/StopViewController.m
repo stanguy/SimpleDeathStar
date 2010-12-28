@@ -67,13 +67,20 @@
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+        UITableViewCellStyle cellStyle = UITableViewCellStyleDefault;
+        if ( line_ == nil ) {
+            cellStyle = UITableViewCellStyleValue1;
+        }
+        cell = [[[UITableViewCell alloc] initWithStyle:cellStyle reuseIdentifier:CellIdentifier] autorelease];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
     
     // Configure the cell...
     Stop* stop = [[self stops] objectAtIndex:indexPath.row];
     cell.textLabel.text = stop.name;
+    if ( line_ == nil ) {
+        cell.detailTextLabel.text = [NSString stringWithFormat:@"%d ligne%@", [stop.lines count], [stop.lines count] > 1 ? @"s" : @""];
+    }
     
     return cell;
 }
@@ -127,7 +134,6 @@
 }
 
 - (void)searchBar:(UISearchBar*)searchBar textDidChange:(NSString*)text {
-    NSLog( @"searching %@", text );
     NSSortDescriptor *sortNameDescriptor = [[[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES] autorelease];
     NSArray *sortDescriptors = [[[NSArray alloc] initWithObjects:sortNameDescriptor, nil] autorelease];
     [stops_ release];
