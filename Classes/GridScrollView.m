@@ -53,11 +53,11 @@
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event { 
     UITouch *touch = [touches anyObject]; 
-    CGPoint location = [touch locationInView:self];
+/*    CGPoint location = [touch locationInView:self];
     float y = location.y; 
     float x = location.x;
     int row = (int)(y / self.tileHeight);        
-    int col = x / self.tileWidth;
+    int col = x / self.tileWidth;*/
 
     if(touch.tapCount == 1) { 
 

@@ -175,10 +175,8 @@ const int kCellWidth = 44;
     [cellview addSubview:label];
     [label release];
     
-    
+    [cellview autorelease];
     return (UIView *)cellview; 
-    
-
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)aScrollView {
