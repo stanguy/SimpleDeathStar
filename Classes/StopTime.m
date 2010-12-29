@@ -28,7 +28,7 @@
     int lcalendar = 1 << weekday ;
     [gregorian release];
     
-    int min_arrival = ([dateComponents hour] * 60 + [dateComponents minute]) * 60 + [dateComponents second] - 6 * 60 * 60;
+    int min_arrival = ([dateComponents hour] * 60 + [dateComponents minute]) * 60 + [dateComponents second];
     int max_arrival = min_arrival + 2 * 60 * 60;
     NSPredicate *predicate ;
     if (line != nil) {
