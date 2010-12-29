@@ -39,6 +39,12 @@ const int kCellWidth = 44;
     self.tableView.scrollEnabled = NO;
     [self createFloatingGrid];
     
+    if ( self.line != nil && self.stop != nil ) {
+        self.navigationItem.title = [NSString stringWithFormat:@"%@ / %@", self.line.short_name, self.stop.name];
+    } else if ( self.stop != nil ) {
+        self.navigationItem.title = self.stop.name;
+    }
+    
 }
 
 
@@ -145,23 +151,22 @@ const int kCellWidth = 44;
     if ( row >= [[self.fetchedResultsController sections] count] ) {
         return nil;
     }
-    id <NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:row];
-    if( column >= [sectionInfo numberOfObjects] ) {
-        return nil;
-    }
-    
-    
     UIView *cellview = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kCellWidth, kRowHeight)];
     UILabel *label = [[UILabel alloc] init];
     label.font = [UIFont systemFontOfSize:11.0];
     // fill
     
-    NSIndexPath* indexPath = [NSIndexPath indexPathForRow:column inSection:row];
-    StopTime* st = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    int arrival = [st.arrival intValue] / 60;
-    int mins = arrival % 60;
-    int hours = ( arrival / 60 ) % 24;
-    label.text = [NSString stringWithFormat:@"%02d:%02d", hours, mins];    
+    if ( column >= [ [[self.fetchedResultsController sections] objectAtIndex:row] numberOfObjects] ) {
+        label.text =  @"\u2014:\u2014";
+    } else {
+        NSIndexPath* indexPath = [NSIndexPath indexPathForRow:column inSection:row];
+        StopTime* st = [self.fetchedResultsController objectAtIndexPath:indexPath];
+        int arrival = [st.arrival intValue] / 60;
+        int mins = arrival % 60;
+        int hours = ( arrival / 60 ) % 24;
+        label.text = [NSString stringWithFormat:@"%02d:%02d", hours, mins];         
+    }
+
     
     label.backgroundColor = [UIColor clearColor];
     
@@ -175,8 +180,8 @@ const int kCellWidth = 44;
     [cellview addSubview:label];
     [label release];
     
-    [cellview autorelease];
-    return (UIView *)cellview; 
+   
+    return cellview; 
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)aScrollView {
