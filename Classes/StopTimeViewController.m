@@ -44,6 +44,19 @@ const int kCellWidth = 44;
     } else if ( self.stop != nil ) {
         self.navigationItem.title = self.stop.name;
     }
+    if ( [[self.fetchedResultsController sections] count] < 1 ) {
+        
+        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"NoResult" owner:self options:nil];
+        NSEnumerator *enumerator = [nib objectEnumerator];
+        id object;
+        while ((object = [enumerator nextObject])) {
+            if ([object isMemberOfClass:[UIView class]]) {
+                NSLog(@"adding subview");
+                [self.view addSubview:(UIView *)object];
+            }
+        }    
+        
+    }
     
 }
 
