@@ -39,5 +39,10 @@
 
 @protocol GridScrollViewDataSource <NSObject>
 - (UIView *)gridScrollView:(GridScrollView *)scrollView tileForRow:(int)row column:(int)column;
-
 @end
+
+@protocol GridScrollViewListener <NSObject>
+- (void)touchedRowAndCol:(NSArray*)rowAndCol;
+- (void)doubleTouchedRowAndCol:(NSArray*)rowAndCol;
+@end
+

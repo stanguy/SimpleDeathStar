@@ -53,37 +53,26 @@
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event { 
     UITouch *touch = [touches anyObject]; 
-/*    CGPoint location = [touch locationInView:self];
+    CGPoint location = [touch locationInView:self];
     float y = location.y; 
     float x = location.x;
     int row = (int)(y / self.tileHeight);        
-    int col = x / self.tileWidth;*/
+    int col = x / self.tileWidth;
 
-    if(touch.tapCount == 1) { 
+    
+    if ([self.delegate conformsToProtocol:@protocol(GridScrollViewListener)]) {
+        UIView <GridScrollViewListener>* listener = (UIView <GridScrollViewListener>*) self.delegate;
 
-        
-        // yeah this is poor encapsulation, but life is short
-/*        ScheduleViewController *scheduleViewController = (ScheduleViewController *)self.dataSource;
-        if  (row < [scheduleViewController.orderedStopNames count]) {
-//            NSString *stopName = [scheduleViewController.orderedStopNames objectAtIndex:row];
- //           TripsViewController *tripViewController = scheduleViewController.tripsViewController;
-//            [tripViewController highlightStopNamed:stopName];
-            [scheduleViewController touchedColumn:col];
-            
+        switch ([touch tapCount]) {
+            case 1:
+                [listener performSelector:@selector(touchedRowAndCol:) withObject:[NSArray arrayWithObjects:[NSNumber numberWithInt:row], [NSNumber numberWithInt:col], nil] afterDelay:0.4];
+                break;
+            case 2:
+                [NSObject cancelPreviousPerformRequestsWithTarget:listener selector:@selector(touchedRowAndCol:) object:[NSArray arrayWithObjects:[NSNumber numberWithInt:row], [NSNumber numberWithInt:col], nil]];
+                [listener performSelector:@selector(doubleTouchedRowAndCol:) withObject:[NSArray arrayWithObjects:[NSNumber numberWithInt:row], [NSNumber numberWithInt:col], nil] afterDelay:0.4];
+                break;
         }
-  */      
-    } 
-    if(touch.tapCount == 2) { 
-/*        ScheduleViewController *scheduleViewController = (ScheduleViewController *)self.dataSource;
-        if  (row < [scheduleViewController.orderedStopNames count]) {
-            //            NSString *stopName = [scheduleViewController.orderedStopNames objectAtIndex:row];
-            //           TripsViewController *tripViewController = scheduleViewController.tripsViewController;
-            //            [tripViewController highlightStopNamed:stopName];
-            [scheduleViewController doubleTouchedColumn:col];
-            
-        }
-  */      
-    } 
+    }
     [super touchesEnded:touches withEvent:event];
 } 
 

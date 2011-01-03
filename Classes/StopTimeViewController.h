@@ -12,12 +12,14 @@
 @class Stop;
 @class GridScrollView;
 @protocol GridScrollViewDataSource;
+@protocol GridScrollViewListener;
 
-@interface StopTimeViewController : UIViewController <NSFetchedResultsControllerDelegate,UIScrollViewDelegate, GridScrollViewDataSource> {
+@interface StopTimeViewController : UIViewController <NSFetchedResultsControllerDelegate,UIScrollViewDelegate, GridScrollViewDataSource, GridScrollViewListener> {
 @private
     NSFetchedResultsController *fetchedResultsController_;
     Line* line_;
     Stop* stop_;
+    int timeShift_;
     
     GridScrollView *scrollView;	// holds floating grid
     UITableView *tableView;

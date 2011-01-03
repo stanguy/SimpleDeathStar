@@ -3,5 +3,5 @@
 @interface StopTime : _StopTime {}
 // Custom logic goes here.
 
-+ (NSFetchedResultsController*) findByLine:(Line*) line andStop:(Stop*) stop;
++ (NSFetchedResultsController*) findByLine:(Line*) line andStop:(Stop*) stop withTimeShift:(int) timeShift;
 @end

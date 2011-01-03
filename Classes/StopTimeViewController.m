@@ -31,6 +31,7 @@ const int kCellWidth = 44;
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    timeShift_ = 0;
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     self.scrollView.tileWidth  = kCellWidth;
@@ -107,7 +108,7 @@ const int kCellWidth = 44;
     if ( nil != fetchedResultsController_) {
         return fetchedResultsController_;
     }
-    fetchedResultsController_ = [StopTime findByLine:line_ andStop:stop_];
+    fetchedResultsController_ = [StopTime findByLine:line_ andStop:stop_ withTimeShift:timeShift_];
     [fetchedResultsController_ retain];
     return fetchedResultsController_;
 }
@@ -127,7 +128,6 @@ const int kCellWidth = 44;
 #pragma mark GridScrollView
 
 - (void)createFloatingGrid {
-    NSLog( @"createFloatingGrid" );
     self.tableView.hidden = NO;
     [self.tableView reloadData];
     self.scrollView.hidden = YES;
@@ -230,6 +230,41 @@ const int kCellWidth = 44;
     CGPoint contentOffset = CGPointMake( (round(x/kCellWidth) * kCellWidth), newY);
     
     [self.scrollView setContentOffset:contentOffset animated:animated];        
+}
+
+- (void)touchedRowAndCol:(NSArray*)rowAndCol {
+/*    int row = [[rowAndCol objectAtIndex:0] intValue];
+    int col = [[rowAndCol objectAtIndex:1] intValue];*/
+}
+
+- (void)doubleTouchedRowAndCol:(NSArray*)rowAndCol {
+//    int row = [[rowAndCol objectAtIndex:0] intValue];
+    int col = [[rowAndCol objectAtIndex:1] intValue];
+    int nb_max_stops = 0;
+    int nbStops = [[self.fetchedResultsController sections] count];
+    if (nbStops == 0) {
+        return;
+    }
+    for ( int i = 0; i < nbStops ; ++i) {
+        id <NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:i];
+        if ( [sectionInfo numberOfObjects] > nb_max_stops) {
+            nb_max_stops = [sectionInfo numberOfObjects];
+        }
+    }
+    int max_cell_by_width = [[UIScreen mainScreen] bounds].size.width / kCellWidth;
+    int ref_col = nb_max_stops > max_cell_by_width ? nb_max_stops : max_cell_by_width;
+    if ( col >= ref_col - 2 ) {
+        timeShift_ ++;
+    } else if ( col <= 2 ) {
+        timeShift_ --;
+    } else {
+        return;
+    }
+    [self.fetchedResultsController release];
+    fetchedResultsController_ = nil;
+    [self.tableView reloadData];
+    [self.scrollView reloadData];
+    [self createFloatingGrid];
 }
 
 #pragma mark -

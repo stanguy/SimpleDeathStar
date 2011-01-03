@@ -17,7 +17,7 @@ NSPredicate* buildPredicate( Line* line, Stop* stop, int min_arrival, int max_ar
 }
 
 // Custom logic goes here.
-+ (NSFetchedResultsController*) findByLine:(Line*) line andStop:(Stop*) stop{
++ (NSFetchedResultsController*) findByLine:(Line*) line andStop:(Stop*) stop withTimeShift:(int) timeShift{
     SimpleDeathStarAppDelegate* delegate = (SimpleDeathStarAppDelegate*)[[UIApplication sharedApplication] delegate];
     NSManagedObjectContext* context = [delegate  managedObjectContext];
     
@@ -27,7 +27,7 @@ NSPredicate* buildPredicate( Line* line, Stop* stop, int min_arrival, int max_ar
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"StopTime" inManagedObjectContext:context];
     [fetchRequest setEntity:entity];
     
-    NSDate* now = [NSDate date];
+    NSDate* now = [NSDate dateWithTimeIntervalSinceNow:timeShift * 60 * 60 * 2 ];
     NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
     
     unsigned unitFlags = NSWeekdayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit;
