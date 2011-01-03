@@ -3,6 +3,19 @@
 
 @implementation StopTime
 
+
+NSPredicate* buildPredicate( Line* line, Stop* stop, int min_arrival, int max_arrival, int calendar ) {
+    NSPredicate* predicate;
+    if (line != nil) {
+        predicate = [NSPredicate predicateWithFormat:
+                     @"line = %@ AND stop = %@ AND arrival > %@ AND arrival < %@ AND calendar & %@ > 0", line, stop, [NSNumber numberWithInt:min_arrival], [NSNumber numberWithInt:max_arrival], [NSNumber numberWithInt:calendar] ];
+    } else {
+        predicate = [NSPredicate predicateWithFormat:
+                     @"stop = %@ AND arrival > %@ AND arrival < %@ AND calendar & %@ > 0", stop, [NSNumber numberWithInt:min_arrival], [NSNumber numberWithInt:max_arrival], [NSNumber numberWithInt:calendar] ];
+    }
+    return predicate;
+}
+
 // Custom logic goes here.
 + (NSFetchedResultsController*) findByLine:(Line*) line andStop:(Stop*) stop{
     SimpleDeathStarAppDelegate* delegate = (SimpleDeathStarAppDelegate*)[[UIApplication sharedApplication] delegate];
@@ -19,7 +32,10 @@
     
     unsigned unitFlags = NSWeekdayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit;
     NSDateComponents *dateComponents =[gregorian components:unitFlags fromDate:now];
-    
+    NSPredicate *predicate ;
+    int min_arrival = ([dateComponents hour] * 60 + [dateComponents minute]) * 60 + [dateComponents second];
+    int max_arrival = min_arrival + 2 * 60 * 60;
+
     // weekday 1 = Sunday for Gregorian calendar
     int weekday = [dateComponents weekday] - 2;
     if (weekday < 0) {
@@ -27,17 +43,17 @@
     }
     int lcalendar = 1 << weekday ;
     [gregorian release];
+    predicate = buildPredicate( line, stop, min_arrival, max_arrival, lcalendar );
     
-    int min_arrival = ([dateComponents hour] * 60 + [dateComponents minute]) * 60 + [dateComponents second];
-    int max_arrival = min_arrival + 2 * 60 * 60;
-    NSPredicate *predicate ;
-    if (line != nil) {
-        predicate = [NSPredicate predicateWithFormat:
-                              @"line = %@ AND stop = %@ AND arrival > %@ AND arrival < %@ AND calendar & %@ > 0", line, stop, [NSNumber numberWithInt:min_arrival], [NSNumber numberWithInt:max_arrival], [NSNumber numberWithInt:lcalendar] ];
-    } else {
-        predicate = [NSPredicate predicateWithFormat:
-                     @"stop = %@ AND arrival > %@ AND arrival < %@ AND calendar & %@ > 0", stop, [NSNumber numberWithInt:min_arrival], [NSNumber numberWithInt:max_arrival], [NSNumber numberWithInt:lcalendar] ];
+    if ( [dateComponents hour] < 8 ) {
+        weekday = ( weekday + 6 ) % 7;
+        lcalendar = 1 << weekday ;
+        min_arrival = min_arrival + 24 * 60 * 60;
+        max_arrival = max_arrival + 24 * 60 * 60;
+        predicate = [NSCompoundPredicate orPredicateWithSubpredicates:[NSArray arrayWithObjects:predicate, buildPredicate( line, stop, min_arrival, max_arrival, lcalendar ), nil]];
     }
+    
+
     [fetchRequest setPredicate:predicate];
     
     
