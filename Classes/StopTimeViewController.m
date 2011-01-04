@@ -199,7 +199,7 @@ const int kCellWidth = 44;
     [label release];
     
    
-    return cellview; 
+    return [cellview autorelease]; 
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)aScrollView {

@@ -136,7 +136,7 @@
                                   lastVisibleRow  < row || lastVisibleColumn  < col);
             
             if (tileIsMissing) {
-                UIView *tile = [[dataSource gridScrollView:self tileForRow:row column:col] autorelease];
+                UIView *tile = [dataSource gridScrollView:self tileForRow:row column:col];
                 if (tile) {
                                     
                     // set the tile's frame so we insert it at the correct position
