@@ -112,7 +112,8 @@ const int kCellWidth = 44;
                 if ([object isMemberOfClass:[UIView class]]) {
                     noResultView = (UIView*) object;
                 }
-            }    
+            }
+            noResultView.frame = CGRectMake( 0, self.view.frame.size.height - 350, self.view.frame.size.width, 350 );
             [self.view addSubview:noResultView]; 
         }
         [self.view bringSubviewToFront:noResultView];
