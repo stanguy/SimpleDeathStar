@@ -22,7 +22,7 @@ const int kCellWidth = 44;
 @implementation StopTimeViewController
 
 @synthesize fetchedResultsController = fetchedResultsController_, line = line_, stop = stop_;
-@synthesize tableView, scrollView;
+@synthesize tableView, scrollView, toolbar = toolbar_;
 
 #pragma mark -
 #pragma mark View lifecycle
@@ -32,6 +32,9 @@ const int kCellWidth = 44;
     [super viewDidLoad];
 
     timeShift_ = 0;
+    viewedDate_ = [NSDate date];
+    [viewedDate_ retain];
+
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     self.scrollView.tileWidth  = kCellWidth;
@@ -44,7 +47,7 @@ const int kCellWidth = 44;
         self.navigationItem.title = [NSString stringWithFormat:@"%@ / %@", self.line.short_name, self.stop.name];
     } else if ( self.stop != nil ) {
         self.navigationItem.title = self.stop.name;
-    }    
+    }
 }
 
 
@@ -97,7 +100,7 @@ const int kCellWidth = 44;
     if ( noResultView != nil ) {
         [self.view sendSubviewToBack:noResultView];
     }
-    fetchedResultsController_ = [StopTime findByLine:line_ andStop:stop_ withTimeShift:timeShift_];
+    fetchedResultsController_ = [StopTime findByLine:line_ andStop:stop_ atDate:viewedDate_];
     [fetchedResultsController_ retain];
     if ( [[fetchedResultsController_ sections] count] < 1 ) {
         
@@ -161,7 +164,7 @@ const int kCellWidth = 44;
 }
 
 - (void)adjustScrollViewFrame {
-    scrollView.frame = CGRectMake(6, 0, 320, self.view.frame.size.height); 
+    scrollView.frame = CGRectMake(6, 0, 320, self.view.frame.size.height - self.toolbar.frame.size.height); 
     
 }
 
@@ -265,12 +268,19 @@ const int kCellWidth = 44;
     }
 }
 
+#pragma mark -
+#pragma mark Others
+
 - (IBAction)shiftLeft:(id)sender {
-    timeShift_ --;
+    NSDate* tmpDate = [[viewedDate_ dateByAddingTimeInterval:-BASE_TIMESHIFT] retain];
+    [viewedDate_ release];
+    viewedDate_ = tmpDate;
     [self reloadData];
 }
 - (IBAction)shiftRight:(id)sender {
-    timeShift_ ++;
+    NSDate* tmpDate = [[viewedDate_ dateByAddingTimeInterval:BASE_TIMESHIFT] retain];
+    [viewedDate_ release];
+    viewedDate_ = tmpDate;
     [self reloadData];
 }
 
@@ -282,7 +292,40 @@ const int kCellWidth = 44;
     [self createFloatingGrid];
 }
 
+- (IBAction)changeDate:(id)sender {
+    NSLog(@"changeDate");
+    UIDatePicker* datePicker = [[UIDatePicker alloc] initWithFrame:CGRectMake(0, 250, 325, 250)];
+    datePicker.datePickerMode = UIDatePickerModeDateAndTime;
+    datePicker.hidden = NO;
+    datePicker.date = viewedDate_;
+    datePicker.minimumDate = [NSDate dateWithTimeIntervalSinceNow:-60*60];
+    datePicker.minuteInterval = 30;
+    [datePicker addTarget:self
+                   action:@selector(triggerChangeDateInLabel:)
+         forControlEvents:UIControlEventValueChanged];
+    [datePicker addTarget:self 
+                   action:@selector(delayChangeDateInLabel:) 
+         forControlEvents:UIControlEventAllTouchEvents];
+    [self.view addSubview:datePicker];
+    [datePicker release];
+}
+- (void)triggerChangeDateInLabel:(id)sender {
+    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(changeDateInLabel:) object:sender];
+    [self performSelector:@selector(changeDateInLabel:) withObject:sender afterDelay:2];
+}
+- (void)delayChangeDateInLabel:(id)sender {
+    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(changeDateInLabel:) object:sender];
+}
 
+- (void)changeDateInLabel:(id)sender {
+    NSLog(@"date changed!");
+    UIDatePicker* datePicker = (UIDatePicker*)sender;
+    [datePicker removeFromSuperview];
+    [viewedDate_ release];
+    viewedDate_ = [datePicker.date retain];
+    [self reloadData];
+    // do something with datePicker.date
+}
 #pragma mark -
 #pragma mark Memory management
 
@@ -300,6 +343,7 @@ const int kCellWidth = 44;
 
 
 - (void)dealloc {
+    [viewedDate_ release];
     [super dealloc];
 }
 

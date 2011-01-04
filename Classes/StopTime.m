@@ -17,7 +17,7 @@ NSPredicate* buildPredicate( Line* line, Stop* stop, int min_arrival, int max_ar
 }
 
 // Custom logic goes here.
-+ (NSFetchedResultsController*) findByLine:(Line*) line andStop:(Stop*) stop withTimeShift:(int) timeShift{
++ (NSFetchedResultsController*) findByLine:(Line*) line andStop:(Stop*) stop atDate:(NSDate*)date {
     SimpleDeathStarAppDelegate* delegate = (SimpleDeathStarAppDelegate*)[[UIApplication sharedApplication] delegate];
     NSManagedObjectContext* context = [delegate  managedObjectContext];
     
@@ -27,14 +27,13 @@ NSPredicate* buildPredicate( Line* line, Stop* stop, int min_arrival, int max_ar
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"StopTime" inManagedObjectContext:context];
     [fetchRequest setEntity:entity];
     
-    NSDate* now = [NSDate dateWithTimeIntervalSinceNow:timeShift * 60 * 60 * 2 ];
     NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
     
     unsigned unitFlags = NSWeekdayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit;
-    NSDateComponents *dateComponents =[gregorian components:unitFlags fromDate:now];
+    NSDateComponents *dateComponents =[gregorian components:unitFlags fromDate:date];
     NSPredicate *predicate ;
     int min_arrival = ([dateComponents hour] * 60 + [dateComponents minute]) * 60 + [dateComponents second];
-    int max_arrival = min_arrival + 2 * 60 * 60;
+    int max_arrival = min_arrival + BASE_TIMESHIFT;
 
     // weekday 1 = Sunday for Gregorian calendar
     int weekday = [dateComponents weekday] - 2;

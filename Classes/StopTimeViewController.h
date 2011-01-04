@@ -20,10 +20,12 @@
     Line* line_;
     Stop* stop_;
     int timeShift_;
+    NSDate* viewedDate_;
     
     GridScrollView *scrollView;	// holds floating grid
     UITableView *tableView;
     UIView* noResultView;
+    UIToolbar* toolbar_;
 
 }
 @property (nonatomic, retain) NSFetchedResultsController *fetchedResultsController;
@@ -31,6 +33,7 @@
 @property (nonatomic, retain) Stop* stop;
 @property (nonatomic, retain) IBOutlet GridScrollView *scrollView;	// holds floating grid
 @property (nonatomic, retain) IBOutlet UITableView *tableView;
+@property (nonatomic, retain) IBOutlet UIToolbar* toolbar;
 
 - (void)createFloatingGrid;
 - (void)adjustScrollViewFrame;
@@ -38,5 +41,8 @@
 - (void)alignGridAnimated:(BOOL)animated;
 - (IBAction)shiftLeft:(id)sender;
 - (IBAction)shiftRight:(id)sender;
+- (IBAction)changeDate:(id)sender;
+- (void)delayChangeDateInLabel:(id)sender;
+- (void)changeDateInLabel:(id)sender;
 - (void)reloadData;
 @end
