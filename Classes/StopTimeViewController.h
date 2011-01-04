@@ -23,6 +23,7 @@
     
     GridScrollView *scrollView;	// holds floating grid
     UITableView *tableView;
+    UIView* noResultView;
 
 }
 @property (nonatomic, retain) NSFetchedResultsController *fetchedResultsController;
@@ -35,4 +36,7 @@
 - (void)adjustScrollViewFrame;
 - (UIView *)gridScrollView:(GridScrollView *)scrollView tileForRow:(int)row column:(int)column;
 - (void)alignGridAnimated:(BOOL)animated;
+- (IBAction)shiftLeft:(id)sender;
+- (IBAction)shiftRight:(id)sender;
+- (void)reloadData;
 @end

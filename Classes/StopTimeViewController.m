@@ -44,21 +44,7 @@ const int kCellWidth = 44;
         self.navigationItem.title = [NSString stringWithFormat:@"%@ / %@", self.line.short_name, self.stop.name];
     } else if ( self.stop != nil ) {
         self.navigationItem.title = self.stop.name;
-    }
-    if ( [[self.fetchedResultsController sections] count] < 1 ) {
-        
-        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"NoResult" owner:self options:nil];
-        NSEnumerator *enumerator = [nib objectEnumerator];
-        id object;
-        while ((object = [enumerator nextObject])) {
-            if ([object isMemberOfClass:[UIView class]]) {
-                NSLog(@"adding subview");
-                [self.view addSubview:(UIView *)object];
-            }
-        }    
-        
-    }
-    
+    }    
 }
 
 
@@ -108,8 +94,27 @@ const int kCellWidth = 44;
     if ( nil != fetchedResultsController_) {
         return fetchedResultsController_;
     }
+    if ( noResultView != nil ) {
+        [self.view sendSubviewToBack:noResultView];
+    }
     fetchedResultsController_ = [StopTime findByLine:line_ andStop:stop_ withTimeShift:timeShift_];
     [fetchedResultsController_ retain];
+    if ( [[fetchedResultsController_ sections] count] < 1 ) {
+        
+        if ( noResultView == nil ) {
+            NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"NoResult" owner:self options:nil];
+            NSEnumerator *enumerator = [nib objectEnumerator];
+            id object;
+            while ((object = [enumerator nextObject])) {
+                if ([object isMemberOfClass:[UIView class]]) {
+                    noResultView = (UIView*) object;
+                }
+            }    
+            [self.view addSubview:noResultView]; 
+        }
+        [self.view bringSubviewToFront:noResultView];
+    }
+    
     return fetchedResultsController_;
 }
 
@@ -254,18 +259,29 @@ const int kCellWidth = 44;
     int max_cell_by_width = [[UIScreen mainScreen] bounds].size.width / kCellWidth;
     int ref_col = nb_max_stops > max_cell_by_width ? nb_max_stops : max_cell_by_width;
     if ( col >= ref_col - 2 ) {
-        timeShift_ ++;
+        [self shiftRight:nil];
     } else if ( col <= 2 ) {
-        timeShift_ --;
-    } else {
-        return;
+        [self shiftLeft:nil];
     }
+}
+
+- (IBAction)shiftLeft:(id)sender {
+    timeShift_ --;
+    [self reloadData];
+}
+- (IBAction)shiftRight:(id)sender {
+    timeShift_ ++;
+    [self reloadData];
+}
+
+- (void)reloadData {
     [self.fetchedResultsController release];
     fetchedResultsController_ = nil;
     [self.tableView reloadData];
     [self.scrollView reloadData];
     [self createFloatingGrid];
 }
+
 
 #pragma mark -
 #pragma mark Memory management
