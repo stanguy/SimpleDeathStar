@@ -293,7 +293,6 @@ const int kCellWidth = 44;
 }
 
 - (IBAction)changeDate:(id)sender {
-    NSLog(@"changeDate");
     UIDatePicker* datePicker = [[UIDatePicker alloc] initWithFrame:CGRectMake(0, 250, 325, 250)];
     datePicker.datePickerMode = UIDatePickerModeDateAndTime;
     datePicker.hidden = NO;
@@ -318,7 +317,6 @@ const int kCellWidth = 44;
 }
 
 - (void)changeDateInLabel:(id)sender {
-    NSLog(@"date changed!");
     UIDatePicker* datePicker = (UIDatePicker*)sender;
     [datePicker removeFromSuperview];
     [viewedDate_ release];
