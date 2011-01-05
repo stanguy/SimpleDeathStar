@@ -84,9 +84,14 @@ const int kCellWidth = 44;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
         
-    NSString *stopName = [[[self.fetchedResultsController sections] objectAtIndex:indexPath.row] name];
+    NSString *directionName = [[[self.fetchedResultsController sections] objectAtIndex:indexPath.row] name];
+    if ( line_ == nil ) {
+        NSIndexPath* indexPath = [NSIndexPath indexPathForRow:indexPath.row inSection:0];
+        StopTime* st = [self.fetchedResultsController objectAtIndexPath:indexPath];
+        directionName = [NSString stringWithFormat:@"%@ vers %@", st.line.short_name, directionName];
+    }
     cell.textLabel.font = [UIFont boldSystemFontOfSize:12.0];
-    cell.textLabel.text =  stopName;
+    cell.textLabel.text =  directionName;
     cell.detailTextLabel.text =  @" ";
     
     return cell;

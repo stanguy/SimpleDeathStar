@@ -60,7 +60,7 @@
     City* city = [self.fetchedResultsController objectAtIndexPath:indexPath];
 
     cell.textLabel.text = city.name;
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"%d arrêts", [city.stops count]];
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ arrêts", city.stop_count];
     return cell;
 }
 

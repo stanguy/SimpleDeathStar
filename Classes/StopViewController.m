@@ -79,7 +79,7 @@
     Stop* stop = [[self stops] objectAtIndex:indexPath.row];
     cell.textLabel.text = stop.name;
     if ( line_ == nil ) {
-        cell.detailTextLabel.text = [NSString stringWithFormat:@"%d ligne%@", [stop.lines count], [stop.lines count] > 1 ? @"s" : @""];
+        cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ ligne%@", stop.line_count, [stop.line_count intValue] > 1 ? @"s" : @""];
     }
     
     return cell;
