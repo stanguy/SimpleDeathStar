@@ -8,6 +8,7 @@
 
 
 
+
 @interface CityID : NSManagedObjectID {}
 @end
 
@@ -22,6 +23,16 @@
 @property (nonatomic, retain) NSString *name;
 
 //- (BOOL)validateName:(id*)value_ error:(NSError**)error_;
+
+
+
+@property (nonatomic, retain) NSNumber *stop_count;
+
+@property short stop_countValue;
+- (short)stop_countValue;
+- (void)setStop_countValue:(short)value_;
+
+//- (BOOL)validateStop_count:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -47,6 +58,13 @@
 
 - (NSString*)primitiveName;
 - (void)setPrimitiveName:(NSString*)value;
+
+
+- (NSNumber*)primitiveStop_count;
+- (void)setPrimitiveStop_count:(NSNumber*)value;
+
+- (short)primitiveStop_countValue;
+- (void)setPrimitiveStop_countValue:(short)value_;
 
 
 

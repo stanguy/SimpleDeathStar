@@ -29,14 +29,40 @@
 
 
 
-@dynamic lat;
-
-
-
-
-
-
 @dynamic name;
+
+
+
+
+
+
+@dynamic line_count;
+
+
+
+- (short)line_countValue {
+	NSNumber *result = [self line_count];
+	return [result shortValue];
+}
+
+- (void)setLine_countValue:(short)value_ {
+	[self setLine_count:[NSNumber numberWithShort:value_]];
+}
+
+- (short)primitiveLine_countValue {
+	NSNumber *result = [self primitiveLine_count];
+	return [result shortValue];
+}
+
+- (void)setPrimitiveLine_countValue:(short)value_ {
+	[self setPrimitiveLine_count:[NSNumber numberWithShort:value_]];
+}
+
+
+
+
+
+@dynamic lat;
 
 
 

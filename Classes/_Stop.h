@@ -12,6 +12,7 @@
 
 
 
+
 @interface StopID : NSManagedObjectID {}
 @end
 
@@ -23,15 +24,25 @@
 
 
 
-@property (nonatomic, retain) NSDecimalNumber *lat;
-
-//- (BOOL)validateLat:(id*)value_ error:(NSError**)error_;
-
-
-
 @property (nonatomic, retain) NSString *name;
 
 //- (BOOL)validateName:(id*)value_ error:(NSError**)error_;
+
+
+
+@property (nonatomic, retain) NSNumber *line_count;
+
+@property short line_countValue;
+- (short)line_countValue;
+- (void)setLine_countValue:(short)value_;
+
+//- (BOOL)validateLine_count:(id*)value_ error:(NSError**)error_;
+
+
+
+@property (nonatomic, retain) NSDecimalNumber *lat;
+
+//- (BOOL)validateLat:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -76,12 +87,19 @@
 
 @interface _Stop (CoreDataGeneratedPrimitiveAccessors)
 
-- (NSDecimalNumber*)primitiveLat;
-- (void)setPrimitiveLat:(NSDecimalNumber*)value;
-
-
 - (NSString*)primitiveName;
 - (void)setPrimitiveName:(NSString*)value;
+
+
+- (NSNumber*)primitiveLine_count;
+- (void)setPrimitiveLine_count:(NSNumber*)value;
+
+- (short)primitiveLine_countValue;
+- (void)setPrimitiveLine_countValue:(short)value_;
+
+
+- (NSDecimalNumber*)primitiveLat;
+- (void)setPrimitiveLat:(NSDecimalNumber*)value;
 
 
 - (NSDecimalNumber*)primitiveLon;

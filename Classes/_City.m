@@ -36,6 +36,32 @@
 
 
 
+@dynamic stop_count;
+
+
+
+- (short)stop_countValue {
+	NSNumber *result = [self stop_count];
+	return [result shortValue];
+}
+
+- (void)setStop_countValue:(short)value_ {
+	[self setStop_count:[NSNumber numberWithShort:value_]];
+}
+
+- (short)primitiveStop_countValue {
+	NSNumber *result = [self primitiveStop_count];
+	return [result shortValue];
+}
+
+- (void)setPrimitiveStop_countValue:(short)value_ {
+	[self setPrimitiveStop_count:[NSNumber numberWithShort:value_]];
+}
+
+
+
+
+
 @dynamic stops;
 
 	

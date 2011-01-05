@@ -14,6 +14,7 @@
 
 
 
+
 @interface LineID : NSManagedObjectID {}
 @end
 
@@ -25,15 +26,25 @@
 
 
 
-@property (nonatomic, retain) NSString *fgcolor;
+@property (nonatomic, retain) NSNumber *has_picto;
 
-//- (BOOL)validateFgcolor:(id*)value_ error:(NSError**)error_;
+@property BOOL has_pictoValue;
+- (BOOL)has_pictoValue;
+- (void)setHas_pictoValue:(BOOL)value_;
+
+//- (BOOL)validateHas_picto:(id*)value_ error:(NSError**)error_;
 
 
 
 @property (nonatomic, retain) NSString *usage;
 
 //- (BOOL)validateUsage:(id*)value_ error:(NSError**)error_;
+
+
+
+@property (nonatomic, retain) NSString *fgcolor;
+
+//- (BOOL)validateFgcolor:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -95,12 +106,19 @@
 
 @interface _Line (CoreDataGeneratedPrimitiveAccessors)
 
-- (NSString*)primitiveFgcolor;
-- (void)setPrimitiveFgcolor:(NSString*)value;
+- (NSNumber*)primitiveHas_picto;
+- (void)setPrimitiveHas_picto:(NSNumber*)value;
+
+- (BOOL)primitiveHas_pictoValue;
+- (void)setPrimitiveHas_pictoValue:(BOOL)value_;
 
 
 - (NSString*)primitiveUsage;
 - (void)setPrimitiveUsage:(NSString*)value;
+
+
+- (NSString*)primitiveFgcolor;
+- (void)setPrimitiveFgcolor:(NSString*)value;
 
 
 - (NSString*)primitiveBgcolor;
