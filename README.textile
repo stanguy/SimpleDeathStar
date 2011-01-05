@@ -1,0 +1,10 @@
+h1. What does it do ?
+
+It browses routes and stops from the GTFS data set of the city of Rennes, France. It provides a schedule/timetable of "stop times" for those bus lines.
+
+h1. What's missing ?
+
+To build and use your own version of this application, two things are missing. First, there are the icons for the routes (shouldn't be that difficult, hey?).
+Most importantly, you need a database resulting from the conversion of the GTFS data set. You can start by using the conversion script that I wrote within another project, but you still need another step, as the database here is guarded/managed by CoreData. I'll free the missing link someday, but currently, that one is ugly.
+
+You can find the end result on the Appstore as "Bus de Rennes en poche":http://itunes.apple.com/fr/app/bus-de-rennes-en-poche/id412512682?mt=8.
