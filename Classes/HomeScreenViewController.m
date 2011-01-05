@@ -28,6 +28,11 @@ int LineMenuValues[] = {
     LINE_USAGE_ALL,
     -1
 };
+int AboutMenuValues[] = {
+    ABOUT_ABOUT,
+    ABOUT_PANIC,
+    -1
+};
 
 #pragma mark -
 #pragma mark View lifecycle
@@ -42,7 +47,7 @@ int LineMenuValues[] = {
     menus_ = [[NSMutableArray alloc] init];
     [menus_ addObject:[NSArray arrayWithObjects: @"Lignes urbaines", @"Lignes suburbaines", @"Lignes express", @"Lignes spéciales", @"Toutes les lignes", /*@"Favorites",*/ nil ]];
     [menus_ addObject:[NSArray arrayWithObjects: @"Arrêts par ville",@"Tous les arrêts", /*@"Favoris",*/ nil]];
-    [menus_ addObject:[NSArray arrayWithObjects: @"À propos", nil ]];
+    [menus_ addObject:[NSArray arrayWithObjects: @"À propos", @"Pas de panique", nil ]];
 }
 
 
@@ -108,6 +113,7 @@ int LineMenuValues[] = {
         }
     } else if (indexPath.section == 2) {
         AboutViewController* aboutVC = [[AboutViewController alloc] initWithNibName:@"AboutViewController" bundle:nil];
+        aboutVC.type = AboutMenuValues[indexPath.row];
         [self.navigationController pushViewController:aboutVC animated:YES];
         [aboutVC release];
     }

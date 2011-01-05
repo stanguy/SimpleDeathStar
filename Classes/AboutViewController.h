@@ -9,8 +9,16 @@
 #import <UIKit/UIKit.h>
 
 
+enum AboutType {
+    ABOUT_ABOUT,
+    ABOUT_PANIC
+};
+
 @interface AboutViewController : UIViewController {
+@private
     IBOutlet UIWebView* webView;
+    int type_;
 }
 
+@property (nonatomic) int type;
 @end
