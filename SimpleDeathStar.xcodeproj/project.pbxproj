@@ -80,6 +80,8 @@
 		961A76D912D52C1D0085BCAA /* KL.png in Resources */ = {isa = PBXBuildFile; fileRef = 961A769912D52C1D0085BCAA /* KL.png */; };
 		961A76DA12D52C1D0085BCAA /* TTZ.png in Resources */ = {isa = PBXBuildFile; fileRef = 961A769A12D52C1D0085BCAA /* TTZ.png */; };
 		961A76E812D52FB20085BCAA /* panic.html in Resources */ = {isa = PBXBuildFile; fileRef = 961A76E712D52FB20085BCAA /* panic.html */; };
+		961A779112D664340085BCAA /* TripViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 961A778F12D664340085BCAA /* TripViewController.m */; };
+		961A779212D664340085BCAA /* TripViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 961A779012D664340085BCAA /* TripViewController.xib */; };
 		962B81A812C6C122007EA09F /* LineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 962B81A612C6C122007EA09F /* LineViewController.m */; };
 		962B81A912C6C122007EA09F /* LineViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 962B81A712C6C122007EA09F /* LineViewController.xib */; };
 		962B81AD12C6C153007EA09F /* Line.m in Sources */ = {isa = PBXBuildFile; fileRef = 962B81AC12C6C153007EA09F /* Line.m */; };
@@ -191,6 +193,9 @@
 		961A769912D52C1D0085BCAA /* KL.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = KL.png; sourceTree = "<group>"; };
 		961A769A12D52C1D0085BCAA /* TTZ.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TTZ.png; sourceTree = "<group>"; };
 		961A76E712D52FB20085BCAA /* panic.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = panic.html; sourceTree = "<group>"; };
+		961A778E12D664340085BCAA /* TripViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TripViewController.h; sourceTree = "<group>"; };
+		961A778F12D664340085BCAA /* TripViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TripViewController.m; sourceTree = "<group>"; };
+		961A779012D664340085BCAA /* TripViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TripViewController.xib; sourceTree = "<group>"; };
 		962B81A512C6C122007EA09F /* LineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LineViewController.h; sourceTree = "<group>"; };
 		962B81A612C6C122007EA09F /* LineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LineViewController.m; sourceTree = "<group>"; };
 		962B81A712C6C122007EA09F /* LineViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = LineViewController.xib; path = Classes/LineViewController.xib; sourceTree = "<group>"; };
@@ -279,6 +284,9 @@
 				96539CBA12C94C68002FDF29 /* CityViewController.m */,
 				96A71C6A12CA87AC00FB1516 /* AboutViewController.h */,
 				96A71C6B12CA87AC00FB1516 /* AboutViewController.m */,
+				961A778E12D664340085BCAA /* TripViewController.h */,
+				961A778F12D664340085BCAA /* TripViewController.m */,
+				961A779012D664340085BCAA /* TripViewController.xib */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -577,6 +585,7 @@
 				961A76D912D52C1D0085BCAA /* KL.png in Resources */,
 				961A76DA12D52C1D0085BCAA /* TTZ.png in Resources */,
 				961A76E812D52FB20085BCAA /* panic.html in Resources */,
+				961A779212D664340085BCAA /* TripViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -608,6 +617,7 @@
 				96A71C6D12CA87AC00FB1516 /* AboutViewController.m in Sources */,
 				96DBF3EE12CBCD7E0096C240 /* GridScrollView.m in Sources */,
 				96DBF44812CBD5890096C240 /* GridCell.m in Sources */,
+				961A779112D664340085BCAA /* TripViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

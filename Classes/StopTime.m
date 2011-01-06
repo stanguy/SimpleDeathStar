@@ -92,4 +92,56 @@ NSPredicate* buildPredicate( Line* line, Stop* stop, int min_arrival, int max_ar
     return aFetchedResultsController;
 }
 
+
+// Custom logic goes here.
++ (NSFetchedResultsController*) findFollowing:(StopTime*)stopTime {
+    SimpleDeathStarAppDelegate* delegate = (SimpleDeathStarAppDelegate*)[[UIApplication sharedApplication] delegate];
+    NSManagedObjectContext* context = [delegate  managedObjectContext];
+    
+    // Create the fetch request for the entity.
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    // Edit the entity name as appropriate.
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"StopTime" inManagedObjectContext:context];
+    [fetchRequest setEntity:entity];
+    [fetchRequest setRelationshipKeyPathsForPrefetching:
+     [NSArray arrayWithObject:@"stop"]];
+    
+    NSPredicate* predicate = [NSPredicate predicateWithFormat:
+                 @"trip_id = %@ AND arrival >= %@", stopTime.trip_id, stopTime.arrival];
+
+    
+    
+    [fetchRequest setPredicate:predicate];
+    
+    
+    // Set the batch size to a suitable number.
+    [fetchRequest setFetchBatchSize:20];
+    
+    // Edit the sort key as appropriate.
+    NSSortDescriptor *sortDescriptor;
+    sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"arrival" ascending:YES];
+    NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptor, nil];
+    
+    [fetchRequest setSortDescriptors:sortDescriptors];
+    [NSFetchedResultsController deleteCacheWithName:@"StopTimeFollowing"];
+    // Edit the section name key path and cache name if appropriate.
+    // nil for section name key path means "no sections".
+    NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:context sectionNameKeyPath:nil cacheName:@"StopTimeFollowing"];
+    
+    [fetchRequest release];
+    [sortDescriptor release];
+    [sortDescriptors release];
+    
+    NSError *error = nil;
+    if (![aFetchedResultsController performFetch:&error]) {
+        [aFetchedResultsController release];
+        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+        return nil;
+    }
+    [aFetchedResultsController autorelease];
+    
+    return aFetchedResultsController;
+}
+
+
 @end

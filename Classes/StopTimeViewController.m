@@ -11,6 +11,7 @@
 #import "Stop.h"
 #import "StopTime.h"
 #import "GridScrollView.h"
+#import "TripViewController.h"
 
 #import "SimpleDeathStarAppDelegate.h"
 
@@ -246,8 +247,22 @@ const int kCellWidth = 46;
 }
 
 - (void)touchedRowAndCol:(NSArray*)rowAndCol {
-/*    int row = [[rowAndCol objectAtIndex:0] intValue];
-    int col = [[rowAndCol objectAtIndex:1] intValue];*/
+    int row = [[rowAndCol objectAtIndex:0] intValue];
+    int col = [[rowAndCol objectAtIndex:1] intValue];
+    NSArray* sections = [self.fetchedResultsController sections];
+    if ( row >= [sections count] ) {
+        return;
+    }
+    id<NSFetchedResultsSectionInfo> section = [sections objectAtIndex:row];
+    if ( col >= [section numberOfObjects] ) {
+        return;
+    }
+    StopTime* st = [[section objects] objectAtIndex:col];
+    NSLog( @"touched %dx%d: %@", row, col, st );
+    TripViewController* tripViewController = [[TripViewController alloc] initWithNibName:@"TripViewController" bundle:nil];
+    tripViewController.stopTime = st;
+    [self.navigationController pushViewController:tripViewController animated:YES];
+    [tripViewController release];
 }
 
 - (void)doubleTouchedRowAndCol:(NSArray*)rowAndCol {

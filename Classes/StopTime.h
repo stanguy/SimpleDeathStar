@@ -7,4 +7,5 @@
 // Custom logic goes here.
 
 + (NSFetchedResultsController*) findByLine:(Line*) line andStop:(Stop*) stop atDate:(NSDate*) date;
++ (NSFetchedResultsController*) findFollowing:(StopTime*)stopTime;
 @end
