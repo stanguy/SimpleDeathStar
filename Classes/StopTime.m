@@ -61,11 +61,7 @@ NSPredicate* buildPredicate( Line* line, Stop* stop, int min_arrival, int max_ar
     
     // Edit the sort key as appropriate.
     NSSortDescriptor *sortDescriptor1;
-    if ( line != nil ) {
-        sortDescriptor1 = [[NSSortDescriptor alloc] initWithKey:@"direction.headsign" ascending:YES];
-    } else {
-        sortDescriptor1 = [[NSSortDescriptor alloc] initWithKey:@"line" ascending:YES];
-    }
+    sortDescriptor1 = [[NSSortDescriptor alloc] initWithKey:@"direction.headsign" ascending:YES];
     NSSortDescriptor *sortDescriptor2 = [[NSSortDescriptor alloc] initWithKey:@"arrival" ascending:YES];
     NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptor1, sortDescriptor2, nil];
     
