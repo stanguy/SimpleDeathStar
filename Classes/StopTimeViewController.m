@@ -16,7 +16,7 @@
 
 
 const int kRowHeight = 50;
-const int kCellWidth = 44;
+const int kCellWidth = 46;
 
 
 @implementation StopTimeViewController
@@ -83,11 +83,10 @@ const int kCellWidth = 44;
         cell.accessoryType =  UITableViewCellAccessoryNone; 
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
-        
-    NSString *directionName = [[[self.fetchedResultsController sections] objectAtIndex:indexPath.row] name];
+    id<NSFetchedResultsSectionInfo> section = [[self.fetchedResultsController sections] objectAtIndex:indexPath.row];
+    NSString *directionName = [section name];
     if ( line_ == nil ) {
-        NSIndexPath* indexPath = [NSIndexPath indexPathForRow:indexPath.row inSection:0];
-        StopTime* st = [self.fetchedResultsController objectAtIndexPath:indexPath];
+        StopTime* st = [[section objects] objectAtIndex:0];
         directionName = [NSString stringWithFormat:@"%@ vers %@", st.line.short_name, directionName];
     }
     cell.textLabel.font = [UIFont boldSystemFontOfSize:12.0];
@@ -180,7 +179,7 @@ const int kCellWidth = 44;
     }
     UIView *cellview = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kCellWidth, kRowHeight)];
     UILabel *label = [[UILabel alloc] init];
-    label.font = [UIFont systemFontOfSize:11.0];
+    label.font = [UIFont systemFontOfSize:12.0];
     // fill
     
     if ( column >= [ [[self.fetchedResultsController sections] objectAtIndex:row] numberOfObjects] ) {
