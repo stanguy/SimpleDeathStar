@@ -50,8 +50,9 @@
     
     // Edit the sort key as appropriate.
     NSSortDescriptor *sortDescriptor1 = [[NSSortDescriptor alloc] initWithKey:@"usage" ascending:NO];
-    NSSortDescriptor *sortDescriptor2 = [[NSSortDescriptor alloc] initWithKey:@"short_name" ascending:YES];
-    NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptor1, sortDescriptor2, nil];
+    NSSortDescriptor *sortDescriptor2 = [[NSSortDescriptor alloc] initWithKey:@"forced_id" ascending:YES];
+    NSSortDescriptor *sortDescriptor3 = [[NSSortDescriptor alloc] initWithKey:@"short_name" ascending:YES];
+    NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptor1, sortDescriptor2, sortDescriptor3, nil];
     
     [fetchRequest setSortDescriptors:sortDescriptors];
     
@@ -61,6 +62,7 @@
     NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:context sectionNameKeyPath:@"usage" cacheName:@"Line"];
     
     [fetchRequest release];
+    [sortDescriptor3 release];
     [sortDescriptor2 release];
     [sortDescriptor1 release];
     [sortDescriptors release];
