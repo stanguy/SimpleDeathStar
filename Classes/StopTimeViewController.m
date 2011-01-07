@@ -10,6 +10,7 @@
 #import "Line.h"
 #import "Stop.h"
 #import "StopTime.h"
+#import "Direction.h"
 #import "GridScrollView.h"
 #import "TripViewController.h"
 
@@ -85,9 +86,9 @@ const int kCellWidth = 46;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     id<NSFetchedResultsSectionInfo> section = [[self.fetchedResultsController sections] objectAtIndex:indexPath.row];
-    NSString *directionName = [section name];
+    StopTime* st = [[section objects] objectAtIndex:0];
+    NSString *directionName = st.direction.headsign;
     if ( line_ == nil ) {
-        StopTime* st = [[section objects] objectAtIndex:0];
         directionName = [NSString stringWithFormat:@"%@ vers %@", st.line.short_name, directionName];
     }
     cell.textLabel.font = [UIFont boldSystemFontOfSize:12.0];

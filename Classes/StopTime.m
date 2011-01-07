@@ -61,7 +61,7 @@ NSPredicate* buildPredicate( Line* line, Stop* stop, int min_arrival, int max_ar
     
     // Edit the sort key as appropriate.
     NSSortDescriptor *sortDescriptor1;
-    sortDescriptor1 = [[NSSortDescriptor alloc] initWithKey:@"direction.headsign" ascending:YES];
+    sortDescriptor1 = [[NSSortDescriptor alloc] initWithKey:@"direction" ascending:YES];
     NSSortDescriptor *sortDescriptor2 = [[NSSortDescriptor alloc] initWithKey:@"arrival" ascending:YES];
     NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptor1, sortDescriptor2, nil];
     
@@ -69,7 +69,7 @@ NSPredicate* buildPredicate( Line* line, Stop* stop, int min_arrival, int max_ar
     [NSFetchedResultsController deleteCacheWithName:@"StopTime"];
     // Edit the section name key path and cache name if appropriate.
     // nil for section name key path means "no sections".
-    NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:context sectionNameKeyPath:@"direction.headsign" cacheName:@"StopTime"];
+    NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:context sectionNameKeyPath:@"direction" cacheName:@"StopTime"];
     aFetchedResultsController.delegate = self;
     
     [fetchRequest release];
