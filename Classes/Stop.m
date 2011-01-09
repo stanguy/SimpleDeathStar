@@ -65,7 +65,7 @@
     
     NSPredicate* predicate = nil;
     if (nil != text) {
-        predicate = [NSPredicate predicateWithFormat:@"name CONTAINS[c] %@", text];
+        predicate = [NSPredicate predicateWithFormat:@"name CONTAINS[cd] %@", text];
         [fetchRequest setPredicate:predicate];
     }
     
