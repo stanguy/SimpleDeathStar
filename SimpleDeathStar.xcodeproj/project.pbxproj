@@ -82,6 +82,7 @@
 		961A76E812D52FB20085BCAA /* panic.html in Resources */ = {isa = PBXBuildFile; fileRef = 961A76E712D52FB20085BCAA /* panic.html */; };
 		961A779112D664340085BCAA /* TripViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 961A778F12D664340085BCAA /* TripViewController.m */; };
 		961A779212D664340085BCAA /* TripViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 961A779012D664340085BCAA /* TripViewController.xib */; };
+		961A780F12D66E6B0085BCAA /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 961A780D12D66E6B0085BCAA /* Localizable.strings */; };
 		962B81A812C6C122007EA09F /* LineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 962B81A612C6C122007EA09F /* LineViewController.m */; };
 		962B81A912C6C122007EA09F /* LineViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 962B81A712C6C122007EA09F /* LineViewController.xib */; };
 		962B81AD12C6C153007EA09F /* Line.m in Sources */ = {isa = PBXBuildFile; fileRef = 962B81AC12C6C153007EA09F /* Line.m */; };
@@ -107,6 +108,10 @@
 		96A71C6D12CA87AC00FB1516 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96A71C6B12CA87AC00FB1516 /* AboutViewController.m */; };
 		96A71C6E12CA87AC00FB1516 /* AboutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96A71C6C12CA87AC00FB1516 /* AboutViewController.xib */; };
 		96A71C8D12CA89B700FB1516 /* about.html in Resources */ = {isa = PBXBuildFile; fileRef = 96A71C8C12CA89B700FB1516 /* about.html */; };
+		96B1E19412DB84F3008007BD /* UserData.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 96B1E19312DB84F3008007BD /* UserData.xcdatamodel */; };
+		96B1E19612DB851D008007BD /* UserData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 96B1E19512DB851D008007BD /* UserData.xcdatamodeld */; };
+		96B1E1BF12DB8607008007BD /* _Favorite.m in Sources */ = {isa = PBXBuildFile; fileRef = 96B1E1BC12DB8607008007BD /* _Favorite.m */; };
+		96B1E1C012DB8607008007BD /* Favorite.m in Sources */ = {isa = PBXBuildFile; fileRef = 96B1E1BE12DB8607008007BD /* Favorite.m */; };
 		96DBF3EE12CBCD7E0096C240 /* GridScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 96DBF3ED12CBCD7E0096C240 /* GridScrollView.m */; };
 		96DBF44812CBD5890096C240 /* GridCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 96DBF44612CBD5890096C240 /* GridCell.m */; };
 		96DBF44912CBD5890096C240 /* GridCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96DBF44712CBD5890096C240 /* GridCell.xib */; };
@@ -196,6 +201,8 @@
 		961A778E12D664340085BCAA /* TripViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TripViewController.h; sourceTree = "<group>"; };
 		961A778F12D664340085BCAA /* TripViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TripViewController.m; sourceTree = "<group>"; };
 		961A779012D664340085BCAA /* TripViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TripViewController.xib; sourceTree = "<group>"; };
+		961A780E12D66E6B0085BCAA /* fr */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
+		961A781312D66E8D0085BCAA /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		962B81A512C6C122007EA09F /* LineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LineViewController.h; sourceTree = "<group>"; };
 		962B81A612C6C122007EA09F /* LineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LineViewController.m; sourceTree = "<group>"; };
 		962B81A712C6C122007EA09F /* LineViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = LineViewController.xib; path = Classes/LineViewController.xib; sourceTree = "<group>"; };
@@ -237,6 +244,11 @@
 		96A71C6B12CA87AC00FB1516 /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
 		96A71C6C12CA87AC00FB1516 /* AboutViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = AboutViewController.xib; path = Classes/AboutViewController.xib; sourceTree = "<group>"; };
 		96A71C8C12CA89B700FB1516 /* about.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = about.html; sourceTree = "<group>"; };
+		96B1E19312DB84F3008007BD /* UserData.xcdatamodel */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.xcdatamodel; path = UserData.xcdatamodel; sourceTree = "<group>"; };
+		96B1E1BB12DB8607008007BD /* _Favorite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _Favorite.h; sourceTree = "<group>"; };
+		96B1E1BC12DB8607008007BD /* _Favorite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _Favorite.m; sourceTree = "<group>"; };
+		96B1E1BD12DB8607008007BD /* Favorite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Favorite.h; sourceTree = "<group>"; };
+		96B1E1BE12DB8607008007BD /* Favorite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Favorite.m; sourceTree = "<group>"; };
 		96DBF3EC12CBCD7E0096C240 /* GridScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GridScrollView.h; sourceTree = "<group>"; };
 		96DBF3ED12CBCD7E0096C240 /* GridScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GridScrollView.m; sourceTree = "<group>"; };
 		96DBF44512CBD5890096C240 /* GridCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GridCell.h; sourceTree = "<group>"; };
@@ -323,6 +335,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				96B1E19512DB851D008007BD /* UserData.xcdatamodeld */,
 				961A765A12D52C1D0085BCAA /* line_images */,
 				96DBF54512CBFAFD0096C240 /* simpledeathstar_appicon_hr.png */,
 				96DBF54612CBFAFD0096C240 /* simpledeathstar_appicon.png */,
@@ -341,6 +354,7 @@
 				96A71C8C12CA89B700FB1516 /* about.html */,
 				961A717012D26CB90085BCAA /* NoResult.xib */,
 				961A76E712D52FB20085BCAA /* panic.html */,
+				961A780D12D66E6B0085BCAA /* Localizable.strings */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -430,28 +444,40 @@
 		962B81AA12C6C141007EA09F /* ManagedObjects */ = {
 			isa = PBXGroup;
 			children = (
-				9631C11212C758890002EB78 /* _City.h */,
-				9631C11312C758890002EB78 /* _City.m */,
-				9631C11412C758890002EB78 /* _Direction.h */,
-				9631C11512C758890002EB78 /* _Direction.m */,
-				9631C11612C758890002EB78 /* _StopTime.h */,
-				9631C11712C758890002EB78 /* _StopTime.m */,
+				96B1E1C112DB860F008007BD /* Auto */,
+				96B1E1BD12DB8607008007BD /* Favorite.h */,
+				96B1E1BE12DB8607008007BD /* Favorite.m */,
 				9631C11812C758890002EB78 /* City.h */,
 				9631C11912C758890002EB78 /* City.m */,
 				9631C11A12C758890002EB78 /* Direction.h */,
 				9631C11B12C758890002EB78 /* Direction.m */,
 				9631C11C12C758890002EB78 /* StopTime.h */,
 				9631C11D12C758890002EB78 /* StopTime.m */,
-				9631C0F412C757CF0002EB78 /* _Line.h */,
-				9631C0F512C757CF0002EB78 /* _Line.m */,
-				9631C0F612C757CF0002EB78 /* _Stop.h */,
-				9631C0F712C757CF0002EB78 /* _Stop.m */,
 				962B81AB12C6C153007EA09F /* Line.h */,
 				962B81AC12C6C153007EA09F /* Line.m */,
 				962B82BF12C6D1FB007EA09F /* Stop.h */,
 				962B82C012C6D1FB007EA09F /* Stop.m */,
 			);
 			name = ManagedObjects;
+			sourceTree = "<group>";
+		};
+		96B1E1C112DB860F008007BD /* Auto */ = {
+			isa = PBXGroup;
+			children = (
+				96B1E1BB12DB8607008007BD /* _Favorite.h */,
+				96B1E1BC12DB8607008007BD /* _Favorite.m */,
+				9631C11212C758890002EB78 /* _City.h */,
+				9631C11312C758890002EB78 /* _City.m */,
+				9631C11412C758890002EB78 /* _Direction.h */,
+				9631C11512C758890002EB78 /* _Direction.m */,
+				9631C11612C758890002EB78 /* _StopTime.h */,
+				9631C11712C758890002EB78 /* _StopTime.m */,
+				9631C0F412C757CF0002EB78 /* _Line.h */,
+				9631C0F512C757CF0002EB78 /* _Line.m */,
+				9631C0F612C757CF0002EB78 /* _Stop.h */,
+				9631C0F712C757CF0002EB78 /* _Stop.m */,
+			);
+			name = Auto;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -491,6 +517,8 @@
 				Japanese,
 				French,
 				German,
+				fr,
+				en,
 			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
 			projectDirPath = "";
@@ -586,6 +614,7 @@
 				961A76DA12D52C1D0085BCAA /* TTZ.png in Resources */,
 				961A76E812D52FB20085BCAA /* panic.html in Resources */,
 				961A779212D664340085BCAA /* TripViewController.xib in Resources */,
+				961A780F12D66E6B0085BCAA /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -618,10 +647,26 @@
 				96DBF3EE12CBCD7E0096C240 /* GridScrollView.m in Sources */,
 				96DBF44812CBD5890096C240 /* GridCell.m in Sources */,
 				961A779112D664340085BCAA /* TripViewController.m in Sources */,
+				96B1E19412DB84F3008007BD /* UserData.xcdatamodel in Sources */,
+				96B1E19612DB851D008007BD /* UserData.xcdatamodeld in Sources */,
+				96B1E1BF12DB8607008007BD /* _Favorite.m in Sources */,
+				96B1E1C012DB8607008007BD /* Favorite.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		961A780D12D66E6B0085BCAA /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				961A780E12D66E6B0085BCAA /* fr */,
+				961A781312D66E8D0085BCAA /* en */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		1D6058940D05DD3E006BFB54 /* Debug */ = {
@@ -655,8 +700,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
@@ -672,8 +717,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				CODE_SIGN_IDENTITY = "iPhone Developer: Sebastien Tanguy (Y5LD9RK2X7)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Sebastien Tanguy (Y5LD9RK2X7)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
@@ -681,8 +726,8 @@
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PREBINDING = NO;
 				PRODUCT_NAME = SimpleDeathStar;
-				PROVISIONING_PROFILE = "C8A21878-CE1C-404F-82E5-DF933496F6E3";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "C8A21878-CE1C-404F-82E5-DF933496F6E3";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos4.2;
 			};
 			name = Release;
@@ -718,6 +763,16 @@
 			);
 			currentVersion = 9692298C12C6B4A1007C965D /* Transit.xcdatamodel */;
 			path = Transit.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+		96B1E19512DB851D008007BD /* UserData.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				96B1E19312DB84F3008007BD /* UserData.xcdatamodel */,
+			);
+			currentVersion = 96B1E19312DB84F3008007BD /* UserData.xcdatamodel */;
+			path = UserData.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

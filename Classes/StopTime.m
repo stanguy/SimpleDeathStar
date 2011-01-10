@@ -19,7 +19,7 @@ NSPredicate* buildPredicate( Line* line, Stop* stop, int min_arrival, int max_ar
 // Custom logic goes here.
 + (NSFetchedResultsController*) findByLine:(Line*) line andStop:(Stop*) stop atDate:(NSDate*)date {
     SimpleDeathStarAppDelegate* delegate = (SimpleDeathStarAppDelegate*)[[UIApplication sharedApplication] delegate];
-    NSManagedObjectContext* context = [delegate  managedObjectContext];
+    NSManagedObjectContext* context = [delegate  transitManagedObjectContext];
     
     // Create the fetch request for the entity.
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
@@ -92,7 +92,7 @@ NSPredicate* buildPredicate( Line* line, Stop* stop, int min_arrival, int max_ar
 // Custom logic goes here.
 + (NSFetchedResultsController*) findFollowing:(StopTime*)stopTime {
     SimpleDeathStarAppDelegate* delegate = (SimpleDeathStarAppDelegate*)[[UIApplication sharedApplication] delegate];
-    NSManagedObjectContext* context = [delegate  managedObjectContext];
+    NSManagedObjectContext* context = [delegate  transitManagedObjectContext];
     
     // Create the fetch request for the entity.
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];

@@ -15,16 +15,24 @@
     UINavigationController *navigationController;
     
 @private
-    NSManagedObjectContext *managedObjectContext_;
-    NSManagedObjectModel *managedObjectModel_;
+    NSManagedObjectContext *transitManagedObjectContext_;
+    NSManagedObjectModel *transitManagedObjectModel_;
+
+    NSManagedObjectContext *userManagedObjectContext_;
+    NSManagedObjectModel *userManagedObjectModel_;
+
     NSPersistentStoreCoordinator *persistentStoreCoordinator_;
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
 @property (nonatomic, retain) IBOutlet UINavigationController *navigationController;
 
-@property (nonatomic, retain, readonly) NSManagedObjectContext *managedObjectContext;
-@property (nonatomic, retain, readonly) NSManagedObjectModel *managedObjectModel;
+@property (nonatomic, retain, readonly) NSManagedObjectContext *transitManagedObjectContext;
+@property (nonatomic, retain, readonly) NSManagedObjectModel *transitManagedObjectModel;
+
+@property (nonatomic, retain, readonly) NSManagedObjectContext *userManagedObjectContext;
+@property (nonatomic, retain, readonly) NSManagedObjectModel *userManagedObjectModel;
+
 @property (nonatomic, retain, readonly) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 
 - (NSString *)applicationDocumentsDirectory;

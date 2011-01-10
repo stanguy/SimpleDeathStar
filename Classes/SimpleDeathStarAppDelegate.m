@@ -70,8 +70,8 @@
 - (void)saveContext {
     
     NSError *error = nil;
-    if (managedObjectContext_ != nil) {
-        if ([managedObjectContext_ hasChanges] && ![managedObjectContext_ save:&error]) {
+    if (transitManagedObjectContext_ != nil) {
+        if ([transitManagedObjectContext_ hasChanges] && ![transitManagedObjectContext_ save:&error]) {
             /*
              Replace this implementation with code to handle the error appropriately.
              
@@ -91,18 +91,18 @@
  Returns the managed object context for the application.
  If the context doesn't already exist, it is created and bound to the persistent store coordinator for the application.
  */
-- (NSManagedObjectContext *)managedObjectContext {
+- (NSManagedObjectContext *)transitManagedObjectContext {
     
-    if (managedObjectContext_ != nil) {
-        return managedObjectContext_;
+    if (transitManagedObjectContext_ != nil) {
+        return transitManagedObjectContext_;
     }
     
     NSPersistentStoreCoordinator *coordinator = [self persistentStoreCoordinator];
     if (coordinator != nil) {
-        managedObjectContext_ = [[NSManagedObjectContext alloc] init];
-        [managedObjectContext_ setPersistentStoreCoordinator:coordinator];
+        transitManagedObjectContext_ = [[NSManagedObjectContext alloc] init];
+        [transitManagedObjectContext_ setPersistentStoreCoordinator:coordinator];
     }
-    return managedObjectContext_;
+    return transitManagedObjectContext_;
 }
 
 
@@ -110,17 +110,50 @@
  Returns the managed object model for the application.
  If the model doesn't already exist, it is created from the application's model.
  */
-- (NSManagedObjectModel *)managedObjectModel {
+- (NSManagedObjectModel *)transitManagedObjectModel {
     
-    if (managedObjectModel_ != nil) {
-        return managedObjectModel_;
+    if (transitManagedObjectModel_ != nil) {
+        return transitManagedObjectModel_;
     }
     NSString *modelPath = [[NSBundle mainBundle] pathForResource:@"Transit" ofType:@"momd"];
     NSURL *modelURL = [NSURL fileURLWithPath:modelPath];
-    managedObjectModel_ = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];    
-    return managedObjectModel_;
+    transitManagedObjectModel_ = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];    
+    return transitManagedObjectModel_;
 }
 
+/**
+ Returns the managed object context for the application.
+ If the context doesn't already exist, it is created and bound to the persistent store coordinator for the application.
+ */
+- (NSManagedObjectContext *)userManagedObjectContext {
+    
+    if (userManagedObjectContext_ != nil) {
+        return userManagedObjectContext_;
+    }
+    
+    NSPersistentStoreCoordinator *coordinator = [self persistentStoreCoordinator];
+    if (coordinator != nil) {
+        userManagedObjectContext_ = [[NSManagedObjectContext alloc] init];
+        [userManagedObjectContext_ setPersistentStoreCoordinator:coordinator];
+    }
+    return userManagedObjectContext_;
+}
+
+
+/**
+ Returns the managed object model for the application.
+ If the model doesn't already exist, it is created from the application's model.
+ */
+- (NSManagedObjectModel *)userManagedObjectModel {
+    
+    if (userManagedObjectModel_ != nil) {
+        return userManagedObjectModel_;
+    }
+    NSString *modelPath = [[NSBundle mainBundle] pathForResource:@"UserData" ofType:@"momd"];
+    NSURL *modelURL = [NSURL fileURLWithPath:modelPath];
+    userManagedObjectModel_ = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];    
+    return userManagedObjectModel_;
+}
 
 /**
  Returns the persistent store coordinator for the application.
@@ -135,7 +168,7 @@
     NSURL *storeURL = [NSURL fileURLWithPath: [[NSBundle mainBundle] pathForResource:@"Transit" ofType:@"sqlite"]];
     
     NSError *error = nil;
-    persistentStoreCoordinator_ = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
+    persistentStoreCoordinator_ = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self transitManagedObjectModel]];
     if (![persistentStoreCoordinator_ addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error]) {
         /*
          Replace this implementation with code to handle the error appropriately.
@@ -191,8 +224,8 @@
 
 - (void)dealloc {
     
-    [managedObjectContext_ release];
-    [managedObjectModel_ release];
+    [transitManagedObjectContext_ release];
+    [transitManagedObjectModel_ release];
     [persistentStoreCoordinator_ release];
     
     [navigationController release];

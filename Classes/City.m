@@ -6,7 +6,7 @@
 // Custom logic goes here.
 +(NSFetchedResultsController*) findAll {
     SimpleDeathStarAppDelegate* delegate = (SimpleDeathStarAppDelegate*)[[UIApplication sharedApplication] delegate];
-    NSManagedObjectContext* context = [delegate  managedObjectContext];
+    NSManagedObjectContext* context = [delegate  transitManagedObjectContext];
     
     // Create the fetch request for the entity.
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
