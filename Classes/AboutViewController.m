@@ -43,7 +43,6 @@
     }
     NSString* filePath = [fileUrl path];
     NSString* content = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:nil];
-    NSLog( @"%@ %@", filePath, content);
     [webView loadHTMLString:content baseURL:[fileUrl baseURL]];
 }
 
