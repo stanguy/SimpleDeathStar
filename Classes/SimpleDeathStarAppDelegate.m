@@ -97,7 +97,7 @@
         return transitManagedObjectContext_;
     }
     
-    NSPersistentStoreCoordinator *coordinator = [self persistentStoreCoordinator];
+    NSPersistentStoreCoordinator *coordinator = [self transitPersistentStoreCoordinator];
     if (coordinator != nil) {
         transitManagedObjectContext_ = [[NSManagedObjectContext alloc] init];
         [transitManagedObjectContext_ setPersistentStoreCoordinator:coordinator];
@@ -131,7 +131,7 @@
         return userManagedObjectContext_;
     }
     
-    NSPersistentStoreCoordinator *coordinator = [self persistentStoreCoordinator];
+    NSPersistentStoreCoordinator *coordinator = [self userPersistentStoreCoordinator];
     if (coordinator != nil) {
         userManagedObjectContext_ = [[NSManagedObjectContext alloc] init];
         [userManagedObjectContext_ setPersistentStoreCoordinator:coordinator];
@@ -159,17 +159,17 @@
  Returns the persistent store coordinator for the application.
  If the coordinator doesn't already exist, it is created and the application's store added to it.
  */
-- (NSPersistentStoreCoordinator *)persistentStoreCoordinator {
+- (NSPersistentStoreCoordinator *)transitPersistentStoreCoordinator {
     
-    if (persistentStoreCoordinator_ != nil) {
-        return persistentStoreCoordinator_;
+    if (transitPersistentStoreCoordinator_ != nil) {
+        return transitPersistentStoreCoordinator_;
     }
     
     NSURL *storeURL = [NSURL fileURLWithPath: [[NSBundle mainBundle] pathForResource:@"Transit" ofType:@"sqlite"]];
     
     NSError *error = nil;
-    persistentStoreCoordinator_ = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self transitManagedObjectModel]];
-    if (![persistentStoreCoordinator_ addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error]) {
+    transitPersistentStoreCoordinator_ = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self transitManagedObjectModel]];
+    if (![transitPersistentStoreCoordinator_ addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error]) {
         /*
          Replace this implementation with code to handle the error appropriately.
          
@@ -197,7 +197,52 @@
         abort();
     }    
     
-    return persistentStoreCoordinator_;
+    return transitPersistentStoreCoordinator_;
+}
+
+/**
+ Returns the persistent store coordinator for the application.
+ If the coordinator doesn't already exist, it is created and the application's store added to it.
+ */
+- (NSPersistentStoreCoordinator *)userPersistentStoreCoordinator {
+    
+    if (userPersistentStoreCoordinator_ != nil) {
+        return userPersistentStoreCoordinator_;
+    }
+    
+    NSURL *storeURL = [NSURL fileURLWithPath: [[self applicationDocumentsDirectory] stringByAppendingPathComponent: @"User.sqlite"]];
+    
+    NSError *error = nil;
+    userPersistentStoreCoordinator_ = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self userManagedObjectModel]];
+    if (![userPersistentStoreCoordinator_ addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error]) {
+        /*
+         Replace this implementation with code to handle the error appropriately.
+         
+         abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development. If it is not possible to recover from the error, display an alert panel that instructs the user to quit the application by pressing the Home button.
+         
+         Typical reasons for an error here include:
+         * The persistent store is not accessible;
+         * The schema for the persistent store is incompatible with current managed object model.
+         Check the error message to determine what the actual problem was.
+         
+         
+         If the persistent store is not accessible, there is typically something wrong with the file path. Often, a file URL is pointing into the application's resources directory instead of a writeable directory.
+         
+         If you encounter schema incompatibility errors during development, you can reduce their frequency by:
+         * Simply deleting the existing store:
+         [[NSFileManager defaultManager] removeItemAtURL:storeURL error:nil]
+         
+         * Performing automatic lightweight migration by passing the following dictionary as the options parameter: 
+         [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:YES],NSMigratePersistentStoresAutomaticallyOption, [NSNumber numberWithBool:YES], NSInferMappingModelAutomaticallyOption, nil];
+         
+         Lightweight migration will only work for a limited set of schema changes; consult "Core Data Model Versioning and Data Migration Programming Guide" for details.
+         
+         */
+        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+        abort();
+    }    
+    
+    return userPersistentStoreCoordinator_;
 }
 
 
@@ -226,7 +271,7 @@
     
     [transitManagedObjectContext_ release];
     [transitManagedObjectModel_ release];
-    [persistentStoreCoordinator_ release];
+    [transitPersistentStoreCoordinator_ release];
     
     [navigationController release];
     [window release];

@@ -62,6 +62,13 @@
 
 
 
+@dynamic src_id;
+
+
+
+
+
+
 @dynamic lat;
 
 

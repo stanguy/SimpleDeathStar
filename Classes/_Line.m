@@ -55,14 +55,14 @@
 
 
 
-@dynamic usage;
+@dynamic src_id;
 
 
 
 
 
 
-@dynamic fgcolor;
+@dynamic long_name;
 
 
 
@@ -83,7 +83,40 @@
 
 
 
-@dynamic long_name;
+@dynamic fgcolor;
+
+
+
+
+
+
+@dynamic forced_id;
+
+
+
+- (short)forced_idValue {
+	NSNumber *result = [self forced_id];
+	return [result shortValue];
+}
+
+- (void)setForced_idValue:(short)value_ {
+	[self setForced_id:[NSNumber numberWithShort:value_]];
+}
+
+- (short)primitiveForced_idValue {
+	NSNumber *result = [self primitiveForced_id];
+	return [result shortValue];
+}
+
+- (void)setPrimitiveForced_idValue:(short)value_ {
+	[self setPrimitiveForced_id:[NSNumber numberWithShort:value_]];
+}
+
+
+
+
+
+@dynamic usage;
 
 
 

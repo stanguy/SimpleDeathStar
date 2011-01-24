@@ -13,6 +13,7 @@
 
 
 
+
 @interface StopID : NSManagedObjectID {}
 @end
 
@@ -37,6 +38,12 @@
 - (void)setLine_countValue:(short)value_;
 
 //- (BOOL)validateLine_count:(id*)value_ error:(NSError**)error_;
+
+
+
+@property (nonatomic, retain) NSString *src_id;
+
+//- (BOOL)validateSrc_id:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -96,6 +103,10 @@
 
 - (short)primitiveLine_countValue;
 - (void)setPrimitiveLine_countValue:(short)value_;
+
+
+- (NSString*)primitiveSrc_id;
+- (void)setPrimitiveSrc_id:(NSString*)value;
 
 
 - (NSDecimalNumber*)primitiveLat;

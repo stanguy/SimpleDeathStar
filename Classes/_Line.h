@@ -15,6 +15,8 @@
 
 
 
+
+
 @interface LineID : NSManagedObjectID {}
 @end
 
@@ -36,15 +38,15 @@
 
 
 
-@property (nonatomic, retain) NSString *usage;
+@property (nonatomic, retain) NSString *src_id;
 
-//- (BOOL)validateUsage:(id*)value_ error:(NSError**)error_;
+//- (BOOL)validateSrc_id:(id*)value_ error:(NSError**)error_;
 
 
 
-@property (nonatomic, retain) NSString *fgcolor;
+@property (nonatomic, retain) NSString *long_name;
 
-//- (BOOL)validateFgcolor:(id*)value_ error:(NSError**)error_;
+//- (BOOL)validateLong_name:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -60,9 +62,25 @@
 
 
 
-@property (nonatomic, retain) NSString *long_name;
+@property (nonatomic, retain) NSString *fgcolor;
 
-//- (BOOL)validateLong_name:(id*)value_ error:(NSError**)error_;
+//- (BOOL)validateFgcolor:(id*)value_ error:(NSError**)error_;
+
+
+
+@property (nonatomic, retain) NSNumber *forced_id;
+
+@property short forced_idValue;
+- (short)forced_idValue;
+- (void)setForced_idValue:(short)value_;
+
+//- (BOOL)validateForced_id:(id*)value_ error:(NSError**)error_;
+
+
+
+@property (nonatomic, retain) NSString *usage;
+
+//- (BOOL)validateUsage:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -113,12 +131,12 @@
 - (void)setPrimitiveHas_pictoValue:(BOOL)value_;
 
 
-- (NSString*)primitiveUsage;
-- (void)setPrimitiveUsage:(NSString*)value;
+- (NSString*)primitiveSrc_id;
+- (void)setPrimitiveSrc_id:(NSString*)value;
 
 
-- (NSString*)primitiveFgcolor;
-- (void)setPrimitiveFgcolor:(NSString*)value;
+- (NSString*)primitiveLong_name;
+- (void)setPrimitiveLong_name:(NSString*)value;
 
 
 - (NSString*)primitiveBgcolor;
@@ -129,8 +147,19 @@
 - (void)setPrimitiveShort_name:(NSString*)value;
 
 
-- (NSString*)primitiveLong_name;
-- (void)setPrimitiveLong_name:(NSString*)value;
+- (NSString*)primitiveFgcolor;
+- (void)setPrimitiveFgcolor:(NSString*)value;
+
+
+- (NSNumber*)primitiveForced_id;
+- (void)setPrimitiveForced_id:(NSNumber*)value;
+
+- (short)primitiveForced_idValue;
+- (void)setPrimitiveForced_idValue:(short)value_;
+
+
+- (NSString*)primitiveUsage;
+- (void)setPrimitiveUsage:(NSString*)value;
 
 
 

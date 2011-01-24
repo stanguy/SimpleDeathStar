@@ -29,7 +29,14 @@
 
 
 
-@dynamic line_short_name;
+@dynamic stop_id;
+
+
+
+
+
+
+@dynamic line_id;
 
 
 
@@ -37,6 +44,20 @@
 
 
 @dynamic stop_name;
+
+
+
+
+
+
+@dynamic line_short_name;
+
+
+
+
+
+
+@dynamic created_at;
 
 
 

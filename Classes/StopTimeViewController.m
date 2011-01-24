@@ -13,6 +13,7 @@
 #import "Direction.h"
 #import "GridScrollView.h"
 #import "TripViewController.h"
+#import "Favorite.h"
 
 #import "SimpleDeathStarAppDelegate.h"
 
@@ -24,7 +25,7 @@ const int kCellWidth = 46;
 @implementation StopTimeViewController
 
 @synthesize fetchedResultsController = fetchedResultsController_, line = line_, stop = stop_;
-@synthesize tableView, scrollView, toolbar = toolbar_;
+@synthesize tableView, scrollView, toolbar = toolbar_, favButton = favButton_;
 
 #pragma mark -
 #pragma mark View lifecycle
@@ -49,6 +50,12 @@ const int kCellWidth = 46;
         self.navigationItem.title = [NSString stringWithFormat:@"%@ / %@", self.line.short_name, self.stop.name];
     } else if ( self.stop != nil ) {
         self.navigationItem.title = self.stop.name;
+    }
+    
+    if ( [Favorite existsWithLine:line_ andStop:stop_] ) {
+        favButton_.image = [UIImage imageNamed:@"favorites_remove"];
+    } else {
+        favButton_.image = [UIImage imageNamed:@"favorites_add"];
     }
 }
 
@@ -344,6 +351,20 @@ const int kCellWidth = 46;
     viewedDate_ = [datePicker.date retain];
     [self reloadData];
     // do something with datePicker.date
+}
+
+
+- (IBAction)toggleFavorite:(id)sender {
+
+    if ( [Favorite existsWithLine:line_ andStop:stop_] ) {
+        // remove
+        [Favorite deleteWithLine:line_ andStop:stop_];
+        favButton_.image = [UIImage imageNamed:@"favorites_add"];
+    } else {
+        // create new favorite
+        [Favorite addWithLine:line_ andStop:stop_];
+        favButton_.image = [UIImage imageNamed:@"favorites_remove"];
+    }
 }
 #pragma mark -
 #pragma mark Memory management

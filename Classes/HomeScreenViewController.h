@@ -12,6 +12,8 @@
 @interface HomeScreenViewController : UITableViewController {
 @private
     NSMutableArray* menus_;
+    NSArray* topFavorites_;
+    int cachedFavoritesCount;
 }
 
 @end
