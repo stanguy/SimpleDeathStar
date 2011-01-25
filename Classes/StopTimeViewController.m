@@ -25,7 +25,7 @@ const int kCellWidth = 46;
 @implementation StopTimeViewController
 
 @synthesize fetchedResultsController = fetchedResultsController_, line = line_, stop = stop_;
-@synthesize tableView, scrollView, toolbar = toolbar_, favButton = favButton_;
+@synthesize tableView, scrollView, toolbar = toolbar_, favButton = favButton_, alertNoResult = alertNoResult_, datePicker = datePicker_;
 
 #pragma mark -
 #pragma mark View lifecycle
@@ -51,7 +51,7 @@ const int kCellWidth = 46;
     } else if ( self.stop != nil ) {
         self.navigationItem.title = self.stop.name;
     }
-    
+        
     if ( [Favorite existsWithLine:line_ andStop:stop_] ) {
         favButton_.image = [UIImage imageNamed:@"favorites_remove"];
     } else {
@@ -59,7 +59,17 @@ const int kCellWidth = 46;
     }
 }
 
-
+- (UIAlertView*)alertNoResult {
+    if ( alertNoResult_ != nil ) {
+        return alertNoResult_;
+    }
+    alertNoResult_ = [[[UIAlertView alloc] initWithTitle:@"Aucun passage" 
+                                                message:@"Aucun passage prévu à la date indiquée" 
+                                               delegate:nil 
+                                      cancelButtonTitle:@"Ok" 
+                                      otherButtonTitles:nil] retain];
+    return alertNoResult_;
+}    
 
 #pragma mark -
 #pragma mark Table view data source
@@ -110,26 +120,14 @@ const int kCellWidth = 46;
     if ( nil != fetchedResultsController_) {
         return fetchedResultsController_;
     }
-    if ( noResultView != nil ) {
-        [self.view sendSubviewToBack:noResultView];
-    }
     fetchedResultsController_ = [StopTime findByLine:line_ andStop:stop_ atDate:viewedDate_];
     [fetchedResultsController_ retain];
     if ( [[fetchedResultsController_ sections] count] < 1 ) {
         
-        if ( noResultView == nil ) {
-            NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"NoResult" owner:self options:nil];
-            NSEnumerator *enumerator = [nib objectEnumerator];
-            id object;
-            while ((object = [enumerator nextObject])) {
-                if ([object isMemberOfClass:[UIView class]]) {
-                    noResultView = (UIView*) object;
-                }
-            }
-            noResultView.frame = CGRectMake( 0, self.view.frame.size.height - 350, self.view.frame.size.width, 350 );
-            [self.view addSubview:noResultView]; 
-        }
-        [self.view bringSubviewToFront:noResultView];
+/*        */
+        // optional - add more buttons:
+        NSLog( @"no result show %@", self.alertNoResult );
+        [self.alertNoResult show];
     }
     
     return fetchedResultsController_;
@@ -294,16 +292,46 @@ const int kCellWidth = 46;
     }
 }
 
+-(void)changeDate:(id)sender {
+    if ( dateChangeView_ == nil ) {
+        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"DateNavigation" owner:self options:nil];
+        NSEnumerator *enumerator = [nib objectEnumerator];
+        id object;
+        while ((object = [enumerator nextObject])) {
+            if ([object isMemberOfClass:[UIView class]]) {
+                dateChangeView_ = (UIView*) object;
+            }
+        }
+        [self.view addSubview:dateChangeView_]; 
+    }
+    self.datePicker.date = viewedDate_;
+    [self.view bringSubviewToFront:dateChangeView_];
+}
+
+-(void)onChangeDate:(id)sender {
+    [self.view sendSubviewToBack:dateChangeView_];
+    [viewedDate_ release];
+    viewedDate_ = [self.datePicker.date retain];
+    NSLog( @"date: %@", viewedDate_ );
+    [self reloadData];    
+}
+- (void)onDismissChangeDate:(id)sender {
+    [self.view sendSubviewToBack:dateChangeView_];
+}
+
+
 #pragma mark -
 #pragma mark Others
 
 - (IBAction)shiftLeft:(id)sender {
+    [self.view sendSubviewToBack:dateChangeView_];
     NSDate* tmpDate = [[viewedDate_ dateByAddingTimeInterval:-BASE_TIMESHIFT] retain];
     [viewedDate_ release];
     viewedDate_ = tmpDate;
     [self reloadData];
 }
 - (IBAction)shiftRight:(id)sender {
+    [self.view sendSubviewToBack:dateChangeView_];
     NSDate* tmpDate = [[viewedDate_ dateByAddingTimeInterval:BASE_TIMESHIFT] retain];
     [viewedDate_ release];
     viewedDate_ = tmpDate;
@@ -316,39 +344,6 @@ const int kCellWidth = 46;
     [self.tableView reloadData];
     [self.scrollView reloadData];
     [self createFloatingGrid];
-}
-
-- (IBAction)changeDate:(id)sender {
-    UIDatePicker* datePicker = [[UIDatePicker alloc] initWithFrame:CGRectMake(0, 250, 325, 250)];
-    datePicker.datePickerMode = UIDatePickerModeDateAndTime;
-    datePicker.hidden = NO;
-    datePicker.date = viewedDate_;
-    datePicker.minimumDate = [NSDate dateWithTimeIntervalSinceNow:-60*60];
-    datePicker.minuteInterval = 30;
-    [datePicker addTarget:self
-                   action:@selector(triggerChangeDateInLabel:)
-         forControlEvents:UIControlEventValueChanged];
-    [datePicker addTarget:self 
-                   action:@selector(delayChangeDateInLabel:) 
-         forControlEvents:UIControlEventAllTouchEvents];
-    [self.view addSubview:datePicker];
-    [datePicker release];
-}
-- (void)triggerChangeDateInLabel:(id)sender {
-    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(changeDateInLabel:) object:sender];
-    [self performSelector:@selector(changeDateInLabel:) withObject:sender afterDelay:2];
-}
-- (void)delayChangeDateInLabel:(id)sender {
-    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(changeDateInLabel:) object:sender];
-}
-
-- (void)changeDateInLabel:(id)sender {
-    UIDatePicker* datePicker = (UIDatePicker*)sender;
-    [datePicker removeFromSuperview];
-    [viewedDate_ release];
-    viewedDate_ = [datePicker.date retain];
-    [self reloadData];
-    // do something with datePicker.date
 }
 
 
@@ -381,6 +376,7 @@ const int kCellWidth = 46;
 
 
 - (void)dealloc {
+    [alertNoResult_ release];
     [viewedDate_ release];
     [super dealloc];
 }

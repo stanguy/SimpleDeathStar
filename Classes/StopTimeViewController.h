@@ -24,18 +24,24 @@
     
     GridScrollView *scrollView;	// holds floating grid
     UITableView *tableView;
-    UIView* noResultView;
+    UIAlertView* alertNoResult_;
     UIToolbar* toolbar_;
     UIBarButtonItem* favButton_;
 
+    UIView* dateChangeView_;
+    UIDatePicker* datePicker_;
+    
+
 }
 @property (nonatomic, retain) NSFetchedResultsController *fetchedResultsController;
+@property (nonatomic, retain) UIAlertView* alertNoResult;
 @property (nonatomic, retain) Line* line;
 @property (nonatomic, retain) Stop* stop;
 @property (nonatomic, retain) IBOutlet GridScrollView *scrollView;	// holds floating grid
 @property (nonatomic, retain) IBOutlet UITableView *tableView;
 @property (nonatomic, retain) IBOutlet UIToolbar* toolbar;
 @property (nonatomic, retain) IBOutlet UIBarButtonItem* favButton;
+@property (nonatomic, retain) IBOutlet UIDatePicker* datePicker;
 
 - (void)createFloatingGrid;
 - (void)adjustScrollViewFrame;
@@ -43,9 +49,11 @@
 - (void)alignGridAnimated:(BOOL)animated;
 - (IBAction)shiftLeft:(id)sender;
 - (IBAction)shiftRight:(id)sender;
+
 - (IBAction)changeDate:(id)sender;
+- (IBAction)onDismissChangeDate:(id)sender;
+- (IBAction)onChangeDate:(id)sender;
+
 - (IBAction)toggleFavorite:(id)sender;
-- (void)delayChangeDateInLabel:(id)sender;
-- (void)changeDateInLabel:(id)sender;
 - (void)reloadData;
 @end
