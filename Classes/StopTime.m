@@ -182,6 +182,13 @@ NSPredicate* buildPredicateNoMax( Line* line, Stop* stop, int min_arrival, int c
     int lcalendar = 1 << weekday ;
     
     NSPredicate* predicate = buildPredicateNoMax( line, stop, min_arrival, lcalendar );
+    if ( [dateComponents hour] < 8 ) {
+        weekday = ( weekday + 6 ) % 7;
+        lcalendar = 1 << weekday ;
+        min_arrival = min_arrival + 24 * 60 * 60;
+        predicate = [NSCompoundPredicate orPredicateWithSubpredicates:[NSArray arrayWithObjects:predicate, buildPredicateNoMax( line, stop, min_arrival, lcalendar ), nil]];
+    }
+    
     [fetchRequest setPredicate:predicate];
     
     

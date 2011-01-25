@@ -51,7 +51,7 @@ int kMaxTopFavorites = 5;
         return nil;
     }
     if ( [[aFetchedResultsController fetchedObjects] count] == 0 ) {
-        NSLog( @"no result" );
+//        NSLog( @"no result" );
         return nil;
     }
     Favorite* fav = [[aFetchedResultsController fetchedObjects] objectAtIndex:0];

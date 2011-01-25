@@ -49,6 +49,10 @@ enum eSections {
 #pragma mark -
 #pragma mark View lifecycle
 
+- (void)reloadFavorites {
+    topFavorites_ = [Favorite topFavorites];
+    cachedFavoritesCount = [Favorite count];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -62,10 +66,18 @@ enum eSections {
     [menus_ addObject:[NSArray arrayWithObjects:nil]];
     [menus_ addObject:[NSArray arrayWithObjects: @"À propos", @"Pas de panique", @"Sur le web", nil ]];
     
-    topFavorites_ = [Favorite topFavorites];
-    cachedFavoritesCount = [Favorite count];
+    
+    NSLog( @"done load" );
 }
 
+
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self reloadFavorites];
+    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:kFavoritesSection] withRowAnimation:YES];
+    NSLog( @"pouet" );
+}
 
 
 #pragma mark -
@@ -130,7 +142,7 @@ enum eSections {
                 NSArray* times = [StopTime findComingAt:fav];
                 NSMutableArray* formattedTimes = [NSMutableArray arrayWithCapacity:[times count]];
                 for ( StopTime* time in times ) {
-                    [formattedTimes addObject:[time formatArrival]];
+                    [formattedTimes addObject:[NSString stringWithFormat:@"%@: %@", time.trip_bearing, [time formatArrival]]];
                 }
                 subtxt = [formattedTimes componentsJoinedByString:@" "];
             }

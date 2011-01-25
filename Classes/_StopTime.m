@@ -29,52 +29,26 @@
 
 
 
-@dynamic departure;
+@dynamic arrival;
 
 
 
-- (int)departureValue {
-	NSNumber *result = [self departure];
+- (int)arrivalValue {
+	NSNumber *result = [self arrival];
 	return [result intValue];
 }
 
-- (void)setDepartureValue:(int)value_ {
-	[self setDeparture:[NSNumber numberWithInt:value_]];
+- (void)setArrivalValue:(int)value_ {
+	[self setArrival:[NSNumber numberWithInt:value_]];
 }
 
-- (int)primitiveDepartureValue {
-	NSNumber *result = [self primitiveDeparture];
+- (int)primitiveArrivalValue {
+	NSNumber *result = [self primitiveArrival];
 	return [result intValue];
 }
 
-- (void)setPrimitiveDepartureValue:(int)value_ {
-	[self setPrimitiveDeparture:[NSNumber numberWithInt:value_]];
-}
-
-
-
-
-
-@dynamic calendar;
-
-
-
-- (short)calendarValue {
-	NSNumber *result = [self calendar];
-	return [result shortValue];
-}
-
-- (void)setCalendarValue:(short)value_ {
-	[self setCalendar:[NSNumber numberWithShort:value_]];
-}
-
-- (short)primitiveCalendarValue {
-	NSNumber *result = [self primitiveCalendar];
-	return [result shortValue];
-}
-
-- (void)setPrimitiveCalendarValue:(short)value_ {
-	[self setPrimitiveCalendar:[NSNumber numberWithShort:value_]];
+- (void)setPrimitiveArrivalValue:(int)value_ {
+	[self setPrimitiveArrival:[NSNumber numberWithInt:value_]];
 }
 
 
@@ -107,26 +81,59 @@
 
 
 
-@dynamic arrival;
+@dynamic calendar;
 
 
 
-- (int)arrivalValue {
-	NSNumber *result = [self arrival];
+- (short)calendarValue {
+	NSNumber *result = [self calendar];
+	return [result shortValue];
+}
+
+- (void)setCalendarValue:(short)value_ {
+	[self setCalendar:[NSNumber numberWithShort:value_]];
+}
+
+- (short)primitiveCalendarValue {
+	NSNumber *result = [self primitiveCalendar];
+	return [result shortValue];
+}
+
+- (void)setPrimitiveCalendarValue:(short)value_ {
+	[self setPrimitiveCalendar:[NSNumber numberWithShort:value_]];
+}
+
+
+
+
+
+@dynamic trip_bearing;
+
+
+
+
+
+
+@dynamic departure;
+
+
+
+- (int)departureValue {
+	NSNumber *result = [self departure];
 	return [result intValue];
 }
 
-- (void)setArrivalValue:(int)value_ {
-	[self setArrival:[NSNumber numberWithInt:value_]];
+- (void)setDepartureValue:(int)value_ {
+	[self setDeparture:[NSNumber numberWithInt:value_]];
 }
 
-- (int)primitiveArrivalValue {
-	NSNumber *result = [self primitiveArrival];
+- (int)primitiveDepartureValue {
+	NSNumber *result = [self primitiveDeparture];
 	return [result intValue];
 }
 
-- (void)setPrimitiveArrivalValue:(int)value_ {
-	[self setPrimitiveArrival:[NSNumber numberWithInt:value_]];
+- (void)setPrimitiveDepartureValue:(int)value_ {
+	[self setPrimitiveDeparture:[NSNumber numberWithInt:value_]];
 }
 
 

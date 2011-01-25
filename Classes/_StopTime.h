@@ -13,6 +13,7 @@
 
 
 
+
 @interface StopTimeID : NSManagedObjectID {}
 @end
 
@@ -24,23 +25,13 @@
 
 
 
-@property (nonatomic, retain) NSNumber *departure;
+@property (nonatomic, retain) NSNumber *arrival;
 
-@property int departureValue;
-- (int)departureValue;
-- (void)setDepartureValue:(int)value_;
+@property int arrivalValue;
+- (int)arrivalValue;
+- (void)setArrivalValue:(int)value_;
 
-//- (BOOL)validateDeparture:(id*)value_ error:(NSError**)error_;
-
-
-
-@property (nonatomic, retain) NSNumber *calendar;
-
-@property short calendarValue;
-- (short)calendarValue;
-- (void)setCalendarValue:(short)value_;
-
-//- (BOOL)validateCalendar:(id*)value_ error:(NSError**)error_;
+//- (BOOL)validateArrival:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -54,13 +45,29 @@
 
 
 
-@property (nonatomic, retain) NSNumber *arrival;
+@property (nonatomic, retain) NSNumber *calendar;
 
-@property int arrivalValue;
-- (int)arrivalValue;
-- (void)setArrivalValue:(int)value_;
+@property short calendarValue;
+- (short)calendarValue;
+- (void)setCalendarValue:(short)value_;
 
-//- (BOOL)validateArrival:(id*)value_ error:(NSError**)error_;
+//- (BOOL)validateCalendar:(id*)value_ error:(NSError**)error_;
+
+
+
+@property (nonatomic, retain) NSString *trip_bearing;
+
+//- (BOOL)validateTrip_bearing:(id*)value_ error:(NSError**)error_;
+
+
+
+@property (nonatomic, retain) NSNumber *departure;
+
+@property int departureValue;
+- (int)departureValue;
+- (void)setDepartureValue:(int)value_;
+
+//- (BOOL)validateDeparture:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -94,18 +101,11 @@
 
 @interface _StopTime (CoreDataGeneratedPrimitiveAccessors)
 
-- (NSNumber*)primitiveDeparture;
-- (void)setPrimitiveDeparture:(NSNumber*)value;
+- (NSNumber*)primitiveArrival;
+- (void)setPrimitiveArrival:(NSNumber*)value;
 
-- (int)primitiveDepartureValue;
-- (void)setPrimitiveDepartureValue:(int)value_;
-
-
-- (NSNumber*)primitiveCalendar;
-- (void)setPrimitiveCalendar:(NSNumber*)value;
-
-- (short)primitiveCalendarValue;
-- (void)setPrimitiveCalendarValue:(short)value_;
+- (int)primitiveArrivalValue;
+- (void)setPrimitiveArrivalValue:(int)value_;
 
 
 - (NSNumber*)primitiveTrip_id;
@@ -115,11 +115,22 @@
 - (void)setPrimitiveTrip_idValue:(int)value_;
 
 
-- (NSNumber*)primitiveArrival;
-- (void)setPrimitiveArrival:(NSNumber*)value;
+- (NSNumber*)primitiveCalendar;
+- (void)setPrimitiveCalendar:(NSNumber*)value;
 
-- (int)primitiveArrivalValue;
-- (void)setPrimitiveArrivalValue:(int)value_;
+- (short)primitiveCalendarValue;
+- (void)setPrimitiveCalendarValue:(short)value_;
+
+
+- (NSString*)primitiveTrip_bearing;
+- (void)setPrimitiveTrip_bearing:(NSString*)value;
+
+
+- (NSNumber*)primitiveDeparture;
+- (void)setPrimitiveDeparture:(NSNumber*)value;
+
+- (int)primitiveDepartureValue;
+- (void)setPrimitiveDepartureValue:(int)value_;
 
 
 
