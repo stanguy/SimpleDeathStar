@@ -302,6 +302,7 @@ const int kCellWidth = 46;
                 dateChangeView_ = (UIView*) object;
             }
         }
+        dateChangeView_.frame = CGRectMake( 0, self.view.frame.size.height - 260, self.view.frame.size.width, 260 );
         [self.view addSubview:dateChangeView_]; 
     }
     self.datePicker.date = viewedDate_;
