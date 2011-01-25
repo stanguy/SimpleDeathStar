@@ -196,10 +196,8 @@ const int kCellWidth = 46;
     } else {
         NSIndexPath* indexPath = [NSIndexPath indexPathForRow:column inSection:row];
         StopTime* st = [self.fetchedResultsController objectAtIndexPath:indexPath];
-        int arrival = [st.arrival intValue] / 60;
-        int mins = arrival % 60;
-        int hours = ( arrival / 60 ) % 24;
-        label.text = [NSString stringWithFormat:@"%02d:%02d", hours, mins];         
+             
+        label.text = [st formatArrival];
     }
 
     

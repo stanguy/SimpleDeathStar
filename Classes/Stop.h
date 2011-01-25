@@ -14,4 +14,5 @@
 
 + (NSFetchedResultsController*) findAll;
 + (NSFetchedResultsController*) findByName:(NSString*) text;
++ (Stop*) findFirstBySrcId:(NSString*)src_id;
 @end

@@ -26,7 +26,7 @@ int kMaxTopFavorites = 5;
     if( line != nil ) {
         predicate = [NSPredicate predicateWithFormat:@"line_id = %@ AND stop_id = %@", line.src_id, stop.src_id ];
     } else {
-        predicate = [NSPredicate predicateWithFormat:@"line_id IS NULL AND stop_id = %@", stop.src_id ];
+        predicate = [NSPredicate predicateWithFormat:@"line_id = nil AND stop_id = %@", stop.src_id ];
     }
     [fetchRequest setPredicate:predicate];
 

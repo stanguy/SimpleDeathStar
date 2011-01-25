@@ -12,7 +12,7 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="8"/>
+			<integer value="10"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -93,12 +93,13 @@
 								<int key="IBUIStyle">1</int>
 								<reference key="IBUIToolbar" ref="1001172656"/>
 							</object>
-							<object class="IBUIBarButtonItem" id="360302015">
+							<object class="IBUIBarButtonItem" id="410662736">
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<reference key="IBUIToolbar" ref="1001172656"/>
 								<int key="IBUISystemItemIdentifier">5</int>
 							</object>
-							<object class="IBUIBarButtonItem" id="446590593">
+							<object class="IBUIBarButtonItem" id="917421899">
+								<bool key="IBUIEnabled">NO</bool>
 								<object class="NSCustomResource" key="IBUIImage">
 									<string key="NSClassName">NSImage</string>
 									<string key="NSResourceName">app_globe.png</string>
@@ -282,8 +283,8 @@
 							<reference ref="861559777"/>
 							<reference ref="840177112"/>
 							<reference ref="1027237752"/>
-							<reference ref="446590593"/>
-							<reference ref="360302015"/>
+							<reference ref="917421899"/>
+							<reference ref="410662736"/>
 						</object>
 						<reference key="parent" ref="563665192"/>
 					</object>
@@ -305,12 +306,12 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">32</int>
-						<reference key="object" ref="446590593"/>
+						<reference key="object" ref="917421899"/>
 						<reference key="parent" ref="1001172656"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">33</int>
-						<reference key="object" ref="360302015"/>
+						<reference key="object" ref="410662736"/>
 						<reference key="parent" ref="1001172656"/>
 					</object>
 				</object>

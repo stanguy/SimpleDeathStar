@@ -21,5 +21,6 @@ enum {
 }
 
 + (NSFetchedResultsController*) findAll:(int) type;
++ (Line*) findFirstBySrcId:(NSString*)src_id;
 
 @end

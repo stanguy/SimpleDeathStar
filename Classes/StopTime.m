@@ -1,4 +1,7 @@
 #import "StopTime.h"
+#import "Favorite.h"
+#import "Line.h"
+#import "Stop.h"
 #import "SimpleDeathStarAppDelegate.h"
 
 @implementation StopTime
@@ -15,6 +18,19 @@ NSPredicate* buildPredicate( Line* line, Stop* stop, int min_arrival, int max_ar
     }
     return predicate;
 }
+
+NSPredicate* buildPredicateNoMax( Line* line, Stop* stop, int min_arrival, int calendar ) {
+    NSPredicate* predicate;
+    if (line != nil) {
+        predicate = [NSPredicate predicateWithFormat:
+                     @"line = %@ AND stop = %@ AND arrival > %@ AND calendar & %@ > 0", line, stop, [NSNumber numberWithInt:min_arrival], [NSNumber numberWithInt:calendar] ];
+    } else {
+        predicate = [NSPredicate predicateWithFormat:
+                     @"stop = %@ AND arrival > %@ AND calendar & %@ > 0", stop, [NSNumber numberWithInt:min_arrival], [NSNumber numberWithInt:calendar] ];
+    }
+    return predicate;
+}
+
 
 // Custom logic goes here.
 + (NSFetchedResultsController*) findByLine:(Line*) line andStop:(Stop*) stop atDate:(NSDate*)date {
@@ -139,5 +155,71 @@ NSPredicate* buildPredicate( Line* line, Stop* stop, int min_arrival, int max_ar
     return aFetchedResultsController;
 }
 
++ (NSArray*) findComingAt:(Favorite*)favorite {
+    Line* line = ( favorite.line_id != nil ) ? [Line findFirstBySrcId:favorite.line_id] : nil;
+    Stop* stop = [Stop findFirstBySrcId:favorite.stop_id];
+
+    SimpleDeathStarAppDelegate* delegate = (SimpleDeathStarAppDelegate*)[[UIApplication sharedApplication] delegate];
+    NSManagedObjectContext* context = [delegate  transitManagedObjectContext];
+    
+    // Create the fetch request for the entity.
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    // Edit the entity name as appropriate.
+    NSEntityDescription *entity = [StopTime entityInManagedObjectContext:context];
+    [fetchRequest setEntity:entity];
+    
+    NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    NSDate* date = [NSDate date];
+    unsigned unitFlags = NSWeekdayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit;
+    NSDateComponents *dateComponents =[gregorian components:unitFlags fromDate:date];
+    int min_arrival = ([dateComponents hour] * 60 + [dateComponents minute]) * 60 + [dateComponents second];
+    
+    // weekday 1 = Sunday for Gregorian calendar
+    int weekday = [dateComponents weekday] - 2;
+    if (weekday < 0) {
+        weekday += 7;
+    }
+    int lcalendar = 1 << weekday ;
+    
+    NSPredicate* predicate = buildPredicateNoMax( line, stop, min_arrival, lcalendar );
+    [fetchRequest setPredicate:predicate];
+    
+    
+    // Set the batch size to a suitable number.
+    [fetchRequest setFetchLimit:4];
+    
+    // Edit the sort key as appropriate.
+    NSSortDescriptor *sortDescriptor1;
+    sortDescriptor1 = [[NSSortDescriptor alloc] initWithKey:@"arrival" ascending:YES];
+    NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptor1, nil];
+    
+    [fetchRequest setSortDescriptors:sortDescriptors];
+    [NSFetchedResultsController deleteCacheWithName:@"FavStopTime"];
+    // Edit the section name key path and cache name if appropriate.
+    // nil for section name key path means "no sections".
+    NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:context sectionNameKeyPath:nil cacheName:@"FavStopTime"];
+    aFetchedResultsController.delegate = self;
+    
+    [fetchRequest release];
+    [sortDescriptor1 release];
+    [sortDescriptors release];
+    
+    NSError *error = nil;
+    if (![aFetchedResultsController performFetch:&error]) {
+        [aFetchedResultsController release];
+        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+        return nil;
+    }
+    NSArray* stopTimes = [[aFetchedResultsController fetchedObjects] retain];
+    [aFetchedResultsController release];
+    return stopTimes;
+}
+
+- (NSString*) formatArrival{
+    int arrival = [self.arrival intValue] / 60;
+    int mins = arrival % 60;
+    int hours = ( arrival / 60 ) % 24;
+    return [NSString stringWithFormat:@"%02d:%02d", hours, mins]; 
+}
 
 @end

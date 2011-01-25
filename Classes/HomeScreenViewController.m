@@ -9,10 +9,13 @@
 #import "HomeScreenViewController.h"
 #import "LineViewController.h"
 #import "StopViewController.h"
+#import "StopTimeViewController.h"
 #import "CityViewController.h"
 #import "AboutViewController.h"
 #import "Favorite.h"
 #import "Line.h"
+#import "Stop.h"
+#import "StopTime.h"
 
 @implementation HomeScreenViewController
 
@@ -124,8 +127,12 @@ enum eSections {
                 ident = CellIdentifierFav;
                 Favorite* fav = [topFavorites_ objectAtIndex:indexPath.row];
                 txt = [fav title];
-                subtxt = @"12:42, 12:54, 13:01";
-
+                NSArray* times = [StopTime findComingAt:fav];
+                NSMutableArray* formattedTimes = [NSMutableArray arrayWithCapacity:[times count]];
+                for ( StopTime* time in times ) {
+                    [formattedTimes addObject:[time formatArrival]];
+                }
+                subtxt = [formattedTimes componentsJoinedByString:@" "];
             }
             cell = [tableView dequeueReusableCellWithIdentifier:ident];
             if (cell == nil) {
@@ -180,6 +187,20 @@ enum eSections {
             }
             break;
         case kFavoritesSection:
+        {
+            int topCount = [topFavorites_ count];
+            
+            if ( topCount > 0 ) {
+                if ( indexPath.row < topCount ) {
+                    Favorite* fav = [topFavorites_ objectAtIndex:indexPath.row];
+                    StopTimeViewController* stoptimeView = [[StopTimeViewController alloc] initWithNibName:@"StopTimeViewController" bundle:nil];
+                    stoptimeView.line = [Line findFirstBySrcId:fav.line_id];
+                    stoptimeView.stop = [Stop findFirstBySrcId:fav.stop_id];
+                    [self.navigationController pushViewController:stoptimeView animated:YES];
+                    [stoptimeView release];                    
+                }
+            }                
+        }
             break;
         case kAboutSection:
         {
