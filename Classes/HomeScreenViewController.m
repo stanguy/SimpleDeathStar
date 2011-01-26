@@ -17,6 +17,8 @@
 #import "Stop.h"
 #import "StopTime.h"
 
+#import "FavTimeViewCell.h"
+
 @implementation HomeScreenViewController
 
 NSString* menuTitles[] = {
@@ -131,13 +133,14 @@ enum eSections {
             NSString* ident;
             NSString* txt;
             NSString* subtxt;
+            Favorite* fav;
             if ( indexPath.row >= topCount ) {
                 ident = CellIdentifierFavMore;
                 txt = @"Voir tous les favoris";
                 subtxt = [NSString stringWithFormat:@"%d favoris enregistrés", cachedFavoritesCount];
             } else {
                 ident = CellIdentifierFav;
-                Favorite* fav = [topFavorites_ objectAtIndex:indexPath.row];
+                fav = [topFavorites_ objectAtIndex:indexPath.row];
                 txt = [fav title];
                 NSArray* times = [StopTime findComingAt:fav];
                 NSMutableArray* formattedTimes = [NSMutableArray arrayWithCapacity:[times count]];
@@ -148,11 +151,19 @@ enum eSections {
             }
             cell = [tableView dequeueReusableCellWithIdentifier:ident];
             if (cell == nil) {
-                cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:ident] autorelease];
-                cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+                if ( indexPath.row >= topCount ) {
+                    cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:ident] autorelease];
+                    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+                } else {
+                    cell = [FavTimeViewCell cellFromNibNamed:@"FavTimeViewCell"];
+                }
             }
+            if ( indexPath.row < topCount ) {
+                [cell displayFavorite:fav];
+            } else {
             cell.textLabel.text = txt;
             cell.detailTextLabel.text = subtxt;
+            }
         } else {
             cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifierFavNone];
             if (cell == nil) {

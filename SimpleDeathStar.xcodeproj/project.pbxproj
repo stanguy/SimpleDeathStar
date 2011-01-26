@@ -121,6 +121,10 @@
 		96CB944612EE301D00EFB75C /* app_globe.png in Resources */ = {isa = PBXBuildFile; fileRef = 96CB944412EE301D00EFB75C /* app_globe.png */; };
 		96CB944712EE301D00EFB75C /* app_globe@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96CB944512EE301D00EFB75C /* app_globe@2x.png */; };
 		96CB965312EF831000EFB75C /* DateNavigation.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96CB965212EF831000EFB75C /* DateNavigation.xib */; };
+		96CB971E12EF963800EFB75C /* FavTimeViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 96CB971D12EF963800EFB75C /* FavTimeViewCell.m */; };
+		96CB973812EF9A7F00EFB75C /* FavTimeViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96CB973712EF9A7F00EFB75C /* FavTimeViewCell.xib */; };
+		96CB97A512EFA3C100EFB75C /* arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 96CB97A312EFA3C100EFB75C /* arrow.png */; };
+		96CB97A612EFA3C100EFB75C /* arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96CB97A412EFA3C100EFB75C /* arrow@2x.png */; };
 		96DBF3EE12CBCD7E0096C240 /* GridScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 96DBF3ED12CBCD7E0096C240 /* GridScrollView.m */; };
 		96DBF44812CBD5890096C240 /* GridCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 96DBF44612CBD5890096C240 /* GridCell.m */; };
 		96DBF44912CBD5890096C240 /* GridCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96DBF44712CBD5890096C240 /* GridCell.xib */; };
@@ -267,6 +271,11 @@
 		96CB944412EE301D00EFB75C /* app_globe.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = app_globe.png; sourceTree = "<group>"; };
 		96CB944512EE301D00EFB75C /* app_globe@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "app_globe@2x.png"; sourceTree = "<group>"; };
 		96CB965212EF831000EFB75C /* DateNavigation.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DateNavigation.xib; sourceTree = "<group>"; };
+		96CB971C12EF963800EFB75C /* FavTimeViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FavTimeViewCell.h; sourceTree = "<group>"; };
+		96CB971D12EF963800EFB75C /* FavTimeViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FavTimeViewCell.m; sourceTree = "<group>"; };
+		96CB973712EF9A7F00EFB75C /* FavTimeViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FavTimeViewCell.xib; sourceTree = "<group>"; };
+		96CB97A312EFA3C100EFB75C /* arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow.png; sourceTree = "<group>"; };
+		96CB97A412EFA3C100EFB75C /* arrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arrow@2x.png"; sourceTree = "<group>"; };
 		96DBF3EC12CBCD7E0096C240 /* GridScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GridScrollView.h; sourceTree = "<group>"; };
 		96DBF3ED12CBCD7E0096C240 /* GridScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GridScrollView.m; sourceTree = "<group>"; };
 		96DBF44512CBD5890096C240 /* GridCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GridCell.h; sourceTree = "<group>"; };
@@ -317,6 +326,8 @@
 				961A778E12D664340085BCAA /* TripViewController.h */,
 				961A778F12D664340085BCAA /* TripViewController.m */,
 				961A779012D664340085BCAA /* TripViewController.xib */,
+				96CB971C12EF963800EFB75C /* FavTimeViewCell.h */,
+				96CB971D12EF963800EFB75C /* FavTimeViewCell.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -353,6 +364,9 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				96CB97A312EFA3C100EFB75C /* arrow.png */,
+				96CB97A412EFA3C100EFB75C /* arrow@2x.png */,
+				96CB973712EF9A7F00EFB75C /* FavTimeViewCell.xib */,
 				96CB944412EE301D00EFB75C /* app_globe.png */,
 				96CB944512EE301D00EFB75C /* app_globe@2x.png */,
 				96CB93DB12EE255300EFB75C /* clock.png */,
@@ -651,6 +665,9 @@
 				96CB944612EE301D00EFB75C /* app_globe.png in Resources */,
 				96CB944712EE301D00EFB75C /* app_globe@2x.png in Resources */,
 				96CB965312EF831000EFB75C /* DateNavigation.xib in Resources */,
+				96CB973812EF9A7F00EFB75C /* FavTimeViewCell.xib in Resources */,
+				96CB97A512EFA3C100EFB75C /* arrow.png in Resources */,
+				96CB97A612EFA3C100EFB75C /* arrow@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -687,6 +704,7 @@
 				96B1E19612DB851D008007BD /* UserData.xcdatamodeld in Sources */,
 				96B1E1BF12DB8607008007BD /* _Favorite.m in Sources */,
 				96B1E1C012DB8607008007BD /* Favorite.m in Sources */,
+				96CB971E12EF963800EFB75C /* FavTimeViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
