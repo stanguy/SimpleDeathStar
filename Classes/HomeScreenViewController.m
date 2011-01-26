@@ -86,7 +86,7 @@ enum eSections {
 					   NSLocalizedString( @"Toutes les lignes", @""), /*@"Favorites",*/ nil ]];
     [menus_ addObject:[NSArray arrayWithObjects: NSLocalizedString( @"Arrêts par ville", @"" ), NSLocalizedString( @"Tous les arrêts", @"" ), /*@"Favoris",*/ nil]];
     [menus_ addObject:[NSArray arrayWithObjects:nil]];
-    [menus_ addObject:[NSArray arrayWithObjects: NSLocalizedString( @"À propos", @"" ), NSLocalizedString( @"Pas de panique", @"" ), @"Sur le web", nil ]];
+    [menus_ addObject:[NSArray arrayWithObjects: NSLocalizedString( @"À propos", @"" ), NSLocalizedString( @"Pas de panique", @"" ), nil ]];
     
     
     NSLog( @"done load" );
@@ -156,7 +156,7 @@ enum eSections {
             if ( indexPath.row >= topCount ) {
                 ident = CellIdentifierFavMore;
                 txt = NSLocalizedString( @"Voir tous les favoris", @"" );
-                subtxt = [NSString stringWithFormat:@"%d favoris enregistrés", cachedFavoritesCount];
+                subtxt = [NSString stringWithFormat:NSLocalizedString( @"%d favoris enregistrés", @""), cachedFavoritesCount];
             } else {
                 ident = CellIdentifierFav;
                 fav = [topFavorites_ objectAtIndex:indexPath.row];
@@ -250,10 +250,7 @@ enum eSections {
                 aboutVC.type = AboutMenuValues[indexPath.row];
                 [self.navigationController pushViewController:aboutVC animated:YES];
                 [aboutVC release];
-            } else {
-                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://maps.dthg.net"]];
             }
-
         }
             break;
     }
