@@ -55,9 +55,8 @@ CGAffineTransform bearing2transform( NSString* bearing ){
     return CGAffineTransformMakeRotation(0);
 }
 
-- (void)displayFavorite:(Favorite*)favorite{
+- (void)displayFavorite:(Favorite*)favorite withTimes:(NSArray*)times{
     self.nameLabel.text = [favorite title];
-    NSArray* times = [StopTime findComingAt:favorite];
     int time_count = [times count];
     for ( int i = 0 ; i < 4; ++i) {
         UILabel* timeLabel = (UILabel*) [self viewWithTag:(10+i*2+1)];

@@ -51,9 +51,24 @@ enum eSections {
 #pragma mark -
 #pragma mark View lifecycle
 
+-(void)refreshViewOfFavorites {
+    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:kFavoritesSection] withRowAnimation:YES];
+}
+
 - (void)reloadFavorites {
+    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
     topFavorites_ = [Favorite topFavorites];
+    if ( favoritesTimes_ != nil) {
+        [favoritesTimes_ release];
+    }
+    NSMutableArray* favtimes = [[NSMutableArray alloc] init];
+    for ( Favorite* fav in topFavorites_ ) {
+        [favtimes addObject:[StopTime findComingAt:fav]];
+    }
+    favoritesTimes_ = favtimes;
     cachedFavoritesCount = [Favorite count];
+    [self performSelectorOnMainThread:@selector(refreshViewOfFavorites) withObject:nil waitUntilDone:NO];
+    [pool release];
 }
 
 - (void)viewDidLoad {
@@ -80,9 +95,7 @@ enum eSections {
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self reloadFavorites];
-    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:kFavoritesSection] withRowAnimation:YES];
-    NSLog( @"pouet" );
+    [self performSelectorInBackground:@selector(reloadFavorites) withObject:nil];
 }
 
 
@@ -137,6 +150,7 @@ enum eSections {
             NSString* ident;
             NSString* txt;
             NSString* subtxt;
+            NSArray* times;
             Favorite* fav;
             if ( indexPath.row >= topCount ) {
                 ident = CellIdentifierFavMore;
@@ -145,13 +159,7 @@ enum eSections {
             } else {
                 ident = CellIdentifierFav;
                 fav = [topFavorites_ objectAtIndex:indexPath.row];
-                txt = [fav title];
-                NSArray* times = [StopTime findComingAt:fav];
-                NSMutableArray* formattedTimes = [NSMutableArray arrayWithCapacity:[times count]];
-                for ( StopTime* time in times ) {
-                    [formattedTimes addObject:[NSString stringWithFormat:@"%@: %@", time.trip_bearing, [time formatArrival]]];
-                }
-                subtxt = [formattedTimes componentsJoinedByString:@" "];
+                times = [favoritesTimes_ objectAtIndex:indexPath.row];
             }
             cell = [tableView dequeueReusableCellWithIdentifier:ident];
             if (cell == nil) {
@@ -163,7 +171,7 @@ enum eSections {
                 }
             }
             if ( indexPath.row < topCount ) {
-                [cell displayFavorite:fav];
+                [(FavTimeViewCell*)cell displayFavorite:fav withTimes:times];
             } else {
             cell.textLabel.text = txt;
             cell.detailTextLabel.text = subtxt;
@@ -264,6 +272,7 @@ enum eSections {
 
 
 - (void)dealloc {
+    [favoritesTimes_ release];
     [menus_ release];
     [super dealloc];
 }

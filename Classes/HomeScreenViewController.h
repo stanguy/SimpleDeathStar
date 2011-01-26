@@ -13,6 +13,7 @@
 @private
     NSMutableArray* menus_;
     NSArray* topFavorites_;
+    NSArray* favoritesTimes_;
     int cachedFavoritesCount;
 }
 

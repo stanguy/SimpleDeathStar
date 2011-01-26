@@ -17,8 +17,7 @@
 @property (nonatomic, retain) UILabel *nameLabel;
 
 
-- (void)displayFavorite:(Favorite*)favorite;
-
+- (void)displayFavorite:(Favorite*)favorite withTimes:(NSArray*)times;
 + (FavTimeViewCell *)cellFromNibNamed:(NSString *)nibName;
 
 @end
