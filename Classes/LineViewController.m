@@ -53,17 +53,17 @@
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
     
     // Configure the cell...
     Line* line = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    cell.textLabel.text = [NSString stringWithFormat:NSLocalizedString( @"Ligne %@", @"" ), line.short_name];
-    cell.detailTextLabel.text = line.long_name;
+    cell.textLabel.text = line.long_name;
+    cell.textLabel.font = [UIFont boldSystemFontOfSize:15.0];
     
     if ( line.has_picto ) {
-        cell.imageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@", line.short_name]];
+        cell.imageView.image = [UIImage imageNamed:line.short_name];
     }
     
     return cell;
