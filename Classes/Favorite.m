@@ -62,22 +62,23 @@ int kMaxTopFavorites = 5;
     Favorite* fav = [[aFetchedResultsController fetchedObjects] objectAtIndex:0];
     [aFetchedResultsController release];
     
-    return fav;
+    return [fav autorelease];
 }
 
 +(BOOL)existsWithLine:(Line *)line andStop:(Stop *)stop andOhBTWIncCounter:(BOOL)incCounter {
     SimpleDeathStarAppDelegate* delegate = (SimpleDeathStarAppDelegate*)[[UIApplication sharedApplication] delegate];
     NSManagedObjectContext* context = [delegate  userManagedObjectContext];
 
-    Favorite* fav = [Favorite fetchWithLine:line andStop:stop inContext:context];
+    Favorite* fav = [[Favorite fetchWithLine:line andStop:stop inContext:context] retain];
     if ( fav != nil ) {
         if ( incCounter ) {
-            fav.view_count = fav.view_count + 1;
+            fav.view_count = [NSNumber numberWithInt:([fav.view_count intValue]+1)];
             NSError* error = nil;
             if ( ! [context save:&error] ) {
                 NSLog( @"unsable to save" );
             }            
         }
+        [fav release];
         return YES;
     }
     return NO;
