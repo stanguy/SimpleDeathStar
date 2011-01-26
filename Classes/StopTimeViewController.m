@@ -63,8 +63,8 @@ const int kCellWidth = 46;
     if ( alertNoResult_ != nil ) {
         return alertNoResult_;
     }
-    alertNoResult_ = [[[UIAlertView alloc] initWithTitle:@"Aucun passage" 
-                                                message:@"Aucun passage prévu à la date indiquée" 
+    alertNoResult_ = [[[UIAlertView alloc] initWithTitle:NSLocalizedString( @"Aucun passage", @"" )
+												 message:NSLocalizedString( @"Il n'y a pas d'horaire de passage prévu à la date indiquée", @"" )
                                                delegate:nil 
                                       cancelButtonTitle:@"Ok" 
                                       otherButtonTitles:nil] retain];
@@ -106,7 +106,7 @@ const int kCellWidth = 46;
     StopTime* st = [[section objects] objectAtIndex:0];
     NSString *directionName = st.direction.headsign;
     if ( line_ == nil ) {
-        directionName = [NSString stringWithFormat:@"%@ vers %@", st.line.short_name, directionName];
+        directionName = [NSString stringWithFormat:NSLocalizedString( @"%@ vers %@", @"" ), st.line.short_name, directionName];
     }
     cell.textLabel.font = [UIFont boldSystemFontOfSize:12.0];
     cell.textLabel.text =  directionName;

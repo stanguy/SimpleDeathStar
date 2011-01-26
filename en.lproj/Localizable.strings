@@ -1,0 +1,41 @@
+/* 
+   Localizable.strings
+   SimpleDeathStar
+
+   Created by Sébastien Tanguy on 26/01/11.
+   Copyright 2011 dthg.net. All rights reserved.
+ */
+
+/* HomeScreen */
+"Accueil" = "Home";
+"Recherche par lignes" = "Find lines";
+"Recherche par arrêt" = "Find stops";
+"Favoris" = "Favorites";
+"Lignes urbaines" = "Urban lines";
+"Lignes suburbaines" = "Suburban lines";
+"Lignes express" = "Express lines";
+"Lignes spéciales" = "Special lines";
+"Toutes les lignes" = "All the lines";
+"Arrêts par ville" = "Stops by city";
+"Tous les arrêts" = "All the stops";
+"À propos" = "About";
+"Pas de panique" = "Don't panic!";
+"Voir tous les favoris" = "See all favorites";
+"Aucun favori" = "No favorite";
+"Ajouter les depuis les pages d'horaires" = "Add favorites with the schedule page";
+
+/* Lines */
+"Lignes" = "Lines";
+"Ligne %@" = "Line %@";
+
+/* Stops */
+"Arrêt à rechercher" = "Search stops";
+"%@ ligne%@" = "%@ line%@";
+
+/* StopTime */
+"Aucun passage" = "No travel";
+"Il n'y a pas d'horaire de passage prévu à la date indiquée" = "There is no travel scheduled at the given date";
+"%@ vers %@" = "%@ to %@";
+
+/* City */
+"%@ arrêts" = "%@ stops";

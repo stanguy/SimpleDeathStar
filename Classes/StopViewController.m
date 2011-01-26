@@ -34,7 +34,7 @@
     } else {
         UISearchBar *searchBar = [[UISearchBar alloc] init];
         searchBar.delegate = self; 
-        searchBar.placeholder = @"Arrêt à rechercher";
+        searchBar.placeholder = NSLocalizedString( @"Arrêt à rechercher", @"" );
         
         self.navigationItem.titleView = searchBar;
         self.navigationItem.titleView.frame = CGRectMake(0, 0, 325, 44);
@@ -79,7 +79,7 @@
     Stop* stop = [[self stops] objectAtIndex:indexPath.row];
     cell.textLabel.text = stop.name;
     if ( line_ == nil ) {
-        cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ ligne%@", stop.line_count, [stop.line_count intValue] > 1 ? @"s" : @""];
+        cell.detailTextLabel.text = [NSString stringWithFormat:NSLocalizedString( @"%@ ligne%@", @"" ), stop.line_count, [stop.line_count intValue] > 1 ? @"s" : @""];
     }
     
     return cell;

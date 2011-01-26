@@ -25,7 +25,7 @@
 
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    self.navigationItem.title = @"Lignes";
+    self.navigationItem.title = NSLocalizedString( @"Lignes", @"" );
 }
 
 
@@ -59,11 +59,11 @@
     
     // Configure the cell...
     Line* line = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    cell.textLabel.text = [NSString stringWithFormat:@"Ligne %@", line.short_name];
+    cell.textLabel.text = [NSString stringWithFormat:NSLocalizedString( @"Ligne %@", @"" ), line.short_name];
     cell.detailTextLabel.text = line.long_name;
     
     if ( line.has_picto ) {
-        cell.imageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@.png", line.short_name]];
+        cell.imageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@", line.short_name]];
     }
     
     return cell;

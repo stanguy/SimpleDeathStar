@@ -61,12 +61,16 @@ enum eSections {
 
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    self.navigationItem.title = @"Accueil";
+    self.navigationItem.title = NSLocalizedString( @"Accueil", @"" );
     menus_ = [[NSMutableArray alloc] init];
-    [menus_ addObject:[NSArray arrayWithObjects: @"Lignes urbaines", @"Lignes suburbaines", @"Lignes express", @"Lignes spéciales", @"Toutes les lignes", /*@"Favorites",*/ nil ]];
-    [menus_ addObject:[NSArray arrayWithObjects: @"Arrêts par ville",@"Tous les arrêts", /*@"Favoris",*/ nil]];
+    [menus_ addObject:[NSArray arrayWithObjects:NSLocalizedString( @"Lignes urbaines", @""), 
+					   NSLocalizedString( @"Lignes suburbaines", @""), 
+					   NSLocalizedString( @"Lignes express", @""), 
+					   NSLocalizedString( @"Lignes spéciales", @""), 
+					   NSLocalizedString( @"Toutes les lignes", @""), /*@"Favorites",*/ nil ]];
+    [menus_ addObject:[NSArray arrayWithObjects: NSLocalizedString( @"Arrêts par ville", @"" ), NSLocalizedString( @"Tous les arrêts", @"" ), /*@"Favoris",*/ nil]];
     [menus_ addObject:[NSArray arrayWithObjects:nil]];
-    [menus_ addObject:[NSArray arrayWithObjects: @"À propos", @"Pas de panique", @"Sur le web", nil ]];
+    [menus_ addObject:[NSArray arrayWithObjects: NSLocalizedString( @"À propos", @"" ), NSLocalizedString( @"Pas de panique", @"" ), @"Sur le web", nil ]];
     
     
     NSLog( @"done load" );
@@ -136,7 +140,7 @@ enum eSections {
             Favorite* fav;
             if ( indexPath.row >= topCount ) {
                 ident = CellIdentifierFavMore;
-                txt = @"Voir tous les favoris";
+                txt = NSLocalizedString( @"Voir tous les favoris", @"" );
                 subtxt = [NSString stringWithFormat:@"%d favoris enregistrés", cachedFavoritesCount];
             } else {
                 ident = CellIdentifierFav;
@@ -169,8 +173,8 @@ enum eSections {
             if (cell == nil) {
                 cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifierFavNone] autorelease];
             }
-            cell.textLabel.text = @"Aucun favori";
-            cell.detailTextLabel.text = @"Ajouter les depuis les pages d'horaires";
+            cell.textLabel.text = NSLocalizedString( @"Aucun favori", @"" );
+            cell.detailTextLabel.text = NSLocalizedString( @"Ajouter les depuis les pages d'horaires", @"");
         }
 
     }
@@ -179,7 +183,7 @@ enum eSections {
     return cell;
 }
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    return menuTitles[section];
+    return NSLocalizedString( menuTitles[section], @"" );
 }
 
 
