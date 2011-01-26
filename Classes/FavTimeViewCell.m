@@ -46,18 +46,32 @@
 }
 
 CGAffineTransform bearing2transform( NSString* bearing ){
+    float angle = 0;
+    // dummy
     if ( [bearing isEqualToString:@"N"] ) {
-        return CGAffineTransformMakeRotation( - ( M_PI * 45 / 180 ) );
+        angle = - ( M_PI * 45.0 / 180.0 );
     } else if ( [bearing isEqualToString:@"E" ] ) {
-        return CGAffineTransformMakeRotation( ( M_PI * 45 / 180 ) );        
+        angle = M_PI * 45.0 / 180.0;
+    } else if ( [bearing isEqualToString:@"SW" ] ) {
+        angle= M_PI;
+    } else if ( [bearing isEqualToString:@"SE" ] ) {
+        angle = M_PI * 90 / 180.0;
+    } else if ( [bearing isEqualToString:@"S" ] ) {
+        angle = M_PI * 135 / 180.0;
+    } else if ( [bearing isEqualToString:@"NW" ] ) {
+        angle = - M_PI * 90 / 180.0;
+    } else if ( [bearing isEqualToString:@"W" ] ) {
+        angle = - M_PI * 135 / 180.0;
     }
-
-    return CGAffineTransformMakeRotation(0);
+    return CGAffineTransformMakeRotation( angle );
 }
 
 - (void)displayFavorite:(Favorite*)favorite withTimes:(NSArray*)times{
     self.nameLabel.text = [favorite title];
     int time_count = [times count];
+    if ( time_count == 0 ){
+        self.nameLabel.textColor = [UIColor lightGrayColor];
+    }
     for ( int i = 0 ; i < 4; ++i) {
         UILabel* timeLabel = (UILabel*) [self viewWithTag:(10+i*2+1)];
         UIImageView* imageView = (UIImageView*) [self viewWithTag:(10+i*2)];
@@ -66,7 +80,7 @@ CGAffineTransform bearing2transform( NSString* bearing ){
             timeLabel.text = [time formatArrival];
             if ( time.trip_bearing != nil ) {
                 imageView.image = [UIImage imageNamed:@"arrow"];
-                imageView.transform = bearing2transform( time.trip_bearing );
+                [imageView setTransform:bearing2transform( time.trip_bearing )];
             }
         } else {
             timeLabel.text = @"";

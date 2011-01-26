@@ -39,3 +39,6 @@
 
 /* City */
 "%@ arrêts" = "%@ stops";
+
+/* Favorites */
+"Favoris" = "Favorites";

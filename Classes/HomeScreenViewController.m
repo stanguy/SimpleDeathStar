@@ -12,6 +12,7 @@
 #import "StopTimeViewController.h"
 #import "CityViewController.h"
 #import "AboutViewController.h"
+#import "FavoritesViewController.h"
 #import "Favorite.h"
 #import "Line.h"
 #import "Stop.h"
@@ -233,6 +234,11 @@ enum eSections {
                     stoptimeView.stop = [Stop findFirstBySrcId:fav.stop_id];
                     [self.navigationController pushViewController:stoptimeView animated:YES];
                     [stoptimeView release];                    
+                } else {
+                    FavoritesViewController* favViewController = [[FavoritesViewController alloc] initWithNibName:@"FavoritesViewController" bundle:nil];
+                    [self.navigationController pushViewController:favViewController animated:YES];
+                    [favViewController release];
+                    
                 }
             }                
         }

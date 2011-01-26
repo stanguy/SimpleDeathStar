@@ -101,6 +101,7 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{11, 21}, {20, 20}}</string>
 								<reference key="NSSuperview" ref="504327432"/>
+								<int key="IBUIContentMode">4</int>
 								<int key="IBUITag">10</int>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -128,6 +129,7 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{78, 20}, {20, 20}}</string>
 								<reference key="NSSuperview" ref="504327432"/>
+								<int key="IBUIContentMode">4</int>
 								<int key="IBUITag">12</int>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -155,6 +157,7 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{150, 20}, {20, 20}}</string>
 								<reference key="NSSuperview" ref="504327432"/>
+								<int key="IBUIContentMode">4</int>
 								<int key="IBUITag">14</int>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -182,6 +185,7 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{216, 19}, {20, 20}}</string>
 								<reference key="NSSuperview" ref="504327432"/>
+								<int key="IBUIContentMode">4</int>
 								<int key="IBUITag">16</int>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>

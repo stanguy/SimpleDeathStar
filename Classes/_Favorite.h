@@ -11,6 +11,7 @@
 
 
 
+
 @interface FavoriteID : NSManagedObjectID {}
 @end
 
@@ -25,6 +26,12 @@
 @property (nonatomic, retain) NSString *stop_id;
 
 //- (BOOL)validateStop_id:(id*)value_ error:(NSError**)error_;
+
+
+
+@property (nonatomic, retain) NSDate *created_at;
+
+//- (BOOL)validateCreated_at:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -46,9 +53,13 @@
 
 
 
-@property (nonatomic, retain) NSDate *created_at;
+@property (nonatomic, retain) NSNumber *view_count;
 
-//- (BOOL)validateCreated_at:(id*)value_ error:(NSError**)error_;
+@property int view_countValue;
+- (int)view_countValue;
+- (void)setView_countValue:(int)value_;
+
+//- (BOOL)validateView_count:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -66,6 +77,10 @@
 - (void)setPrimitiveStop_id:(NSString*)value;
 
 
+- (NSDate*)primitiveCreated_at;
+- (void)setPrimitiveCreated_at:(NSDate*)value;
+
+
 - (NSString*)primitiveLine_id;
 - (void)setPrimitiveLine_id:(NSString*)value;
 
@@ -78,8 +93,11 @@
 - (void)setPrimitiveLine_short_name:(NSString*)value;
 
 
-- (NSDate*)primitiveCreated_at;
-- (void)setPrimitiveCreated_at:(NSDate*)value;
+- (NSNumber*)primitiveView_count;
+- (void)setPrimitiveView_count:(NSNumber*)value;
+
+- (int)primitiveView_countValue;
+- (void)setPrimitiveView_countValue:(int)value_;
 
 
 

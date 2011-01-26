@@ -36,6 +36,13 @@
 
 
 
+@dynamic created_at;
+
+
+
+
+
+
 @dynamic line_id;
 
 
@@ -57,8 +64,27 @@
 
 
 
-@dynamic created_at;
+@dynamic view_count;
 
+
+
+- (int)view_countValue {
+	NSNumber *result = [self view_count];
+	return [result intValue];
+}
+
+- (void)setView_countValue:(int)value_ {
+	[self setView_count:[NSNumber numberWithInt:value_]];
+}
+
+- (int)primitiveView_countValue {
+	NSNumber *result = [self primitiveView_count];
+	return [result intValue];
+}
+
+- (void)setPrimitiveView_countValue:(int)value_ {
+	[self setPrimitiveView_count:[NSNumber numberWithInt:value_]];
+}
 
 
 

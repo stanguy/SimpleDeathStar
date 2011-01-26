@@ -8,10 +8,15 @@
 // Custom logic goes here.
 
 int kMaxTopFavorites = 5;
-
-+ (Favorite*)fetchWithLine:(Line*)line andStop:(Stop*) stop{
-    SimpleDeathStarAppDelegate* delegate = (SimpleDeathStarAppDelegate*)[[UIApplication sharedApplication] delegate];
-    NSManagedObjectContext* context = [delegate  userManagedObjectContext];
++ (Favorite*)fetchWithLine:(Line*)line andStop:(Stop*) stop {
+    return [Favorite fetchWithLine:line andStop:stop inContext:nil];
+}
++ (Favorite*)fetchWithLine:(Line*)line andStop:(Stop*) stop inContext:(NSManagedObjectContext*)context_{
+    NSManagedObjectContext* context = context_;
+    if ( nil == context ) {
+        SimpleDeathStarAppDelegate* delegate = (SimpleDeathStarAppDelegate*)[[UIApplication sharedApplication] delegate];
+        context = [delegate  userManagedObjectContext];
+    }
     
     // Create the fetch request for the entity.
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
@@ -59,10 +64,27 @@ int kMaxTopFavorites = 5;
     
     return fav;
 }
+
++(BOOL)existsWithLine:(Line *)line andStop:(Stop *)stop andOhBTWIncCounter:(BOOL)incCounter {
+    SimpleDeathStarAppDelegate* delegate = (SimpleDeathStarAppDelegate*)[[UIApplication sharedApplication] delegate];
+    NSManagedObjectContext* context = [delegate  userManagedObjectContext];
+
+    Favorite* fav = [Favorite fetchWithLine:line andStop:stop inContext:context];
+    if ( fav != nil ) {
+        if ( incCounter ) {
+            fav.view_count = fav.view_count + 1;
+            NSError* error = nil;
+            if ( ! [context save:&error] ) {
+                NSLog( @"unsable to save" );
+            }            
+        }
+        return YES;
+    }
+    return NO;
+}
+
 + (BOOL)existsWithLine:(Line*)line andStop:(Stop*) stop{
-    Favorite* fav = [Favorite fetchWithLine:line andStop:stop];
-    BOOL hasFavorite =  fav != nil;
-    return hasFavorite;
+    return [Favorite existsWithLine:line andStop:stop andOhBTWIncCounter:NO];
 }
 
 + (void)addWithLine:(Line*)line andStop:(Stop*) stop {
@@ -123,7 +145,7 @@ int kMaxTopFavorites = 5;
     [fetchRequest setFetchLimit:kMaxTopFavorites];
         
     // Edit the sort key as appropriate.
-    NSSortDescriptor *sortDescriptor1 = [[NSSortDescriptor alloc] initWithKey:@"view_count" ascending:YES];
+    NSSortDescriptor *sortDescriptor1 = [[NSSortDescriptor alloc] initWithKey:@"view_count" ascending:NO];
     NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptor1, nil];
     
     [fetchRequest setSortDescriptors:sortDescriptors];    
@@ -147,6 +169,45 @@ int kMaxTopFavorites = 5;
     return favs;
     
 }
+
++ (NSFetchedResultsController*)findAll {
+    SimpleDeathStarAppDelegate* delegate = (SimpleDeathStarAppDelegate*)[[UIApplication sharedApplication] delegate];
+    NSManagedObjectContext* context = [delegate  userManagedObjectContext];
+    
+    // Create the fetch request for the entity.
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    // Edit the entity name as appropriate.
+    NSEntityDescription *entity = [Favorite entityInManagedObjectContext:context];
+    [fetchRequest setEntity:entity];
+    
+    // Set the batch size to a suitable number.
+    [fetchRequest setFetchLimit:kMaxTopFavorites];
+    
+    // Edit the sort key as appropriate.
+    NSSortDescriptor *sortDescriptor1 = [[NSSortDescriptor alloc] initWithKey:@"line_short_name" ascending:YES];
+    NSSortDescriptor *sortDescriptor2 = [[NSSortDescriptor alloc] initWithKey:@"stop_name" ascending:YES];
+    NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptor1, sortDescriptor2, nil];
+    
+    [fetchRequest setSortDescriptors:sortDescriptors];    
+    
+    [NSFetchedResultsController deleteCacheWithName:@"allFavorites"];
+    // Edit the section name key path and cache name if appropriate.
+    // nil for section name key path means "no sections".
+    NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:context sectionNameKeyPath:nil cacheName:@"allFavorites"];
+    
+    [fetchRequest release];
+    [sortDescriptor1 release];
+    [sortDescriptor2 release];
+    
+    NSError *error = nil;
+    if (![aFetchedResultsController performFetch:&error]) {
+        [aFetchedResultsController release];
+        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+        return nil;
+    }
+    return aFetchedResultsController;
+}
+
 
 -(NSString*)title {
     if ( self.line_id != nil ) {

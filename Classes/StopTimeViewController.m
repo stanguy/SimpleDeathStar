@@ -52,7 +52,7 @@ const int kCellWidth = 46;
         self.navigationItem.title = self.stop.name;
     }
         
-    if ( [Favorite existsWithLine:line_ andStop:stop_] ) {
+    if ( [Favorite existsWithLine:line_ andStop:stop_ andOhBTWIncCounter:YES] ) {
         favButton_.image = [UIImage imageNamed:@"favorites_remove"];
     } else {
         favButton_.image = [UIImage imageNamed:@"favorites_add"];
