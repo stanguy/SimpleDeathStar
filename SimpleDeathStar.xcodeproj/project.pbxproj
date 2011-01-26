@@ -64,7 +64,7 @@
 		96DBF3EE12CBCD7E0096C240 /* GridScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 96DBF3ED12CBCD7E0096C240 /* GridScrollView.m */; };
 		96DBF44812CBD5890096C240 /* GridCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 96DBF44612CBD5890096C240 /* GridCell.m */; };
 		96DBF44912CBD5890096C240 /* GridCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96DBF44712CBD5890096C240 /* GridCell.xib */; };
-		96DBF54812CBFAFD0096C240 /* simpledeathstar_appicon_hr.png in Resources */ = {isa = PBXBuildFile; fileRef = 96DBF54512CBFAFD0096C240 /* simpledeathstar_appicon_hr.png */; };
+		96DBF54812CBFAFD0096C240 /* simpledeathstar_appicon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96DBF54512CBFAFD0096C240 /* simpledeathstar_appicon@2x.png */; };
 		96DBF54912CBFAFD0096C240 /* simpledeathstar_appicon.png in Resources */ = {isa = PBXBuildFile; fileRef = 96DBF54612CBFAFD0096C240 /* simpledeathstar_appicon.png */; };
 		96DBF54A12CBFAFD0096C240 /* simpledeathstar_appstore.png in Resources */ = {isa = PBXBuildFile; fileRef = 96DBF54712CBFAFD0096C240 /* simpledeathstar_appstore.png */; };
 		B816AFCE12F049290006C6ED /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B816AFCC12F049290006C6ED /* Localizable.strings */; };
@@ -155,7 +155,7 @@
 		96DBF44512CBD5890096C240 /* GridCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GridCell.h; sourceTree = "<group>"; };
 		96DBF44612CBD5890096C240 /* GridCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GridCell.m; sourceTree = "<group>"; };
 		96DBF44712CBD5890096C240 /* GridCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = GridCell.xib; path = Classes/GridCell.xib; sourceTree = "<group>"; };
-		96DBF54512CBFAFD0096C240 /* simpledeathstar_appicon_hr.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = simpledeathstar_appicon_hr.png; sourceTree = "<group>"; };
+		96DBF54512CBFAFD0096C240 /* simpledeathstar_appicon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "simpledeathstar_appicon@2x.png"; sourceTree = "<group>"; };
 		96DBF54612CBFAFD0096C240 /* simpledeathstar_appicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = simpledeathstar_appicon.png; sourceTree = "<group>"; };
 		96DBF54712CBFAFD0096C240 /* simpledeathstar_appstore.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = simpledeathstar_appstore.png; sourceTree = "<group>"; };
 		B816AFCD12F049290006C6ED /* en */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -257,7 +257,7 @@
 				96CB93A912EE1E8100EFB75C /* favorites_remove.png */,
 				96CB93AA12EE1E8100EFB75C /* favorites_remove@2x.png */,
 				96B1E19512DB851D008007BD /* UserData.xcdatamodeld */,
-				96DBF54512CBFAFD0096C240 /* simpledeathstar_appicon_hr.png */,
+				96DBF54512CBFAFD0096C240 /* simpledeathstar_appicon@2x.png */,
 				96DBF54612CBFAFD0096C240 /* simpledeathstar_appicon.png */,
 				96DBF54712CBFAFD0096C240 /* simpledeathstar_appstore.png */,
 				96DBF44712CBD5890096C240 /* GridCell.xib */,
@@ -393,7 +393,7 @@
 				96A71C6E12CA87AC00FB1516 /* AboutViewController.xib in Resources */,
 				96A71C8D12CA89B700FB1516 /* about.html in Resources */,
 				96DBF44912CBD5890096C240 /* GridCell.xib in Resources */,
-				96DBF54812CBFAFD0096C240 /* simpledeathstar_appicon_hr.png in Resources */,
+				96DBF54812CBFAFD0096C240 /* simpledeathstar_appicon@2x.png in Resources */,
 				96DBF54912CBFAFD0096C240 /* simpledeathstar_appicon.png in Resources */,
 				96DBF54A12CBFAFD0096C240 /* simpledeathstar_appstore.png in Resources */,
 				961A717112D26CB90085BCAA /* NoResult.xib in Resources */,
