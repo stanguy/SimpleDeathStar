@@ -134,4 +134,8 @@
     return stop;
 }
 
+- (int) allCounts{
+	return [self.pos_count intValue] + [self.bike_count intValue] + [self.metro_count intValue];
+}
+
 @end
