@@ -9,6 +9,7 @@
 #import "TripViewController.h"
 #import "StopTime.h"
 #import "Stop.h"
+#import "TripViewCell.h"
 #import "Line.h"
 #import "Direction.h"
 
@@ -51,21 +52,20 @@
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    static NSString *CellIdentifier = @"Cell";
-    
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:CellIdentifier] autorelease];
-    }
+    TripViewCell *cell = [TripViewCell cellFromNibNamed:@"TripViewCell"];
     
     // Configure the cell...
     StopTime* stopTime = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    cell.detailTextLabel.text = stopTime.stop.name;
-    int arrival = [stopTime.arrival intValue] / 60;
-    int mins = arrival % 60;
-    int hours = ( arrival / 60 ) % 24;
-    cell.textLabel.text = [NSString stringWithFormat:@"%02d:%02d", hours, mins];
-    
+    Stop* stop = stopTime.stop;
+    Line* line = stopTime.line;
+
+    cell.arrivalTime.text = [stopTime formatArrival];
+    cell.stopName.text = stop.name;
+    cell.metro.hidden = [stop.metro_count intValue] == 0;
+    cell.bike.hidden = [stop.bike_count intValue] == 0;
+    cell.pos.hidden = [stop.pos_count intValue] == 0;
+    cell.accessible.hidden = ! ( [stop.accessible intValue] && [line.accessible intValue] );
+
     return cell;
 }
 
