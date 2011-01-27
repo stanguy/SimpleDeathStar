@@ -59,9 +59,12 @@
             timeLabel.text = [time formatArrival];
             if ( time.trip_bearing != nil ) {
                 imageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"arrow_%@", time.trip_bearing]];
+            } else {
+                imageView.hidden = YES;
             }
         } else {
-            timeLabel.text = @"";
+            timeLabel.hidden = YES;
+            imageView.hidden = YES;
         }
     }
 }
