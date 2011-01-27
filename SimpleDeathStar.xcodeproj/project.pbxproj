@@ -124,6 +124,12 @@
 		9677B37E12F206630016A460 /* arrow_SW@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9677B36E12F206630016A460 /* arrow_SW@2x.png */; };
 		9677B37F12F206630016A460 /* arrow_W.png in Resources */ = {isa = PBXBuildFile; fileRef = 9677B36F12F206630016A460 /* arrow_W.png */; };
 		9677B38012F206630016A460 /* arrow_W@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9677B37012F206630016A460 /* arrow_W@2x.png */; };
+		9677B3BE12F209950016A460 /* PoiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9677B3BC12F209950016A460 /* PoiViewController.m */; };
+		9677B3BF12F209950016A460 /* PoiViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9677B3BD12F209950016A460 /* PoiViewController.xib */; };
+		9677B3D212F20CA40016A460 /* ClosePoi.m in Sources */ = {isa = PBXBuildFile; fileRef = 9677B3CF12F20CA40016A460 /* ClosePoi.m */; };
+		9677B3D312F20CA40016A460 /* Poi.m in Sources */ = {isa = PBXBuildFile; fileRef = 9677B3D112F20CA40016A460 /* Poi.m */; };
+		9677B3D812F20CB20016A460 /* _ClosePoi.m in Sources */ = {isa = PBXBuildFile; fileRef = 9677B3D512F20CB20016A460 /* _ClosePoi.m */; };
+		9677B3D912F20CB20016A460 /* _Poi.m in Sources */ = {isa = PBXBuildFile; fileRef = 9677B3D712F20CB20016A460 /* _Poi.m */; };
 		969229BE12C6B799007C965D /* HomeScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 969229BC12C6B799007C965D /* HomeScreenViewController.m */; };
 		969229BF12C6B799007C965D /* HomeScreenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 969229BD12C6B799007C965D /* HomeScreenViewController.xib */; };
 		96A71C6D12CA87AC00FB1516 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96A71C6B12CA87AC00FB1516 /* AboutViewController.m */; };
@@ -290,6 +296,17 @@
 		9677B36E12F206630016A460 /* arrow_SW@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arrow_SW@2x.png"; sourceTree = "<group>"; };
 		9677B36F12F206630016A460 /* arrow_W.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow_W.png; sourceTree = "<group>"; };
 		9677B37012F206630016A460 /* arrow_W@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arrow_W@2x.png"; sourceTree = "<group>"; };
+		9677B3BB12F209950016A460 /* PoiViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PoiViewController.h; sourceTree = "<group>"; };
+		9677B3BC12F209950016A460 /* PoiViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PoiViewController.m; sourceTree = "<group>"; };
+		9677B3BD12F209950016A460 /* PoiViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PoiViewController.xib; sourceTree = "<group>"; };
+		9677B3CE12F20CA40016A460 /* ClosePoi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClosePoi.h; sourceTree = "<group>"; };
+		9677B3CF12F20CA40016A460 /* ClosePoi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClosePoi.m; sourceTree = "<group>"; };
+		9677B3D012F20CA40016A460 /* Poi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Poi.h; sourceTree = "<group>"; };
+		9677B3D112F20CA40016A460 /* Poi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Poi.m; sourceTree = "<group>"; };
+		9677B3D412F20CB20016A460 /* _ClosePoi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _ClosePoi.h; sourceTree = "<group>"; };
+		9677B3D512F20CB20016A460 /* _ClosePoi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _ClosePoi.m; sourceTree = "<group>"; };
+		9677B3D612F20CB20016A460 /* _Poi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _Poi.h; sourceTree = "<group>"; };
+		9677B3D712F20CB20016A460 /* _Poi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _Poi.m; sourceTree = "<group>"; };
 		9692298C12C6B4A1007C965D /* Transit.xcdatamodel */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.xcdatamodel; path = Transit.xcdatamodel; sourceTree = "<group>"; };
 		969229BB12C6B799007C965D /* HomeScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeScreenViewController.h; sourceTree = "<group>"; };
 		969229BC12C6B799007C965D /* HomeScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeScreenViewController.m; sourceTree = "<group>"; };
@@ -372,6 +389,9 @@
 				96CB971D12EF963800EFB75C /* FavTimeViewCell.m */,
 				9677AF6B12F0C95A0016A460 /* FavoritesViewController.h */,
 				9677AF6C12F0C95A0016A460 /* FavoritesViewController.m */,
+				9677B3BB12F209950016A460 /* PoiViewController.h */,
+				9677B3BC12F209950016A460 /* PoiViewController.m */,
+				9677B3BD12F209950016A460 /* PoiViewController.xib */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -473,6 +493,10 @@
 		962B81AA12C6C141007EA09F /* ManagedObjects */ = {
 			isa = PBXGroup;
 			children = (
+				9677B3CE12F20CA40016A460 /* ClosePoi.h */,
+				9677B3CF12F20CA40016A460 /* ClosePoi.m */,
+				9677B3D012F20CA40016A460 /* Poi.h */,
+				9677B3D112F20CA40016A460 /* Poi.m */,
 				96B1E1C112DB860F008007BD /* Auto */,
 				96B1E1BD12DB8607008007BD /* Favorite.h */,
 				96B1E1BE12DB8607008007BD /* Favorite.m */,
@@ -568,6 +592,10 @@
 		96B1E1C112DB860F008007BD /* Auto */ = {
 			isa = PBXGroup;
 			children = (
+				9677B3D412F20CB20016A460 /* _ClosePoi.h */,
+				9677B3D512F20CB20016A460 /* _ClosePoi.m */,
+				9677B3D612F20CB20016A460 /* _Poi.h */,
+				9677B3D712F20CB20016A460 /* _Poi.m */,
 				96B1E1BB12DB8607008007BD /* _Favorite.h */,
 				96B1E1BC12DB8607008007BD /* _Favorite.m */,
 				9631C11212C758890002EB78 /* _City.h */,
@@ -750,6 +778,7 @@
 				9677B37E12F206630016A460 /* arrow_SW@2x.png in Resources */,
 				9677B37F12F206630016A460 /* arrow_W.png in Resources */,
 				9677B38012F206630016A460 /* arrow_W@2x.png in Resources */,
+				9677B3BF12F209950016A460 /* PoiViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -788,6 +817,11 @@
 				96B1E1C012DB8607008007BD /* Favorite.m in Sources */,
 				96CB971E12EF963800EFB75C /* FavTimeViewCell.m in Sources */,
 				9677AF6E12F0C95A0016A460 /* FavoritesViewController.m in Sources */,
+				9677B3BE12F209950016A460 /* PoiViewController.m in Sources */,
+				9677B3D212F20CA40016A460 /* ClosePoi.m in Sources */,
+				9677B3D312F20CA40016A460 /* Poi.m in Sources */,
+				9677B3D812F20CB20016A460 /* _ClosePoi.m in Sources */,
+				9677B3D912F20CB20016A460 /* _Poi.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

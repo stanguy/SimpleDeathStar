@@ -16,6 +16,7 @@
 #import "Favorite.h"
 
 #import "SimpleDeathStarAppDelegate.h"
+#import "PoiViewController.h"
 
 
 const int kRowHeight = 50;
@@ -58,9 +59,9 @@ const int kCellWidth = 46;
         favButton_.image = [UIImage imageNamed:@"favorites_add"];
     }
 
-	if ( [self.stop allCounts] > 0 ) {
-		[poiButton_ setEnabled:YES];
-	}
+    if ( [self.stop allCounts] > 0 ) {
+        [poiButton_ setEnabled:YES];
+    }
 }
 
 - (UIAlertView*)alertNoResult {
@@ -68,10 +69,10 @@ const int kCellWidth = 46;
         return alertNoResult_;
     }
     alertNoResult_ = [[[UIAlertView alloc] initWithTitle:NSLocalizedString( @"Aucun passage", @"" )
-												 message:NSLocalizedString( @"Il n'y a pas d'horaire de passage prévu à la date indiquée", @"" )
-                                               delegate:nil 
-                                      cancelButtonTitle:@"Ok" 
-                                      otherButtonTitles:nil] retain];
+                                                 message:NSLocalizedString( @"Il n'y a pas d'horaire de passage prévu à la date indiquée", @"" )
+                                                delegate:nil 
+                                       cancelButtonTitle:@"Ok" 
+                                       otherButtonTitles:nil] retain];
     return alertNoResult_;
 }    
 
@@ -128,8 +129,6 @@ const int kCellWidth = 46;
     [fetchedResultsController_ retain];
     if ( [[fetchedResultsController_ sections] count] < 1 ) {
         
-/*        */
-        // optional - add more buttons:
         NSLog( @"no result show %@", self.alertNoResult );
         [self.alertNoResult show];
     }
@@ -366,27 +365,36 @@ const int kCellWidth = 46;
 }
 
 - (IBAction)showPoi:(id)sender {
-	UIActionSheet* sheet = [[UIActionSheet alloc ] initWithTitle:NSLocalizedString( @"Points d'intérêts proches", @"")
-														delegate:self 
-											   cancelButtonTitle:NSLocalizedString( @"Annuler", @"" )
-										  destructiveButtonTitle:nil 
-											   otherButtonTitles:nil];
-	NSArray* poiTypes = [NSArray arrayWithObjects:@"pos", @"bike", @"metro", nil];
-	NSMutableDictionary* indexes = [NSMutableDictionary dictionaryWithCapacity:3];
-	for ( NSString* poiType in poiTypes ) {
-		NSString* poi_counter = [NSString stringWithFormat:@"%@_count", poiType];
-		if ( [[self.stop valueForKey:poi_counter] intValue] > 0 ) {
-			NSInteger index = [sheet addButtonWithTitle:NSLocalizedString( poiType, @"" )];
-			[indexes setObject:poiType forKey:[NSNumber numberWithInt:index]];
-		}
-	}
-	poiIndexes = indexes;
-	[sheet showInView:self.view];
-	[sheet release];
+    UIActionSheet* sheet = [[UIActionSheet alloc ] initWithTitle:NSLocalizedString( @"Points d'intérêts proches", @"")
+                                                        delegate:self 
+                                               cancelButtonTitle:NSLocalizedString( @"Annuler", @"" )
+                                          destructiveButtonTitle:nil 
+                                               otherButtonTitles:nil];
+    NSArray* poiTypes = [NSArray arrayWithObjects:@"pos", @"bike", @"metro", nil];
+    NSMutableDictionary* indexes = [NSMutableDictionary dictionaryWithCapacity:3];
+    for ( NSString* poiType in poiTypes ) {
+        NSString* poi_counter = [NSString stringWithFormat:@"%@_count", poiType];
+        if ( [[self.stop valueForKey:poi_counter] intValue] > 0 ) {
+            NSInteger index = [sheet addButtonWithTitle:NSLocalizedString( poiType, @"" )];
+            [indexes setValue:poiType forKey:[NSString stringWithFormat:@"%d", index]];
+        }
+    }
+    poiIndexes = [indexes retain];
+    [sheet showInView:self.view];
+    [sheet release];
 }
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
-	//NSLog( @"display poi for %@", [poiIndexes objectForKey:[NSNumber numberWithInt:buttonIndex]] );
+    NSString* poiType = [poiIndexes valueForKey:[NSString stringWithFormat:@"%d", buttonIndex]];
+    if ( poiType == nil ) {
+        return;
+    }
+    NSLog( @"display poi for %@", poiType );
+    PoiViewController* poiViewController = [[PoiViewController alloc] initWithNibName:@"PoiViewController" bundle:nil];
+    poiViewController.stop = self.stop;
+    poiViewController.poiType = poiType;
+    [self.navigationController pushViewController:poiViewController animated:YES];
+    [poiViewController release];
 }
 
 #pragma mark -
