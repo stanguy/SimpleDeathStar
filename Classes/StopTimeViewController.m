@@ -25,7 +25,7 @@ const int kCellWidth = 46;
 @implementation StopTimeViewController
 
 @synthesize fetchedResultsController = fetchedResultsController_, line = line_, stop = stop_;
-@synthesize tableView, scrollView, toolbar = toolbar_, favButton = favButton_, alertNoResult = alertNoResult_, datePicker = datePicker_;
+@synthesize tableView, scrollView, toolbar = toolbar_, favButton = favButton_, poiButton = poiButton_, alertNoResult = alertNoResult_, datePicker = datePicker_;
 
 #pragma mark -
 #pragma mark View lifecycle
@@ -57,6 +57,10 @@ const int kCellWidth = 46;
     } else {
         favButton_.image = [UIImage imageNamed:@"favorites_add"];
     }
+
+	if ( [self.stop allCounts] > 0 ) {
+		[poiButton_ setEnabled:YES];
+	}
 }
 
 - (UIAlertView*)alertNoResult {
@@ -360,6 +364,31 @@ const int kCellWidth = 46;
         favButton_.image = [UIImage imageNamed:@"favorites_remove"];
     }
 }
+
+- (IBAction)showPoi:(id)sender {
+	UIActionSheet* sheet = [[UIActionSheet alloc ] initWithTitle:NSLocalizedString( @"Points d'intérêts proches", @"")
+														delegate:self 
+											   cancelButtonTitle:NSLocalizedString( @"Annuler", @"" )
+										  destructiveButtonTitle:nil 
+											   otherButtonTitles:nil];
+	NSArray* poiTypes = [NSArray arrayWithObjects:@"pos", @"bike", @"metro", nil];
+	NSMutableDictionary* indexes = [NSMutableDictionary dictionaryWithCapacity:3];
+	for ( NSString* poiType in poiTypes ) {
+		NSString* poi_counter = [NSString stringWithFormat:@"%@_count", poiType];
+		if ( [[self.stop valueForKey:poi_counter] intValue] > 0 ) {
+			NSInteger index = [sheet addButtonWithTitle:NSLocalizedString( poiType, @"" )];
+			[indexes setObject:poiType forKey:[NSNumber numberWithInt:index]];
+		}
+	}
+	poiIndexes = indexes;
+	[sheet showInView:self.view];
+	[sheet release];
+}
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+	//NSLog( @"display poi for %@", [poiIndexes objectForKey:[NSNumber numberWithInt:buttonIndex]] );
+}
+
 #pragma mark -
 #pragma mark Memory management
 

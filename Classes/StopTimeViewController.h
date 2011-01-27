@@ -14,7 +14,7 @@
 @protocol GridScrollViewDataSource;
 @protocol GridScrollViewListener;
 
-@interface StopTimeViewController : UIViewController <NSFetchedResultsControllerDelegate,UIScrollViewDelegate, GridScrollViewDataSource, GridScrollViewListener> {
+@interface StopTimeViewController : UIViewController <NSFetchedResultsControllerDelegate,UIScrollViewDelegate, GridScrollViewDataSource, GridScrollViewListener, UIActionSheetDelegate> {
 @private
     NSFetchedResultsController *fetchedResultsController_;
     Line* line_;
@@ -27,6 +27,8 @@
     UIAlertView* alertNoResult_;
     UIToolbar* toolbar_;
     UIBarButtonItem* favButton_;
+	UIBarButtonItem* poiButton_;
+	NSDictionary* poiIndexes;
 
     UIView* dateChangeView_;
     UIDatePicker* datePicker_;
@@ -41,6 +43,7 @@
 @property (nonatomic, retain) IBOutlet UITableView *tableView;
 @property (nonatomic, retain) IBOutlet UIToolbar* toolbar;
 @property (nonatomic, retain) IBOutlet UIBarButtonItem* favButton;
+@property (nonatomic, retain) IBOutlet UIBarButtonItem* poiButton;
 @property (nonatomic, retain) IBOutlet UIDatePicker* datePicker;
 
 - (void)createFloatingGrid;
@@ -53,6 +56,8 @@
 - (IBAction)changeDate:(id)sender;
 - (IBAction)onDismissChangeDate:(id)sender;
 - (IBAction)onChangeDate:(id)sender;
+
+- (IBAction)showPoi:(id)sender;
 
 - (IBAction)toggleFavorite:(id)sender;
 - (void)reloadData;

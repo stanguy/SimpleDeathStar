@@ -37,6 +37,11 @@
 "Aucun passage" = "No travel";
 "Il n'y a pas d'horaire de passage prévu à la date indiquée" = "There is no travel scheduled at the given date";
 "%@ vers %@" = "%@ to %@";
+"Points d'intérêts proches" = "Close points of interest";
+"Annuler" = "Cancel";
+"pos" = "Point of sale";
+"bike" = "Bike sharing";
+"metro" = "Subway";
 
 /* City */
 "%@ arrêts" = "%@ stops";

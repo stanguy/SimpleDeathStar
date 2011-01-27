@@ -1,0 +1,12 @@
+/* 
+   Localizable.strings
+   SimpleDeathStar
+
+   Created by Sébastien Tanguy on 27/01/11.
+   Copyright 2011 dthg.net. All rights reserved.
+ */
+
+/* stoptime */
+"bike" = "LE Vélo STAR";
+"pos" = "Point de vente";
+"metro" = "Métro";
