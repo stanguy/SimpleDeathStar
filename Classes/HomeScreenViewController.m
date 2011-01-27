@@ -153,34 +153,21 @@ enum eSections {
         int topCount = [topFavorites_ count];
         
         if ( topCount > 0 ) {
-            NSString* ident;
-            NSString* txt = nil;
-            NSString* subtxt = nil;
-            NSArray* times = nil;
-            Favorite* fav = nil;
             if ( indexPath.row >= topCount ) {
-                ident = CellIdentifierFavMore;
-                txt = NSLocalizedString( @"Voir tous les favoris", @"" );
-                subtxt = [NSString stringWithFormat:NSLocalizedString( @"%d favoris enregistrés", @""), cachedFavoritesCount];
+                cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifierFavMore];
+                if (cell == nil) {
+                    cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifierFavMore] autorelease];
+                    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+                }
+                cell.textLabel.text = NSLocalizedString( @"Voir tous les favoris", @"" );
+                cell.detailTextLabel.text = [NSString stringWithFormat:NSLocalizedString( @"%d favoris enregistrés", @""), cachedFavoritesCount];
             } else {
-                ident = CellIdentifierFav;
+                NSArray* times = nil;
+                Favorite* fav = nil;
                 fav = [topFavorites_ objectAtIndex:indexPath.row];
                 times = [favoritesTimes_ objectAtIndex:indexPath.row];
-            }
-            cell = [tableView dequeueReusableCellWithIdentifier:ident];
-            if (cell == nil) {
-                if ( indexPath.row >= topCount ) {
-                    cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:ident] autorelease];
-                    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-                } else {
-                    cell = [FavTimeViewCell cellFromNibNamed:@"FavTimeViewCell"];
-                }
-            }
-            if ( indexPath.row < topCount ) {
+                cell = [FavTimeViewCell cellFromNibNamed:@"FavTimeViewCell"];
                 [(FavTimeViewCell*)cell displayFavorite:fav withTimes:times];
-            } else {
-                cell.textLabel.text = txt;
-                cell.detailTextLabel.text = subtxt;
             }
         } else {
             cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifierFavNone];
