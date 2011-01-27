@@ -45,27 +45,6 @@
     // Configure the view for the selected state.
 }
 
-CGAffineTransform bearing2transform( NSString* bearing ){
-    float angle = 0;
-    // dummy
-    if ( [bearing isEqualToString:@"N"] ) {
-        angle = - ( M_PI * 45.0 / 180.0 );
-    } else if ( [bearing isEqualToString:@"E" ] ) {
-        angle = M_PI * 45.0 / 180.0;
-    } else if ( [bearing isEqualToString:@"SW" ] ) {
-        angle= M_PI;
-    } else if ( [bearing isEqualToString:@"SE" ] ) {
-        angle = M_PI * 90 / 180.0;
-    } else if ( [bearing isEqualToString:@"S" ] ) {
-        angle = M_PI * 135 / 180.0;
-    } else if ( [bearing isEqualToString:@"NW" ] ) {
-        angle = - M_PI * 90 / 180.0;
-    } else if ( [bearing isEqualToString:@"W" ] ) {
-        angle = - M_PI * 135 / 180.0;
-    }
-    return CGAffineTransformMakeRotation( angle );
-}
-
 - (void)displayFavorite:(Favorite*)favorite withTimes:(NSArray*)times{
     self.nameLabel.text = [favorite title];
     int time_count = [times count];
@@ -79,8 +58,7 @@ CGAffineTransform bearing2transform( NSString* bearing ){
             StopTime* time = [times objectAtIndex:i];
             timeLabel.text = [time formatArrival];
             if ( time.trip_bearing != nil ) {
-                imageView.image = [UIImage imageNamed:@"arrow"];
-                [imageView setTransform:bearing2transform( time.trip_bearing )];
+                imageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"arrow_%@", time.trip_bearing]];
             }
         } else {
             timeLabel.text = @"";
