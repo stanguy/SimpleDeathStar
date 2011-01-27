@@ -48,6 +48,7 @@ int kMaxTopFavorites = 5;
     
     [fetchRequest release];
     [sortDescriptor1 release];
+    [sortDescriptors release];
 
     NSError *error = nil;
     if (![aFetchedResultsController performFetch:&error]) {
@@ -57,12 +58,13 @@ int kMaxTopFavorites = 5;
     }
     if ( [[aFetchedResultsController fetchedObjects] count] == 0 ) {
 //        NSLog( @"no result" );
+        [aFetchedResultsController release];
         return nil;
     }
     Favorite* fav = [[aFetchedResultsController fetchedObjects] objectAtIndex:0];
     [aFetchedResultsController release];
     
-    return [fav autorelease];
+    return fav;
 }
 
 +(BOOL)existsWithLine:(Line *)line andStop:(Stop *)stop andOhBTWIncCounter:(BOOL)incCounter {
@@ -158,6 +160,7 @@ int kMaxTopFavorites = 5;
     
     [fetchRequest release];
     [sortDescriptor1 release];
+    [sortDescriptors release];
     
     NSError *error = nil;
     if (![aFetchedResultsController performFetch:&error]) {
@@ -199,6 +202,7 @@ int kMaxTopFavorites = 5;
     [fetchRequest release];
     [sortDescriptor1 release];
     [sortDescriptor2 release];
+    [sortDescriptors release];
     
     NSError *error = nil;
     if (![aFetchedResultsController performFetch:&error]) {
@@ -206,7 +210,7 @@ int kMaxTopFavorites = 5;
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
         return nil;
     }
-    return aFetchedResultsController;
+    return [aFetchedResultsController autorelease];
 }
 
 

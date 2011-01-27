@@ -103,6 +103,7 @@
 
     [fetchRequest release];
     [sortDescriptor1 release];
+    [sortDescriptors release];
     
     NSError *error = nil;
     if (![aFetchedResultsController performFetch:&error]) {

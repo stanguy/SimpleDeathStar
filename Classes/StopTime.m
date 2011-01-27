@@ -210,6 +210,7 @@ NSPredicate* buildPredicateNoMax( Line* line, Stop* stop, int min_arrival, int c
     [fetchRequest release];
     [sortDescriptor1 release];
     [sortDescriptors release];
+    [gregorian release];
     
     NSError *error = nil;
     if (![aFetchedResultsController performFetch:&error]) {
