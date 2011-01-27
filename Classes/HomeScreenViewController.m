@@ -58,16 +58,19 @@ enum eSections {
 
 - (void)reloadFavorites {
     NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-    topFavorites_ = [Favorite topFavorites];
-    if ( favoritesTimes_ != nil) {
-        [favoritesTimes_ release];
-    }
+    NSArray* favorites = [Favorite topFavorites];
     NSMutableArray* favtimes = [[NSMutableArray alloc] init];
-    for ( Favorite* fav in topFavorites_ ) {
+    for ( Favorite* fav in favorites ) {
         [favtimes addObject:[StopTime findComingAt:fav]];
     }
-    favoritesTimes_ = favtimes;
-    cachedFavoritesCount = [Favorite count];
+    @synchronized(self) {
+        if ( favoritesTimes_ != nil) {
+            [favoritesTimes_ release];
+        }
+        favoritesTimes_ = favtimes;
+        cachedFavoritesCount = [Favorite count];
+        topFavorites_ = favorites;
+    }
     [self performSelectorOnMainThread:@selector(refreshViewOfFavorites) withObject:nil waitUntilDone:NO];
     [pool release];
 }
@@ -87,7 +90,9 @@ enum eSections {
     [menus_ addObject:[NSArray arrayWithObjects: NSLocalizedString( @"Arrêts par ville", @"" ), NSLocalizedString( @"Tous les arrêts", @"" ), /*@"Favoris",*/ nil]];
     [menus_ addObject:[NSArray arrayWithObjects:nil]];
     [menus_ addObject:[NSArray arrayWithObjects: NSLocalizedString( @"À propos", @"" ), NSLocalizedString( @"Pas de panique", @"" ), nil ]];
-    
+    favoritesTimes_ =  [[NSMutableArray alloc] init];
+    topFavorites_ = [NSArray arrayWithObjects:nil];
+    cachedFavoritesCount = 0;
     
     NSLog( @"done load" );
 }
@@ -149,10 +154,10 @@ enum eSections {
         
         if ( topCount > 0 ) {
             NSString* ident;
-            NSString* txt;
-            NSString* subtxt;
-            NSArray* times;
-            Favorite* fav;
+            NSString* txt = nil;
+            NSString* subtxt = nil;
+            NSArray* times = nil;
+            Favorite* fav = nil;
             if ( indexPath.row >= topCount ) {
                 ident = CellIdentifierFavMore;
                 txt = NSLocalizedString( @"Voir tous les favoris", @"" );
@@ -174,8 +179,8 @@ enum eSections {
             if ( indexPath.row < topCount ) {
                 [(FavTimeViewCell*)cell displayFavorite:fav withTimes:times];
             } else {
-            cell.textLabel.text = txt;
-            cell.detailTextLabel.text = subtxt;
+                cell.textLabel.text = txt;
+                cell.detailTextLabel.text = subtxt;
             }
         } else {
             cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifierFavNone];
