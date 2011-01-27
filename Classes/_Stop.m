@@ -62,6 +62,32 @@
 
 
 
+@dynamic accessible;
+
+
+
+- (BOOL)accessibleValue {
+	NSNumber *result = [self accessible];
+	return [result boolValue];
+}
+
+- (void)setAccessibleValue:(BOOL)value_ {
+	[self setAccessible:[NSNumber numberWithBool:value_]];
+}
+
+- (BOOL)primitiveAccessibleValue {
+	NSNumber *result = [self primitiveAccessible];
+	return [result boolValue];
+}
+
+- (void)setPrimitiveAccessibleValue:(BOOL)value_ {
+	[self setPrimitiveAccessible:[NSNumber numberWithBool:value_]];
+}
+
+
+
+
+
 @dynamic metro_count;
 
 

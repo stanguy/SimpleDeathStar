@@ -18,6 +18,7 @@
 
 
 
+
 @interface StopID : NSManagedObjectID {}
 @end
 
@@ -42,6 +43,16 @@
 @property (nonatomic, retain) NSString *src_id;
 
 //- (BOOL)validateSrc_id:(id*)value_ error:(NSError**)error_;
+
+
+
+@property (nonatomic, retain) NSNumber *accessible;
+
+@property BOOL accessibleValue;
+- (BOOL)accessibleValue;
+- (void)setAccessibleValue:(BOOL)value_;
+
+//- (BOOL)validateAccessible:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -147,6 +158,13 @@
 
 - (NSString*)primitiveSrc_id;
 - (void)setPrimitiveSrc_id:(NSString*)value;
+
+
+- (NSNumber*)primitiveAccessible;
+- (void)setPrimitiveAccessible:(NSNumber*)value;
+
+- (BOOL)primitiveAccessibleValue;
+- (void)setPrimitiveAccessibleValue:(BOOL)value_;
 
 
 - (NSNumber*)primitiveMetro_count;

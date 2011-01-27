@@ -22,15 +22,15 @@
 
 
 
-@property (nonatomic, retain) NSString *type;
-
-//- (BOOL)validateType:(id*)value_ error:(NSError**)error_;
-
-
-
 @property (nonatomic, retain) NSString *name;
 
 //- (BOOL)validateName:(id*)value_ error:(NSError**)error_;
+
+
+
+@property (nonatomic, retain) NSString *type;
+
+//- (BOOL)validateType:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -70,12 +70,12 @@
 
 @interface _Poi (CoreDataGeneratedPrimitiveAccessors)
 
-- (NSString*)primitiveType;
-- (void)setPrimitiveType:(NSString*)value;
-
-
 - (NSString*)primitiveName;
 - (void)setPrimitiveName:(NSString*)value;
+
+
+- (NSString*)primitiveType;
+- (void)setPrimitiveType:(NSString*)value;
 
 
 - (NSNumber*)primitiveLat;

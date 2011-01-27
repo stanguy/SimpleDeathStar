@@ -29,14 +29,14 @@
 
 
 
-@dynamic type;
-
-
-
-
-
-
 @dynamic name;
+
+
+
+
+
+
+@dynamic type;
 
 
 

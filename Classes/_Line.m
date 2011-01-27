@@ -29,33 +29,7 @@
 
 
 
-@dynamic has_picto;
-
-
-
-- (BOOL)has_pictoValue {
-	NSNumber *result = [self has_picto];
-	return [result boolValue];
-}
-
-- (void)setHas_pictoValue:(BOOL)value_ {
-	[self setHas_picto:[NSNumber numberWithBool:value_]];
-}
-
-- (BOOL)primitiveHas_pictoValue {
-	NSNumber *result = [self primitiveHas_picto];
-	return [result boolValue];
-}
-
-- (void)setPrimitiveHas_pictoValue:(BOOL)value_ {
-	[self setPrimitiveHas_picto:[NSNumber numberWithBool:value_]];
-}
-
-
-
-
-
-@dynamic src_id;
+@dynamic fgcolor;
 
 
 
@@ -69,6 +43,39 @@
 
 
 
+@dynamic usage;
+
+
+
+
+
+
+@dynamic accessible;
+
+
+
+- (BOOL)accessibleValue {
+	NSNumber *result = [self accessible];
+	return [result boolValue];
+}
+
+- (void)setAccessibleValue:(BOOL)value_ {
+	[self setAccessible:[NSNumber numberWithBool:value_]];
+}
+
+- (BOOL)primitiveAccessibleValue {
+	NSNumber *result = [self primitiveAccessible];
+	return [result boolValue];
+}
+
+- (void)setPrimitiveAccessibleValue:(BOOL)value_ {
+	[self setPrimitiveAccessible:[NSNumber numberWithBool:value_]];
+}
+
+
+
+
+
 @dynamic bgcolor;
 
 
@@ -77,13 +84,6 @@
 
 
 @dynamic short_name;
-
-
-
-
-
-
-@dynamic fgcolor;
 
 
 
@@ -116,20 +116,46 @@
 
 
 
-@dynamic usage;
+@dynamic src_id;
 
 
 
 
 
 
-@dynamic stops;
+@dynamic has_picto;
+
+
+
+- (BOOL)has_pictoValue {
+	NSNumber *result = [self has_picto];
+	return [result boolValue];
+}
+
+- (void)setHas_pictoValue:(BOOL)value_ {
+	[self setHas_picto:[NSNumber numberWithBool:value_]];
+}
+
+- (BOOL)primitiveHas_pictoValue {
+	NSNumber *result = [self primitiveHas_picto];
+	return [result boolValue];
+}
+
+- (void)setPrimitiveHas_pictoValue:(BOOL)value_ {
+	[self setPrimitiveHas_picto:[NSNumber numberWithBool:value_]];
+}
+
+
+
+
+
+@dynamic headsigns;
 
 	
-- (NSMutableSet*)stopsSet {
-	[self willAccessValueForKey:@"stops"];
-	NSMutableSet *result = [self mutableSetValueForKey:@"stops"];
-	[self didAccessValueForKey:@"stops"];
+- (NSMutableSet*)headsignsSet {
+	[self willAccessValueForKey:@"headsigns"];
+	NSMutableSet *result = [self mutableSetValueForKey:@"headsigns"];
+	[self didAccessValueForKey:@"headsigns"];
 	return result;
 }
 	
@@ -145,13 +171,13 @@
 }
 	
 
-@dynamic headsigns;
+@dynamic stops;
 
 	
-- (NSMutableSet*)headsignsSet {
-	[self willAccessValueForKey:@"headsigns"];
-	NSMutableSet *result = [self mutableSetValueForKey:@"headsigns"];
-	[self didAccessValueForKey:@"headsigns"];
+- (NSMutableSet*)stopsSet {
+	[self willAccessValueForKey:@"stops"];
+	NSMutableSet *result = [self mutableSetValueForKey:@"stops"];
+	[self didAccessValueForKey:@"stops"];
 	return result;
 }
 	

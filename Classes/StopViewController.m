@@ -9,6 +9,7 @@
 #import "StopViewController.h"
 #import "Line.h"
 #import "Stop.h"
+#import "StopViewCell.h"
 #import "City.h"
 #import "StopTimeViewController.h"
 
@@ -63,23 +64,19 @@
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    static NSString *CellIdentifier = @"Cell";
-    
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        UITableViewCellStyle cellStyle = UITableViewCellStyleDefault;
-        if ( line_ == nil ) {
-            cellStyle = UITableViewCellStyleValue1;
-        }
-        cell = [[[UITableViewCell alloc] initWithStyle:cellStyle reuseIdentifier:CellIdentifier] autorelease];
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    }
-    
+    StopViewCell *cell = [StopViewCell cellFromNibNamed:@"StopViewCell"];
+
     // Configure the cell...
     Stop* stop = [[self stops] objectAtIndex:indexPath.row];
-    cell.textLabel.text = stop.name;
+    cell.name.text = stop.name;
+    cell.metro.hidden = [stop.metro_count intValue] == 0;
+    cell.bike.hidden = [stop.bike_count intValue] == 0;
+    cell.pos.hidden = [stop.pos_count intValue] == 0;
     if ( line_ == nil ) {
-        cell.detailTextLabel.text = [NSString stringWithFormat:NSLocalizedString( @"%@ ligne%@", @"" ), stop.line_count, [stop.line_count intValue] > 1 ? @"s" : @""];
+        cell.lines.text = [NSString stringWithFormat:NSLocalizedString( @"%@ ligne%@", @"" ), stop.line_count, [stop.line_count intValue] > 1 ? @"s" : @""];
+        cell.accessible.hidden = ! [stop.accessible intValue];
+    } else {
+        cell.accessible.hidden = ! ( [stop.accessible intValue] && [line_.accessible intValue] );
     }
     
     return cell;
