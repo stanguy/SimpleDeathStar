@@ -15,9 +15,9 @@
 "Lignes suburbaines" = "Suburban lines";
 "Lignes express" = "Express lines";
 "Lignes spéciales" = "Special lines";
-"Toutes les lignes" = "All the lines";
+"Toutes les lignes" = "All lines";
 "Arrêts par ville" = "Stops by city";
-"Tous les arrêts" = "All the stops";
+"Tous les arrêts" = "All stops";
 "À propos" = "About";
 "Pas de panique" = "Don't panic!";
 "Voir tous les favoris" = "See all favorites";
@@ -32,6 +32,8 @@
 /* Stops */
 "Arrêt à rechercher" = "Search stops";
 "%@ ligne%@" = "%@ line%@";
+"Tous les arrêts" = "All stops";
+"Chercher" = "Search";
 
 /* StopTime */
 "Aucun passage" = "No travel";

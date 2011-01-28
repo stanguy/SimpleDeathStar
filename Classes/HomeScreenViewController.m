@@ -93,8 +93,6 @@ enum eSections {
     favoritesTimes_ =  [[NSMutableArray alloc] init];
     topFavorites_ = [NSArray arrayWithObjects:nil];
     cachedFavoritesCount = 0;
-    
-    NSLog( @"done load" );
 }
 
 
@@ -135,7 +133,6 @@ enum eSections {
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     static NSString *CellIdentifier = @"Cell";
-    static NSString *CellIdentifierFav = @"CellFav";
     static NSString *CellIdentifierFavNone = @"CellFavNone";
     static NSString *CellIdentifierFavMore = @"CellFavMore";
     UITableViewCell *cell;

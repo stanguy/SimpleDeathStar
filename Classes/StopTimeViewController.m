@@ -128,8 +128,6 @@ const int kCellWidth = 46;
     fetchedResultsController_ = [StopTime findByLine:line_ andStop:stop_ atDate:viewedDate_];
     [fetchedResultsController_ retain];
     if ( [[fetchedResultsController_ sections] count] < 1 ) {
-        
-        NSLog( @"no result show %@", self.alertNoResult );
         [self.alertNoResult show];
     }
     
@@ -265,7 +263,6 @@ const int kCellWidth = 46;
         return;
     }
     StopTime* st = [[section objects] objectAtIndex:col];
-    NSLog( @"touched %dx%d: %@", row, col, st );
     TripViewController* tripViewController = [[TripViewController alloc] initWithNibName:@"TripViewController" bundle:nil];
     tripViewController.stopTime = st;
     [self.navigationController pushViewController:tripViewController animated:YES];
@@ -316,7 +313,6 @@ const int kCellWidth = 46;
     [self.view sendSubviewToBack:dateChangeView_];
     [viewedDate_ release];
     viewedDate_ = [self.datePicker.date retain];
-    NSLog( @"date: %@", viewedDate_ );
     [self reloadData];    
 }
 - (void)onDismissChangeDate:(id)sender {
@@ -389,7 +385,6 @@ const int kCellWidth = 46;
     if ( poiType == nil ) {
         return;
     }
-    NSLog( @"display poi for %@", poiType );
     PoiViewController* poiViewController = [[PoiViewController alloc] initWithNibName:@"PoiViewController" bundle:nil];
     poiViewController.stop = self.stop;
     poiViewController.poiType = poiType;

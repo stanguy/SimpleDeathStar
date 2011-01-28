@@ -26,7 +26,14 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     poiCount_ = [[stop_ valueForKey:[NSString stringWithFormat:@"%@_count", poiType_]] intValue];
     NSMutableArray* pois = [NSMutableArray arrayWithCapacity:poiCount_];
-    for( ClosePoi* cpoi in stop_.close_pois ) {
+    NSArray* close_pois = [[stop_.close_pois allObjects] sortedArrayUsingComparator:^(id a, id b) {
+        int ad = [((ClosePoi*)a).distance intValue];
+        int bd = [((ClosePoi*)b).distance intValue];
+        if ( ad > bd ) { return (NSComparisonResult)NSOrderedDescending; }
+        if ( ad < bd ) { return (NSComparisonResult)NSOrderedAscending; }
+        return (NSComparisonResult)NSOrderedSame;
+    }];
+    for( ClosePoi* cpoi in close_pois ) {
         Poi* poi = cpoi.poi;
         if ( [poiType_ isEqualToString:poi.type] ) {
             [pois addObject:poi];
