@@ -104,7 +104,9 @@ int kMaxTopFavorites = 5;
     NSError* error = nil;
     if ( ! [context save:&error] ) {
         NSLog( @"unsable to save" );
+        return;
     }
+    [NSFetchedResultsController deleteCacheWithName:@"allFavorites"];
 }
 
 + (void)deleteWithLine:(Line*)line andStop:(Stop*) stop {   
@@ -117,7 +119,9 @@ int kMaxTopFavorites = 5;
     NSError* error = nil;
     if ( ! [context save:&error] ) {
         NSLog( @"unsable to save" );
-    }    
+        return;
+    }  
+    [NSFetchedResultsController deleteCacheWithName:@"allFavorites"];
 }
 
 + (int)count {
@@ -168,7 +172,7 @@ int kMaxTopFavorites = 5;
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
         return nil;
     }
-    NSArray* favs = [[aFetchedResultsController fetchedObjects] retain];
+    NSArray* favs = [aFetchedResultsController fetchedObjects];
     [aFetchedResultsController release];
     return favs;
     
@@ -216,9 +220,9 @@ int kMaxTopFavorites = 5;
 
 -(NSString*)title {
     if ( self.line_id != nil ) {
-        return [NSString stringWithFormat:@"Ligne %@ à %@", self.line_short_name, self.stop_name];
+        return [NSString stringWithFormat:NSLocalizedString( @"Ligne %@ à %@", @""), self.line_short_name, self.stop_name];
     } else {
-        return [NSString stringWithFormat:@"Arrêt %@", self.stop_name];
+        return [NSString stringWithFormat:NSLocalizedString( @"Arrêt %@", @"" ), self.stop_name];
     }
 }
 

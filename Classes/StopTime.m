@@ -218,7 +218,7 @@ NSPredicate* buildPredicateNoMax( Line* line, Stop* stop, int min_arrival, int c
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
         return nil;
     }
-    NSArray* stopTimes = [[aFetchedResultsController fetchedObjects] retain];
+    NSArray* stopTimes = [aFetchedResultsController fetchedObjects];
     [aFetchedResultsController release];
     return stopTimes;
 }

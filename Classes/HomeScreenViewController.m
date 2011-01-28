@@ -67,9 +67,9 @@ enum eSections {
         if ( favoritesTimes_ != nil) {
             [favoritesTimes_ release];
         }
-        favoritesTimes_ = favtimes;
+        favoritesTimes_ = [favtimes retain];
         cachedFavoritesCount = [Favorite count];
-        topFavorites_ = favorites;
+        topFavorites_ = [favorites retain];
     }
     [self performSelectorOnMainThread:@selector(refreshViewOfFavorites) withObject:nil waitUntilDone:NO];
     [pool release];
