@@ -28,14 +28,17 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     NSURL* fileUrl = nil;
-    switch ( self.type ) {
+	NSLocale *locale = [NSLocale currentLocale];
+	NSString *currentLocale = [locale objectForKey:NSLocaleLanguageCode];
+	NSLog( @"%@", currentLocale );
+	switch ( self.type ) {
         case ABOUT_ABOUT:
-            self.navigationItem.title = @"À propos";
-            fileUrl = [NSURL fileURLWithPath: [[NSBundle mainBundle] pathForResource:@"about" ofType:@"html"]];
+            self.navigationItem.title = NSLocalizedString( @"À propos", @"" );
+            fileUrl = [NSURL fileURLWithPath: [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"about_%@", currentLocale] ofType:@"html"]];
             break;
         case ABOUT_PANIC:
-            self.navigationItem.title = @"Pas de panique";
-            fileUrl = [NSURL fileURLWithPath: [[NSBundle mainBundle] pathForResource:@"panic" ofType:@"html"]];
+            self.navigationItem.title = NSLocalizedString( @"Pas de panique", @"" );
+            fileUrl = [NSURL fileURLWithPath: [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"panic_%@", currentLocale] ofType:@"html"]];
             break;
         default:
             return;
