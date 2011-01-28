@@ -188,9 +188,6 @@ int kMaxTopFavorites = 5;
     NSEntityDescription *entity = [Favorite entityInManagedObjectContext:context];
     [fetchRequest setEntity:entity];
     
-    // Set the batch size to a suitable number.
-    [fetchRequest setFetchLimit:kMaxTopFavorites];
-    
     // Edit the sort key as appropriate.
     NSSortDescriptor *sortDescriptor1 = [[NSSortDescriptor alloc] initWithKey:@"line_short_name" ascending:YES];
     NSSortDescriptor *sortDescriptor2 = [[NSSortDescriptor alloc] initWithKey:@"stop_name" ascending:YES];
