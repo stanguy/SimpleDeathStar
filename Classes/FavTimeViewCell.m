@@ -51,21 +51,31 @@
     if ( time_count == 0 ){
         self.nameLabel.textColor = [UIColor lightGrayColor];
     }
-    for ( int i = 0 ; i < 4; ++i) {
-        UILabel* timeLabel = (UILabel*) [self viewWithTag:(10+i*2+1)];
-        UIImageView* imageView = (UIImageView*) [self viewWithTag:(10+i*2)];
-        if ( i < time_count ) {
-            StopTime* time = [times objectAtIndex:i];
-            timeLabel.text = [time formatArrival];
-            if ( time.trip_bearing != nil ) {
-                imageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"arrow_%@", time.trip_bearing]];
-            } else {
-                imageView.hidden = YES;
-            }
-        } else {
-            timeLabel.hidden = YES;
-            imageView.hidden = YES;
+    int nb_times = [times count];
+    const int kBaseLineY = 20;
+    const int kBaseLineX = 20;
+    const int kImageWidth = 22;
+    const int kLineHeight = 22;
+    const int kLabelWidth = 37;
+    const int kMarginIn = 5;
+    const int kMarginOut = 2;
+    const int kGlobalTimeWidth = kImageWidth + kLabelWidth + kMarginIn + kMarginOut;
+    for ( int i = 0 ; i < nb_times; ++i) {
+        StopTime* time = [times objectAtIndex:i];
+        int subcell_x = kBaseLineX + i * kGlobalTimeWidth;
+        if ( time.trip_bearing != nil ) {
+            CGRect  viewRect = CGRectMake( subcell_x, kBaseLineY, kImageWidth, kLineHeight );
+            UIImageView* imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:[NSString stringWithFormat:@"arrow_%@", time.trip_bearing]]];
+            imageView.frame = viewRect;
+            imageView.contentMode =  UIViewContentModeCenter;
+            [self addSubview:imageView];
         }
+        CGRect  viewRect = CGRectMake( subcell_x + kImageWidth + kMarginIn, kBaseLineY, kLabelWidth, kLineHeight - 2);
+        UILabel* timeLabel = [[UILabel alloc] init];
+        timeLabel.font = [UIFont systemFontOfSize:12];
+        timeLabel.frame = viewRect;
+        timeLabel.text =  @"23:35";//[time formatArrival];
+        [self addSubview:timeLabel];
     }
 }
 
