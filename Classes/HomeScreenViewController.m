@@ -93,13 +93,13 @@ enum eSections {
     favoritesTimes_ =  [[NSMutableArray alloc] init];
     topFavorites_ = [NSArray arrayWithObjects:nil];
     cachedFavoritesCount = 0;
+    [self performSelectorInBackground:@selector(reloadFavorites) withObject:nil];
 }
 
 
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self performSelectorInBackground:@selector(reloadFavorites) withObject:nil];
 }
 
 

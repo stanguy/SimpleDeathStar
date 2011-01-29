@@ -7,6 +7,7 @@
 //
 
 #import "SimpleDeathStarAppDelegate.h"
+#import "HomeScreenViewController.h"
 
 
 @implementation SimpleDeathStarAppDelegate
@@ -18,11 +19,22 @@
 #pragma mark -
 #pragma mark Application lifecycle
 
+- (void)handleTimer:(NSTimer*)t {
+    HomeScreenViewController* home = [navigationController.viewControllers objectAtIndex:0];
+    [home performSelectorInBackground:@selector(reloadFavorites) withObject:nil];
+}
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {    
     
     // Override point for customization after application launch.
     [window addSubview:navigationController.view];
     [window makeKeyAndVisible];
+    
+    timerFavorites = [NSTimer scheduledTimerWithTimeInterval: 90
+                                                      target: self
+                                                    selector: @selector(handleTimer:)
+                                                    userInfo: nil
+                                                     repeats: YES];
     
     return YES;
 }
@@ -269,6 +281,7 @@
 
 - (void)dealloc {
     
+    [timerFavorites invalidate];
     [transitManagedObjectContext_ release];
     [transitManagedObjectModel_ release];
     [transitPersistentStoreCoordinator_ release];

@@ -23,6 +23,8 @@
 
     NSPersistentStoreCoordinator *transitPersistentStoreCoordinator_;
     NSPersistentStoreCoordinator *userPersistentStoreCoordinator_;
+    
+    NSTimer* timerFavorites;
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
