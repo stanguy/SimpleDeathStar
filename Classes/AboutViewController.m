@@ -28,10 +28,20 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     NSURL* fileUrl = nil;
-	NSLocale *locale = [NSLocale currentLocale];
-	NSString *currentLocale = [locale objectForKey:NSLocaleLanguageCode];
-	NSLog( @"%@", currentLocale );
-	switch ( self.type ) {
+    NSArray* preferredLangs = [NSLocale preferredLanguages];
+    NSString* currentLocale = nil;
+    NSArray* knownLanguages = [NSArray arrayWithObjects:@"fr", @"en", nil];
+    if ( [preferredLangs count] > 0 ) {
+        if ( [knownLanguages containsObject:[preferredLangs objectAtIndex:0] ] ) {
+            currentLocale = [preferredLangs objectAtIndex:0];
+        }
+    }
+    if ( nil == currentLocale ) {
+        //NSLog( @"defaulting to french" );
+        currentLocale = [knownLanguages objectAtIndex:0];
+    }
+    //NSLog( @"%@", currentLocale );
+    switch ( self.type ) {
         case ABOUT_ABOUT:
             self.navigationItem.title = NSLocalizedString( @"À propos", @"" );
             fileUrl = [NSURL fileURLWithPath: [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"about_%@", currentLocale] ofType:@"html"]];
