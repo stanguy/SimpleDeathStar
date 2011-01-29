@@ -74,7 +74,7 @@
         UILabel* timeLabel = [[UILabel alloc] init];
         timeLabel.font = [UIFont systemFontOfSize:12];
         timeLabel.frame = viewRect;
-        timeLabel.text =  @"23:35";//[time formatArrival];
+        timeLabel.text = [time formatArrival];
         [self addSubview:timeLabel];
     }
 }
