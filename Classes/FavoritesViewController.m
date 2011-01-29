@@ -28,8 +28,14 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     self.navigationItem.title = NSLocalizedString( @"Favoris", @"" );
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleDataChange) name:@"favorites" object:nil];
 }
 
+-(void)handleDataChange {
+    [fetchedResultsController_ release];
+    fetchedResultsController_ = nil;
+    [self.tableView reloadData];
+}
 
 #pragma mark -
 #pragma mark Table view data source

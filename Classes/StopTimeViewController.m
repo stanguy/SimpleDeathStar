@@ -358,6 +358,7 @@ const int kCellWidth = 46;
         [Favorite addWithLine:line_ andStop:stop_];
         favButton_.image = [UIImage imageNamed:@"favorites_remove"];
     }
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"favorites" object:nil];
 }
 
 - (IBAction)showPoi:(id)sender {

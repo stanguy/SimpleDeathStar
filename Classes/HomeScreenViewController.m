@@ -75,6 +75,10 @@ enum eSections {
     [pool release];
 }
 
+- (void)callFavLoading {
+    [self performSelectorInBackground:@selector(reloadFavorites) withObject:nil];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
 
@@ -93,7 +97,8 @@ enum eSections {
     favoritesTimes_ =  [[NSMutableArray alloc] init];
     topFavorites_ = [NSArray arrayWithObjects:nil];
     cachedFavoritesCount = 0;
-    [self performSelectorInBackground:@selector(reloadFavorites) withObject:nil];
+    [self callFavLoading];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(callFavLoading) name:@"favorites" object:nil];
 }
 
 
