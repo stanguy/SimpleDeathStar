@@ -32,6 +32,7 @@ NSPredicate* buildPredicate( Line* line, Stop* stop, int min_arrival, int max_ar
     [fetchRequest setEntity:entity];
     
     NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    [gregorian setTimeZone:[NSTimeZone timeZoneWithName:@"Europe/Paris"]];
     
     unsigned unitFlags = NSWeekdayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit;
     NSDateComponents *dateComponents =[gregorian components:unitFlags fromDate:date];
@@ -156,6 +157,7 @@ NSPredicate* buildPredicate( Line* line, Stop* stop, int min_arrival, int max_ar
     [fetchRequest setEntity:entity];
     
     NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    [gregorian setTimeZone:[NSTimeZone timeZoneWithName:@"Europe/Paris"]];
     NSDate* date = [NSDate date];
     unsigned unitFlags = NSWeekdayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit;
     NSDateComponents *dateComponents =[gregorian components:unitFlags fromDate:date];
