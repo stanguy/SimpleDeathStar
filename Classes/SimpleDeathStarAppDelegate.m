@@ -20,9 +20,18 @@
 #pragma mark Application lifecycle
 
 - (void)handleTimer:(NSTimer*)t {
+    NSLog( @"timer handling %@", t );
     HomeScreenViewController* home = [navigationController.viewControllers objectAtIndex:0];
     [home performSelectorInBackground:@selector(reloadFavorites) withObject:nil];
 }
+
+- (void)createTimer {
+    timerFavorites = [NSTimer scheduledTimerWithTimeInterval: 90
+                                                      target: self
+                                                    selector: @selector(handleTimer:)
+                                                    userInfo: nil
+                                                     repeats: YES];
+}    
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {    
     
@@ -30,12 +39,7 @@
     [window addSubview:navigationController.view];
     [window makeKeyAndVisible];
     
-    timerFavorites = [NSTimer scheduledTimerWithTimeInterval: 90
-                                                      target: self
-                                                    selector: @selector(handleTimer:)
-                                                    userInfo: nil
-                                                     repeats: YES];
-    
+    [self createTimer];
     return YES;
 }
 
@@ -53,6 +57,7 @@
      Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
      If your application supports background execution, called instead of applicationWillTerminate: when the user quits.
      */
+    [timerFavorites invalidate];
     [self saveContext];
 }
 
@@ -68,6 +73,8 @@
     /*
      Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
      */
+    [self handleTimer:nil];
+    [self createTimer];
 }
 
 
