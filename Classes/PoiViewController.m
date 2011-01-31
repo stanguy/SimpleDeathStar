@@ -22,6 +22,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    self.title = NSLocalizedString( poiType_, @"" );
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     poiCount_ = [[stop_ valueForKey:[NSString stringWithFormat:@"%@_count", poiType_]] intValue];
