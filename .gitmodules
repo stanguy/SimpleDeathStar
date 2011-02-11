@@ -1,0 +1,3 @@
+[submodule "MaptimizeKit"]
+	path = MaptimizeKit
+	url = git://github.com/maptimize/MaptimizeKit.git

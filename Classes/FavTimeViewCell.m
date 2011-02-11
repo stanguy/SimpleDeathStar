@@ -50,8 +50,8 @@
     int time_count = [times count];
     if ( time_count == 0 ){
         self.nameLabel.textColor = [UIColor lightGrayColor];
+        return;
     }
-    int nb_times = [times count];
     const int kBaseLineY = 20;
     const int kBaseLineX = 20;
     const int kImageWidth = 22;
@@ -60,7 +60,7 @@
     const int kMarginIn = 5;
     const int kMarginOut = 2;
     const int kGlobalTimeWidth = kImageWidth + kLabelWidth + kMarginIn + kMarginOut;
-    for ( int i = 0 ; i < nb_times; ++i) {
+    for ( int i = 0 ; i < time_count; ++i) {
         StopTime* time = [times objectAtIndex:i];
         int subcell_x = kBaseLineX + i * kGlobalTimeWidth;
         if ( time.trip_bearing != nil ) {
