@@ -8,13 +8,24 @@
 
 #import <UIKit/UIKit.h>
 
-
-@interface HomeScreenViewController : UITableViewController {
+@interface HomeScreenViewController : UITableViewController <CLLocationManagerDelegate> {
 @private
     NSMutableArray* menus_;
     NSArray* topFavorites_;
     NSArray* favoritesTimes_;
     int cachedFavoritesCount;
+    CLLocationManager *locationManager_;
+    int closeStopsCount;
+    NSArray* closeStops;
 }
+
+@property (nonatomic, retain) CLLocationManager *locationManager;  
+
+- (void)locationManager:(CLLocationManager *)manager
+    didUpdateToLocation:(CLLocation *)newLocation
+           fromLocation:(CLLocation *)oldLocation;
+
+- (void)locationManager:(CLLocationManager *)manager
+       didFailWithError:(NSError *)error;
 
 @end

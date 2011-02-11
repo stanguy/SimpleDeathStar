@@ -12,6 +12,8 @@
 
 @implementation Stop
 
+@synthesize distance = distance_;
+
 + (NSFetchedResultsController*) findAll{
     SimpleDeathStarAppDelegate* delegate = (SimpleDeathStarAppDelegate*)[[UIApplication sharedApplication] delegate];
     NSManagedObjectContext* context = [delegate  transitManagedObjectContext];
@@ -136,7 +138,89 @@
 }
 
 - (int) allCounts{
-	return [self.pos_count intValue] + [self.bike_count intValue] + [self.metro_count intValue];
+    return [self.pos_count intValue] + [self.bike_count intValue] + [self.metro_count intValue];
+}
+
+
++ (NSArray*) findAroundLocation:(CLLocation *)location withRadius:(float)radius {
+    SimpleDeathStarAppDelegate* delegate = (SimpleDeathStarAppDelegate*)[[UIApplication sharedApplication] delegate];
+    NSManagedObjectContext* context = [delegate  transitManagedObjectContext];
+    
+    // Create the fetch request for the entity.
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    // Edit the entity name as appropriate.
+    NSEntityDescription *entity = [Stop entityInManagedObjectContext:context];
+    [fetchRequest setEntity:entity];
+    
+    NSNumber* N = [NSNumber numberWithDouble:(location.coordinate.latitude + radius)];
+    NSNumber* S = [NSNumber numberWithDouble:(location.coordinate.latitude - radius)];
+    NSNumber* W = [NSNumber numberWithDouble:(location.coordinate.longitude - radius)];
+    NSNumber* E = [NSNumber numberWithDouble:(location.coordinate.longitude + radius)];
+    
+    
+    NSPredicate* predicate = [NSPredicate predicateWithFormat:@"lat > %@ AND lat < %@ AND lon > %@ AND lon < %@",
+                              S, N, W, E ];
+    [fetchRequest setPredicate:predicate];
+    
+    NSSortDescriptor *sortDescriptor1 = [[NSSortDescriptor alloc] initWithKey:@"src_id" ascending:YES];
+    NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptor1, nil];
+    
+    [fetchRequest setSortDescriptors:sortDescriptors];
+    
+    NSString* cacheName = @"stop_by_location";
+    [NSFetchedResultsController deleteCacheWithName:cacheName];
+    NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:context sectionNameKeyPath:nil cacheName:cacheName];
+    
+    [fetchRequest release];
+    [sortDescriptor1 release];
+    [sortDescriptors release];
+    
+    NSError *error = nil;
+    if (![aFetchedResultsController performFetch:&error]) {
+        [aFetchedResultsController release];
+        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+        return nil;
+    }
+    NSArray* stops = [aFetchedResultsController fetchedObjects];
+    [aFetchedResultsController release];
+    return stops;
+}
+
+
++ (NSArray*) findAroundLocation:(CLLocation*)location{
+    NSArray* result = nil;
+    float radius = 0.0001;
+    int previous_count = 0;
+    NSLog( @"findAroundLocation" );
+    do {
+        result = [Stop findAroundLocation:location withRadius:radius];
+        if ([result count] > previous_count ) {
+            radius *= 2;
+        } else {
+            radius *= 5;
+        }
+        previous_count = [result count];
+        NSLog( @"found %d stops in a radius of %f", previous_count, radius );
+    } while ( result != nil && previous_count < 5 );
+    for( Stop* stop in result ) {
+        CLLocation* stopLocation = [[CLLocation alloc] initWithLatitude:[stop.lat doubleValue] longitude:[stop.lon doubleValue]];
+        stop.distance = (int) [location distanceFromLocation:stopLocation];
+        [stopLocation release];
+    }
+    NSArray* sortedResult = [result sortedArrayUsingComparator:^(id a, id b) {
+        int ad = ((Stop*)a).distance;
+        int bd = ((Stop*)b).distance;
+        if ( ad > bd ) { return (NSComparisonResult)NSOrderedDescending; }
+        if ( ad < bd ) { return (NSComparisonResult)NSOrderedAscending; }
+        return (NSComparisonResult)NSOrderedSame;
+    }];
+    if ( previous_count > 5 ) {
+        NSRange r;
+        r.location = 0;
+        r.length = 5;
+        sortedResult = [sortedResult subarrayWithRange:r];
+    }
+    return sortedResult;
 }
 
 @end

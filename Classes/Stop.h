@@ -10,11 +10,15 @@
 
 
 @interface Stop : _Stop {
+    int distance_;
 }
+
+@property int distance;
 
 + (NSFetchedResultsController*) findAll;
 + (NSFetchedResultsController*) findByName:(NSString*) text;
 + (Stop*) findFirstBySrcId:(NSString*)src_id;
++ (NSArray*) findAroundLocation:(CLLocation*)location;
 
 - (int) allCounts;
 

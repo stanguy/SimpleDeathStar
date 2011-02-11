@@ -8,6 +8,7 @@
 
 #import "HomeScreenViewController.h"
 #import "LineViewController.h"
+#import "StopMapViewController.h"
 #import "StopViewController.h"
 #import "StopTimeViewController.h"
 #import "CityViewController.h"
@@ -22,9 +23,12 @@
 
 @implementation HomeScreenViewController
 
+@synthesize locationManager = locationManager_;
+
 NSString* menuTitles[] = {
     @"Recherche par lignes",
     @"Recherche par arrêt",
+    @"Arrêts proches",
     @"Favoris",
     @""
 };
@@ -45,6 +49,7 @@ int AboutMenuValues[] = {
 enum eSections {
     kLineSection,
     kStopsSection,
+    kCloseStopsSection,
     kFavoritesSection,
     kAboutSection
 };
@@ -75,6 +80,20 @@ enum eSections {
     [pool release];
 }
 
+-(void)refreshViewOfCloseStops {
+    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:kCloseStopsSection] withRowAnimation:YES];
+}
+
+- (void)reloadCloseStops:(CLLocation*)location{
+    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+    NSArray* stops = [Stop findAroundLocation:location];
+    closeStops = [stops retain];
+    closeStopsCount = [stops count];
+    NSLog( @"%d stops", [stops count] );
+    [self performSelectorOnMainThread:@selector(refreshViewOfCloseStops) withObject:nil waitUntilDone:NO];
+    [pool release];
+}
+
 - (void)callFavLoading {
     [self performSelectorInBackground:@selector(reloadFavorites) withObject:nil];
 }
@@ -91,7 +110,8 @@ enum eSections {
 					   NSLocalizedString( @"Lignes express", @""), 
 					   NSLocalizedString( @"Lignes spéciales", @""), 
 					   NSLocalizedString( @"Toutes les lignes", @""), /*@"Favorites",*/ nil ]];
-    [menus_ addObject:[NSArray arrayWithObjects: NSLocalizedString( @"Arrêts par ville", @"" ), NSLocalizedString( @"Tous les arrêts", @"" ), /*@"Favoris",*/ nil]];
+    [menus_ addObject:[NSArray arrayWithObjects: NSLocalizedString( @"Arrêts par ville", @"" ), NSLocalizedString( @"Tous les arrêts", @"" ), NSLocalizedString( @"Sur la carte", @""), nil]];
+    [menus_ addObject:[NSArray arrayWithObjects:nil]];
     [menus_ addObject:[NSArray arrayWithObjects:nil]];
     [menus_ addObject:[NSArray arrayWithObjects: NSLocalizedString( @"À propos", @"" ), NSLocalizedString( @"Pas de panique", @"" ), nil ]];
     favoritesTimes_ =  [[NSMutableArray alloc] init];
@@ -99,6 +119,19 @@ enum eSections {
     cachedFavoritesCount = 0;
     [self callFavLoading];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(callFavLoading) name:@"favorites" object:nil];
+    
+    
+    NSLog( @"Loading location manager" );
+    closeStopsCount = 0;
+    locationManager_ = [[CLLocationManager alloc] init];
+    if ( locationManager_.locationServicesEnabled == YES ) {
+        locationManager_.delegate = self;
+        locationManager_.desiredAccuracy = kCLLocationAccuracyHundredMeters;
+        // Set a movement threshold for new events
+        locationManager_.distanceFilter = 100; // 10 km
+        [locationManager_ startUpdatingLocation];
+        NSLog( @"Loaded location manager" );
+    }
 }
 
 
@@ -107,6 +140,38 @@ enum eSections {
     [super viewWillAppear:animated];
 }
 
+
+#pragma mark -
+#pragma mark CoreLocation stuff
+
+- (void)locationManager:(CLLocationManager *)manager
+    didUpdateToLocation:(CLLocation *)newLocation
+           fromLocation:(CLLocation *)oldLocation
+{
+    NSLog(@"Location: %@ (%d)", [newLocation description], abs( [newLocation.timestamp timeIntervalSinceDate:oldLocation.timestamp] ) );
+    if ( oldLocation == nil || abs( [newLocation.timestamp timeIntervalSinceDate:oldLocation.timestamp] ) > 20 ) {
+        [self performSelectorInBackground:@selector(reloadCloseStops:) withObject:newLocation];
+    }
+}
+
+- (void)locationManager:(CLLocationManager *)manager
+       didFailWithError:(NSError *)error
+{
+    if ([error domain] == kCLErrorDomain) {
+        
+        // We handle CoreLocation-related errors here
+        switch ([error code]) {
+            case kCLErrorDenied:
+                [manager stopUpdatingLocation];
+                break;
+                
+            case kCLErrorLocationUnknown:
+                
+            default:
+                break;
+        }
+    }
+}
 
 #pragma mark -
 #pragma mark Table view data source
@@ -119,9 +184,11 @@ enum eSections {
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
-    if ( section != kFavoritesSection )
+    if ( section != kFavoritesSection && section != kCloseStopsSection )
         return [[menus_ objectAtIndex:section] count];
-    else {
+    else if ( section == kCloseStopsSection ) {
+        return closeStopsCount;
+    } else {
         int topCount = [topFavorites_ count];
         if ( cachedFavoritesCount > topCount ) {
             return topCount + 1;
@@ -140,8 +207,9 @@ enum eSections {
     static NSString *CellIdentifier = @"Cell";
     static NSString *CellIdentifierFavNone = @"CellFavNone";
     static NSString *CellIdentifierFavMore = @"CellFavMore";
+    static NSString *CellIdentifierCloseStop = @"CellCloseStops";
     UITableViewCell *cell;
-    if ( indexPath.section != kFavoritesSection ) {
+    if ( indexPath.section != kFavoritesSection && indexPath.section != kCloseStopsSection ) {
         cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         if (cell == nil) {
             cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
@@ -150,7 +218,17 @@ enum eSections {
         
     // Configure the cell...
         cell.textLabel.text = [[menus_ objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
-    } else {
+    } else if ( indexPath.section == kCloseStopsSection ) {
+        cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifierCloseStop];
+        if (cell == nil) {
+            cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifierCloseStop] autorelease];
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        }
+        // Configure the cell...
+        Stop* stop = [closeStops objectAtIndex:indexPath.row];
+        cell.textLabel.text = stop.name;
+        cell.detailTextLabel.text = [NSString stringWithFormat:@"%d m", stop.distance];
+    } else if ( indexPath.section == kFavoritesSection ) {
 
         int topCount = [topFavorites_ count];
         
@@ -210,10 +288,14 @@ enum eSections {
                 CityViewController* cityViewController = [[CityViewController alloc] initWithNibName:@"CityViewController" bundle:nil];
                 [self.navigationController pushViewController:cityViewController animated:YES];
                 [cityViewController release];
-            } else {
+            } else if ( indexPath.row == 1 ) {
                 StopViewController* stopViewController = [[StopViewController alloc] initWithNibName:@"StopViewController" bundle:nil];
                 [self.navigationController pushViewController:stopViewController animated:YES];
                 [stopViewController release];
+            } else {
+                StopMapViewController* stopMapViewController = [[StopMapViewController alloc] initWithNibName:@"StopMapViewController" bundle:nil];
+                [self.navigationController pushViewController:stopMapViewController animated:YES];
+                [stopMapViewController release];
             }
             break;
         case kFavoritesSection:
