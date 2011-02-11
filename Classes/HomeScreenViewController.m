@@ -28,8 +28,8 @@
 NSString* menuTitles[] = {
     @"Recherche par lignes",
     @"Recherche par arrêt",
-    @"Arrêts proches",
     @"Favoris",
+    @"Arrêts proches",
     @""
 };
 int LineMenuValues[] = {
@@ -49,8 +49,8 @@ int AboutMenuValues[] = {
 enum eSections {
     kLineSection,
     kStopsSection,
-    kCloseStopsSection,
     kFavoritesSection,
+    kCloseStopsSection,
     kAboutSection
 };
 
@@ -317,6 +317,15 @@ enum eSections {
                     
                 }
             }                
+        }
+        case kCloseStopsSection:
+        {
+            if ( closeStopsCount > 0 ) {
+                StopTimeViewController* stoptimeView = [[StopTimeViewController alloc] initWithNibName:@"StopTimeViewController" bundle:nil];
+                stoptimeView.stop = [closeStops objectAtIndex:indexPath.row];
+                [self.navigationController pushViewController:stoptimeView animated:YES];
+                [stoptimeView release];                    
+            }
         }
             break;
         case kAboutSection:
