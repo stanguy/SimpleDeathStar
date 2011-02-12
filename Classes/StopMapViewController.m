@@ -104,7 +104,6 @@
 }
 
 -(void)viewWillDisappear:(BOOL)animated{
-    self.mapView.delegate = nil;
     [super viewWillDisappear:animated];
 }
 
@@ -131,6 +130,8 @@
 
 
 - (void)dealloc {
+    self.mapView.delegate = nil;
+    [self.mapView release];
     [mapController_ release];
     [super dealloc];
 }
