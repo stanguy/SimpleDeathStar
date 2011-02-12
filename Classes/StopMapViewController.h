@@ -13,7 +13,7 @@
 
 #import "MaptimizeKit.h"
 
-@interface StopMapViewController : UIViewController <XMMapControllerDelegate> {
+@interface StopMapViewController : UIViewController <XMMapControllerDelegate,XMOptimizeServiceParser> {
 @private
     MKMapView *mapView_;
     XMMapController* maptimizeController_;

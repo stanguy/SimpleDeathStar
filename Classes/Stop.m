@@ -223,4 +223,41 @@
     return sortedResult;
 }
 
++ (Stop*) findFirstBySlug:(NSString*)slug {
+    SimpleDeathStarAppDelegate* delegate = (SimpleDeathStarAppDelegate*)[[UIApplication sharedApplication] delegate];
+    NSManagedObjectContext* context = [delegate  transitManagedObjectContext];
+    
+    // Create the fetch request for the entity.
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    // Edit the entity name as appropriate.
+    NSEntityDescription *entity = [Stop entityInManagedObjectContext:context];
+    [fetchRequest setEntity:entity];
+    NSPredicate* predicate = [NSPredicate predicateWithFormat:@"slug = %@", slug ];
+    [fetchRequest setPredicate:predicate];
+    [fetchRequest setFetchLimit:1];
+    
+    NSSortDescriptor *sortDescriptor1 = [[NSSortDescriptor alloc] initWithKey:@"slug" ascending:YES];
+    NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptor1, nil];
+    
+    [fetchRequest setSortDescriptors:sortDescriptors];
+    
+    NSString* cacheName = [NSString stringWithFormat:@"stop_slug_%@", slug];
+    
+    NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:context sectionNameKeyPath:nil cacheName:cacheName];
+    
+    [fetchRequest release];
+    [sortDescriptor1 release];
+    [sortDescriptors release];
+    
+    NSError *error = nil;
+    if (![aFetchedResultsController performFetch:&error]) {
+        [aFetchedResultsController release];
+        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+        return nil;
+    }
+    Stop* stop = [[aFetchedResultsController fetchedObjects] objectAtIndex:0];
+    [aFetchedResultsController release];
+    return stop;
+}
+
 @end

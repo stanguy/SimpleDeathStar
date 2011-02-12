@@ -10,11 +10,18 @@
 
 #import "MaptimizeKit.h"
 
+#import "StopAnnotation.h"
+#import "StopTimeViewController.h"
+
 #define MAP_KEY @"1c4548799006881c1748573593282eb8798be5d4"
 
 @implementation StopMapViewController
 
 @synthesize mapView = mapView_, mapController = mapController_; 
+
+
+#pragma mark -
+#pragma mark Maptimize
 
 - (XMMapController *)mapController
 {
@@ -22,11 +29,55 @@
         mapController_ = [[XMMapController alloc] init];
         mapController_.mapKey = MAP_KEY;
         mapController_.delegate = self;
+        mapController_.distance = 50;
+        mapController_.optimizeService.parser = self;
     }
     return mapController_;
 }
 
+- (void)mapController:(XMMapController *)mapController failedWithError:(NSError *)error
+{
+    NSLog( @"Error: %@", error); 
+}
 
+- (MKAnnotationView *)mapController:(XMMapController *)mapController viewForMarker:(XMMarker *)marker
+{
+    static NSString *identifier = @"PinMarkerWithStopAnnotation";
+    
+    MKPinAnnotationView *view = (MKPinAnnotationView*) [mapController.mapView dequeueReusableAnnotationViewWithIdentifier:identifier];
+    NSLog( @"using annotation %@ identified by %@", marker, marker.identifier );
+    if (!view)
+    {
+        view = [[[MKPinAnnotationView alloc] initWithAnnotation:marker reuseIdentifier:identifier] autorelease];
+        view.canShowCallout = YES;
+        view.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+    }
+    [view setAnnotation:marker];
+    view.pinColor = MKPinAnnotationColorGreen;
+    
+    return view;
+}
+
+- (XMMarker *)optimizeService:(XMOptimizeService *)optimizeService
+         markerWithCoordinate:(CLLocationCoordinate2D)coordinate
+                   identifier:(NSString *)identifier
+                         data:(NSMutableDictionary *)data{
+    StopAnnotation* annotation = [[StopAnnotation alloc] initWithCoordinate:coordinate identifier:identifier];
+    return annotation;
+}
+
+- (void)mapController:(XMMapController *)mapController annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control {
+    StopAnnotation* annotation = view.annotation;
+    Stop* stop = annotation.stop;
+    StopTimeViewController* stoptimeView = [[StopTimeViewController alloc] initWithNibName:@"StopTimeViewController" bundle:nil];
+    stoptimeView.stop = stop;
+    [self.navigationController pushViewController:stoptimeView animated:YES];
+    [stoptimeView release];
+    
+}
+
+#pragma mark -
+#pragma mark init
 // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
 /*
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
@@ -51,8 +102,8 @@
     region.span.latitudeDelta = 0.4; 
     region.span.longitudeDelta = 0.4;
     self.mapView.region = region;
-    self.mapView.showsUserLocation = YES;
-    [self.mapView setShowsUserLocation:YES];
+/*    self.mapView.showsUserLocation = YES;
+    [self.mapView setShowsUserLocation:YES];*/
 }
 
 - (void)viewDidAppear:(BOOL)animated {

@@ -18,6 +18,7 @@
 + (NSFetchedResultsController*) findAll;
 + (NSFetchedResultsController*) findByName:(NSString*) text;
 + (Stop*) findFirstBySrcId:(NSString*)src_id;
++ (Stop*) findFirstBySlug:(NSString*)slug;
 + (NSArray*) findAroundLocation:(CLLocation*)location;
 
 - (int) allCounts;
