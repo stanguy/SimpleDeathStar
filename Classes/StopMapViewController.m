@@ -103,6 +103,11 @@
     [self.mapController update];
 }
 
+-(void)viewWillDisappear:(BOOL)animated{
+    self.mapView.delegate = nil;
+    [super viewWillDisappear:animated];
+}
+
 /*
 // Override to allow orientations other than the default portrait orientation.
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
