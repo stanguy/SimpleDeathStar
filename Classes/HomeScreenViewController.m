@@ -148,9 +148,11 @@ enum eSections {
     didUpdateToLocation:(CLLocation *)newLocation
            fromLocation:(CLLocation *)oldLocation
 {
-    NSLog(@"Location: %@ (%d)", [newLocation description], abs( [newLocation.timestamp timeIntervalSinceDate:oldLocation.timestamp] ) );
+//    NSLog(@"Location: %@ (%d)", [newLocation description], abs( [newLocation.timestamp timeIntervalSinceDate:oldLocation.timestamp] ) );
     if ( oldLocation == nil || abs( [newLocation.timestamp timeIntervalSinceDate:oldLocation.timestamp] ) > 20 ) {
         [self performSelectorInBackground:@selector(reloadCloseStops:) withObject:newLocation];
+        [manager stopUpdatingLocation];
+        [manager startMonitoringSignificantLocationChanges];
     }
 }
 
@@ -208,7 +210,7 @@ enum eSections {
     static NSString *CellIdentifierFavNone = @"CellFavNone";
     static NSString *CellIdentifierFavMore = @"CellFavMore";
     static NSString *CellIdentifierCloseStop = @"CellCloseStops";
-    UITableViewCell *cell;
+    UITableViewCell *cell = nil;
     if ( indexPath.section != kFavoritesSection && indexPath.section != kCloseStopsSection ) {
         cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         if (cell == nil) {
@@ -318,6 +320,7 @@ enum eSections {
                 }
             }                
         }
+            break;
         case kCloseStopsSection:
         {
             if ( closeStopsCount > 0 ) {
