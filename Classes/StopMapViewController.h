@@ -17,9 +17,11 @@
 @private
     MKMapView *mapView_;
     XMMapController* maptimizeController_;
+    CLLocation* originalPosition_;
 }
 
 @property (nonatomic, retain) IBOutlet MKMapView *mapView;
 @property (nonatomic, readonly) XMMapController *mapController;
+@property (nonatomic, retain) CLLocation* originalPosition;
 
 @end

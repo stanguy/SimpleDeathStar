@@ -17,7 +17,7 @@
 
 @implementation StopMapViewController
 
-@synthesize mapView = mapView_, mapController = mapController_; 
+@synthesize mapView = mapView_, mapController = mapController_,originalPosition = originalPosition_; 
 
 
 #pragma mark -
@@ -45,9 +45,7 @@
     static NSString *identifier = @"PinMarkerWithStopAnnotation";
     
     MKPinAnnotationView *view = (MKPinAnnotationView*) [mapController.mapView dequeueReusableAnnotationViewWithIdentifier:identifier];
-    NSLog( @"using annotation %@ identified by %@", marker, marker.identifier );
-    if (!view)
-    {
+    if (!view) {
         view = [[[MKPinAnnotationView alloc] initWithAnnotation:marker reuseIdentifier:identifier] autorelease];
         view.canShowCallout = YES;
         view.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
@@ -63,7 +61,7 @@
                    identifier:(NSString *)identifier
                          data:(NSMutableDictionary *)data{
     StopAnnotation* annotation = [[StopAnnotation alloc] initWithCoordinate:coordinate identifier:identifier];
-    return annotation;
+    return [annotation autorelease];
 }
 
 - (void)mapController:(XMMapController *)mapController annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control {
@@ -73,37 +71,32 @@
     stoptimeView.stop = stop;
     [self.navigationController pushViewController:stoptimeView animated:YES];
     [stoptimeView release];
-    
 }
 
 #pragma mark -
 #pragma mark init
-// The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
-/*
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization.
-    }
-    return self;
-}
-*/
 
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.mapController.mapView = self.mapView;
-    CLLocationCoordinate2D centerCoord = {48.11, -1.68 };
-    [self.mapView setCenterCoordinate:centerCoord];
     MKCoordinateRegion region; 
-    region.center.latitude = centerCoord.latitude; 
-    region.center.longitude = centerCoord.longitude; 
-    region.span.latitudeDelta = 0.4; 
-    region.span.longitudeDelta = 0.4;
+    if ( originalPosition_ == nil ) {
+        CLLocationCoordinate2D centerCoord = { 48.11, -1.68 };
+        //    [self.mapView setCenterCoordinate:centerCoord];
+        region.center.latitude = centerCoord.latitude; 
+        region.center.longitude = centerCoord.longitude; 
+        region.span.latitudeDelta = 0.4; 
+        region.span.longitudeDelta = 0.4;
+    } else {
+        region.center.latitude = originalPosition_.coordinate.latitude; 
+        region.center.longitude = originalPosition_.coordinate.longitude; 
+        region.span.latitudeDelta = 0.04; 
+        region.span.longitudeDelta = 0.04;
+    }
     self.mapView.region = region;
-/*    self.mapView.showsUserLocation = YES;
-    [self.mapView setShowsUserLocation:YES];*/
+    self.mapView.showsUserLocation = YES;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -133,6 +126,7 @@
 
 
 - (void)dealloc {
+    [mapController_ release];
     [super dealloc];
 }
 

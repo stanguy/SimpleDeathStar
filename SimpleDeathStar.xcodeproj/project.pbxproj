@@ -72,11 +72,22 @@
 		9677B45212F21EDC0016A460 /* metro@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9677B44A12F21EDC0016A460 /* metro@2x.png */; };
 		9677B45312F21EDC0016A460 /* pos.png in Resources */ = {isa = PBXBuildFile; fileRef = 9677B44B12F21EDC0016A460 /* pos.png */; };
 		9677B45412F21EDC0016A460 /* pos@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9677B44C12F21EDC0016A460 /* pos@2x.png */; };
+		9688A0EB1301E6DA00B218A2 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9688A0EA1301E6DA00B218A2 /* CoreLocation.framework */; };
+		9688A16F1301F14F00B218A2 /* StopAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 9688A16E1301F14F00B218A2 /* StopAnnotation.m */; };
 		969229BE12C6B799007C965D /* HomeScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 969229BC12C6B799007C965D /* HomeScreenViewController.m */; };
 		969229BF12C6B799007C965D /* HomeScreenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 969229BD12C6B799007C965D /* HomeScreenViewController.xib */; };
 		96A71C6D12CA87AC00FB1516 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96A71C6B12CA87AC00FB1516 /* AboutViewController.m */; };
 		96A71C6E12CA87AC00FB1516 /* AboutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96A71C6C12CA87AC00FB1516 /* AboutViewController.xib */; };
 		96A71C8D12CA89B700FB1516 /* about_fr.html in Resources */ = {isa = PBXBuildFile; fileRef = 96A71C8C12CA89B700FB1516 /* about_fr.html */; };
+		96B1693312FB4E2600B71302 /* libMaptimizeKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 96B1692712FB4D8700B71302 /* libMaptimizeKit.a */; };
+		96B1696212FB587600B71302 /* StopMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96B1696012FB587600B71302 /* StopMapViewController.m */; };
+		96B1696312FB587600B71302 /* StopMapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96B1696112FB587600B71302 /* StopMapViewController.xib */; };
+		96B169B512FB65B100B71302 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96B169B412FB65B100B71302 /* CFNetwork.framework */; };
+		96B169B712FB65B100B71302 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96B169B612FB65B100B71302 /* CoreFoundation.framework */; };
+		96B169B912FB65B100B71302 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96B169B812FB65B100B71302 /* MobileCoreServices.framework */; };
+		96B169BB12FB65B100B71302 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96B169BA12FB65B100B71302 /* SystemConfiguration.framework */; };
+		96B16A0B12FB65F600B71302 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 96B16A0A12FB65F600B71302 /* libz.dylib */; };
+		96B16A0F12FB660E00B71302 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96B16A0E12FB660E00B71302 /* MapKit.framework */; };
 		96B1E19412DB84F3008007BD /* UserData.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 96B1E19312DB84F3008007BD /* UserData.xcdatamodel */; };
 		96B1E19612DB851D008007BD /* UserData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 96B1E19512DB851D008007BD /* UserData.xcdatamodeld */; };
 		96B1E1BF12DB8607008007BD /* _Favorite.m in Sources */ = {isa = PBXBuildFile; fileRef = 96B1E1BC12DB8607008007BD /* _Favorite.m */; };
@@ -173,6 +184,16 @@
 		B8C431BC12F2F3B400DEC9B2 /* panic_en.html in Resources */ = {isa = PBXBuildFile; fileRef = B8C431BB12F2F3B400DEC9B2 /* panic_en.html */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		96B1692612FB4D8700B71302 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 96B1691F12FB4D8700B71302 /* MaptimizeKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D2AAC07E0554694100DB518D;
+			remoteInfo = MaptimizeKit;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D3623240D0F684500981E51 /* SimpleDeathStarAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleDeathStarAppDelegate.h; sourceTree = "<group>"; };
@@ -264,6 +285,9 @@
 		9677B44A12F21EDC0016A460 /* metro@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "metro@2x.png"; sourceTree = "<group>"; };
 		9677B44B12F21EDC0016A460 /* pos.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pos.png; sourceTree = "<group>"; };
 		9677B44C12F21EDC0016A460 /* pos@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pos@2x.png"; sourceTree = "<group>"; };
+		9688A0EA1301E6DA00B218A2 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		9688A16D1301F14F00B218A2 /* StopAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StopAnnotation.h; sourceTree = "<group>"; };
+		9688A16E1301F14F00B218A2 /* StopAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StopAnnotation.m; sourceTree = "<group>"; };
 		9692298C12C6B4A1007C965D /* Transit.xcdatamodel */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.xcdatamodel; path = Transit.xcdatamodel; sourceTree = "<group>"; };
 		969229BB12C6B799007C965D /* HomeScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeScreenViewController.h; sourceTree = "<group>"; };
 		969229BC12C6B799007C965D /* HomeScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeScreenViewController.m; sourceTree = "<group>"; };
@@ -272,6 +296,16 @@
 		96A71C6B12CA87AC00FB1516 /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
 		96A71C6C12CA87AC00FB1516 /* AboutViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = AboutViewController.xib; path = Classes/AboutViewController.xib; sourceTree = "<group>"; };
 		96A71C8C12CA89B700FB1516 /* about_fr.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = about_fr.html; sourceTree = "<group>"; };
+		96B1691F12FB4D8700B71302 /* MaptimizeKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = MaptimizeKit.xcodeproj; path = MaptimizeKit/MaptimizeKit.xcodeproj; sourceTree = "<group>"; };
+		96B1695F12FB587600B71302 /* StopMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StopMapViewController.h; sourceTree = "<group>"; };
+		96B1696012FB587600B71302 /* StopMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StopMapViewController.m; sourceTree = "<group>"; };
+		96B1696112FB587600B71302 /* StopMapViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = StopMapViewController.xib; path = Classes/StopMapViewController.xib; sourceTree = "<group>"; };
+		96B169B412FB65B100B71302 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		96B169B612FB65B100B71302 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
+		96B169B812FB65B100B71302 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		96B169BA12FB65B100B71302 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		96B16A0A12FB65F600B71302 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		96B16A0E12FB660E00B71302 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		96B1E19312DB84F3008007BD /* UserData.xcdatamodel */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.xcdatamodel; path = UserData.xcdatamodel; sourceTree = "<group>"; };
 		96B1E1BB12DB8607008007BD /* _Favorite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _Favorite.h; sourceTree = "<group>"; };
 		96B1E1BC12DB8607008007BD /* _Favorite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _Favorite.m; sourceTree = "<group>"; };
@@ -380,10 +414,18 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				96B1693312FB4E2600B71302 /* libMaptimizeKit.a in Frameworks */,
 				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
 				288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */,
 				28D801B40F44B63D00FB423F /* CoreData.framework in Frameworks */,
+				96B169B512FB65B100B71302 /* CFNetwork.framework in Frameworks */,
+				96B169B712FB65B100B71302 /* CoreFoundation.framework in Frameworks */,
+				96B169B912FB65B100B71302 /* MobileCoreServices.framework in Frameworks */,
+				96B169BB12FB65B100B71302 /* SystemConfiguration.framework in Frameworks */,
+				96B16A0B12FB65F600B71302 /* libz.dylib in Frameworks */,
+				96B16A0F12FB660E00B71302 /* MapKit.framework in Frameworks */,
+				9688A0EB1301E6DA00B218A2 /* CoreLocation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -424,6 +466,10 @@
 				96B9FFA212F233C2008C9F2E /* TripViewCell.m */,
 				961A778E12D664340085BCAA /* TripViewController.h */,
 				961A778F12D664340085BCAA /* TripViewController.m */,
+				96B1695F12FB587600B71302 /* StopMapViewController.h */,
+				96B1696012FB587600B71302 /* StopMapViewController.m */,
+				9688A16D1301F14F00B218A2 /* StopAnnotation.h */,
+				9688A16E1301F14F00B218A2 /* StopAnnotation.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -439,11 +485,16 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				96B1691F12FB4D8700B71302 /* MaptimizeKit.xcodeproj */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
+				96B169B412FB65B100B71302 /* CFNetwork.framework */,
+				96B169B612FB65B100B71302 /* CoreFoundation.framework */,
+				96B169B812FB65B100B71302 /* MobileCoreServices.framework */,
+				96B169BA12FB65B100B71302 /* SystemConfiguration.framework */,
 			);
 			name = CustomTemplate;
 			sourceTree = "<group>";
@@ -479,6 +530,7 @@
 				96DBF54612CBFAFD0096C240 /* simpledeathstar_appicon.png */,
 				96DBF54512CBFAFD0096C240 /* simpledeathstar_appicon@2x.png */,
 				96DBF54712CBFAFD0096C240 /* simpledeathstar_appstore.png */,
+				96B1696112FB587600B71302 /* StopMapViewController.xib */,
 				9631C13012C77D660002EB78 /* StopTimeViewController.xib */,
 				9677B44212F21E020016A460 /* StopViewCell.xib */,
 				962B82CC12C6D30D007EA09F /* StopViewController.xib */,
@@ -498,6 +550,9 @@
 				1D30AB110D05D00D00671497 /* Foundation.framework */,
 				288765A40DF7441C002DB57D /* CoreGraphics.framework */,
 				28D801B30F44B63D00FB423F /* CoreData.framework */,
+				96B16A0A12FB65F600B71302 /* libz.dylib */,
+				96B16A0E12FB660E00B71302 /* MapKit.framework */,
+				9688A0EA1301E6DA00B218A2 /* CoreLocation.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -563,6 +618,14 @@
 				9677B36E12F206630016A460 /* arrow_SW@2x.png */,
 			);
 			name = images;
+			sourceTree = "<group>";
+		};
+		96B1692012FB4D8700B71302 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				96B1692712FB4D8700B71302 /* libMaptimizeKit.a */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		96B1E1C112DB860F008007BD /* Auto */ = {
@@ -716,12 +779,28 @@
 			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 96B1692012FB4D8700B71302 /* Products */;
+					ProjectRef = 96B1691F12FB4D8700B71302 /* MaptimizeKit.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				1D6058900D05DD3D006BFB54 /* SimpleDeathStar */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		96B1692712FB4D8700B71302 /* libMaptimizeKit.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libMaptimizeKit.a;
+			remoteRef = 96B1692612FB4D8700B71302 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		1D60588D0D05DD3D006BFB54 /* Resources */ = {
@@ -853,6 +932,7 @@
 				96B9010412F339F2008C9F2E /* KL.png in Resources */,
 				96B9010512F339F2008C9F2E /* STN.png in Resources */,
 				96B9010612F339F2008C9F2E /* TTZ.png in Resources */,
+				96B1696312FB587600B71302 /* StopMapViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -898,6 +978,8 @@
 				9677B3D912F20CB20016A460 /* _Poi.m in Sources */,
 				9677B44112F21B6E0016A460 /* StopViewCell.m in Sources */,
 				96B9FFA312F233C2008C9F2E /* TripViewCell.m in Sources */,
+				96B1696212FB587600B71302 /* StopMapViewController.m in Sources */,
+				9688A16F1301F14F00B218A2 /* StopAnnotation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -961,6 +1043,11 @@
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "MaptimizeKit//**";
+				OTHER_LDFLAGS = (
+					"-all_load",
+					"-ObjC",
+				);
 				PREBINDING = NO;
 				PRODUCT_NAME = SimpleDeathStar;
 				PROVISIONING_PROFILE = "";
@@ -978,8 +1065,13 @@
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "MaptimizeKit//**";
 				IPHONEOS_DEPLOYMENT_TARGET = 3.2;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				OTHER_LDFLAGS = (
+					"-all_load",
+					"-ObjC",
+				);
 				PREBINDING = NO;
 				PRODUCT_NAME = SimpleDeathStar;
 				PROVISIONING_PROFILE = "";

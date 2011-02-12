@@ -13,11 +13,11 @@
 
 @interface StopAnnotation : XMMarker {
 
-    NSString *title;
     Stop* stop;
 }
 @property (nonatomic, copy) NSString *title;
 @property (nonatomic, retain) Stop* stop;
+@property (nonatomic, retain) NSString* subtitle;
 
 - (id)initWithCoordinate:(CLLocationCoordinate2D)coordinate identifier:(NSString *)identifier;
 

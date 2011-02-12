@@ -13,22 +13,19 @@
 #import "Stop.h"
 
 @implementation StopAnnotation
-@synthesize title,stop=stop;
+@synthesize title,subtitle,stop=stop;
 
 -(void)dealloc{
-    [title release];
+    [stop release];
     [super dealloc];
 }
 
 - (id)initWithCoordinate:(CLLocationCoordinate2D)coordinate identifier:(NSString *)identifier {
     self = [super initWithCoordinate:coordinate identifier:identifier];
-//    stop = [Stop findFirstBySlug:identifier];
-//    title = stop.name ;//marker.identifier;
     return self;
 }
 
 -(NSString*)title {
-    NSLog(@"StopAnnotation.title");
     return self.stop.name;
 }
 
@@ -37,6 +34,10 @@
         stop = [[Stop findFirstBySlug:self.identifier] retain];
     }
     return stop;
+}
+
+-(NSString*)subtitle {
+    return [NSString stringWithFormat:NSLocalizedString( @"%@ ligne%@", @"" ), stop.line_count, [stop.line_count intValue] > 1 ? @"s" : @""];
 }
 
 @end

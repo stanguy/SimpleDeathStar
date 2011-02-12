@@ -223,7 +223,7 @@ enum eSections {
     } else if ( indexPath.section == kCloseStopsSection ) {
         cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifierCloseStop];
         if (cell == nil) {
-            cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifierCloseStop] autorelease];
+            cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifierCloseStop] autorelease];
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         }
         // Configure the cell...
@@ -296,6 +296,9 @@ enum eSections {
                 [stopViewController release];
             } else {
                 StopMapViewController* stopMapViewController = [[StopMapViewController alloc] initWithNibName:@"StopMapViewController" bundle:nil];
+                if ( closeStopsCount > 0 ) {
+                    stopMapViewController.originalPosition = locationManager_.location;
+                }
                 [self.navigationController pushViewController:stopMapViewController animated:YES];
                 [stopMapViewController release];
             }
