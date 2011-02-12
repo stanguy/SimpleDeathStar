@@ -74,7 +74,6 @@
 		9677B45412F21EDC0016A460 /* pos@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9677B44C12F21EDC0016A460 /* pos@2x.png */; };
 		9688A0EB1301E6DA00B218A2 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9688A0EA1301E6DA00B218A2 /* CoreLocation.framework */; };
 		9688A16F1301F14F00B218A2 /* StopAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 9688A16E1301F14F00B218A2 /* StopAnnotation.m */; };
-		9688A56F1306EC5F00B218A2 /* ProximityError.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9688A56E1306EC5F00B218A2 /* ProximityError.xib */; };
 		9688A5CB1307002D00B218A2 /* reload.png in Resources */ = {isa = PBXBuildFile; fileRef = 9688A5C91307002D00B218A2 /* reload.png */; };
 		9688A5CC1307002D00B218A2 /* reload@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9688A5CA1307002D00B218A2 /* reload@2x.png */; };
 		969229BE12C6B799007C965D /* HomeScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 969229BC12C6B799007C965D /* HomeScreenViewController.m */; };
@@ -291,7 +290,6 @@
 		9688A0EA1301E6DA00B218A2 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		9688A16D1301F14F00B218A2 /* StopAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StopAnnotation.h; sourceTree = "<group>"; };
 		9688A16E1301F14F00B218A2 /* StopAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StopAnnotation.m; sourceTree = "<group>"; };
-		9688A56E1306EC5F00B218A2 /* ProximityError.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProximityError.xib; sourceTree = "<group>"; };
 		9688A5C91307002D00B218A2 /* reload.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = reload.png; sourceTree = "<group>"; };
 		9688A5CA1307002D00B218A2 /* reload@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "reload@2x.png"; sourceTree = "<group>"; };
 		9692298C12C6B4A1007C965D /* Transit.xcdatamodel */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.xcdatamodel; path = Transit.xcdatamodel; sourceTree = "<group>"; };
@@ -476,7 +474,6 @@
 				96B1696012FB587600B71302 /* StopMapViewController.m */,
 				9688A16D1301F14F00B218A2 /* StopAnnotation.h */,
 				9688A16E1301F14F00B218A2 /* StopAnnotation.m */,
-				9688A56E1306EC5F00B218A2 /* ProximityError.xib */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -942,7 +939,6 @@
 				96B9010512F339F2008C9F2E /* STN.png in Resources */,
 				96B9010612F339F2008C9F2E /* TTZ.png in Resources */,
 				96B1696312FB587600B71302 /* StopMapViewController.xib in Resources */,
-				9688A56F1306EC5F00B218A2 /* ProximityError.xib in Resources */,
 				9688A5CB1307002D00B218A2 /* reload.png in Resources */,
 				9688A5CC1307002D00B218A2 /* reload@2x.png in Resources */,
 			);
