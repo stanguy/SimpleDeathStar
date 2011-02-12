@@ -69,6 +69,7 @@
             imageView.frame = viewRect;
             imageView.contentMode =  UIViewContentModeCenter;
             [self addSubview:imageView];
+            [imageView release];
         }
         CGRect  viewRect = CGRectMake( subcell_x + kImageWidth + kMarginIn, kBaseLineY, kLabelWidth, kLineHeight - 2);
         UILabel* timeLabel = [[UILabel alloc] init];
@@ -76,6 +77,7 @@
         timeLabel.frame = viewRect;
         timeLabel.text = [time formatArrival];
         [self addSubview:timeLabel];
+        [timeLabel release];
     }
 }
 
