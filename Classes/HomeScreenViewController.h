@@ -17,6 +17,7 @@
     CLLocationManager *locationManager_;
     int closeStopsCount;
     NSArray* closeStops;
+    int positioningError;
 }
 
 @property (nonatomic, retain) CLLocationManager *locationManager;  

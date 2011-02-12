@@ -18,6 +18,8 @@
 "Toutes les lignes" = "All lines";
 "Arrêts par ville" = "Stops by city";
 "Tous les arrêts" = "All stops";
+"Sur la carte" = "On the map";
+"Arrêts proches" = "Close stops";
 "À propos" = "About";
 "Pas de panique" = "Don't panic!";
 "Voir tous les favoris" = "See all favorites";
@@ -25,6 +27,14 @@
 "Ajouter les depuis les pages d'horaires" = "Add favorites with the schedule page";
 "%d favoris enregistrés" = "%d known favorites";
 
+"Pas de données" = "No data";
+"Localisation impossible" = "No location";
+"Erreur d'acquisition" = "Acquisition error";
+"Inaccessible" = "Unavailable";
+"Positionnement en cours" = "In progress";
+"Localisation désactivée?" = "Location disabled";
+"Vérifiez les autorisations" = " Check authorizations";
+"Habitant d'une galaxy lointaine?" = "Are you far far away?";
 /* Lines */
 "Lignes" = "Lines";
 "Ligne %@" = "Line %@";

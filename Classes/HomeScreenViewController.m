@@ -54,6 +54,27 @@ enum eSections {
     kAboutSection
 };
 
+enum ePositioningErrors {
+    kNoPositionError = 0,
+    kLocalisationServiceDisabledError,
+    kPositionAcquisitionError,
+    kOutOfBoundsPositionError
+};
+
+NSString* positioningErrorTexts[] = {
+    @"Pas de données",
+    @"Localisation impossible",
+    @"Erreur d'acquisition",
+    @"Inaccessible"
+};
+
+NSString* positioningErrorDetails[] = {
+    @"Positionnement en cours",
+    @"Localisation désactivée?",
+    @"Vérifiez les autorisations",
+    @"Habitant d'une galaxy lointaine?"
+};
+
 #pragma mark -
 #pragma mark View lifecycle
 
@@ -124,14 +145,7 @@ enum eSections {
     NSLog( @"Loading location manager" );
     closeStopsCount = 0;
     locationManager_ = [[CLLocationManager alloc] init];
-    if ( locationManager_.locationServicesEnabled == YES ) {
-        locationManager_.delegate = self;
-        locationManager_.desiredAccuracy = kCLLocationAccuracyHundredMeters;
-        // Set a movement threshold for new events
-        locationManager_.distanceFilter = 100; // 10 km
-        [locationManager_ startUpdatingLocation];
-        NSLog( @"Loaded location manager" );
-    }
+    [self locationRetry];
 }
 
 
@@ -144,13 +158,31 @@ enum eSections {
 #pragma mark -
 #pragma mark CoreLocation stuff
 
+BOOL checkBounds( CLLocation* location ) {
+    const double N = 48.32;
+    const double W = -2.02;
+    const double S = 47.9;
+    const double E = -1.3;
+    double latitude = location.coordinate.latitude;
+    double longitude = location.coordinate.longitude;
+    NSLog( @"checking bounds of %fx%f", latitude, longitude );
+    return ( ( latitude < N ) && ( latitude > S ) && ( longitude > W ) && ( longitude < E ) );
+}
+
+
 - (void)locationManager:(CLLocationManager *)manager
     didUpdateToLocation:(CLLocation *)newLocation
            fromLocation:(CLLocation *)oldLocation
 {
 //    NSLog(@"Location: %@ (%d)", [newLocation description], abs( [newLocation.timestamp timeIntervalSinceDate:oldLocation.timestamp] ) );
     if ( oldLocation == nil || abs( [newLocation.timestamp timeIntervalSinceDate:oldLocation.timestamp] ) > 20 ) {
-        [self performSelectorInBackground:@selector(reloadCloseStops:) withObject:newLocation];
+                
+        if ( checkBounds( newLocation ) ) {
+            [self performSelectorInBackground:@selector(reloadCloseStops:) withObject:newLocation];
+        } else {
+            positioningError = kOutOfBoundsPositionError;
+            [self refreshViewOfCloseStops];            
+        }
         [manager stopUpdatingLocation];
         [manager startMonitoringSignificantLocationChanges];
     }
@@ -159,19 +191,42 @@ enum eSections {
 - (void)locationManager:(CLLocationManager *)manager
        didFailWithError:(NSError *)error
 {
+    NSLog( @"location error %@", error );
     if ([error domain] == kCLErrorDomain) {
         
         // We handle CoreLocation-related errors here
         switch ([error code]) {
             case kCLErrorDenied:
                 [manager stopUpdatingLocation];
+                positioningError = kPositionAcquisitionError;
+                [self refreshViewOfCloseStops];
                 break;
                 
             case kCLErrorLocationUnknown:
-                
+                [manager stopUpdatingLocation];
+                positioningError = kLocalisationServiceDisabledError;
+                [self refreshViewOfCloseStops];
+                break;
             default:
                 break;
         }
+    }
+}
+
+- (void) locationRetry {
+    positioningError = kNoPositionError;
+    if ( locationManager_.locationServicesEnabled == YES ) {
+        locationManager_.delegate = self;
+        locationManager_.desiredAccuracy = kCLLocationAccuracyHundredMeters;
+        // Set a movement threshold for new events
+        locationManager_.distanceFilter = 100; // 10 km
+        [locationManager_ stopMonitoringSignificantLocationChanges];
+        [locationManager_ stopUpdatingLocation];
+        [locationManager_ startUpdatingLocation];
+        NSLog( @"Loaded location manager" );
+    } else {
+        positioningError = kLocalisationServiceDisabledError;
+        [self refreshViewOfCloseStops];
     }
 }
 
@@ -189,7 +244,11 @@ enum eSections {
     if ( section != kFavoritesSection && section != kCloseStopsSection )
         return [[menus_ objectAtIndex:section] count];
     else if ( section == kCloseStopsSection ) {
-        return closeStopsCount;
+        if ( closeStopsCount > 0 ) {
+            return closeStopsCount;
+        } else {
+            return 1;
+        }
     } else {
         int topCount = [topFavorites_ count];
         if ( cachedFavoritesCount > topCount ) {
@@ -210,6 +269,7 @@ enum eSections {
     static NSString *CellIdentifierFavNone = @"CellFavNone";
     static NSString *CellIdentifierFavMore = @"CellFavMore";
     static NSString *CellIdentifierCloseStop = @"CellCloseStops";
+    static NSString *CellIdentifierCloseStopError = @"CellCloseStopsError";
     UITableViewCell *cell = nil;
     if ( indexPath.section != kFavoritesSection && indexPath.section != kCloseStopsSection ) {
         cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
@@ -221,15 +281,30 @@ enum eSections {
     // Configure the cell...
         cell.textLabel.text = [[menus_ objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
     } else if ( indexPath.section == kCloseStopsSection ) {
-        cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifierCloseStop];
-        if (cell == nil) {
-            cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifierCloseStop] autorelease];
-            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        if ( closeStopsCount > 0 ) {
+            cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifierCloseStop];
+            if (cell == nil) {
+                cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifierCloseStop] autorelease];
+                cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+            }
+            // Configure the cell...
+            Stop* stop = [closeStops objectAtIndex:indexPath.row];
+            cell.textLabel.text = stop.name;
+            cell.detailTextLabel.text = [NSString stringWithFormat:@"%d m", stop.distance];
+        } else {
+            cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifierCloseStopError];
+            if (cell == nil) {
+                cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifierCloseStopError] autorelease];
+                UIButton *myButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+                myButton.frame = CGRectMake(40, 20, 40, 30);
+                [myButton setImage:[UIImage imageNamed:@"reload"] forState:UIControlStateNormal];
+                [myButton addTarget:self action:@selector(locationRetry) forControlEvents:UIControlEventTouchUpInside];
+                cell.accessoryView = myButton;
+            }
+            // Configure the cell...
+            cell.textLabel.text = NSLocalizedString( positioningErrorTexts[positioningError], @"" );
+            cell.detailTextLabel.text = NSLocalizedString( positioningErrorDetails[positioningError], @"" );
         }
-        // Configure the cell...
-        Stop* stop = [closeStops objectAtIndex:indexPath.row];
-        cell.textLabel.text = stop.name;
-        cell.detailTextLabel.text = [NSString stringWithFormat:@"%d m", stop.distance];
     } else if ( indexPath.section == kFavoritesSection ) {
 
         int topCount = [topFavorites_ count];
