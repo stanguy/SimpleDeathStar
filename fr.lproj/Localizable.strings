@@ -10,3 +10,13 @@
 "bike" = "LE Vélo STAR";
 "pos" = "Point de vente";
 "metro" = "Métro";
+
+/* favorites */
+"direction N" = "Direction N";
+"direction NW" = "Direction Nord-Ouest";
+"direction NE" = "Direction Nord-Est";
+"direction E" = "Direction Est";
+"direction SE" = "Direction Sud-Est";
+"direction SW" = "Direction Sud-Ouest";
+"direction S" = "Direction Sud";
+"direction W" = "Direction Ouest";

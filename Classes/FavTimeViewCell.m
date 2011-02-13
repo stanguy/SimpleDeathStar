@@ -45,6 +45,11 @@
     // Configure the view for the selected state.
 }
 
+NSString* direction2label( NSString* bearing ) {
+    NSString* dirString =  [NSString stringWithFormat:@"direction %@", bearing];
+    return NSLocalizedString( dirString, @"" );
+}
+
 - (void)displayFavorite:(Favorite*)favorite withTimes:(NSArray*)times{
     self.nameLabel.text = [favorite title];
     int time_count = [times count];
@@ -68,6 +73,8 @@
             UIImageView* imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:[NSString stringWithFormat:@"arrow_%@", time.trip_bearing]]];
             imageView.frame = viewRect;
             imageView.contentMode =  UIViewContentModeCenter;
+            imageView.accessibilityLabel = direction2label( time.trip_bearing );
+            imageView.isAccessibilityElement = YES;
             [self addSubview:imageView];
             [imageView release];
         }
