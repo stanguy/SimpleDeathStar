@@ -128,6 +128,13 @@
 
 
 
+@dynamic slug;
+
+
+
+
+
+
 @dynamic lat;
 
 
