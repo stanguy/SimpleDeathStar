@@ -65,7 +65,7 @@
 
 - (void)mapController:(XMMapController *)mapController failedWithError:(NSError *)error
 {
-    NSLog( @"Error: %@", error);
+//    NSLog( @"Error: %@", error);
     errorCount++;
     if (errorCount >= 2) {
         mapController_.mapView = nil;

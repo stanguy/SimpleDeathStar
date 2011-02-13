@@ -110,7 +110,6 @@ NSString* positioningErrorDetails[] = {
     NSArray* stops = [Stop findAroundLocation:location];
     closeStops = [stops retain];
     closeStopsCount = [stops count];
-    NSLog( @"%d stops", [stops count] );
     [self performSelectorOnMainThread:@selector(refreshViewOfCloseStops) withObject:nil waitUntilDone:NO];
     [pool release];
 }
@@ -142,7 +141,7 @@ NSString* positioningErrorDetails[] = {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(callFavLoading) name:@"favorites" object:nil];
     
     
-    NSLog( @"Loading location manager" );
+//    NSLog( @"Loading location manager" );
     closeStopsCount = 0;
     locationManager_ = [[CLLocationManager alloc] init];
     [self locationRetry];
@@ -165,7 +164,6 @@ BOOL checkBounds( CLLocation* location ) {
     const double E = -1.3;
     double latitude = location.coordinate.latitude;
     double longitude = location.coordinate.longitude;
-    NSLog( @"checking bounds of %fx%f", latitude, longitude );
     return ( ( latitude < N ) && ( latitude > S ) && ( longitude > W ) && ( longitude < E ) );
 }
 
@@ -191,7 +189,7 @@ BOOL checkBounds( CLLocation* location ) {
 - (void)locationManager:(CLLocationManager *)manager
        didFailWithError:(NSError *)error
 {
-    NSLog( @"location error %@", error );
+//    NSLog( @"location error %@", error );
     if ([error domain] == kCLErrorDomain) {
         
         // We handle CoreLocation-related errors here
@@ -223,7 +221,7 @@ BOOL checkBounds( CLLocation* location ) {
         [locationManager_ stopMonitoringSignificantLocationChanges];
         [locationManager_ stopUpdatingLocation];
         [locationManager_ startUpdatingLocation];
-        NSLog( @"Loaded location manager" );
+//        NSLog( @"Loaded location manager" );
     } else {
         positioningError = kLocalisationServiceDisabledError;
         [self refreshViewOfCloseStops];

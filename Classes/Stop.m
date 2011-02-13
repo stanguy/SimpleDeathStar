@@ -191,7 +191,7 @@
     NSArray* result = nil;
     float radius = 0.0001;
     int previous_count = 0;
-    NSLog( @"findAroundLocation" );
+//    NSLog( @"findAroundLocation" );
     do {
         result = [Stop findAroundLocation:location.coordinate withRadius:radius];
         if ([result count] > previous_count ) {
@@ -200,7 +200,7 @@
             radius *= 5;
         }
         previous_count = [result count];
-        NSLog( @"found %d stops in a radius of %f", previous_count, radius );
+//        NSLog( @"found %d stops in a radius of %f", previous_count, radius );
     } while ( result != nil && previous_count < 5 );
     for( Stop* stop in result ) {
         CLLocation* stopLocation = [[CLLocation alloc] initWithLatitude:[stop.lat doubleValue] longitude:[stop.lon doubleValue]];
