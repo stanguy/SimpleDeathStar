@@ -18,7 +18,7 @@
 
 @implementation StopMapViewController
 
-@synthesize mapView = mapView_, mapController = mapController_,originalPosition = originalPosition_; 
+@synthesize mapView = mapView_, mapController = mapController_,originalPosition = originalPosition_, infoLabel = infoLabel_; 
 
 
 #pragma mark -
@@ -35,6 +35,8 @@
 
 - (void)updateStopAnnotations {
     if ( self.mapView.region.span.latitudeDelta > 0.03 || self.mapView.region.span.longitudeDelta > 0.03 ) {
+        infoLabel_.text = NSLocalizedString( @"Mode hors-ligne: zoomez pour afficher les arrêts", @"" );
+        infoLabel_.hidden = NO;
         [self.mapView removeAnnotations:self.mapView.annotations];
         return;
     }
@@ -43,6 +45,12 @@
     for( Stop* stop in stops ) {
         StopAnnotation* annotation = [[StopAnnotation alloc] initWithStop:stop];
         [stopAnnotations addObject:annotation];
+    }
+    if ( [stopAnnotations count] > 0) {
+        infoLabel_.hidden = YES;
+    } else {
+        infoLabel_.text = NSLocalizedString( @"Mode hors-ligne: pas d'arrêt dans la zone", @"" );
+        infoLabel_.hidden = NO;
     }
     [self.mapView removeAnnotations:self.mapView.annotations];
     [self.mapView addAnnotations:stopAnnotations];    
@@ -68,6 +76,8 @@
 //    NSLog( @"Error: %@", error);
     errorCount++;
     if (errorCount >= 2) {
+        [mapController_.optimizeService cancelRequests];
+        mapController.optimizeService.delegate = nil;
         mapController_.mapView = nil;
         [mapController_ release];
         mapController_ = nil;
@@ -154,8 +164,8 @@
     } else {
         region.center.latitude = originalPosition_.coordinate.latitude; 
         region.center.longitude = originalPosition_.coordinate.longitude; 
-        region.span.latitudeDelta = 0.04; 
-        region.span.longitudeDelta = 0.04;
+        region.span.latitudeDelta = 0.03; 
+        region.span.longitudeDelta = 0.03;
     }
     self.mapView.region = region;
     self.mapView.showsUserLocation = YES;

@@ -70,3 +70,7 @@
 "direction SW" = "South-west bound";
 "direction S" = "South bound";
 "direction W" = "West bound";
+
+/* map */
+"Mode hors-ligne: zoomez pour afficher les arrêts" = "Offline mode: zoom-in to display stops";
+"Mode hors-ligne: pas d'arrêt dans la zone" = "Offline mode: no stops in the area";

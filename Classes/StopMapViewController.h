@@ -20,9 +20,11 @@
     CLLocation* originalPosition_;
     int errorCount;
     NSMutableArray* stopAnnotations;
+    UILabel* infoLabel_;
 }
 
 @property (nonatomic, retain) IBOutlet MKMapView *mapView;
+@property (nonatomic, retain) IBOutlet UILabel* infoLabel;
 @property (nonatomic, readonly) XMMapController *mapController;
 @property (nonatomic, retain) CLLocation* originalPosition;
 
