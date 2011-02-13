@@ -142,7 +142,7 @@
 }
 
 
-+ (NSArray*) findAroundLocation:(CLLocation *)location withRadius:(float)radius {
++ (NSArray*) findAroundLocation:(CLLocationCoordinate2D)location withRadius:(float)radius {
     SimpleDeathStarAppDelegate* delegate = (SimpleDeathStarAppDelegate*)[[UIApplication sharedApplication] delegate];
     NSManagedObjectContext* context = [delegate  transitManagedObjectContext];
     
@@ -152,10 +152,10 @@
     NSEntityDescription *entity = [Stop entityInManagedObjectContext:context];
     [fetchRequest setEntity:entity];
     
-    NSNumber* N = [NSNumber numberWithDouble:(location.coordinate.latitude + radius)];
-    NSNumber* S = [NSNumber numberWithDouble:(location.coordinate.latitude - radius)];
-    NSNumber* W = [NSNumber numberWithDouble:(location.coordinate.longitude - radius)];
-    NSNumber* E = [NSNumber numberWithDouble:(location.coordinate.longitude + radius)];
+    NSNumber* N = [NSNumber numberWithDouble:(location.latitude + radius)];
+    NSNumber* S = [NSNumber numberWithDouble:(location.latitude - radius)];
+    NSNumber* W = [NSNumber numberWithDouble:(location.longitude - radius)];
+    NSNumber* E = [NSNumber numberWithDouble:(location.longitude + radius)];
     
     
     NSPredicate* predicate = [NSPredicate predicateWithFormat:@"lat > %@ AND lat < %@ AND lon > %@ AND lon < %@",
@@ -193,7 +193,7 @@
     int previous_count = 0;
     NSLog( @"findAroundLocation" );
     do {
-        result = [Stop findAroundLocation:location withRadius:radius];
+        result = [Stop findAroundLocation:location.coordinate withRadius:radius];
         if ([result count] > previous_count ) {
             radius *= 2;
         } else {
@@ -259,5 +259,14 @@
     [aFetchedResultsController release];
     return stop;
 }
+
++ (NSArray*) findFromPosition:(CLLocationCoordinate2D)center 
+            withLatitudeDelta:(CLLocationDegrees)latitudeDelta 
+            andLongitudeDelta:(CLLocationDegrees)longitudeDelta
+{
+    double radius = MAX( latitudeDelta, longitudeDelta ) / 2;
+    return [Stop findAroundLocation:center withRadius:radius];
+}
+
 
 @end

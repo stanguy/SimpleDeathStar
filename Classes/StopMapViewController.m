@@ -12,6 +12,7 @@
 
 #import "StopAnnotation.h"
 #import "StopTimeViewController.h"
+#import "Stop.h"
 
 #define MAP_KEY @"1c4548799006881c1748573593282eb8798be5d4"
 
@@ -19,6 +20,33 @@
 
 @synthesize mapView = mapView_, mapController = mapController_,originalPosition = originalPosition_; 
 
+
+#pragma mark -
+#pragma mark common map stuff
+
+- (void)navigateToAnnotation:(MKAnnotationView*)view {
+    StopAnnotation* annotation = view.annotation;
+    Stop* stop = annotation.stop;
+    StopTimeViewController* stoptimeView = [[StopTimeViewController alloc] initWithNibName:@"StopTimeViewController" bundle:nil];
+    stoptimeView.stop = stop;
+    [self.navigationController pushViewController:stoptimeView animated:YES];
+    [stoptimeView release];
+}
+
+- (void)updateStopAnnotations {
+    if ( self.mapView.region.span.latitudeDelta > 0.03 || self.mapView.region.span.longitudeDelta > 0.03 ) {
+        [self.mapView removeAnnotations:self.mapView.annotations];
+        return;
+    }
+    NSArray* stops = [Stop findFromPosition:self.mapView.region.center withLatitudeDelta:self.mapView.region.span.latitudeDelta andLongitudeDelta:self.mapView.region.span.longitudeDelta];
+    stopAnnotations = [NSMutableArray arrayWithCapacity:[stops count]];
+    for( Stop* stop in stops ) {
+        StopAnnotation* annotation = [[StopAnnotation alloc] initWithStop:stop];
+        [stopAnnotations addObject:annotation];
+    }
+    [self.mapView removeAnnotations:self.mapView.annotations];
+    [self.mapView addAnnotations:stopAnnotations];    
+}
 
 #pragma mark -
 #pragma mark Maptimize
@@ -37,7 +65,15 @@
 
 - (void)mapController:(XMMapController *)mapController failedWithError:(NSError *)error
 {
-    NSLog( @"Error: %@", error); 
+    NSLog( @"Error: %@", error);
+    errorCount++;
+    if (errorCount >= 2) {
+        mapController_.mapView = nil;
+        [mapController_ release];
+        mapController_ = nil;
+        self.mapView.delegate = self;
+        [self updateStopAnnotations];
+    }
 }
 
 - (MKAnnotationView *)mapController:(XMMapController *)mapController viewForMarker:(XMMarker *)marker
@@ -65,13 +101,38 @@
 }
 
 - (void)mapController:(XMMapController *)mapController annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control {
-    StopAnnotation* annotation = view.annotation;
-    Stop* stop = annotation.stop;
-    StopTimeViewController* stoptimeView = [[StopTimeViewController alloc] initWithNibName:@"StopTimeViewController" bundle:nil];
-    stoptimeView.stop = stop;
-    [self.navigationController pushViewController:stoptimeView animated:YES];
-    [stoptimeView release];
+    [self navigateToAnnotation:view];
 }
+
+#pragma mark -
+#pragma mark Pure map stuff
+
+- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation {
+    static NSString *identifier = @"PinMarkerWithStopAnnotation";
+    
+    MKPinAnnotationView *view = (MKPinAnnotationView*) [self.mapView dequeueReusableAnnotationViewWithIdentifier:identifier];
+    if (!view) {
+        view = [[[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:identifier] autorelease];
+        view.canShowCallout = YES;
+        view.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+    } else {
+        [view setAnnotation:annotation];
+    }
+
+    view.pinColor = MKPinAnnotationColorGreen;
+    
+    return view;    
+}
+
+- (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control {
+    [self navigateToAnnotation:view];
+}
+
+- (void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated {
+    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(updateStopAnnotations) object:nil];
+    [self performSelector:@selector(updateStopAnnotations) withObject:nil afterDelay:0.5];
+}
+
 
 #pragma mark -
 #pragma mark init
@@ -80,6 +141,7 @@
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
+    errorCount = 0;
     self.mapController.mapView = self.mapView;
     MKCoordinateRegion region; 
     if ( originalPosition_ == nil ) {

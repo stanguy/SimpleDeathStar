@@ -25,6 +25,15 @@
     return self;
 }
 
+- (id)initWithStop:(Stop*)pstop {
+    CLLocationCoordinate2D coordinate;
+    coordinate.latitude = [pstop.lat doubleValue];
+    coordinate.longitude = [pstop.lon doubleValue];
+    self = [super initWithCoordinate:coordinate identifier:pstop.slug];
+    self.stop = pstop;
+    return self;
+}
+
 -(NSString*)title {
     return self.stop.name;
 }

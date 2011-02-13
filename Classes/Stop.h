@@ -20,6 +20,9 @@
 + (Stop*) findFirstBySrcId:(NSString*)src_id;
 + (Stop*) findFirstBySlug:(NSString*)slug;
 + (NSArray*) findAroundLocation:(CLLocation*)location;
++ (NSArray*) findFromPosition:(CLLocationCoordinate2D)center 
+            withLatitudeDelta:(CLLocationDegrees)latitudeDelta 
+            andLongitudeDelta:(CLLocationDegrees)longitudeDelta;
 
 - (int) allCounts;
 

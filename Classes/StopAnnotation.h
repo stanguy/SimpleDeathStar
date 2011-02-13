@@ -20,5 +20,6 @@
 @property (nonatomic, retain) NSString* subtitle;
 
 - (id)initWithCoordinate:(CLLocationCoordinate2D)coordinate identifier:(NSString *)identifier;
+- (id)initWithStop:(Stop*)stop;
 
 @end
