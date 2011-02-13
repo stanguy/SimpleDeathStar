@@ -20,7 +20,6 @@
 #pragma mark Application lifecycle
 
 - (void)handleTimer:(NSTimer*)t {
-    NSLog( @"timer handling %@", t );
     HomeScreenViewController* home = [navigationController.viewControllers objectAtIndex:0];
     [home performSelectorInBackground:@selector(reloadFavorites) withObject:nil];
 }
