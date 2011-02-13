@@ -297,6 +297,7 @@ BOOL checkBounds( CLLocation* location ) {
                 cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifierCloseStopError] autorelease];
                 UIButton *myButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
                 myButton.frame = CGRectMake(40, 20, 40, 30);
+                myButton.accessibilityLabel = NSLocalizedString( @"Retenter", @"" );
                 [myButton setImage:[UIImage imageNamed:@"reload"] forState:UIControlStateNormal];
                 [myButton addTarget:self action:@selector(locationRetry) forControlEvents:UIControlEventTouchUpInside];
                 cell.accessoryView = myButton;
