@@ -192,10 +192,7 @@ NSPredicate* buildPredicate( Line* line, Stop* stop, int min_arrival, int max_ar
     NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptor1, nil];
     
     [fetchRequest setSortDescriptors:sortDescriptors];
-    [NSFetchedResultsController deleteCacheWithName:@"FavStopTime"];
-    // Edit the section name key path and cache name if appropriate.
-    // nil for section name key path means "no sections".
-    NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:context sectionNameKeyPath:nil cacheName:@"FavStopTime"];
+    NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:context sectionNameKeyPath:nil cacheName:nil];
     aFetchedResultsController.delegate = self;
     
     [fetchRequest release];

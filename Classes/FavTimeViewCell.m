@@ -78,21 +78,21 @@ NSString* direction2label( NSString* bearing ) {
 }
 
 -(void)setFavorite:(Favorite *)fav {
-    favorite_ = fav;
+    favorite_ = [fav retain];
     nameLabel_.text = [favorite_ title];
 }
 
 -(void)setTimes:(NSArray *)times {
-    times_ = times;
+    times_ = [times retain];
     int time_count = [times_ count];
     if ( time_count == 0 ){
         nameLabel_.textColor = [UIColor lightGrayColor];
         return;
     }
     for ( int i = 0; i < time_count; ++i ) {
-        StopTime* time = [times objectAtIndex:i];
-        imageViews_[i].image = [UIImage imageNamed:[NSString stringWithFormat:@"arrow_%@", time.trip_bearing]];
-        timeLabels_[i].text = [time formatArrival];
+        StopTime* stime = [times objectAtIndex:i];
+        imageViews_[i].image = [UIImage imageNamed:[NSString stringWithFormat:@"arrow_%@", stime.trip_bearing]];
+        timeLabels_[i].text = [stime formatArrival];
         imageViews_[i].hidden = NO;
         timeLabels_[i].hidden = NO;
     }

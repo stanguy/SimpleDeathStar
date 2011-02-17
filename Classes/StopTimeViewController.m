@@ -372,8 +372,8 @@ const int kCellWidth = 46;
     for ( NSString* poiType in poiTypes ) {
         NSString* poi_counter = [NSString stringWithFormat:@"%@_count", poiType];
         if ( [[self.stop valueForKey:poi_counter] intValue] > 0 ) {
-            NSInteger index = [sheet addButtonWithTitle:NSLocalizedString( poiType, @"" )];
-            [indexes setValue:poiType forKey:[NSString stringWithFormat:@"%d", index]];
+            NSInteger current_index = [sheet addButtonWithTitle:NSLocalizedString( poiType, @"" )];
+            [indexes setValue:poiType forKey:[NSString stringWithFormat:@"%d", current_index]];
         }
     }
     poiIndexes = [indexes retain];

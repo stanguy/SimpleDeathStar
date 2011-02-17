@@ -84,18 +84,18 @@ NSString* positioningErrorDetails[] = {
 
 - (void)reloadFavorites {
     NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-    NSArray* favorites = [Favorite topFavorites];
-    NSMutableArray* favtimes = [[NSMutableArray alloc] init];
+    NSArray* favorites = [[Favorite topFavorites] retain];
+    NSMutableArray* favtimes = [[NSMutableArray alloc] initWithCapacity:[favorites count]];
     for ( Favorite* fav in favorites ) {
         [favtimes addObject:[StopTime findComingAt:fav]];
     }
     @synchronized(self) {
-        if ( favoritesTimes_ != nil) {
-            [favoritesTimes_ release];
-        }
+        [favoritesTimes_ release];
         favoritesTimes_ = [favtimes retain];
         cachedFavoritesCount = [Favorite count];
-        topFavorites_ = [favorites retain];
+        NSArray* oldFavorites = topFavorites_;
+        topFavorites_ = favorites;
+        [oldFavorites release];
     }
     [self performSelectorOnMainThread:@selector(refreshViewOfFavorites) withObject:nil waitUntilDone:NO];
     [pool release];
@@ -108,6 +108,7 @@ NSString* positioningErrorDetails[] = {
 - (void)reloadCloseStops:(CLLocation*)location{
     NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
     NSArray* stops = [Stop findAroundLocation:location];
+    [closeStops release];
     closeStops = [stops retain];
     closeStopsCount = [stops count];
     [self performSelectorOnMainThread:@selector(refreshViewOfCloseStops) withObject:nil waitUntilDone:NO];
@@ -143,6 +144,7 @@ NSString* positioningErrorDetails[] = {
     
 //    NSLog( @"Loading location manager" );
     closeStopsCount = 0;
+    closeStops = nil;
     locationManager_ = [[CLLocationManager alloc] init];
     [self locationRetry];
 }
@@ -446,6 +448,7 @@ BOOL checkBounds( CLLocation* location ) {
 
 - (void)dealloc {
     [favoritesTimes_ release];
+    [closeStops release];
     [menus_ release];
     [super dealloc];
 }
