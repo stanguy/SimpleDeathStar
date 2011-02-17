@@ -173,7 +173,6 @@
 		96CB944612EE301D00EFB75C /* app_globe.png in Resources */ = {isa = PBXBuildFile; fileRef = 96CB944412EE301D00EFB75C /* app_globe.png */; };
 		96CB944712EE301D00EFB75C /* app_globe@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96CB944512EE301D00EFB75C /* app_globe@2x.png */; };
 		96CB971E12EF963800EFB75C /* FavTimeViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 96CB971D12EF963800EFB75C /* FavTimeViewCell.m */; };
-		96CB973812EF9A7F00EFB75C /* FavTimeViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96CB973712EF9A7F00EFB75C /* FavTimeViewCell.xib */; };
 		96DBF3EE12CBCD7E0096C240 /* GridScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 96DBF3ED12CBCD7E0096C240 /* GridScrollView.m */; };
 		96DBF44812CBD5890096C240 /* GridCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 96DBF44612CBD5890096C240 /* GridCell.m */; };
 		96DBF44912CBD5890096C240 /* GridCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96DBF44712CBD5890096C240 /* GridCell.xib */; };
@@ -396,7 +395,6 @@
 		96CB944512EE301D00EFB75C /* app_globe@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "app_globe@2x.png"; sourceTree = "<group>"; };
 		96CB971C12EF963800EFB75C /* FavTimeViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FavTimeViewCell.h; sourceTree = "<group>"; };
 		96CB971D12EF963800EFB75C /* FavTimeViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FavTimeViewCell.m; sourceTree = "<group>"; };
-		96CB973712EF9A7F00EFB75C /* FavTimeViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FavTimeViewCell.xib; sourceTree = "<group>"; };
 		96DBF3EC12CBCD7E0096C240 /* GridScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GridScrollView.h; sourceTree = "<group>"; };
 		96DBF3ED12CBCD7E0096C240 /* GridScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GridScrollView.m; sourceTree = "<group>"; };
 		96DBF44512CBD5890096C240 /* GridCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GridCell.h; sourceTree = "<group>"; };
@@ -519,7 +517,6 @@
 				96539CBB12C94C68002FDF29 /* CityViewController.xib */,
 				B816B04E12F050130006C6ED /* DateNavigation.xib */,
 				9677AF6D12F0C95A0016A460 /* FavoritesViewController.xib */,
-				96CB973712EF9A7F00EFB75C /* FavTimeViewCell.xib */,
 				96DBF44712CBD5890096C240 /* GridCell.xib */,
 				B8C431B612F2F37300DEC9B2 /* help */,
 				969229BD12C6B799007C965D /* HomeScreenViewController.xib */,
@@ -838,7 +835,6 @@
 				96CB944612EE301D00EFB75C /* app_globe.png in Resources */,
 				96CB944712EE301D00EFB75C /* app_globe@2x.png in Resources */,
 				B816B04F12F050130006C6ED /* DateNavigation.xib in Resources */,
-				96CB973812EF9A7F00EFB75C /* FavTimeViewCell.xib in Resources */,
 				B816AFCE12F049290006C6ED /* Localizable.strings in Resources */,
 				9677AF6F12F0C95A0016A460 /* FavoritesViewController.xib in Resources */,
 				9677B37112F206630016A460 /* arrow_E.png in Resources */,

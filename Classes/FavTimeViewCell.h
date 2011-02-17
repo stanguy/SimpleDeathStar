@@ -12,12 +12,16 @@
 
 @interface FavTimeViewCell : UITableViewCell {
 
-    IBOutlet UILabel *nameLabel;
+ @private
+    Favorite* favorite_;
+    NSArray* times_;
+    
+    UILabel* nameLabel_;
+    UILabel** timeLabels_;
+    UIImageView** imageViews_;
+    
 }
-@property (nonatomic, retain) UILabel *nameLabel;
-
-
-- (void)displayFavorite:(Favorite*)favorite withTimes:(NSArray*)times;
-+ (FavTimeViewCell *)cellFromNibNamed:(NSString *)nibName;
+@property (nonatomic, retain) Favorite* favorite;
+@property (nonatomic, retain) NSArray* times;
 
 @end

@@ -58,15 +58,14 @@
     
     static NSString *CellIdentifier = @"CellFav";
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        cell = [FavTimeViewCell cellFromNibNamed:@"FavTimeViewCell"];
-    }
-    
-    // Configure the cell...
     Favorite* fav = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    [(FavTimeViewCell*)cell displayFavorite:fav withTimes:[StopTime findComingAt:fav]];
-    
+    FavTimeViewCell *cell = (FavTimeViewCell*) [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if( cell == nil ) {
+        cell = [[[FavTimeViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+    }
+    cell.favorite = fav;
+    cell.times = [StopTime findComingAt:fav];
+        
     return cell;
 }
 

@@ -11,30 +11,57 @@
 
 @implementation FavTimeViewCell
 
-@synthesize nameLabel;
+@synthesize favorite = favorite_, times = times_;
 
-
-+ (FavTimeViewCell *)cellFromNibNamed:(NSString *)nibName{
-    NSArray *nibContents = [[NSBundle mainBundle] loadNibNamed:nibName owner:self options:NULL];
-    NSEnumerator *nibEnumerator = [nibContents objectEnumerator];
-    FavTimeViewCell *customCell = nil;
-    NSObject* nibItem = nil;
-    while ((nibItem = [nibEnumerator nextObject]) != nil) {
-        if ([nibItem isKindOfClass:[FavTimeViewCell class]]) {
-            customCell = (FavTimeViewCell *)nibItem;
-            break; // we have a winner
-        }
-    }
-    return customCell;
-}
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+
+        nameLabel_ = [[UILabel alloc] init];
+        nameLabel_.frame = CGRectMake( 30, 2, 250, 20 );
+        nameLabel_.font = [UIFont boldSystemFontOfSize:14.0];
+        [self addSubview:nameLabel_];
+        
+        timeLabels_ = malloc( sizeof(UILabel*) * 4 );
+        imageViews_ = malloc( sizeof(UIImageView) * 4 );
+        
+        const int kBaseLineY = 20;
+        const int kBaseLineX = 20;
+        const int kImageWidth = 22;
+        const int kLineHeight = 22;
+        const int kLabelWidth = 37;
+        const int kMarginIn = 5;
+        const int kMarginOut = 2;
+        const int kGlobalTimeWidth = kImageWidth + kLabelWidth + kMarginIn + kMarginOut;
+        for ( int i = 0 ; i < 4; ++i) {
+            int subcell_x = kBaseLineX + i * kGlobalTimeWidth;
+            CGRect  viewRect = CGRectMake( subcell_x, kBaseLineY, kImageWidth, kLineHeight );
+            imageViews_[i] = [[UIImageView alloc] init];
+            imageViews_[i].frame = viewRect;
+            imageViews_[i].contentMode =  UIViewContentModeCenter;
+            imageViews_[i].isAccessibilityElement = YES;
+            [self addSubview:imageViews_[i]];
+            [imageViews_[i] release];
+            viewRect = CGRectMake( subcell_x + kImageWidth + kMarginIn, kBaseLineY, kLabelWidth, kLineHeight - 2);
+            timeLabels_[i] = [[UILabel alloc] init];
+            timeLabels_[i].font = [UIFont systemFontOfSize:12];
+            timeLabels_[i].frame = viewRect;
+            [self addSubview:timeLabels_[i]];
+            [timeLabels_[i] release];
+        }
     }
     return self;
+}
+
+- (void)prepareForReuse {
+    nameLabel_.textColor = [UIColor blackColor];
+    for ( int i = 0; i < 4; ++i) {
+        imageViews_[i].hidden = YES;
+        timeLabels_[i].hidden = YES;
+    }
 }
 
 
@@ -50,46 +77,31 @@ NSString* direction2label( NSString* bearing ) {
     return NSLocalizedString( dirString, @"" );
 }
 
-- (void)displayFavorite:(Favorite*)favorite withTimes:(NSArray*)times{
-    self.nameLabel.text = [favorite title];
-    int time_count = [times count];
+-(void)setFavorite:(Favorite *)fav {
+    favorite_ = fav;
+    nameLabel_.text = [favorite_ title];
+}
+
+-(void)setTimes:(NSArray *)times {
+    times_ = times;
+    int time_count = [times_ count];
     if ( time_count == 0 ){
-        self.nameLabel.textColor = [UIColor lightGrayColor];
+        nameLabel_.textColor = [UIColor lightGrayColor];
         return;
     }
-    const int kBaseLineY = 20;
-    const int kBaseLineX = 20;
-    const int kImageWidth = 22;
-    const int kLineHeight = 22;
-    const int kLabelWidth = 37;
-    const int kMarginIn = 5;
-    const int kMarginOut = 2;
-    const int kGlobalTimeWidth = kImageWidth + kLabelWidth + kMarginIn + kMarginOut;
-    for ( int i = 0 ; i < time_count; ++i) {
+    for ( int i = 0; i < time_count; ++i ) {
         StopTime* time = [times objectAtIndex:i];
-        int subcell_x = kBaseLineX + i * kGlobalTimeWidth;
-        if ( time.trip_bearing != nil ) {
-            CGRect  viewRect = CGRectMake( subcell_x, kBaseLineY, kImageWidth, kLineHeight );
-            UIImageView* imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:[NSString stringWithFormat:@"arrow_%@", time.trip_bearing]]];
-            imageView.frame = viewRect;
-            imageView.contentMode =  UIViewContentModeCenter;
-            imageView.accessibilityLabel = direction2label( time.trip_bearing );
-            imageView.isAccessibilityElement = YES;
-            [self addSubview:imageView];
-            [imageView release];
-        }
-        CGRect  viewRect = CGRectMake( subcell_x + kImageWidth + kMarginIn, kBaseLineY, kLabelWidth, kLineHeight - 2);
-        UILabel* timeLabel = [[UILabel alloc] init];
-        timeLabel.font = [UIFont systemFontOfSize:12];
-        timeLabel.frame = viewRect;
-        timeLabel.text = [time formatArrival];
-        [self addSubview:timeLabel];
-        [timeLabel release];
+        imageViews_[i].image = [UIImage imageNamed:[NSString stringWithFormat:@"arrow_%@", time.trip_bearing]];
+        timeLabels_[i].text = [time formatArrival];
+        imageViews_[i].hidden = NO;
+        timeLabels_[i].hidden = NO;
     }
 }
 
 
 - (void)dealloc {
+    free( timeLabels_ );
+    free( imageViews_ );
     [super dealloc];
 }
 

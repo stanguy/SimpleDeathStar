@@ -265,6 +265,7 @@ BOOL checkBounds( CLLocation* location ) {
     
     static NSString *CellIdentifier = @"Cell";
     static NSString *CellIdentifierFavNone = @"CellFavNone";
+    static NSString *CellIdentifierFav = @"CellFav";
     static NSString *CellIdentifierFavMore = @"CellFavMore";
     static NSString *CellIdentifierCloseStop = @"CellCloseStops";
     static NSString *CellIdentifierCloseStopError = @"CellCloseStopsError";
@@ -322,8 +323,12 @@ BOOL checkBounds( CLLocation* location ) {
                 Favorite* fav = nil;
                 fav = [topFavorites_ objectAtIndex:indexPath.row];
                 times = [favoritesTimes_ objectAtIndex:indexPath.row];
-                cell = [FavTimeViewCell cellFromNibNamed:@"FavTimeViewCell"];
-                [(FavTimeViewCell*)cell displayFavorite:fav withTimes:times];
+                cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifierFav];
+                if( cell == nil ) {
+                    cell = [[[FavTimeViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifierFav] autorelease];
+                }
+                ((FavTimeViewCell*)cell).favorite = fav;
+                ((FavTimeViewCell*)cell).times = times;
             }
         } else {
             cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifierFavNone];
