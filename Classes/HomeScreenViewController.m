@@ -72,7 +72,7 @@ NSString* positioningErrorDetails[] = {
     @"Positionnement en cours",
     @"Localisation désactivée?",
     @"Vérifiez les autorisations",
-    @"Habitant d'une galaxy lointaine?"
+    @"Habitant d'une galaxie lointaine?"
 };
 
 #pragma mark -
