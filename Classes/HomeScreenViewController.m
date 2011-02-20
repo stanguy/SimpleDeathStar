@@ -169,23 +169,25 @@ BOOL checkBounds( CLLocation* location ) {
     return ( ( latitude < N ) && ( latitude > S ) && ( longitude > W ) && ( longitude < E ) );
 }
 
+- (void)commitLocationUpdate {
+    CLLocation* newLocation = locationManager_.location;
+    if ( checkBounds( newLocation ) ) {
+        [self performSelectorInBackground:@selector(reloadCloseStops:) withObject:newLocation];
+    } else {
+        positioningError = kOutOfBoundsPositionError;
+        [self refreshViewOfCloseStops];            
+    }
+    [locationManager_ stopUpdatingLocation];
+    [locationManager_ startMonitoringSignificantLocationChanges];
+}
 
 - (void)locationManager:(CLLocationManager *)manager
     didUpdateToLocation:(CLLocation *)newLocation
            fromLocation:(CLLocation *)oldLocation
 {
 //    NSLog(@"Location: %@ (%d)", [newLocation description], abs( [newLocation.timestamp timeIntervalSinceDate:oldLocation.timestamp] ) );
-    if ( oldLocation == nil || abs( [newLocation.timestamp timeIntervalSinceDate:oldLocation.timestamp] ) > 20 ) {
-                
-        if ( checkBounds( newLocation ) ) {
-            [self performSelectorInBackground:@selector(reloadCloseStops:) withObject:newLocation];
-        } else {
-            positioningError = kOutOfBoundsPositionError;
-            [self refreshViewOfCloseStops];            
-        }
-        [manager stopUpdatingLocation];
-        [manager startMonitoringSignificantLocationChanges];
-    }
+    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(commitLocationUpdate) object:nil];
+    [self performSelector:@selector(commitLocationUpdate) withObject:nil afterDelay:1];
 }
 
 - (void)locationManager:(CLLocationManager *)manager
@@ -201,7 +203,6 @@ BOOL checkBounds( CLLocation* location ) {
                 positioningError = kPositionAcquisitionError;
                 [self refreshViewOfCloseStops];
                 break;
-                
             case kCLErrorLocationUnknown:
                 [manager stopUpdatingLocation];
                 positioningError = kLocalisationServiceDisabledError;
@@ -214,12 +215,13 @@ BOOL checkBounds( CLLocation* location ) {
 }
 
 - (void) locationRetry {
+//    NSLog( @"location retry" );
     positioningError = kNoPositionError;
     if ( locationManager_.locationServicesEnabled == YES ) {
         locationManager_.delegate = self;
         locationManager_.desiredAccuracy = kCLLocationAccuracyHundredMeters;
         // Set a movement threshold for new events
-        locationManager_.distanceFilter = 100; // 10 km
+        locationManager_.distanceFilter = 100; 
         [locationManager_ stopMonitoringSignificantLocationChanges];
         [locationManager_ stopUpdatingLocation];
         [locationManager_ startUpdatingLocation];
@@ -228,6 +230,12 @@ BOOL checkBounds( CLLocation* location ) {
         positioningError = kLocalisationServiceDisabledError;
         [self refreshViewOfCloseStops];
     }
+}
+
+- (void) locationStop {
+//    NSLog( @"location stop" );
+    [locationManager_ stopMonitoringSignificantLocationChanges];
+    [locationManager_ stopUpdatingLocation];
 }
 
 #pragma mark -
