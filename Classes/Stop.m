@@ -132,7 +132,9 @@
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
         return nil;
     }
-    Stop* stop = [[aFetchedResultsController fetchedObjects] objectAtIndex:0];
+    Stop* stop = nil;
+    if( [[aFetchedResultsController fetchedObjects] count] > 0 )
+        stop = [[aFetchedResultsController fetchedObjects] objectAtIndex:0];
     [aFetchedResultsController release];
     return stop;
 }
