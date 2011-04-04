@@ -57,6 +57,7 @@
 }
 
 - (void)prepareForReuse {
+    self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     nameLabel_.textColor = [UIColor blackColor];
     for ( int i = 0; i < 4; ++i) {
         imageViews_[i].hidden = YES;
@@ -84,6 +85,11 @@ NSString* direction2label( NSString* bearing ) {
 
 -(void)setTimes:(NSArray *)times {
     times_ = [times retain];
+    if (nil == times || (NSArray*)[NSNull null] == times) {
+        self.accessoryType = UITableViewCellAccessoryNone;
+        nameLabel_.textColor = [UIColor redColor];
+        return;
+    }
     int time_count = [times_ count];
     if ( time_count == 0 ){
         nameLabel_.textColor = [UIColor lightGrayColor];

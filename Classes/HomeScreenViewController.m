@@ -18,6 +18,8 @@
 #import "Line.h"
 #import "Stop.h"
 #import "StopTime.h"
+#import "SimpleDeathStarAppDelegate.h"
+
 
 #import "FavTimeViewCell.h"
 
@@ -269,7 +271,6 @@ BOOL checkBounds( CLLocation* location ) {
     }
 }
 
-
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
@@ -394,23 +395,7 @@ BOOL checkBounds( CLLocation* location ) {
             break;
         case kFavoritesSection:
         {
-            int topCount = [topFavorites_ count];
-            
-            if ( topCount > 0 ) {
-                if ( indexPath.row < topCount ) {
-                    Favorite* fav = [topFavorites_ objectAtIndex:indexPath.row];
-                    StopTimeViewController* stoptimeView = [[StopTimeViewController alloc] initWithNibName:@"StopTimeViewController" bundle:nil];
-                    stoptimeView.line = [Line findFirstBySrcId:fav.line_id];
-                    stoptimeView.stop = [Stop findFirstBySrcId:fav.stop_id];
-                    [self.navigationController pushViewController:stoptimeView animated:YES];
-                    [stoptimeView release];                    
-                } else {
-                    FavoritesViewController* favViewController = [[FavoritesViewController alloc] initWithNibName:@"FavoritesViewController" bundle:nil];
-                    [self.navigationController pushViewController:favViewController animated:YES];
-                    [favViewController release];
-                    
-                }
-            }                
+            [self didSelectFavorite:indexPath];
         }
             break;
         case kCloseStopsSection:
@@ -437,6 +422,54 @@ BOOL checkBounds( CLLocation* location ) {
 
 }
 
+- (void)didSelectFavorite:(NSIndexPath *)indexPath {
+    int topCount = [topFavorites_ count];
+    
+    // any favorite at all
+    if ( topCount > 0 ) {
+        if ( indexPath.row < topCount ) {
+            Favorite* fav = [topFavorites_ objectAtIndex:indexPath.row];
+            if ( (NSArray*)[NSNull null] == [favoritesTimes_ objectAtIndex:indexPath.row] ) {
+                // try to fix or remove it
+                UIAlertView* alert = [[[UIAlertView alloc] initWithTitle:NSLocalizedString( @"Erreur", @"" )
+                                                                 message:NSLocalizedString( @"Ce favori n'est plus valide", @"" )
+                                                                delegate:self 
+                                                       cancelButtonTitle:NSLocalizedString( @"Annuler", @"" )
+                                                       otherButtonTitles:NSLocalizedString( @"Supprimer", @"" ), nil] retain];
+                [alert show];
+                return;
+            }
+            StopTimeViewController* stoptimeView = [[StopTimeViewController alloc] initWithNibName:@"StopTimeViewController" bundle:nil];
+            stoptimeView.line = [Line findFirstBySrcId:fav.line_id];
+            stoptimeView.stop = [Stop findFirstBySrcId:fav.stop_id];
+            [self.navigationController pushViewController:stoptimeView animated:YES];
+            [stoptimeView release];                    
+        } else {
+            FavoritesViewController* favViewController = [[FavoritesViewController alloc] initWithNibName:@"FavoritesViewController" bundle:nil];
+            [self.navigationController pushViewController:favViewController animated:YES];
+            [favViewController release];
+            
+        }
+    }                
+    
+}
+
+- (void)alertView:(UIAlertView *)alertView willDismissWithButtonIndex:(NSInteger)buttonIndex {
+    if ( 0 != buttonIndex) {
+        NSIndexPath* indexPath = [self.tableView indexPathForSelectedRow];
+        Favorite* fav = [topFavorites_ objectAtIndex:indexPath.row];
+        NSManagedObjectContext* context = [(SimpleDeathStarAppDelegate*)[[UIApplication sharedApplication] delegate] userManagedObjectContext];
+        [context deleteObject: fav];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"favorites" object:nil];
+        NSError* error = nil;
+        if ( ! [context save:&error] ) {
+            NSLog( @"unsable to save" );
+            return;
+        }  
+        [NSFetchedResultsController deleteCacheWithName:@"allFavorites"];
+        
+    }
+}
 
 #pragma mark -
 #pragma mark Memory management

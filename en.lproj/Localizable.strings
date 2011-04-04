@@ -36,6 +36,12 @@
 "Vérifiez les autorisations" = " Check authorizations";
 "Habitant d'une galaxie lointaine?" = "Are you far far away?";
 "Retenter" = "Retry";
+
+"Erreur" = "Error";
+"Ce favori n'est plus valide" = "This favorite is now invalid";
+"Annuler" = "Cancel";
+"Supprimer" = "Remove";
+
 /* Lines */
 "Lignes" = "Lines";
 "Ligne %@" = "Line %@";

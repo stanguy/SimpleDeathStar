@@ -146,6 +146,11 @@ NSPredicate* buildPredicate( Line* line, Stop* stop, int min_arrival, int max_ar
 + (NSArray*) findComingAt:(Favorite*)favorite {
     Line* line = ( favorite.line_id != nil ) ? [Line findFirstBySrcId:favorite.line_id] : nil;
     Stop* stop = [Stop findFirstBySrcId:favorite.stop_id];
+    
+    if ( nil == stop || ( favorite.line_id != nil && line == nil ) ) {
+        NSLog( @"nil favorite in fav!" );
+        return (NSArray*)[NSNull null];
+    }
 
     SimpleDeathStarAppDelegate* delegate = (SimpleDeathStarAppDelegate*)[[UIApplication sharedApplication] delegate];
     NSManagedObjectContext* context = [delegate  transitManagedObjectContext];

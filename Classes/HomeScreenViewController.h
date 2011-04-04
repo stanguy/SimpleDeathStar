@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface HomeScreenViewController : UITableViewController <CLLocationManagerDelegate> {
+@interface HomeScreenViewController : UITableViewController <CLLocationManagerDelegate,UIAlertViewDelegate> {
 @private
     NSMutableArray* menus_;
     NSArray* topFavorites_;
@@ -30,4 +30,5 @@
        didFailWithError:(NSError *)error;
 - (void) locationRetry;
 - (void) locationStop;
+- (void)didSelectFavorite:(NSIndexPath *)indexPath;
 @end
