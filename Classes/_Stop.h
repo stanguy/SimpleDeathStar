@@ -4,10 +4,11 @@
 #import <CoreData/CoreData.h>
 
 
+@class StopTime;
 @class ClosePoi;
 @class City;
 @class Line;
-@class StopTime;
+@class StopAlias;
 
 
 
@@ -112,6 +113,11 @@
 
 
 
+@property (nonatomic, retain) NSSet* stop_times;
+- (NSMutableSet*)stop_timesSet;
+
+
+
 @property (nonatomic, retain) NSSet* close_pois;
 - (NSMutableSet*)close_poisSet;
 
@@ -127,8 +133,8 @@
 
 
 
-@property (nonatomic, retain) NSSet* stop_times;
-- (NSMutableSet*)stop_timesSet;
+@property (nonatomic, retain) NSSet* stop_aliases;
+- (NSMutableSet*)stop_aliasesSet;
 
 
 
@@ -136,6 +142,11 @@
 @end
 
 @interface _Stop (CoreDataGeneratedAccessors)
+
+- (void)addStop_times:(NSSet*)value_;
+- (void)removeStop_times:(NSSet*)value_;
+- (void)addStop_timesObject:(StopTime*)value_;
+- (void)removeStop_timesObject:(StopTime*)value_;
 
 - (void)addClose_pois:(NSSet*)value_;
 - (void)removeClose_pois:(NSSet*)value_;
@@ -147,10 +158,10 @@
 - (void)addLinesObject:(Line*)value_;
 - (void)removeLinesObject:(Line*)value_;
 
-- (void)addStop_times:(NSSet*)value_;
-- (void)removeStop_times:(NSSet*)value_;
-- (void)addStop_timesObject:(StopTime*)value_;
-- (void)removeStop_timesObject:(StopTime*)value_;
+- (void)addStop_aliases:(NSSet*)value_;
+- (void)removeStop_aliases:(NSSet*)value_;
+- (void)addStop_aliasesObject:(StopAlias*)value_;
+- (void)removeStop_aliasesObject:(StopAlias*)value_;
 
 @end
 
@@ -213,6 +224,11 @@
 
 
 
+- (NSMutableSet*)primitiveStop_times;
+- (void)setPrimitiveStop_times:(NSMutableSet*)value;
+
+
+
 - (NSMutableSet*)primitiveClose_pois;
 - (void)setPrimitiveClose_pois:(NSMutableSet*)value;
 
@@ -228,8 +244,8 @@
 
 
 
-- (NSMutableSet*)primitiveStop_times;
-- (void)setPrimitiveStop_times:(NSMutableSet*)value;
+- (NSMutableSet*)primitiveStop_aliases;
+- (void)setPrimitiveStop_aliases:(NSMutableSet*)value;
 
 
 @end

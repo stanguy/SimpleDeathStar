@@ -179,6 +179,8 @@
 		96DBF54812CBFAFD0096C240 /* simpledeathstar_appicon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96DBF54512CBFAFD0096C240 /* simpledeathstar_appicon@2x.png */; };
 		96DBF54912CBFAFD0096C240 /* simpledeathstar_appicon.png in Resources */ = {isa = PBXBuildFile; fileRef = 96DBF54612CBFAFD0096C240 /* simpledeathstar_appicon.png */; };
 		96DBF54A12CBFAFD0096C240 /* simpledeathstar_appstore.png in Resources */ = {isa = PBXBuildFile; fileRef = 96DBF54712CBFAFD0096C240 /* simpledeathstar_appstore.png */; };
+		96F5F365135CD3E60058C487 /* StopAlias.m in Sources */ = {isa = PBXBuildFile; fileRef = 96F5F364135CD3E60058C487 /* StopAlias.m */; };
+		96F5F368135CD3F40058C487 /* _StopAlias.m in Sources */ = {isa = PBXBuildFile; fileRef = 96F5F367135CD3F40058C487 /* _StopAlias.m */; };
 		B816AFCE12F049290006C6ED /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B816AFCC12F049290006C6ED /* Localizable.strings */; };
 		B816B04F12F050130006C6ED /* DateNavigation.xib in Resources */ = {isa = PBXBuildFile; fileRef = B816B04E12F050130006C6ED /* DateNavigation.xib */; };
 		B8C431BA12F2F3AA00DEC9B2 /* about_en.html in Resources */ = {isa = PBXBuildFile; fileRef = B8C431B912F2F3AA00DEC9B2 /* about_en.html */; };
@@ -403,6 +405,10 @@
 		96DBF54512CBFAFD0096C240 /* simpledeathstar_appicon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "simpledeathstar_appicon@2x.png"; sourceTree = "<group>"; };
 		96DBF54612CBFAFD0096C240 /* simpledeathstar_appicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = simpledeathstar_appicon.png; sourceTree = "<group>"; };
 		96DBF54712CBFAFD0096C240 /* simpledeathstar_appstore.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = simpledeathstar_appstore.png; sourceTree = "<group>"; };
+		96F5F363135CD3E60058C487 /* StopAlias.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StopAlias.h; sourceTree = "<group>"; };
+		96F5F364135CD3E60058C487 /* StopAlias.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StopAlias.m; sourceTree = "<group>"; };
+		96F5F366135CD3F40058C487 /* _StopAlias.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _StopAlias.h; sourceTree = "<group>"; };
+		96F5F367135CD3F40058C487 /* _StopAlias.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _StopAlias.m; sourceTree = "<group>"; };
 		B816AFCD12F049290006C6ED /* en */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B816B05012F050190006C6ED /* fr */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = fr; path = fr.lproj/DateNavigation.xib; sourceTree = "<group>"; };
 		B816B05B12F050B90006C6ED /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/DateNavigation.xib; sourceTree = "<group>"; };
@@ -561,6 +567,8 @@
 		962B81AA12C6C141007EA09F /* ManagedObjects */ = {
 			isa = PBXGroup;
 			children = (
+				96F5F363135CD3E60058C487 /* StopAlias.h */,
+				96F5F364135CD3E60058C487 /* StopAlias.m */,
 				9677B3CE12F20CA40016A460 /* ClosePoi.h */,
 				9677B3CF12F20CA40016A460 /* ClosePoi.m */,
 				9677B3D012F20CA40016A460 /* Poi.h */,
@@ -634,6 +642,8 @@
 		96B1E1C112DB860F008007BD /* Auto */ = {
 			isa = PBXGroup;
 			children = (
+				96F5F366135CD3F40058C487 /* _StopAlias.h */,
+				96F5F367135CD3F40058C487 /* _StopAlias.m */,
 				9677B3D412F20CB20016A460 /* _ClosePoi.h */,
 				9677B3D512F20CB20016A460 /* _ClosePoi.m */,
 				9677B3D612F20CB20016A460 /* _Poi.h */,
@@ -984,6 +994,8 @@
 				96B9FFA312F233C2008C9F2E /* TripViewCell.m in Sources */,
 				96B1696212FB587600B71302 /* StopMapViewController.m in Sources */,
 				9688A16F1301F14F00B218A2 /* StopAnnotation.m in Sources */,
+				96F5F365135CD3E60058C487 /* StopAlias.m in Sources */,
+				96F5F368135CD3F40058C487 /* _StopAlias.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

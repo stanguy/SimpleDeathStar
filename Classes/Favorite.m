@@ -1,6 +1,7 @@
 #import "Favorite.h"
 #import "SimpleDeathStarAppDelegate.h"
 #import "Stop.h"
+#import "StopAlias.h"
 #import "Line.h"
 
 @implementation Favorite
@@ -221,6 +222,41 @@ int kMaxTopFavorites = 5;
     } else {
         return [NSString stringWithFormat:NSLocalizedString( @"Arrêt %@", @"" ), self.stop_name];
     }
+}
+
+-(BOOL)couldUpdateReferences {
+    Line* line = ( self.line_id != nil ) ? [Line findFirstBySrcId:self.line_id] : nil;
+    Stop* stop = [Stop findFirstBySrcId:self.stop_id];
+    
+    if ( nil != self.line_id && nil == line ) {
+        if ( [self.line_id hasPrefix:@"SNT"] ) {
+            self.line_id = @"89"; // ugh!
+        } else {
+            return NO;
+        }
+    }
+    
+    if ( nil == stop ) {
+        StopAlias* stopAlias = [StopAlias findBySrcId:self.stop_id];
+        if ( nil == stopAlias) {
+            return NO;
+        }
+        NSLog( @" old_id = %@, new id = %@", self.stop_id, stopAlias.stop.src_id );
+        self.stop_id = stopAlias.stop.src_id;
+    }
+    return YES;
+}
+
+- (void) suicide {
+    NSManagedObjectContext* context = [(SimpleDeathStarAppDelegate*)[[UIApplication sharedApplication] delegate] userManagedObjectContext];
+    [context deleteObject: self];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"favorites" object:nil];
+    NSError* error = nil;
+    if ( ! [context save:&error] ) {
+        NSLog( @"unsable to save" );
+        return;
+    }  
+    [NSFetchedResultsController deleteCacheWithName:@"allFavorites"];
 }
 
 @end

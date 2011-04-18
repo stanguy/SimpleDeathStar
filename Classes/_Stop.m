@@ -194,6 +194,17 @@
 
 
 
+@dynamic stop_times;
+
+	
+- (NSMutableSet*)stop_timesSet {
+	[self willAccessValueForKey:@"stop_times"];
+	NSMutableSet *result = [self mutableSetValueForKey:@"stop_times"];
+	[self didAccessValueForKey:@"stop_times"];
+	return result;
+}
+	
+
 @dynamic close_pois;
 
 	
@@ -220,13 +231,13 @@
 }
 	
 
-@dynamic stop_times;
+@dynamic stop_aliases;
 
 	
-- (NSMutableSet*)stop_timesSet {
-	[self willAccessValueForKey:@"stop_times"];
-	NSMutableSet *result = [self mutableSetValueForKey:@"stop_times"];
-	[self didAccessValueForKey:@"stop_times"];
+- (NSMutableSet*)stop_aliasesSet {
+	[self willAccessValueForKey:@"stop_aliases"];
+	NSMutableSet *result = [self mutableSetValueForKey:@"stop_aliases"];
+	[self didAccessValueForKey:@"stop_aliases"];
 	return result;
 }
 	

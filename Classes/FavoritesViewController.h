@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 
-@interface FavoritesViewController : UITableViewController {
+@interface FavoritesViewController : UITableViewController <UIAlertViewDelegate> {
 @private
     NSFetchedResultsController* fetchedResultsController_;
 }

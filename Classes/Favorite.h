@@ -16,4 +16,8 @@
 +(NSFetchedResultsController*) findAll;
 + (NSArray*)topFavorites;
 - (NSString*) title;
+
+- (BOOL) couldUpdateReferences;
+- (void) suicide;
+
 @end

@@ -431,12 +431,21 @@ BOOL checkBounds( CLLocation* location ) {
             Favorite* fav = [topFavorites_ objectAtIndex:indexPath.row];
             if ( (NSArray*)[NSNull null] == [favoritesTimes_ objectAtIndex:indexPath.row] ) {
                 // try to fix or remove it
-                UIAlertView* alert = [[[UIAlertView alloc] initWithTitle:NSLocalizedString( @"Erreur", @"" )
-                                                                 message:NSLocalizedString( @"Ce favori n'est plus valide", @"" )
-                                                                delegate:self 
-                                                       cancelButtonTitle:NSLocalizedString( @"Annuler", @"" )
-                                                       otherButtonTitles:NSLocalizedString( @"Supprimer", @"" ), nil] retain];
-                [alert show];
+                if ( [fav couldUpdateReferences] ) {
+                    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Mise à jour"
+                                                                    message:@"Ce favori a été mis à jour" 
+                                                                   delegate:nil 
+                                                          cancelButtonTitle:@"Ok" 
+                                                          otherButtonTitles:nil];
+                    [alert show];
+                } else {
+                    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString( @"Erreur", @"" )
+                                                                    message:NSLocalizedString( @"Ce favori n'est plus valide", @"" )
+                                                                   delegate:self 
+                                                          cancelButtonTitle:NSLocalizedString( @"Annuler", @"" )
+                                                          otherButtonTitles:NSLocalizedString( @"Supprimer", @"" ), nil];
+                    [alert show];
+                }
                 return;
             }
             StopTimeViewController* stoptimeView = [[StopTimeViewController alloc] initWithNibName:@"StopTimeViewController" bundle:nil];
@@ -458,16 +467,7 @@ BOOL checkBounds( CLLocation* location ) {
     if ( 0 != buttonIndex) {
         NSIndexPath* indexPath = [self.tableView indexPathForSelectedRow];
         Favorite* fav = [topFavorites_ objectAtIndex:indexPath.row];
-        NSManagedObjectContext* context = [(SimpleDeathStarAppDelegate*)[[UIApplication sharedApplication] delegate] userManagedObjectContext];
-        [context deleteObject: fav];
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"favorites" object:nil];
-        NSError* error = nil;
-        if ( ! [context save:&error] ) {
-            NSLog( @"unsable to save" );
-            return;
-        }  
-        [NSFetchedResultsController deleteCacheWithName:@"allFavorites"];
-        
+        [fav suicide];
     }
 }
 

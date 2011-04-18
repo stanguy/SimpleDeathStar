@@ -85,6 +85,25 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     Favorite* fav = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    if ( (NSArray*)[NSNull null] == [StopTime findComingAt:fav] ) {
+        // try to fix or remove it
+        if ( [fav couldUpdateReferences] ) {
+            UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Mise à jour"
+                                                            message:@"Ce favori a été mis à jour" 
+                                                           delegate:nil 
+                                                  cancelButtonTitle:@"Ok" 
+                                                  otherButtonTitles:nil];
+            [alert show];
+        } else {
+            UIAlertView* alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString( @"Erreur", @"" )
+                                                            message:NSLocalizedString( @"Ce favori n'est plus valide", @"" )
+                                                           delegate:self 
+                                                  cancelButtonTitle:NSLocalizedString( @"Annuler", @"" )
+                                                  otherButtonTitles:NSLocalizedString( @"Supprimer", @"" ), nil];
+            [alert show];
+        }
+        return;
+    }
     StopTimeViewController* stoptimeView = [[StopTimeViewController alloc] initWithNibName:@"StopTimeViewController" bundle:nil];
     stoptimeView.line = [Line findFirstBySrcId:fav.line_id];
     stoptimeView.stop = [Stop findFirstBySrcId:fav.stop_id];
@@ -92,6 +111,14 @@
     [stoptimeView release];         
 }
 
+// TODO Duplicate!
+- (void)alertView:(UIAlertView *)alertView willDismissWithButtonIndex:(NSInteger)buttonIndex {
+    if ( 0 != buttonIndex) {
+        NSIndexPath* indexPath = [self.tableView indexPathForSelectedRow];
+        Favorite* fav = [self.fetchedResultsController objectAtIndexPath:indexPath];
+        [fav suicide];
+    }
+}
 
 #pragma mark -
 #pragma mark Memory management
