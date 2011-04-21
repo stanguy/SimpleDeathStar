@@ -39,6 +39,8 @@
 
 "Erreur" = "Error";
 "Ce favori n'est plus valide" = "This favorite is now invalid";
+"Mise à jour" = "Update";
+"Ce favori a été mis à jour" = "This favorite has been updated";
 "Annuler" = "Cancel";
 "Supprimer" = "Remove";
 

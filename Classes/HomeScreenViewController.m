@@ -433,8 +433,8 @@ BOOL checkBounds( CLLocation* location ) {
                 // try to fix or remove it
                 if ( [fav couldUpdateReferences] ) {
                     [[NSNotificationCenter defaultCenter] postNotificationName:@"favorites" object:nil];
-                    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Mise à jour"
-                                                                    message:@"Ce favori a été mis à jour" 
+                    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString( @"Mise à jour", @"" )
+                                                                    message:NSLocalizedString( @"Ce favori a été mis à jour", @"" )
                                                                    delegate:nil 
                                                           cancelButtonTitle:@"Ok" 
                                                           otherButtonTitles:nil];
