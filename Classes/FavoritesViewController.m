@@ -88,8 +88,9 @@
     if ( (NSArray*)[NSNull null] == [StopTime findComingAt:fav] ) {
         // try to fix or remove it
         if ( [fav couldUpdateReferences] ) {
-            UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Mise à jour"
-                                                            message:@"Ce favori a été mis à jour" 
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"favorites" object:nil];
+            UIAlertView* alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString( @"Mise à jour", @"" )
+                                                            message:NSLocalizedString( @"Ce favori a été mis à jour", @"" )
                                                            delegate:nil 
                                                   cancelButtonTitle:@"Ok" 
                                                   otherButtonTitles:nil];
@@ -119,6 +120,7 @@
         NSIndexPath* indexPath = [self.tableView indexPathForSelectedRow];
         Favorite* fav = [self.fetchedResultsController objectAtIndexPath:indexPath];
         [fav suicide];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"favorites" object:nil];
     }
 }
 

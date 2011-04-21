@@ -432,6 +432,7 @@ BOOL checkBounds( CLLocation* location ) {
             if ( (NSArray*)[NSNull null] == [favoritesTimes_ objectAtIndex:indexPath.row] ) {
                 // try to fix or remove it
                 if ( [fav couldUpdateReferences] ) {
+                    [[NSNotificationCenter defaultCenter] postNotificationName:@"favorites" object:nil];
                     UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Mise à jour"
                                                                     message:@"Ce favori a été mis à jour" 
                                                                    delegate:nil 
@@ -470,6 +471,7 @@ BOOL checkBounds( CLLocation* location ) {
         NSIndexPath* indexPath = [self.tableView indexPathForSelectedRow];
         Favorite* fav = [topFavorites_ objectAtIndex:indexPath.row];
         [fav suicide];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"favorites" object:nil];
     }
 }
 
