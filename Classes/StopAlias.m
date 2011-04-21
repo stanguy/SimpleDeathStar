@@ -33,6 +33,8 @@
     NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:context sectionNameKeyPath:nil cacheName:nil];
     
     [fetchRequest release];
+    [sortDescriptor release];
+    [sortDescriptors release];
     
     NSError *error = nil;
     if (![aFetchedResultsController performFetch:&error]) {
@@ -41,7 +43,8 @@
         return nil;
     }
     StopAlias* result = [[aFetchedResultsController fetchedObjects] objectAtIndex:0]; 
-    return [result autorelease];
+    [aFetchedResultsController release];
+    return result;
 }
 
 @end

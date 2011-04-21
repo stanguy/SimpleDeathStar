@@ -438,6 +438,7 @@ BOOL checkBounds( CLLocation* location ) {
                                                           cancelButtonTitle:@"Ok" 
                                                           otherButtonTitles:nil];
                     [alert show];
+                    [alert release];
                 } else {
                     UIAlertView* alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString( @"Erreur", @"" )
                                                                     message:NSLocalizedString( @"Ce favori n'est plus valide", @"" )
@@ -445,6 +446,7 @@ BOOL checkBounds( CLLocation* location ) {
                                                           cancelButtonTitle:NSLocalizedString( @"Annuler", @"" )
                                                           otherButtonTitles:NSLocalizedString( @"Supprimer", @"" ), nil];
                     [alert show];
+                    [alert release];
                 }
                 return;
             }
