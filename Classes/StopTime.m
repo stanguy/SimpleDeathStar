@@ -6,9 +6,89 @@
 
 @implementation StopTime
 
+/*
+ Thanks, Yan!
+ % perl -e 'while(<>) { next unless /joursFeries\.add\("(\d\d)(\d\d)(\d{4})"/ ; print $3 . $2 . $1 . ",\n" ; }' < JoursFeries.java
+ */
+int HOLIDAYS[] = {
+    20101225,
+    20110101,
+    20110425,
+    20110501,
+    20110508,
+    20110602,
+    20110613,
+    20110714,
+    20110815,
+    20111101,
+    20111111,
+    20111225,
+    20120101,
+    20120409,
+    20120501,
+    20120508,
+    20120517,
+    20120528,
+    20120714,
+    20120815,
+    20121101,
+    20121111,
+    20121225,
+    20130101,
+    20130401,
+    20130501,
+    20130508,
+    20130509,
+    20130519,
+    20130714,
+    20130815,
+    20131101,
+    20131111,
+    20131225,
+    0 // sentinel
+};
 
-NSPredicate* buildPredicate( Line* line, Stop* stop, int min_arrival, int max_arrival, int calendar ) {
-    NSPredicate* predicate;
+NSDateComponents* dateToComponents( NSDate* date ) {
+    NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    [gregorian setTimeZone:[NSTimeZone timeZoneWithName:@"Europe/Paris"]];
+    
+    unsigned unitFlags = NSWeekdayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSYearCalendarUnit;
+    NSDateComponents *dateComponents =[gregorian components:unitFlags fromDate:date];
+    [gregorian release];
+    return dateComponents;
+}
+
+NSPredicate* buildPredicate( Line* line, Stop* stop, int min_arrival, int max_arrival, NSDateComponents* dateComponents ) {
+    NSPredicate* predicate = nil;
+    
+    // weekday 1 = Sunday for Gregorian calendar
+    int weekday = [dateComponents weekday] - 2;
+    if (weekday < 0) {
+        weekday += 7;
+    }
+    
+    int month = [dateComponents month];
+    int day = [dateComponents day];
+    int year = [dateComponents year];
+    
+    if ( month == 5 && day == 1 ) {
+        // there is no bus on May 1st
+        predicate = [NSPredicate predicateWithFormat:@"FALSEPREDICATE"];
+        return predicate;
+    } else {
+        // holiday: like a sunday
+        int holiday = ( ( year * 100 ) + month ) * 100 + day;
+        int* ph = HOLIDAYS;
+        // look Ma'! Hairy C!
+        while ( *ph && *ph != holiday ) {
+            ++ph;
+        }
+        if ( *ph ) {
+            weekday = 6;
+        }
+    }
+    int calendar = 1 << weekday ;
+
     if (line != nil) {
         predicate = [NSPredicate predicateWithFormat:
                      @"line = %@ AND stop = %@ AND arrival > %@ AND arrival < %@ AND calendar & %@ > 0", line, stop, [NSNumber numberWithInt:min_arrival], [NSNumber numberWithInt:max_arrival], [NSNumber numberWithInt:calendar] ];
@@ -31,30 +111,19 @@ NSPredicate* buildPredicate( Line* line, Stop* stop, int min_arrival, int max_ar
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"StopTime" inManagedObjectContext:context];
     [fetchRequest setEntity:entity];
     
-    NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
-    [gregorian setTimeZone:[NSTimeZone timeZoneWithName:@"Europe/Paris"]];
-    
-    unsigned unitFlags = NSWeekdayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit;
-    NSDateComponents *dateComponents =[gregorian components:unitFlags fromDate:date];
     NSPredicate *predicate ;
+    NSDateComponents* dateComponents = dateToComponents( date );
     int min_arrival = ([dateComponents hour] * 60 + [dateComponents minute]) * 60 + [dateComponents second];
     int max_arrival = min_arrival + BASE_TIMESHIFT;
 
-    // weekday 1 = Sunday for Gregorian calendar
-    int weekday = [dateComponents weekday] - 2;
-    if (weekday < 0) {
-        weekday += 7;
-    }
-    int lcalendar = 1 << weekday ;
-    [gregorian release];
-    predicate = buildPredicate( line, stop, min_arrival, max_arrival, lcalendar );
+    predicate = buildPredicate( line, stop, min_arrival, max_arrival, dateComponents );
     
     if ( [dateComponents hour] < 8 ) {
-        weekday = ( weekday + 6 ) % 7;
-        lcalendar = 1 << weekday ;
+        NSDate* datePrevDay = [NSDate dateWithTimeInterval:-86400 sinceDate:date];
+        NSDateComponents* prevDateComponents = dateToComponents( datePrevDay );
         min_arrival = min_arrival + 24 * 60 * 60;
         max_arrival = max_arrival + 24 * 60 * 60;
-        predicate = [NSCompoundPredicate orPredicateWithSubpredicates:[NSArray arrayWithObjects:predicate, buildPredicate( line, stop, min_arrival, max_arrival, lcalendar ), nil]];
+        predicate = [NSCompoundPredicate orPredicateWithSubpredicates:[NSArray arrayWithObjects:predicate, buildPredicate( line, stop, min_arrival, max_arrival, prevDateComponents ), nil]];
     }
     
 
@@ -161,28 +230,19 @@ NSPredicate* buildPredicate( Line* line, Stop* stop, int min_arrival, int max_ar
     NSEntityDescription *entity = [StopTime entityInManagedObjectContext:context];
     [fetchRequest setEntity:entity];
     
-    NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
-    [gregorian setTimeZone:[NSTimeZone timeZoneWithName:@"Europe/Paris"]];
     NSDate* date = [NSDate date];
-    unsigned unitFlags = NSWeekdayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit;
-    NSDateComponents *dateComponents =[gregorian components:unitFlags fromDate:date];
+    NSDateComponents *dateComponents = dateToComponents( date );
     int min_arrival = ([dateComponents hour] * 60 + [dateComponents minute]) * 60 + [dateComponents second];
     int max_arrival = min_arrival + BASE_TIMESHIFT;
     
-    // weekday 1 = Sunday for Gregorian calendar
-    int weekday = [dateComponents weekday] - 2;
-    if (weekday < 0) {
-        weekday += 7;
-    }
-    int lcalendar = 1 << weekday ;
     
-    NSPredicate* predicate = buildPredicate( line, stop, min_arrival, max_arrival, lcalendar );
+    NSPredicate* predicate = buildPredicate( line, stop, min_arrival, max_arrival, dateComponents );
     if ( [dateComponents hour] < 8 ) {
-        weekday = ( weekday + 6 ) % 7;
-        lcalendar = 1 << weekday ;
+        NSDate* datePrevDay = [NSDate dateWithTimeInterval:-86400 sinceDate:date];
+        NSDateComponents* prevDateComponents = dateToComponents( datePrevDay );
         min_arrival = min_arrival + 24 * 60 * 60;
         max_arrival = min_arrival + BASE_TIMESHIFT;
-        predicate = [NSCompoundPredicate orPredicateWithSubpredicates:[NSArray arrayWithObjects:buildPredicate( line, stop, min_arrival, max_arrival, lcalendar ), predicate, nil]];
+        predicate = [NSCompoundPredicate orPredicateWithSubpredicates:[NSArray arrayWithObjects:buildPredicate( line, stop, min_arrival, max_arrival, prevDateComponents ), predicate, nil]];
     }
     
     [fetchRequest setPredicate:predicate];
@@ -203,7 +263,6 @@ NSPredicate* buildPredicate( Line* line, Stop* stop, int min_arrival, int max_ar
     [fetchRequest release];
     [sortDescriptor1 release];
     [sortDescriptors release];
-    [gregorian release];
     
     NSError *error = nil;
     if (![aFetchedResultsController performFetch:&error]) {
