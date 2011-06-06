@@ -11,17 +11,17 @@
 	<key>CFBundleIconFile</key>
 	<string>simpledeathstar_appicon.png</string>
 	<key>CFBundleIdentifier</key>
-	<string>net.dthg.simpledeathstar</string>
+	<string>net.dthg.simpledeathstar_stlo</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
-	<string>BusDeRennesEnPoche</string>
+	<string>BusDeStLoEnPoche</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>1.4.2</string>
+	<string>1.4.3</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSMainNibFile</key>
