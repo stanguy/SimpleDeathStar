@@ -42,7 +42,10 @@
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
         return nil;
     }
-    StopAlias* result = [[aFetchedResultsController fetchedObjects] objectAtIndex:0]; 
+    StopAlias* result = nil;
+    if ( [[aFetchedResultsController fetchedObjects] count] > 0 ) {
+        result = [[aFetchedResultsController fetchedObjects] objectAtIndex:0]; 
+    }
     [aFetchedResultsController release];
     return result;
 }
