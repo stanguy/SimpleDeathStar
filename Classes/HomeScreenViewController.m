@@ -29,7 +29,7 @@
 NSString* menuTitles[] = {
     @"Favoris",
     @"Lignes",
-    @"Rechercher par arrêt",
+    @"Recherche par arrêt",
     @""
 };
 enum eSections {
