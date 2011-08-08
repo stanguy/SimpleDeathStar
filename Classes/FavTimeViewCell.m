@@ -97,7 +97,11 @@ NSString* direction2label( NSString* bearing ) {
     }
     for ( int i = 0; i < time_count; ++i ) {
         StopTime* stime = [times objectAtIndex:i];
-        imageViews_[i].image = [UIImage imageNamed:[NSString stringWithFormat:@"arrow_%@", stime.trip_bearing]];
+        NSString* bearing = stime.trip_bearing;
+        if( nil == bearing ) {
+            bearing = @"circle_right";
+        }
+        imageViews_[i].image = [UIImage imageNamed:[NSString stringWithFormat:@"arrow_%@", bearing]];
         timeLabels_[i].text = [stime formatArrival];
         imageViews_[i].hidden = NO;
         timeLabels_[i].hidden = NO;
