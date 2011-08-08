@@ -18,6 +18,116 @@
 		961A76E812D52FB20085BCAA /* panic_fr.html in Resources */ = {isa = PBXBuildFile; fileRef = 961A76E712D52FB20085BCAA /* panic_fr.html */; };
 		961A779112D664340085BCAA /* TripViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 961A778F12D664340085BCAA /* TripViewController.m */; };
 		961A779212D664340085BCAA /* TripViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 961A779012D664340085BCAA /* TripViewController.xib */; };
+		961B179413F01FAB00EE4DF9 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD733E0D9D9553002E5188 /* MainWindow.xib */; };
+		961B179513F01FAB00EE4DF9 /* HomeScreenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 969229BD12C6B799007C965D /* HomeScreenViewController.xib */; };
+		961B179613F01FAB00EE4DF9 /* LineViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 962B81A712C6C122007EA09F /* LineViewController.xib */; };
+		961B179713F01FAB00EE4DF9 /* StopViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 962B82CC12C6D30D007EA09F /* StopViewController.xib */; };
+		961B179813F01FAB00EE4DF9 /* StopTimeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9631C13012C77D660002EB78 /* StopTimeViewController.xib */; };
+		961B179A13F01FAB00EE4DF9 /* CityViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96539CBB12C94C68002FDF29 /* CityViewController.xib */; };
+		961B179B13F01FAB00EE4DF9 /* AboutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96A71C6C12CA87AC00FB1516 /* AboutViewController.xib */; };
+		961B179C13F01FAB00EE4DF9 /* about_fr.html in Resources */ = {isa = PBXBuildFile; fileRef = 96A71C8C12CA89B700FB1516 /* about_fr.html */; };
+		961B179D13F01FAB00EE4DF9 /* GridCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96DBF44712CBD5890096C240 /* GridCell.xib */; };
+		961B179E13F01FAB00EE4DF9 /* simpledeathstar_appicon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96DBF54512CBFAFD0096C240 /* simpledeathstar_appicon@2x.png */; };
+		961B179F13F01FAB00EE4DF9 /* simpledeathstar_appicon.png in Resources */ = {isa = PBXBuildFile; fileRef = 96DBF54612CBFAFD0096C240 /* simpledeathstar_appicon.png */; };
+		961B17A013F01FAB00EE4DF9 /* simpledeathstar_appstore.png in Resources */ = {isa = PBXBuildFile; fileRef = 96DBF54712CBFAFD0096C240 /* simpledeathstar_appstore.png */; };
+		961B17A113F01FAB00EE4DF9 /* NoResult.xib in Resources */ = {isa = PBXBuildFile; fileRef = 961A717012D26CB90085BCAA /* NoResult.xib */; };
+		961B17A213F01FAB00EE4DF9 /* panic_fr.html in Resources */ = {isa = PBXBuildFile; fileRef = 961A76E712D52FB20085BCAA /* panic_fr.html */; };
+		961B17A313F01FAB00EE4DF9 /* TripViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 961A779012D664340085BCAA /* TripViewController.xib */; };
+		961B17A413F01FAB00EE4DF9 /* favorites_add.png in Resources */ = {isa = PBXBuildFile; fileRef = 96CB93A612EE1E8100EFB75C /* favorites_add.png */; };
+		961B17A513F01FAB00EE4DF9 /* favorites_add@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96CB93A712EE1E8100EFB75C /* favorites_add@2x.png */; };
+		961B17A613F01FAB00EE4DF9 /* favorites_remove.png in Resources */ = {isa = PBXBuildFile; fileRef = 96CB93A912EE1E8100EFB75C /* favorites_remove.png */; };
+		961B17A713F01FAB00EE4DF9 /* favorites_remove@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96CB93AA12EE1E8100EFB75C /* favorites_remove@2x.png */; };
+		961B17A813F01FAB00EE4DF9 /* clock.png in Resources */ = {isa = PBXBuildFile; fileRef = 96CB93DB12EE255300EFB75C /* clock.png */; };
+		961B17A913F01FAB00EE4DF9 /* clock@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96CB93DC12EE255300EFB75C /* clock@2x.png */; };
+		961B17AA13F01FAB00EE4DF9 /* app_globe.png in Resources */ = {isa = PBXBuildFile; fileRef = 96CB944412EE301D00EFB75C /* app_globe.png */; };
+		961B17AB13F01FAB00EE4DF9 /* app_globe@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96CB944512EE301D00EFB75C /* app_globe@2x.png */; };
+		961B17AC13F01FAB00EE4DF9 /* DateNavigation.xib in Resources */ = {isa = PBXBuildFile; fileRef = B816B04E12F050130006C6ED /* DateNavigation.xib */; };
+		961B17AD13F01FAB00EE4DF9 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B816AFCC12F049290006C6ED /* Localizable.strings */; };
+		961B17AE13F01FAB00EE4DF9 /* FavoritesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9677AF6D12F0C95A0016A460 /* FavoritesViewController.xib */; };
+		961B17AF13F01FAB00EE4DF9 /* arrow_E.png in Resources */ = {isa = PBXBuildFile; fileRef = 9677B36112F206620016A460 /* arrow_E.png */; };
+		961B17B013F01FAB00EE4DF9 /* arrow_E@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9677B36212F206620016A460 /* arrow_E@2x.png */; };
+		961B17B113F01FAB00EE4DF9 /* arrow_N.png in Resources */ = {isa = PBXBuildFile; fileRef = 9677B36312F206630016A460 /* arrow_N.png */; };
+		961B17B213F01FAB00EE4DF9 /* arrow_N@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9677B36412F206630016A460 /* arrow_N@2x.png */; };
+		961B17B313F01FAB00EE4DF9 /* arrow_NE.png in Resources */ = {isa = PBXBuildFile; fileRef = 9677B36512F206630016A460 /* arrow_NE.png */; };
+		961B17B413F01FAB00EE4DF9 /* arrow_NE@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9677B36612F206630016A460 /* arrow_NE@2x.png */; };
+		961B17B513F01FAB00EE4DF9 /* arrow_NW.png in Resources */ = {isa = PBXBuildFile; fileRef = 9677B36712F206630016A460 /* arrow_NW.png */; };
+		961B17B613F01FAB00EE4DF9 /* arrow_NW@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9677B36812F206630016A460 /* arrow_NW@2x.png */; };
+		961B17B713F01FAB00EE4DF9 /* arrow_S.png in Resources */ = {isa = PBXBuildFile; fileRef = 9677B36912F206630016A460 /* arrow_S.png */; };
+		961B17B813F01FAB00EE4DF9 /* arrow_S@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9677B36A12F206630016A460 /* arrow_S@2x.png */; };
+		961B17B913F01FAB00EE4DF9 /* arrow_SE.png in Resources */ = {isa = PBXBuildFile; fileRef = 9677B36B12F206630016A460 /* arrow_SE.png */; };
+		961B17BA13F01FAB00EE4DF9 /* arrow_SE@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9677B36C12F206630016A460 /* arrow_SE@2x.png */; };
+		961B17BB13F01FAB00EE4DF9 /* arrow_SW.png in Resources */ = {isa = PBXBuildFile; fileRef = 9677B36D12F206630016A460 /* arrow_SW.png */; };
+		961B17BC13F01FAB00EE4DF9 /* arrow_SW@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9677B36E12F206630016A460 /* arrow_SW@2x.png */; };
+		961B17BD13F01FAB00EE4DF9 /* arrow_W.png in Resources */ = {isa = PBXBuildFile; fileRef = 9677B36F12F206630016A460 /* arrow_W.png */; };
+		961B17BE13F01FAB00EE4DF9 /* arrow_W@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9677B37012F206630016A460 /* arrow_W@2x.png */; };
+		961B17BF13F01FAB00EE4DF9 /* PoiViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9677B3BD12F209950016A460 /* PoiViewController.xib */; };
+		961B17C013F01FAB00EE4DF9 /* StopViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9677B44212F21E020016A460 /* StopViewCell.xib */; };
+		961B17C113F01FAB00EE4DF9 /* accessible.png in Resources */ = {isa = PBXBuildFile; fileRef = 9677B44512F21EDC0016A460 /* accessible.png */; };
+		961B17C213F01FAB00EE4DF9 /* accessible@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9677B44612F21EDC0016A460 /* accessible@2x.png */; };
+		961B17C313F01FAB00EE4DF9 /* bike.png in Resources */ = {isa = PBXBuildFile; fileRef = 9677B44712F21EDC0016A460 /* bike.png */; };
+		961B17C413F01FAB00EE4DF9 /* bike@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9677B44812F21EDC0016A460 /* bike@2x.png */; };
+		961B17C513F01FAB00EE4DF9 /* metro.png in Resources */ = {isa = PBXBuildFile; fileRef = 9677B44912F21EDC0016A460 /* metro.png */; };
+		961B17C613F01FAB00EE4DF9 /* metro@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9677B44A12F21EDC0016A460 /* metro@2x.png */; };
+		961B17C713F01FAB00EE4DF9 /* pos.png in Resources */ = {isa = PBXBuildFile; fileRef = 9677B44B12F21EDC0016A460 /* pos.png */; };
+		961B17C813F01FAB00EE4DF9 /* pos@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9677B44C12F21EDC0016A460 /* pos@2x.png */; };
+		961B17C913F01FAB00EE4DF9 /* TripViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96B9FF9D12F232DD008C9F2E /* TripViewCell.xib */; };
+		961B17CA13F01FAB00EE4DF9 /* about_en.html in Resources */ = {isa = PBXBuildFile; fileRef = B8C431B912F2F3AA00DEC9B2 /* about_en.html */; };
+		961B17CB13F01FAB00EE4DF9 /* panic_en.html in Resources */ = {isa = PBXBuildFile; fileRef = B8C431BB12F2F3B400DEC9B2 /* panic_en.html */; };
+		961B180F13F01FAB00EE4DF9 /* StopMapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96B1696112FB587600B71302 /* StopMapViewController.xib */; };
+		961B181013F01FAB00EE4DF9 /* reload.png in Resources */ = {isa = PBXBuildFile; fileRef = 9688A5C91307002D00B218A2 /* reload.png */; };
+		961B181113F01FAB00EE4DF9 /* reload@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9688A5CA1307002D00B218A2 /* reload@2x.png */; };
+		961B181413F01FAB00EE4DF9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
+		961B181513F01FAB00EE4DF9 /* SimpleDeathStarAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* SimpleDeathStarAppDelegate.m */; };
+		961B181613F01FAB00EE4DF9 /* Transit.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 962B828312C6CE60007EA09F /* Transit.xcdatamodeld */; };
+		961B181713F01FAB00EE4DF9 /* HomeScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 969229BC12C6B799007C965D /* HomeScreenViewController.m */; };
+		961B181813F01FAB00EE4DF9 /* LineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 962B81A612C6C122007EA09F /* LineViewController.m */; };
+		961B181913F01FAB00EE4DF9 /* Line.m in Sources */ = {isa = PBXBuildFile; fileRef = 962B81AC12C6C153007EA09F /* Line.m */; };
+		961B181A13F01FAB00EE4DF9 /* Stop.m in Sources */ = {isa = PBXBuildFile; fileRef = 962B82C012C6D1FB007EA09F /* Stop.m */; };
+		961B181B13F01FAB00EE4DF9 /* StopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 962B82CB12C6D30D007EA09F /* StopViewController.m */; };
+		961B181C13F01FAB00EE4DF9 /* _Line.m in Sources */ = {isa = PBXBuildFile; fileRef = 9631C0F512C757CF0002EB78 /* _Line.m */; };
+		961B181D13F01FAB00EE4DF9 /* _Stop.m in Sources */ = {isa = PBXBuildFile; fileRef = 9631C0F712C757CF0002EB78 /* _Stop.m */; };
+		961B181E13F01FAB00EE4DF9 /* _City.m in Sources */ = {isa = PBXBuildFile; fileRef = 9631C11312C758890002EB78 /* _City.m */; };
+		961B181F13F01FAB00EE4DF9 /* _Direction.m in Sources */ = {isa = PBXBuildFile; fileRef = 9631C11512C758890002EB78 /* _Direction.m */; };
+		961B182013F01FAB00EE4DF9 /* _StopTime.m in Sources */ = {isa = PBXBuildFile; fileRef = 9631C11712C758890002EB78 /* _StopTime.m */; };
+		961B182113F01FAB00EE4DF9 /* City.m in Sources */ = {isa = PBXBuildFile; fileRef = 9631C11912C758890002EB78 /* City.m */; };
+		961B182213F01FAB00EE4DF9 /* Direction.m in Sources */ = {isa = PBXBuildFile; fileRef = 9631C11B12C758890002EB78 /* Direction.m */; };
+		961B182313F01FAB00EE4DF9 /* StopTime.m in Sources */ = {isa = PBXBuildFile; fileRef = 9631C11D12C758890002EB78 /* StopTime.m */; };
+		961B182413F01FAB00EE4DF9 /* StopTimeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9631C12F12C77D660002EB78 /* StopTimeViewController.m */; };
+		961B182513F01FAB00EE4DF9 /* CityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96539CBA12C94C68002FDF29 /* CityViewController.m */; };
+		961B182613F01FAB00EE4DF9 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96A71C6B12CA87AC00FB1516 /* AboutViewController.m */; };
+		961B182713F01FAB00EE4DF9 /* GridScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 96DBF3ED12CBCD7E0096C240 /* GridScrollView.m */; };
+		961B182813F01FAB00EE4DF9 /* GridCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 96DBF44612CBD5890096C240 /* GridCell.m */; };
+		961B182913F01FAB00EE4DF9 /* TripViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 961A778F12D664340085BCAA /* TripViewController.m */; };
+		961B182A13F01FAB00EE4DF9 /* UserData.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 96B1E19312DB84F3008007BD /* UserData.xcdatamodel */; };
+		961B182B13F01FAB00EE4DF9 /* UserData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 96B1E19512DB851D008007BD /* UserData.xcdatamodeld */; };
+		961B182C13F01FAB00EE4DF9 /* _Favorite.m in Sources */ = {isa = PBXBuildFile; fileRef = 96B1E1BC12DB8607008007BD /* _Favorite.m */; };
+		961B182D13F01FAB00EE4DF9 /* Favorite.m in Sources */ = {isa = PBXBuildFile; fileRef = 96B1E1BE12DB8607008007BD /* Favorite.m */; };
+		961B182E13F01FAB00EE4DF9 /* FavTimeViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 96CB971D12EF963800EFB75C /* FavTimeViewCell.m */; };
+		961B182F13F01FAB00EE4DF9 /* FavoritesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9677AF6C12F0C95A0016A460 /* FavoritesViewController.m */; };
+		961B183013F01FAB00EE4DF9 /* PoiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9677B3BC12F209950016A460 /* PoiViewController.m */; };
+		961B183113F01FAB00EE4DF9 /* ClosePoi.m in Sources */ = {isa = PBXBuildFile; fileRef = 9677B3CF12F20CA40016A460 /* ClosePoi.m */; };
+		961B183213F01FAB00EE4DF9 /* Poi.m in Sources */ = {isa = PBXBuildFile; fileRef = 9677B3D112F20CA40016A460 /* Poi.m */; };
+		961B183313F01FAB00EE4DF9 /* _ClosePoi.m in Sources */ = {isa = PBXBuildFile; fileRef = 9677B3D512F20CB20016A460 /* _ClosePoi.m */; };
+		961B183413F01FAB00EE4DF9 /* _Poi.m in Sources */ = {isa = PBXBuildFile; fileRef = 9677B3D712F20CB20016A460 /* _Poi.m */; };
+		961B183513F01FAB00EE4DF9 /* StopViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9677B44012F21B6E0016A460 /* StopViewCell.m */; };
+		961B183613F01FAB00EE4DF9 /* TripViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 96B9FFA212F233C2008C9F2E /* TripViewCell.m */; };
+		961B183713F01FAB00EE4DF9 /* StopMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96B1696012FB587600B71302 /* StopMapViewController.m */; };
+		961B183813F01FAB00EE4DF9 /* StopAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 9688A16E1301F14F00B218A2 /* StopAnnotation.m */; };
+		961B183913F01FAB00EE4DF9 /* StopAlias.m in Sources */ = {isa = PBXBuildFile; fileRef = 96F5F364135CD3E60058C487 /* StopAlias.m */; };
+		961B183A13F01FAB00EE4DF9 /* _StopAlias.m in Sources */ = {isa = PBXBuildFile; fileRef = 96F5F367135CD3F40058C487 /* _StopAlias.m */; };
+		961B183C13F01FAB00EE4DF9 /* libMaptimizeKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 96B1692712FB4D8700B71302 /* libMaptimizeKit.a */; };
+		961B183D13F01FAB00EE4DF9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
+		961B183E13F01FAB00EE4DF9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
+		961B183F13F01FAB00EE4DF9 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765A40DF7441C002DB57D /* CoreGraphics.framework */; };
+		961B184013F01FAB00EE4DF9 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28D801B30F44B63D00FB423F /* CoreData.framework */; };
+		961B184113F01FAB00EE4DF9 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96B169B412FB65B100B71302 /* CFNetwork.framework */; };
+		961B184213F01FAB00EE4DF9 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96B169B612FB65B100B71302 /* CoreFoundation.framework */; };
+		961B184313F01FAB00EE4DF9 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96B169B812FB65B100B71302 /* MobileCoreServices.framework */; };
+		961B184413F01FAB00EE4DF9 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96B169BA12FB65B100B71302 /* SystemConfiguration.framework */; };
+		961B184513F01FAB00EE4DF9 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 96B16A0A12FB65F600B71302 /* libz.dylib */; };
+		961B184613F01FAB00EE4DF9 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96B16A0E12FB660E00B71302 /* MapKit.framework */; };
+		961B184713F01FAB00EE4DF9 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9688A0EA1301E6DA00B218A2 /* CoreLocation.framework */; };
+		961B187913F02CA700EE4DF9 /* TransitStLo.sqlite in Copy TransitDB */ = {isa = PBXBuildFile; fileRef = 961B187713F02C9D00EE4DF9 /* TransitStLo.sqlite */; };
 		962B81A812C6C122007EA09F /* LineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 962B81A612C6C122007EA09F /* LineViewController.m */; };
 		962B81A912C6C122007EA09F /* LineViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 962B81A712C6C122007EA09F /* LineViewController.xib */; };
 		962B81AD12C6C153007EA09F /* Line.m in Sources */ = {isa = PBXBuildFile; fileRef = 962B81AC12C6C153007EA09F /* Line.m */; };
@@ -158,7 +268,6 @@
 		96B9010012F339F2008C9F2E /* 92.png in Resources */ = {isa = PBXBuildFile; fileRef = 96B900BC12F339F2008C9F2E /* 92.png */; };
 		96B9010112F339F2008C9F2E /* 93.png in Resources */ = {isa = PBXBuildFile; fileRef = 96B900BD12F339F2008C9F2E /* 93.png */; };
 		96B9010212F339F2008C9F2E /* 94.png in Resources */ = {isa = PBXBuildFile; fileRef = 96B900BE12F339F2008C9F2E /* 94.png */; };
-		96B9010312F339F2008C9F2E /* A.png in Resources */ = {isa = PBXBuildFile; fileRef = 96B900BF12F339F2008C9F2E /* A.png */; };
 		96B9010412F339F2008C9F2E /* KL.png in Resources */ = {isa = PBXBuildFile; fileRef = 96B900C012F339F2008C9F2E /* KL.png */; };
 		96B9010512F339F2008C9F2E /* STN.png in Resources */ = {isa = PBXBuildFile; fileRef = 96B900C112F339F2008C9F2E /* STN.png */; };
 		96B9010612F339F2008C9F2E /* TTZ.png in Resources */ = {isa = PBXBuildFile; fileRef = 96B900C212F339F2008C9F2E /* TTZ.png */; };
@@ -197,6 +306,20 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		961B186413F026FC00EE4DF9 /* Copy TransitDB */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 7;
+			files = (
+				961B187913F02CA700EE4DF9 /* TransitStLo.sqlite in Copy TransitDB */,
+			);
+			name = "Copy TransitDB";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D3623240D0F684500981E51 /* SimpleDeathStarAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleDeathStarAppDelegate.h; sourceTree = "<group>"; };
@@ -214,6 +337,9 @@
 		961A778E12D664340085BCAA /* TripViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TripViewController.h; sourceTree = "<group>"; };
 		961A778F12D664340085BCAA /* TripViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TripViewController.m; sourceTree = "<group>"; };
 		961A779012D664340085BCAA /* TripViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = TripViewController.xib; path = Classes/TripViewController.xib; sourceTree = "<group>"; };
+		961B184B13F01FAB00EE4DF9 /* SimpleDeathStar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimpleDeathStar.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		961B184D13F01FAC00EE4DF9 /* SimpleDeathStarStLo-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SimpleDeathStarStLo-Info.plist"; sourceTree = "<group>"; };
+		961B187713F02C9D00EE4DF9 /* TransitStLo.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = TransitStLo.sqlite; sourceTree = "<group>"; };
 		962B81A512C6C122007EA09F /* LineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LineViewController.h; sourceTree = "<group>"; };
 		962B81A612C6C122007EA09F /* LineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LineViewController.m; sourceTree = "<group>"; };
 		962B81A712C6C122007EA09F /* LineViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = LineViewController.xib; path = Classes/LineViewController.xib; sourceTree = "<group>"; };
@@ -380,7 +506,6 @@
 		96B900BC12F339F2008C9F2E /* 92.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 92.png; sourceTree = "<group>"; };
 		96B900BD12F339F2008C9F2E /* 93.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 93.png; sourceTree = "<group>"; };
 		96B900BE12F339F2008C9F2E /* 94.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 94.png; sourceTree = "<group>"; };
-		96B900BF12F339F2008C9F2E /* A.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = A.png; sourceTree = "<group>"; };
 		96B900C012F339F2008C9F2E /* KL.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = KL.png; sourceTree = "<group>"; };
 		96B900C112F339F2008C9F2E /* STN.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = STN.png; sourceTree = "<group>"; };
 		96B900C212F339F2008C9F2E /* TTZ.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TTZ.png; sourceTree = "<group>"; };
@@ -437,6 +562,25 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		961B183B13F01FAB00EE4DF9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				961B183C13F01FAB00EE4DF9 /* libMaptimizeKit.a in Frameworks */,
+				961B183D13F01FAB00EE4DF9 /* Foundation.framework in Frameworks */,
+				961B183E13F01FAB00EE4DF9 /* UIKit.framework in Frameworks */,
+				961B183F13F01FAB00EE4DF9 /* CoreGraphics.framework in Frameworks */,
+				961B184013F01FAB00EE4DF9 /* CoreData.framework in Frameworks */,
+				961B184113F01FAB00EE4DF9 /* CFNetwork.framework in Frameworks */,
+				961B184213F01FAB00EE4DF9 /* CoreFoundation.framework in Frameworks */,
+				961B184313F01FAB00EE4DF9 /* MobileCoreServices.framework in Frameworks */,
+				961B184413F01FAB00EE4DF9 /* SystemConfiguration.framework in Frameworks */,
+				961B184513F01FAB00EE4DF9 /* libz.dylib in Frameworks */,
+				961B184613F01FAB00EE4DF9 /* MapKit.framework in Frameworks */,
+				961B184713F01FAB00EE4DF9 /* CoreLocation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -486,6 +630,7 @@
 			isa = PBXGroup;
 			children = (
 				1D6058910D05DD3D006BFB54 /* SimpleDeathStar.app */,
+				961B184B13F01FAB00EE4DF9 /* SimpleDeathStar.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -519,6 +664,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				961B187713F02C9D00EE4DF9 /* TransitStLo.sqlite */,
 				96A71C6C12CA87AC00FB1516 /* AboutViewController.xib */,
 				96539CBB12C94C68002FDF29 /* CityViewController.xib */,
 				B816B04E12F050130006C6ED /* DateNavigation.xib */,
@@ -546,6 +692,7 @@
 				96B9FF9D12F232DD008C9F2E /* TripViewCell.xib */,
 				961A779012D664340085BCAA /* TripViewController.xib */,
 				96B1E19512DB851D008007BD /* UserData.xcdatamodeld */,
+				961B184D13F01FAC00EE4DF9 /* SimpleDeathStarStLo-Info.plist */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -731,7 +878,6 @@
 				96B900BC12F339F2008C9F2E /* 92.png */,
 				96B900BD12F339F2008C9F2E /* 93.png */,
 				96B900BE12F339F2008C9F2E /* 94.png */,
-				96B900BF12F339F2008C9F2E /* A.png */,
 				96B900C012F339F2008C9F2E /* KL.png */,
 				96B900C112F339F2008C9F2E /* STN.png */,
 				96B900C212F339F2008C9F2E /* TTZ.png */,
@@ -770,6 +916,24 @@
 			productReference = 1D6058910D05DD3D006BFB54 /* SimpleDeathStar.app */;
 			productType = "com.apple.product-type.application";
 		};
+		961B179213F01FAB00EE4DF9 /* SimpleDeathStarStLo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 961B184813F01FAB00EE4DF9 /* Build configuration list for PBXNativeTarget "SimpleDeathStarStLo" */;
+			buildPhases = (
+				961B179313F01FAB00EE4DF9 /* Resources */,
+				961B186413F026FC00EE4DF9 /* Copy TransitDB */,
+				961B181313F01FAB00EE4DF9 /* Sources */,
+				961B183B13F01FAB00EE4DF9 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SimpleDeathStarStLo;
+			productName = SimpleDeathStar;
+			productReference = 961B184B13F01FAB00EE4DF9 /* SimpleDeathStar.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -801,6 +965,7 @@
 			projectRoot = "";
 			targets = (
 				1D6058900D05DD3D006BFB54 /* SimpleDeathStar */,
+				961B179213F01FAB00EE4DF9 /* SimpleDeathStarStLo */,
 			);
 		};
 /* End PBXProject section */
@@ -940,13 +1105,77 @@
 				96B9010012F339F2008C9F2E /* 92.png in Resources */,
 				96B9010112F339F2008C9F2E /* 93.png in Resources */,
 				96B9010212F339F2008C9F2E /* 94.png in Resources */,
-				96B9010312F339F2008C9F2E /* A.png in Resources */,
 				96B9010412F339F2008C9F2E /* KL.png in Resources */,
 				96B9010512F339F2008C9F2E /* STN.png in Resources */,
 				96B9010612F339F2008C9F2E /* TTZ.png in Resources */,
 				96B1696312FB587600B71302 /* StopMapViewController.xib in Resources */,
 				9688A5CB1307002D00B218A2 /* reload.png in Resources */,
 				9688A5CC1307002D00B218A2 /* reload@2x.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		961B179313F01FAB00EE4DF9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				961B179413F01FAB00EE4DF9 /* MainWindow.xib in Resources */,
+				961B179513F01FAB00EE4DF9 /* HomeScreenViewController.xib in Resources */,
+				961B179613F01FAB00EE4DF9 /* LineViewController.xib in Resources */,
+				961B179713F01FAB00EE4DF9 /* StopViewController.xib in Resources */,
+				961B179813F01FAB00EE4DF9 /* StopTimeViewController.xib in Resources */,
+				961B179A13F01FAB00EE4DF9 /* CityViewController.xib in Resources */,
+				961B179B13F01FAB00EE4DF9 /* AboutViewController.xib in Resources */,
+				961B179C13F01FAB00EE4DF9 /* about_fr.html in Resources */,
+				961B179D13F01FAB00EE4DF9 /* GridCell.xib in Resources */,
+				961B179E13F01FAB00EE4DF9 /* simpledeathstar_appicon@2x.png in Resources */,
+				961B179F13F01FAB00EE4DF9 /* simpledeathstar_appicon.png in Resources */,
+				961B17A013F01FAB00EE4DF9 /* simpledeathstar_appstore.png in Resources */,
+				961B17A113F01FAB00EE4DF9 /* NoResult.xib in Resources */,
+				961B17A213F01FAB00EE4DF9 /* panic_fr.html in Resources */,
+				961B17A313F01FAB00EE4DF9 /* TripViewController.xib in Resources */,
+				961B17A413F01FAB00EE4DF9 /* favorites_add.png in Resources */,
+				961B17A513F01FAB00EE4DF9 /* favorites_add@2x.png in Resources */,
+				961B17A613F01FAB00EE4DF9 /* favorites_remove.png in Resources */,
+				961B17A713F01FAB00EE4DF9 /* favorites_remove@2x.png in Resources */,
+				961B17A813F01FAB00EE4DF9 /* clock.png in Resources */,
+				961B17A913F01FAB00EE4DF9 /* clock@2x.png in Resources */,
+				961B17AA13F01FAB00EE4DF9 /* app_globe.png in Resources */,
+				961B17AB13F01FAB00EE4DF9 /* app_globe@2x.png in Resources */,
+				961B17AC13F01FAB00EE4DF9 /* DateNavigation.xib in Resources */,
+				961B17AD13F01FAB00EE4DF9 /* Localizable.strings in Resources */,
+				961B17AE13F01FAB00EE4DF9 /* FavoritesViewController.xib in Resources */,
+				961B17AF13F01FAB00EE4DF9 /* arrow_E.png in Resources */,
+				961B17B013F01FAB00EE4DF9 /* arrow_E@2x.png in Resources */,
+				961B17B113F01FAB00EE4DF9 /* arrow_N.png in Resources */,
+				961B17B213F01FAB00EE4DF9 /* arrow_N@2x.png in Resources */,
+				961B17B313F01FAB00EE4DF9 /* arrow_NE.png in Resources */,
+				961B17B413F01FAB00EE4DF9 /* arrow_NE@2x.png in Resources */,
+				961B17B513F01FAB00EE4DF9 /* arrow_NW.png in Resources */,
+				961B17B613F01FAB00EE4DF9 /* arrow_NW@2x.png in Resources */,
+				961B17B713F01FAB00EE4DF9 /* arrow_S.png in Resources */,
+				961B17B813F01FAB00EE4DF9 /* arrow_S@2x.png in Resources */,
+				961B17B913F01FAB00EE4DF9 /* arrow_SE.png in Resources */,
+				961B17BA13F01FAB00EE4DF9 /* arrow_SE@2x.png in Resources */,
+				961B17BB13F01FAB00EE4DF9 /* arrow_SW.png in Resources */,
+				961B17BC13F01FAB00EE4DF9 /* arrow_SW@2x.png in Resources */,
+				961B17BD13F01FAB00EE4DF9 /* arrow_W.png in Resources */,
+				961B17BE13F01FAB00EE4DF9 /* arrow_W@2x.png in Resources */,
+				961B17BF13F01FAB00EE4DF9 /* PoiViewController.xib in Resources */,
+				961B17C013F01FAB00EE4DF9 /* StopViewCell.xib in Resources */,
+				961B17C113F01FAB00EE4DF9 /* accessible.png in Resources */,
+				961B17C213F01FAB00EE4DF9 /* accessible@2x.png in Resources */,
+				961B17C313F01FAB00EE4DF9 /* bike.png in Resources */,
+				961B17C413F01FAB00EE4DF9 /* bike@2x.png in Resources */,
+				961B17C513F01FAB00EE4DF9 /* metro.png in Resources */,
+				961B17C613F01FAB00EE4DF9 /* metro@2x.png in Resources */,
+				961B17C713F01FAB00EE4DF9 /* pos.png in Resources */,
+				961B17C813F01FAB00EE4DF9 /* pos@2x.png in Resources */,
+				961B17C913F01FAB00EE4DF9 /* TripViewCell.xib in Resources */,
+				961B17CA13F01FAB00EE4DF9 /* about_en.html in Resources */,
+				961B17CB13F01FAB00EE4DF9 /* panic_en.html in Resources */,
+				961B180F13F01FAB00EE4DF9 /* StopMapViewController.xib in Resources */,
+				961B181013F01FAB00EE4DF9 /* reload.png in Resources */,
+				961B181113F01FAB00EE4DF9 /* reload@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -999,6 +1228,52 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		961B181313F01FAB00EE4DF9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				961B181413F01FAB00EE4DF9 /* main.m in Sources */,
+				961B181513F01FAB00EE4DF9 /* SimpleDeathStarAppDelegate.m in Sources */,
+				961B181613F01FAB00EE4DF9 /* Transit.xcdatamodeld in Sources */,
+				961B181713F01FAB00EE4DF9 /* HomeScreenViewController.m in Sources */,
+				961B181813F01FAB00EE4DF9 /* LineViewController.m in Sources */,
+				961B181913F01FAB00EE4DF9 /* Line.m in Sources */,
+				961B181A13F01FAB00EE4DF9 /* Stop.m in Sources */,
+				961B181B13F01FAB00EE4DF9 /* StopViewController.m in Sources */,
+				961B181C13F01FAB00EE4DF9 /* _Line.m in Sources */,
+				961B181D13F01FAB00EE4DF9 /* _Stop.m in Sources */,
+				961B181E13F01FAB00EE4DF9 /* _City.m in Sources */,
+				961B181F13F01FAB00EE4DF9 /* _Direction.m in Sources */,
+				961B182013F01FAB00EE4DF9 /* _StopTime.m in Sources */,
+				961B182113F01FAB00EE4DF9 /* City.m in Sources */,
+				961B182213F01FAB00EE4DF9 /* Direction.m in Sources */,
+				961B182313F01FAB00EE4DF9 /* StopTime.m in Sources */,
+				961B182413F01FAB00EE4DF9 /* StopTimeViewController.m in Sources */,
+				961B182513F01FAB00EE4DF9 /* CityViewController.m in Sources */,
+				961B182613F01FAB00EE4DF9 /* AboutViewController.m in Sources */,
+				961B182713F01FAB00EE4DF9 /* GridScrollView.m in Sources */,
+				961B182813F01FAB00EE4DF9 /* GridCell.m in Sources */,
+				961B182913F01FAB00EE4DF9 /* TripViewController.m in Sources */,
+				961B182A13F01FAB00EE4DF9 /* UserData.xcdatamodel in Sources */,
+				961B182B13F01FAB00EE4DF9 /* UserData.xcdatamodeld in Sources */,
+				961B182C13F01FAB00EE4DF9 /* _Favorite.m in Sources */,
+				961B182D13F01FAB00EE4DF9 /* Favorite.m in Sources */,
+				961B182E13F01FAB00EE4DF9 /* FavTimeViewCell.m in Sources */,
+				961B182F13F01FAB00EE4DF9 /* FavoritesViewController.m in Sources */,
+				961B183013F01FAB00EE4DF9 /* PoiViewController.m in Sources */,
+				961B183113F01FAB00EE4DF9 /* ClosePoi.m in Sources */,
+				961B183213F01FAB00EE4DF9 /* Poi.m in Sources */,
+				961B183313F01FAB00EE4DF9 /* _ClosePoi.m in Sources */,
+				961B183413F01FAB00EE4DF9 /* _Poi.m in Sources */,
+				961B183513F01FAB00EE4DF9 /* StopViewCell.m in Sources */,
+				961B183613F01FAB00EE4DF9 /* TripViewCell.m in Sources */,
+				961B183713F01FAB00EE4DF9 /* StopMapViewController.m in Sources */,
+				961B183813F01FAB00EE4DF9 /* StopAnnotation.m in Sources */,
+				961B183913F01FAB00EE4DF9 /* StopAlias.m in Sources */,
+				961B183A13F01FAB00EE4DF9 /* _StopAlias.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
@@ -1034,6 +1309,7 @@
 				GCC_PREFIX_HEADER = SimpleDeathStar_Prefix.pch;
 				INFOPLIST_FILE = "SimpleDeathStar-Info.plist";
 				PRODUCT_NAME = SimpleDeathStar;
+				TargetIcon = simpledeathstar_appicon.png;
 			};
 			name = Debug;
 		};
@@ -1050,36 +1326,7 @@
 			};
 			name = Release;
 		};
-		967879641398B18C00C85D41 /* Debug STLO */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				GCC_C_LANGUAGE_STANDARD = c99;
-				GCC_OPTIMIZATION_LEVEL = s;
-				GCC_PREPROCESSOR_DEFINITIONS = "VERSION_STLO=1";
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_CHECK_SWITCH_STATEMENTS = YES;
-				GCC_WARN_INITIALIZER_NOT_FULLY_BRACKETED = YES;
-				GCC_WARN_MISSING_PARENTHESES = YES;
-				GCC_WARN_SHADOW = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = NO;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = "MaptimizeKit//**";
-				OTHER_LDFLAGS = (
-					"-all_load",
-					"-ObjC",
-				);
-				PREBINDING = NO;
-				PRODUCT_NAME = SimpleDeathStar;
-				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
-				SDKROOT = iphoneos;
-			};
-			name = "Debug STLO";
-		};
-		967879651398B18C00C85D41 /* Debug STLO */ = {
+		961B184913F01FAB00EE4DF9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -1088,54 +1335,24 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = SimpleDeathStar_Prefix.pch;
-				INFOPLIST_FILE = "SimpleDeathStar-Info.plist";
-				PRODUCT_NAME = SimpleDeathStar;
-			};
-			name = "Debug STLO";
-		};
-		967879681398B19E00C85D41 /* Release STLO */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				GCC_C_LANGUAGE_STANDARD = c99;
-				GCC_OPTIMIZATION_LEVEL = s;
 				GCC_PREPROCESSOR_DEFINITIONS = "VERSION_STLO=1";
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_CHECK_SWITCH_STATEMENTS = YES;
-				GCC_WARN_INITIALIZER_NOT_FULLY_BRACKETED = YES;
-				GCC_WARN_MISSING_PARENTHESES = YES;
-				GCC_WARN_SHADOW = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = NO;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = "MaptimizeKit//**";
-				IPHONEOS_DEPLOYMENT_TARGET = 3.2;
-				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				OTHER_LDFLAGS = (
-					"-all_load",
-					"-ObjC",
-				);
-				PREBINDING = NO;
+				INFOPLIST_FILE = "SimpleDeathStarStLo-Info.plist";
 				PRODUCT_NAME = SimpleDeathStar;
-				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
-				SDKROOT = iphoneos;
 			};
-			name = "Release STLO";
+			name = Debug;
 		};
-		967879691398B19E00C85D41 /* Release STLO */ = {
+		961B184A13F01FAB00EE4DF9 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = SimpleDeathStar_Prefix.pch;
-				INFOPLIST_FILE = "SimpleDeathStar-Info.plist";
+				INFOPLIST_FILE = "SimpleDeathStar-Info copy.plist";
 				PRODUCT_NAME = SimpleDeathStar;
 				VALIDATE_PRODUCT = YES;
 			};
-			name = "Release STLO";
+			name = Release;
 		};
 		C01FCF4F08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -1202,9 +1419,16 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1D6058940D05DD3E006BFB54 /* Debug */,
-				967879651398B18C00C85D41 /* Debug STLO */,
 				1D6058950D05DD3E006BFB54 /* Release */,
-				967879691398B19E00C85D41 /* Release STLO */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		961B184813F01FAB00EE4DF9 /* Build configuration list for PBXNativeTarget "SimpleDeathStarStLo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				961B184913F01FAB00EE4DF9 /* Debug */,
+				961B184A13F01FAB00EE4DF9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1213,9 +1437,7 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C01FCF4F08A954540054247B /* Debug */,
-				967879641398B18C00C85D41 /* Debug STLO */,
 				C01FCF5008A954540054247B /* Release */,
-				967879681398B19E00C85D41 /* Release STLO */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -193,8 +193,12 @@
     if (transitPersistentStoreCoordinator_ != nil) {
         return transitPersistentStoreCoordinator_;
     }
-    
-    NSURL *storeURL = [NSURL fileURLWithPath: [[NSBundle mainBundle] pathForResource:@"Transit" ofType:@"sqlite"]];
+#ifndef VERSION_STLO
+    NSString* dbName = @"Transit";
+#else
+    NSString* dbName = @"TransitStLo";
+#endif
+    NSURL *storeURL = [NSURL fileURLWithPath: [[NSBundle mainBundle] pathForResource:dbName ofType:@"sqlite"]];
     
     NSError *error = nil;
     transitPersistentStoreCoordinator_ = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self transitManagedObjectModel]];
