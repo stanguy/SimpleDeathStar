@@ -128,6 +128,10 @@
 		961B184613F01FAB00EE4DF9 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96B16A0E12FB660E00B71302 /* MapKit.framework */; };
 		961B184713F01FAB00EE4DF9 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9688A0EA1301E6DA00B218A2 /* CoreLocation.framework */; };
 		961B187913F02CA700EE4DF9 /* TransitStLo.sqlite in Copy TransitDB */ = {isa = PBXBuildFile; fileRef = 961B187713F02C9D00EE4DF9 /* TransitStLo.sqlite */; };
+		961B189413F0406500EE4DF9 /* arrow_circle_right.png in Resources */ = {isa = PBXBuildFile; fileRef = 961B189213F0406500EE4DF9 /* arrow_circle_right.png */; };
+		961B189513F0406500EE4DF9 /* arrow_circle_right@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 961B189313F0406500EE4DF9 /* arrow_circle_right@2x.png */; };
+		961B189613F0406500EE4DF9 /* arrow_circle_right.png in Resources */ = {isa = PBXBuildFile; fileRef = 961B189213F0406500EE4DF9 /* arrow_circle_right.png */; };
+		961B189713F0406500EE4DF9 /* arrow_circle_right@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 961B189313F0406500EE4DF9 /* arrow_circle_right@2x.png */; };
 		962B81A812C6C122007EA09F /* LineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 962B81A612C6C122007EA09F /* LineViewController.m */; };
 		962B81A912C6C122007EA09F /* LineViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 962B81A712C6C122007EA09F /* LineViewController.xib */; };
 		962B81AD12C6C153007EA09F /* Line.m in Sources */ = {isa = PBXBuildFile; fileRef = 962B81AC12C6C153007EA09F /* Line.m */; };
@@ -340,6 +344,8 @@
 		961B184B13F01FAB00EE4DF9 /* SimpleDeathStar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimpleDeathStar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		961B184D13F01FAC00EE4DF9 /* SimpleDeathStarStLo-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SimpleDeathStarStLo-Info.plist"; sourceTree = "<group>"; };
 		961B187713F02C9D00EE4DF9 /* TransitStLo.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = TransitStLo.sqlite; sourceTree = "<group>"; };
+		961B189213F0406500EE4DF9 /* arrow_circle_right.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow_circle_right.png; sourceTree = "<group>"; };
+		961B189313F0406500EE4DF9 /* arrow_circle_right@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arrow_circle_right@2x.png"; sourceTree = "<group>"; };
 		962B81A512C6C122007EA09F /* LineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LineViewController.h; sourceTree = "<group>"; };
 		962B81A612C6C122007EA09F /* LineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LineViewController.m; sourceTree = "<group>"; };
 		962B81A712C6C122007EA09F /* LineViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = LineViewController.xib; path = Classes/LineViewController.xib; sourceTree = "<group>"; };
@@ -740,6 +746,8 @@
 		9677B45D12F220D20016A460 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				961B189213F0406500EE4DF9 /* arrow_circle_right.png */,
+				961B189313F0406500EE4DF9 /* arrow_circle_right@2x.png */,
 				9688A5C91307002D00B218A2 /* reload.png */,
 				9688A5CA1307002D00B218A2 /* reload@2x.png */,
 				9677B36F12F206630016A460 /* arrow_W.png */,
@@ -1111,6 +1119,8 @@
 				96B1696312FB587600B71302 /* StopMapViewController.xib in Resources */,
 				9688A5CB1307002D00B218A2 /* reload.png in Resources */,
 				9688A5CC1307002D00B218A2 /* reload@2x.png in Resources */,
+				961B189613F0406500EE4DF9 /* arrow_circle_right.png in Resources */,
+				961B189713F0406500EE4DF9 /* arrow_circle_right@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1176,6 +1186,8 @@
 				961B180F13F01FAB00EE4DF9 /* StopMapViewController.xib in Resources */,
 				961B181013F01FAB00EE4DF9 /* reload.png in Resources */,
 				961B181113F01FAB00EE4DF9 /* reload@2x.png in Resources */,
+				961B189413F0406500EE4DF9 /* arrow_circle_right.png in Resources */,
+				961B189513F0406500EE4DF9 /* arrow_circle_right@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
