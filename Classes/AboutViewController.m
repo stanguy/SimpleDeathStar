@@ -41,10 +41,15 @@
         currentLocale = [knownLanguages objectAtIndex:0];
     }
     //NSLog( @"%@", currentLocale );
+#ifdef VERSION_STLO
+    NSString* about_format = @"about_stlo_%@";
+#else
+    NSString* about_format = @"about_%@";
+#endif
     switch ( self.type ) {
         case ABOUT_ABOUT:
             self.navigationItem.title = NSLocalizedString( @"À propos", @"" );
-            fileUrl = [NSURL fileURLWithPath: [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"about_%@", currentLocale] ofType:@"html"]];
+            fileUrl = [NSURL fileURLWithPath: [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:about_format, currentLocale] ofType:@"html"]];
             break;
         case ABOUT_PANIC:
             self.navigationItem.title = NSLocalizedString( @"Pas de panique", @"" );
