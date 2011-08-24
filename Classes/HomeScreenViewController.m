@@ -345,7 +345,7 @@ float hexToFloatColor( char c1, char c2 ) {
         
         // Configure the cell...
         Line* line = [lines objectAtIndex:indexPath.row];
-        cell.textLabel.text = line.short_name;
+        cell.textLabel.text = [NSString stringWithFormat:NSLocalizedString( @"Ligne %@", @"" ), line.short_name];
         cell.detailTextLabel.text = line.long_name;
         const char* bgcolor = [line.bgcolor UTF8String];
         if ( bgcolor != NULL ) {        
