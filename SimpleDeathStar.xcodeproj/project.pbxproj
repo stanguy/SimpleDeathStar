@@ -25,7 +25,6 @@
 		961B179813F01FAB00EE4DF9 /* StopTimeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9631C13012C77D660002EB78 /* StopTimeViewController.xib */; };
 		961B179A13F01FAB00EE4DF9 /* CityViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96539CBB12C94C68002FDF29 /* CityViewController.xib */; };
 		961B179B13F01FAB00EE4DF9 /* AboutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96A71C6C12CA87AC00FB1516 /* AboutViewController.xib */; };
-		961B179C13F01FAB00EE4DF9 /* about_fr.html in Resources */ = {isa = PBXBuildFile; fileRef = 96A71C8C12CA89B700FB1516 /* about_fr.html */; };
 		961B179D13F01FAB00EE4DF9 /* GridCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96DBF44712CBD5890096C240 /* GridCell.xib */; };
 		961B179E13F01FAB00EE4DF9 /* simpledeathstar_appicon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96DBF54512CBFAFD0096C240 /* simpledeathstar_appicon@2x.png */; };
 		961B179F13F01FAB00EE4DF9 /* simpledeathstar_appicon.png in Resources */ = {isa = PBXBuildFile; fileRef = 96DBF54612CBFAFD0096C240 /* simpledeathstar_appicon.png */; };
@@ -71,7 +70,6 @@
 		961B17C713F01FAB00EE4DF9 /* pos.png in Resources */ = {isa = PBXBuildFile; fileRef = 9677B44B12F21EDC0016A460 /* pos.png */; };
 		961B17C813F01FAB00EE4DF9 /* pos@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9677B44C12F21EDC0016A460 /* pos@2x.png */; };
 		961B17C913F01FAB00EE4DF9 /* TripViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96B9FF9D12F232DD008C9F2E /* TripViewCell.xib */; };
-		961B17CA13F01FAB00EE4DF9 /* about_en.html in Resources */ = {isa = PBXBuildFile; fileRef = B8C431B912F2F3AA00DEC9B2 /* about_en.html */; };
 		961B17CB13F01FAB00EE4DF9 /* panic_en.html in Resources */ = {isa = PBXBuildFile; fileRef = B8C431BB12F2F3B400DEC9B2 /* panic_en.html */; };
 		961B180F13F01FAB00EE4DF9 /* StopMapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96B1696112FB587600B71302 /* StopMapViewController.xib */; };
 		961B181013F01FAB00EE4DF9 /* reload.png in Resources */ = {isa = PBXBuildFile; fileRef = 9688A5C91307002D00B218A2 /* reload.png */; };
@@ -292,6 +290,8 @@
 		96DBF54812CBFAFD0096C240 /* simpledeathstar_appicon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96DBF54512CBFAFD0096C240 /* simpledeathstar_appicon@2x.png */; };
 		96DBF54912CBFAFD0096C240 /* simpledeathstar_appicon.png in Resources */ = {isa = PBXBuildFile; fileRef = 96DBF54612CBFAFD0096C240 /* simpledeathstar_appicon.png */; };
 		96DBF54A12CBFAFD0096C240 /* simpledeathstar_appstore.png in Resources */ = {isa = PBXBuildFile; fileRef = 96DBF54712CBFAFD0096C240 /* simpledeathstar_appstore.png */; };
+		96E2A9ED140519600062C61A /* about_stlo_en.html in Resources */ = {isa = PBXBuildFile; fileRef = 96E2A9EB140519600062C61A /* about_stlo_en.html */; };
+		96E2A9EE140519600062C61A /* about_stlo_fr.html in Resources */ = {isa = PBXBuildFile; fileRef = 96E2A9EC140519600062C61A /* about_stlo_fr.html */; };
 		96F5F365135CD3E60058C487 /* StopAlias.m in Sources */ = {isa = PBXBuildFile; fileRef = 96F5F364135CD3E60058C487 /* StopAlias.m */; };
 		96F5F368135CD3F40058C487 /* _StopAlias.m in Sources */ = {isa = PBXBuildFile; fileRef = 96F5F367135CD3F40058C487 /* _StopAlias.m */; };
 		B816AFCE12F049290006C6ED /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B816AFCC12F049290006C6ED /* Localizable.strings */; };
@@ -536,6 +536,8 @@
 		96DBF54512CBFAFD0096C240 /* simpledeathstar_appicon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "simpledeathstar_appicon@2x.png"; sourceTree = "<group>"; };
 		96DBF54612CBFAFD0096C240 /* simpledeathstar_appicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = simpledeathstar_appicon.png; sourceTree = "<group>"; };
 		96DBF54712CBFAFD0096C240 /* simpledeathstar_appstore.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = simpledeathstar_appstore.png; sourceTree = "<group>"; };
+		96E2A9EB140519600062C61A /* about_stlo_en.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = about_stlo_en.html; sourceTree = "<group>"; };
+		96E2A9EC140519600062C61A /* about_stlo_fr.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = about_stlo_fr.html; sourceTree = "<group>"; };
 		96F5F363135CD3E60058C487 /* StopAlias.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StopAlias.h; sourceTree = "<group>"; };
 		96F5F364135CD3E60058C487 /* StopAlias.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StopAlias.m; sourceTree = "<group>"; };
 		96F5F366135CD3F40058C487 /* _StopAlias.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _StopAlias.h; sourceTree = "<group>"; };
@@ -896,6 +898,8 @@
 		B8C431B612F2F37300DEC9B2 /* help */ = {
 			isa = PBXGroup;
 			children = (
+				96E2A9EB140519600062C61A /* about_stlo_en.html */,
+				96E2A9EC140519600062C61A /* about_stlo_fr.html */,
 				96A71C8C12CA89B700FB1516 /* about_fr.html */,
 				961A76E712D52FB20085BCAA /* panic_fr.html */,
 				B8C431B912F2F3AA00DEC9B2 /* about_en.html */,
@@ -1135,7 +1139,6 @@
 				961B179813F01FAB00EE4DF9 /* StopTimeViewController.xib in Resources */,
 				961B179A13F01FAB00EE4DF9 /* CityViewController.xib in Resources */,
 				961B179B13F01FAB00EE4DF9 /* AboutViewController.xib in Resources */,
-				961B179C13F01FAB00EE4DF9 /* about_fr.html in Resources */,
 				961B179D13F01FAB00EE4DF9 /* GridCell.xib in Resources */,
 				961B179E13F01FAB00EE4DF9 /* simpledeathstar_appicon@2x.png in Resources */,
 				961B179F13F01FAB00EE4DF9 /* simpledeathstar_appicon.png in Resources */,
@@ -1181,13 +1184,14 @@
 				961B17C713F01FAB00EE4DF9 /* pos.png in Resources */,
 				961B17C813F01FAB00EE4DF9 /* pos@2x.png in Resources */,
 				961B17C913F01FAB00EE4DF9 /* TripViewCell.xib in Resources */,
-				961B17CA13F01FAB00EE4DF9 /* about_en.html in Resources */,
 				961B17CB13F01FAB00EE4DF9 /* panic_en.html in Resources */,
 				961B180F13F01FAB00EE4DF9 /* StopMapViewController.xib in Resources */,
 				961B181013F01FAB00EE4DF9 /* reload.png in Resources */,
 				961B181113F01FAB00EE4DF9 /* reload@2x.png in Resources */,
 				961B189413F0406500EE4DF9 /* arrow_circle_right.png in Resources */,
 				961B189513F0406500EE4DF9 /* arrow_circle_right@2x.png in Resources */,
+				96E2A9ED140519600062C61A /* about_stlo_en.html in Resources */,
+				96E2A9EE140519600062C61A /* about_stlo_fr.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
