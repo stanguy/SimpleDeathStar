@@ -23,6 +23,7 @@
 + (NSArray*) findFromPosition:(CLLocationCoordinate2D)center 
             withLatitudeDelta:(CLLocationDegrees)latitudeDelta 
             andLongitudeDelta:(CLLocationDegrees)longitudeDelta;
++ (Stop*)findFirstByOldSrcId:(NSString*)old_src_id;
 
 - (int) allCounts;
 

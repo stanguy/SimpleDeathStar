@@ -259,4 +259,78 @@ int kMaxTopFavorites = 5;
     [NSFetchedResultsController deleteCacheWithName:@"allFavorites"];
 }
 
++ (void)updateAll {
+    SimpleDeathStarAppDelegate* delegate = (SimpleDeathStarAppDelegate*)[[UIApplication sharedApplication] delegate];
+    NSManagedObjectContext* context = [delegate  userManagedObjectContext];
+    
+    // Create the fetch request for the entity.
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    // Edit the entity name as appropriate.
+    NSEntityDescription *entity = [Favorite entityInManagedObjectContext:context];
+    [fetchRequest setEntity:entity];
+    
+    // Edit the sort key as appropriate.
+    NSSortDescriptor *sortDescriptor1 = [[NSSortDescriptor alloc] initWithKey:@"line_short_name" ascending:YES];
+    NSSortDescriptor *sortDescriptor2 = [[NSSortDescriptor alloc] initWithKey:@"stop_name" ascending:YES];
+    NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptor1, sortDescriptor2, nil];
+    
+    [fetchRequest setSortDescriptors:sortDescriptors];    
+    
+    [NSFetchedResultsController deleteCacheWithName:@"allFavorites"];
+    // Edit the section name key path and cache name if appropriate.
+    // nil for section name key path means "no sections".
+    NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:context sectionNameKeyPath:nil cacheName:@"allFavorites"];
+    
+    [fetchRequest release];
+    [sortDescriptor1 release];
+    [sortDescriptor2 release];
+    [sortDescriptors release];
+    
+    NSError *error = nil;
+    if (![aFetchedResultsController performFetch:&error]) {
+        [aFetchedResultsController release];
+        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+        return;
+    }
+    
+    NSArray* favs = [aFetchedResultsController fetchedObjects];
+    for( Favorite* fav in favs ) {
+        if ( fav.line_id != nil ) {
+            // 2 numerals as id, pre-september style
+            if ( [fav.line_id length] < 4 ) {
+                NSString* old_id = fav.line_id;
+                if ( [old_id isEqualToString:@"89"] ) {
+                    fav.line_id = @"0089";
+                    goto skip_line_handling; // no dinosaurs around ?
+                }
+                Line* new_line = [Line findByOldId:old_id];
+                if ( new_line != nil ) {
+                    NSLog( @"update line_id : %@ -> %@", fav.line_id, new_line.src_id );
+                    fav.line_id = new_line.src_id;
+                } else {
+                    NSLog( @"unable to find line_id %@", fav.line_id ); 
+                    // TODO: suicide
+                }
+            }
+        }
+    skip_line_handling:
+        if ( ! [[fav.stop_id stringByTrimmingCharactersInSet:[NSCharacterSet decimalDigitCharacterSet]] isEqualToString:@""] ) {
+            Stop* new_stop = [Stop findFirstByOldSrcId:fav.stop_id];
+            if ( new_stop != nil ) {
+                NSLog( @"update stop_id : %@ -> %@", fav.stop_id, new_stop.src_id );
+                fav.stop_id = new_stop.src_id;
+            } else {
+                StopAlias* new_alias = [StopAlias findByOldSrcId:fav.stop_id];
+                if ( new_alias != nil ) {
+                    fav.stop_id = new_alias.stop.src_id;
+                } else {
+                    NSLog( @"unable to find stop_id %@", fav.stop_id ); 
+                }
+            }
+        }
+    }
+    
+    [aFetchedResultsController release];    
+}
+
 @end

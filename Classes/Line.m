@@ -118,4 +118,46 @@
     return line;
 }
 
++ (Line*) findByOldId:(NSString*)src_id {
+    if ( nil == src_id ) {
+        return nil;
+    }
+    SimpleDeathStarAppDelegate* delegate = (SimpleDeathStarAppDelegate*)[[UIApplication sharedApplication] delegate];
+    NSManagedObjectContext* context = [delegate  transitManagedObjectContext];
+    
+    // Create the fetch request for the entity.
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    // Edit the entity name as appropriate.
+    NSEntityDescription *entity = [Line entityInManagedObjectContext:context];
+    [fetchRequest setEntity:entity];
+    NSPredicate* predicate = [NSPredicate predicateWithFormat:@"old_src_id = %@", src_id ];
+    [fetchRequest setPredicate:predicate];
+    [fetchRequest setFetchLimit:1];
+    
+    NSSortDescriptor *sortDescriptor1 = [[NSSortDescriptor alloc] initWithKey:@"old_src_id" ascending:YES];
+    NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptor1, nil];
+    
+    [fetchRequest setSortDescriptors:sortDescriptors];
+    
+    NSString* cacheName = [NSString stringWithFormat:@"old_line_src_%@", src_id];
+    
+    NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:context sectionNameKeyPath:nil cacheName:cacheName];
+    
+    [fetchRequest release];
+    [sortDescriptor1 release];
+    [sortDescriptors release];
+    
+    NSError *error = nil;
+    if (![aFetchedResultsController performFetch:&error]) {
+        [aFetchedResultsController release];
+        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+        return nil;
+    }
+    Line* line = nil;
+    if( [[aFetchedResultsController fetchedObjects] count] > 0 )
+        line = [[aFetchedResultsController fetchedObjects] objectAtIndex:0];
+    [aFetchedResultsController release];
+    return line;
+}
+
 @end

@@ -8,6 +8,7 @@
 
 #import "SimpleDeathStarAppDelegate.h"
 #import "HomeScreenViewController.h"
+#import "Favorite.h"
 
 
 @implementation SimpleDeathStarAppDelegate
@@ -44,6 +45,8 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {    
     
     // Override point for customization after application launch.
+    NSLog( @"didFinishLaunching" );
+    [Favorite updateAll];
     [window addSubview:navigationController.view];
     [window makeKeyAndVisible];
     return YES;

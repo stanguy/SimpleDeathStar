@@ -15,6 +15,8 @@
 + (int)count;
 +(NSFetchedResultsController*) findAll;
 + (NSArray*)topFavorites;
++ (void)updateAll;
+
 - (NSString*) title;
 
 - (BOOL) couldUpdateReferences;
