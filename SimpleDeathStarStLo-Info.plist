@@ -5,23 +5,23 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>fr_FR</string>
 	<key>CFBundleDisplayName</key>
-	<string>Bus en poche Rennes</string>
+	<string>Bus en poche</string>
 	<key>CFBundleExecutable</key>
 	<string>${EXECUTABLE_NAME}</string>
 	<key>CFBundleIconFile</key>
-	<string>simpledeathstar_appicon.png</string>
+	<string>simpledeathstar_stlo_appicon.png</string>
 	<key>CFBundleIdentifier</key>
-	<string>net.dthg.simpledeathstar</string>
+	<string>net.dthg.simpledeathstar-stlo</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
-	<string>BusDeRennesEnPoche</string>
+	<string>BusDeStLoEnPoche</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>1.4.6</string>
+	<string>1.4.3</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSMainNibFile</key>

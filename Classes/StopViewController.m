@@ -64,10 +64,24 @@
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    StopViewCell *cell = [StopViewCell cellFromNibNamed:@"StopViewCell"];
-
     // Configure the cell...
     Stop* stop = [[self stops] objectAtIndex:indexPath.row];
+#ifdef VERSION_STLO
+    static NSString *CellIdentifier = @"Cell";
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier] autorelease];
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    }
+        
+    cell.textLabel.text = stop.name;
+    if ( line_ == nil ) {
+        cell.detailTextLabel.text = [NSString stringWithFormat:NSLocalizedString( @"%@ ligne%@", @"" ), stop.line_count, [stop.line_count intValue] > 1 ? @"s" : @""];
+    }    
+#else
+    StopViewCell *cell = [StopViewCell cellFromNibNamed:@"StopViewCell"];
+
     cell.name.text = stop.name;
     cell.metro.hidden = [stop.metro_count intValue] == 0;
     cell.bike.hidden = [stop.bike_count intValue] == 0;
@@ -78,7 +92,7 @@
     } else {
         cell.accessible.hidden = ! ( [stop.accessible intValue] && [line_.accessible intValue] );
     }
-    
+#endif
     return cell;
 }
 
