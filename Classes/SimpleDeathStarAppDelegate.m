@@ -47,8 +47,9 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {    
     
     // Override point for customization after application launch.
-    NSLog( @"didFinishLaunching" );
+#ifndef VERSION_STLO
     [Favorite updateAll];
+#endif
     [window addSubview:navigationController.view];
     [window makeKeyAndVisible];
     return YES;
