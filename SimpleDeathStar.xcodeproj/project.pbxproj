@@ -150,6 +150,8 @@
 		9631C3CD12C7A0300002EB78 /* Transit.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 9631C3CC12C7A0300002EB78 /* Transit.sqlite */; };
 		96539CBC12C94C68002FDF29 /* CityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96539CBA12C94C68002FDF29 /* CityViewController.m */; };
 		96539CBD12C94C68002FDF29 /* CityViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96539CBB12C94C68002FDF29 /* CityViewController.xib */; };
+		96725C33142FBD3E001C19AD /* simpledeathstar_stlo_appicon.png in Resources */ = {isa = PBXBuildFile; fileRef = 96725C31142FBD3E001C19AD /* simpledeathstar_stlo_appicon.png */; };
+		96725C34142FBD3E001C19AD /* simpledeathstar_stlo_appicon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96725C32142FBD3E001C19AD /* simpledeathstar_stlo_appicon@2x.png */; };
 		9677AF6E12F0C95A0016A460 /* FavoritesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9677AF6C12F0C95A0016A460 /* FavoritesViewController.m */; };
 		9677AF6F12F0C95A0016A460 /* FavoritesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9677AF6D12F0C95A0016A460 /* FavoritesViewController.xib */; };
 		9677B37112F206630016A460 /* arrow_E.png in Resources */ = {isa = PBXBuildFile; fileRef = 9677B36112F206620016A460 /* arrow_E.png */; };
@@ -379,6 +381,8 @@
 		96539CB912C94C68002FDF29 /* CityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CityViewController.h; sourceTree = "<group>"; };
 		96539CBA12C94C68002FDF29 /* CityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CityViewController.m; sourceTree = "<group>"; };
 		96539CBB12C94C68002FDF29 /* CityViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = CityViewController.xib; path = Classes/CityViewController.xib; sourceTree = "<group>"; };
+		96725C31142FBD3E001C19AD /* simpledeathstar_stlo_appicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = simpledeathstar_stlo_appicon.png; sourceTree = "<group>"; };
+		96725C32142FBD3E001C19AD /* simpledeathstar_stlo_appicon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "simpledeathstar_stlo_appicon@2x.png"; sourceTree = "<group>"; };
 		9677AF6B12F0C95A0016A460 /* FavoritesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FavoritesViewController.h; sourceTree = "<group>"; };
 		9677AF6C12F0C95A0016A460 /* FavoritesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FavoritesViewController.m; sourceTree = "<group>"; };
 		9677AF6D12F0C95A0016A460 /* FavoritesViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = FavoritesViewController.xib; path = Classes/FavoritesViewController.xib; sourceTree = "<group>"; };
@@ -672,6 +676,8 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				96725C31142FBD3E001C19AD /* simpledeathstar_stlo_appicon.png */,
+				96725C32142FBD3E001C19AD /* simpledeathstar_stlo_appicon@2x.png */,
 				961B187713F02C9D00EE4DF9 /* TransitStLo.sqlite */,
 				96A71C6C12CA87AC00FB1516 /* AboutViewController.xib */,
 				96539CBB12C94C68002FDF29 /* CityViewController.xib */,
@@ -1192,6 +1198,8 @@
 				961B189513F0406500EE4DF9 /* arrow_circle_right@2x.png in Resources */,
 				96E2A9ED140519600062C61A /* about_stlo_en.html in Resources */,
 				96E2A9EE140519600062C61A /* about_stlo_fr.html in Resources */,
+				96725C33142FBD3E001C19AD /* simpledeathstar_stlo_appicon.png in Resources */,
+				96725C34142FBD3E001C19AD /* simpledeathstar_stlo_appicon@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1361,11 +1369,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = SimpleDeathStar_Prefix.pch;
-				INFOPLIST_FILE = "SimpleDeathStar-Info copy.plist";
+				INFOPLIST_FILE = "SimpleDeathStarStLo-Info.plist";
 				PRODUCT_NAME = SimpleDeathStar;
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
