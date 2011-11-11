@@ -325,10 +325,36 @@ float hexToFloatColor( char c1, char c2 ) {
 }
     
 
+#ifdef VERSION_STLO
+    
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if ( indexPath.section == kLineSection ) {
+        Line* line = [lines objectAtIndex:indexPath.row];
+        const char* bgcolor = [line.bgcolor UTF8String];
+        if ( bgcolor != NULL ) {        
+            UIColor* color = [UIColor colorWithRed:hexToFloatColor(bgcolor[1], bgcolor[2]) 
+                                             green:hexToFloatColor(bgcolor[3], bgcolor[4]) 
+                                              blue:hexToFloatColor(bgcolor[5], bgcolor[6]) 
+                                             alpha:1];
+            cell.textLabel.backgroundColor = color;
+        }
+        const char* fgcolor = [line.fgcolor UTF8String];
+        if ( fgcolor != NULL ) {        
+            UIColor* color = [UIColor colorWithRed:hexToFloatColor(fgcolor[1], fgcolor[2]) 
+                                             green:hexToFloatColor(fgcolor[3], fgcolor[4]) 
+                                              blue:hexToFloatColor(fgcolor[5], fgcolor[6]) 
+                                             alpha:1];
+            cell.textLabel.textColor = color;
+        }
+    }
+}
+#endif
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     static NSString *CellIdentifier = @"Cell";
+    static NSString *CellIdentifierLine = @"Line";
     static NSString *CellIdentifierFavNone = @"CellFavNone";
     static NSString *CellIdentifierFav = @"CellFav";
     static NSString *CellIdentifierFavMore = @"CellFavMore";
@@ -337,24 +363,23 @@ float hexToFloatColor( char c1, char c2 ) {
     UITableViewCell *cell = nil;
 #ifdef VERSION_STLO
     if ( indexPath.section == kLineSection ) {
-        cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        Line* line = [lines objectAtIndex:indexPath.row];
+        NSString* cellIdentifierParticularLine = [CellIdentifierLine stringByAppendingString:line.src_id];
+        cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifierParticularLine ];
         if (cell == nil) {
-            cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
+            cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifierParticularLine] autorelease];
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         }
-        
+
         // Configure the cell...
-        Line* line = [lines objectAtIndex:indexPath.row];
         cell.textLabel.text = [NSString stringWithFormat:NSLocalizedString( @"Ligne %@", @"" ), line.short_name];
         cell.detailTextLabel.text = line.long_name;
-        const char* bgcolor = [line.bgcolor UTF8String];
-        if ( bgcolor != NULL ) {        
-            UIColor* color = [UIColor colorWithRed:hexToFloatColor(bgcolor[0], bgcolor[1]) 
-                                             green:hexToFloatColor(bgcolor[2], bgcolor[3]) 
-                                              blue:hexToFloatColor(bgcolor[4], bgcolor[5]) 
-                                             alpha:1];
-            cell.textLabel.backgroundColor = color;
-        }
+
+        cell.textLabel.textAlignment = UITextAlignmentCenter;
+        [cell.textLabel sizeToFit];
+        CGRect frame = cell.frame;
+        frame.size.width += 120;
+        cell.frame = frame;
         
     } else if ( indexPath.section != kFavoritesSection ) {
 #else
