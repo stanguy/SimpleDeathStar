@@ -15,7 +15,7 @@
 #import "Stop.h"
 #import "ADViewComposer.h"
 
-#define MAP_KEY @"1c4548799006881c1748573593282eb8798be5d4"
+#define MAP_KEY @"768198d2ae5cae0d414a3c40bad1a80d2336fc36"
 
 @implementation StopMapViewController
 
