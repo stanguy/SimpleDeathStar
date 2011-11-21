@@ -195,6 +195,7 @@
 		96A71C6D12CA87AC00FB1516 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96A71C6B12CA87AC00FB1516 /* AboutViewController.m */; };
 		96A71C6E12CA87AC00FB1516 /* AboutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96A71C6C12CA87AC00FB1516 /* AboutViewController.xib */; };
 		96A71C8D12CA89B700FB1516 /* about_fr.html in Resources */ = {isa = PBXBuildFile; fileRef = 96A71C8C12CA89B700FB1516 /* about_fr.html */; };
+		96AE4C48147AD96100488607 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 96AE4C47147AD96100488607 /* Settings.bundle */; };
 		96B1693312FB4E2600B71302 /* libMaptimizeKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 96B1692712FB4D8700B71302 /* libMaptimizeKit.a */; };
 		96B1696212FB587600B71302 /* StopMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96B1696012FB587600B71302 /* StopMapViewController.m */; };
 		96B1696312FB587600B71302 /* StopMapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96B1696112FB587600B71302 /* StopMapViewController.xib */; };
@@ -457,6 +458,7 @@
 		96A71C6B12CA87AC00FB1516 /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
 		96A71C6C12CA87AC00FB1516 /* AboutViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = AboutViewController.xib; path = Classes/AboutViewController.xib; sourceTree = "<group>"; };
 		96A71C8C12CA89B700FB1516 /* about_fr.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = about_fr.html; sourceTree = "<group>"; };
+		96AE4C47147AD96100488607 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		96B1691F12FB4D8700B71302 /* MaptimizeKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = MaptimizeKit.xcodeproj; path = MaptimizeKit/MaptimizeKit.xcodeproj; sourceTree = "<group>"; };
 		96B1695F12FB587600B71302 /* StopMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StopMapViewController.h; sourceTree = "<group>"; };
 		96B1696012FB587600B71302 /* StopMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StopMapViewController.m; sourceTree = "<group>"; };
@@ -772,6 +774,7 @@
 				96B9FF9D12F232DD008C9F2E /* TripViewCell.xib */,
 				961A779012D664340085BCAA /* TripViewController.xib */,
 				96B1E19512DB851D008007BD /* UserData.xcdatamodeld */,
+				96AE4C47147AD96100488607 /* Settings.bundle */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -1248,6 +1251,7 @@
 				96B93A9F147819F900206618 /* 3.png in Resources */,
 				96B93AA0147819F900206618 /* 2.png in Resources */,
 				96B93AA1147819F900206618 /* 1.png in Resources */,
+				96AE4C48147AD96100488607 /* Settings.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

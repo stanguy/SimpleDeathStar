@@ -55,17 +55,49 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {    
     
     // Override point for customization after application launch.
-    
-    
+    NSDictionary* appDefaults = [NSDictionary 
+                                 dictionaryWithObjects:[NSArray arrayWithObjects:[NSNumber numberWithBool:YES], nil] 
+                                 forKeys:[NSArray arrayWithObjects:@"enable_ads", nil]];
+    [[NSUserDefaults standardUserDefaults] registerDefaults:appDefaults];
+    [[NSUserDefaults standardUserDefaults] setObject:[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"] forKey:@"version"];
 #ifndef VERSION_STLO
     [Favorite updateAll];
 #endif
-    HomeScreenViewController* homeController = [[HomeScreenViewController alloc] init];
+    HomeScreenViewController* homeController = [[[HomeScreenViewController alloc] init] autorelease];
     navigationController = [[UINavigationController alloc] initWithRootViewController:homeController];
-    adView_ = [ADViewComposer BuildAdView:homeController.view];
+    
+    if ( [[NSUserDefaults standardUserDefaults] boolForKey:@"enable_ads"] ) {
+        [ADViewComposer EnableAds:YES];
+        adView_ = [[ADViewComposer BuildAdView:homeController.view] retain];
+    } else {
+        [ADViewComposer EnableAds:NO];
+    }
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(preferencesChanged:) name:NSUserDefaultsDidChangeNotification object:nil];
+
     [window addSubview:navigationController.view];
     [window makeKeyAndVisible];
     return YES;
+}
+
+- (void)preferencesChanged:(NSNotification*) notification {
+    NSLog( @"notice preferences change" );
+    NSUserDefaults* defaults = (NSUserDefaults*) [notification object];
+    if ( [defaults boolForKey:@"enable_ads"] ) {
+        if ( adView_ == nil ) {
+            [ADViewComposer EnableAds:YES];
+            HomeScreenViewController* homeController = [navigationController.viewControllers objectAtIndex:0];
+            adView_ = [[ADViewComposer BuildAdView:homeController.view] retain];
+        }
+    } else {
+        if ( adView_ != nil ) {
+            [ADViewComposer EnableAds:NO];
+            ADViewComposer* currentComposer = [adView_ delegate];
+            [currentComposer toDisappear];
+            [adView_ release];
+            adView_ = nil;
+        }
+    }
+    
 }
 
 

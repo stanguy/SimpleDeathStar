@@ -11,6 +11,9 @@
 
 @implementation ADViewComposer
 
+
+bool SHOW_ADS = YES;
+
 - (id)initWithView:(UIView*)otherView
 {
     self = [super init];
@@ -30,6 +33,7 @@
 
 - (void)changeDisplay:(BOOL)show andAnimate:(BOOL)animated {
     NSLog( @"show: %d, display: %d", show, displayed );
+    if ( show && ! SHOW_ADS ) { return ; }
     if ( show == displayed ) { return; }
     ADBannerView *adBanner = [SimpleDeathStarAppDelegate adView];
     if ( show && adBanner.delegate != self ) {
@@ -122,6 +126,9 @@
     return ad;
 }
 
++ (void)EnableAds:(BOOL)flag{
+    SHOW_ADS = flag;
+}
 #pragma mark - Ad banner delegate
 
 - (void)bannerViewDidLoadAd:(ADBannerView *)banner {

@@ -20,5 +20,6 @@
 - (void)changeDisplay:(BOOL)show andAnimate:(BOOL)animated;
 
 + (id)BuildAdView:(UIView*)baseView;
++ (void)EnableAds:(BOOL)flag;
 
 @end
