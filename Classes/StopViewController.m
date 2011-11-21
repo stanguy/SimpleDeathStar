@@ -44,8 +44,6 @@
     }
 }
 
-
-
 #pragma mark -
 #pragma mark Table view data source
 
@@ -102,6 +100,7 @@
 #pragma mark Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [super tableView:tableView didSelectRowAtIndexPath:indexPath];
     // Navigation logic may go here. Create and push another view controller.
     StopTimeViewController* stoptimeView = [[StopTimeViewController alloc] initWithNibName:@"StopTimeViewController" bundle:nil];
     stoptimeView.line = self.line;

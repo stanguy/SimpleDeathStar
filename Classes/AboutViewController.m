@@ -7,6 +7,7 @@
 //
 
 #import "AboutViewController.h"
+#import "ADViewComposer.h"
 
 
 @implementation AboutViewController
@@ -62,6 +63,9 @@
     NSString* filePath = [fileUrl path];
     NSString* content = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:nil];
     [webView loadHTMLString:content baseURL:[fileUrl baseURL]];
+//    [webView removeFromSuperview];
+    viewComposer_ = [[ADViewComposer alloc] initWithView:webView];
+//    [viewComposer changeDisplay:YES];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -75,6 +79,7 @@
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
+    [viewComposer_ toDisappear];
 }
 
 

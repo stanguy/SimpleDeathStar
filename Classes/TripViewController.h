@@ -7,9 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TableWithAdViewController.h"
 @class StopTime;
 
-@interface TripViewController : UITableViewController {
+@interface TripViewController : TableWithAdViewController {
 @private
     StopTime* stopTime_;
     NSFetchedResultsController* fetchedResultsController_;

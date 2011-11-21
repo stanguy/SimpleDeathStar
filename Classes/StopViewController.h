@@ -7,12 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TableWithAdViewController.h"
 
 @class Line;
 @class City;
 
 
-@interface StopViewController : UITableViewController <UISearchBarDelegate> {
+@interface StopViewController : TableWithAdViewController <UISearchBarDelegate> {
 @private
     Line* line_;
     City* city_;

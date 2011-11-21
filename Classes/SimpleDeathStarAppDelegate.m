@@ -10,11 +10,14 @@
 #import "HomeScreenViewController.h"
 #import "Favorite.h"
 
+#import <iAd/ADBannerView.h>
+#import "ADViewComposer.h"
 
 @implementation SimpleDeathStarAppDelegate
 
 @synthesize window;
 @synthesize navigationController;
+@synthesize adView = adView_;
 
 
 #pragma mark -
@@ -44,12 +47,22 @@
                                                      repeats: YES];
 }    
 
++ (id)adView {
+    SimpleDeathStarAppDelegate* appDelegate = (SimpleDeathStarAppDelegate*)[[UIApplication sharedApplication] delegate];
+    return appDelegate.adView;
+}
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {    
     
     // Override point for customization after application launch.
+    
+    
 #ifndef VERSION_STLO
     [Favorite updateAll];
 #endif
+    HomeScreenViewController* homeController = [[HomeScreenViewController alloc] init];
+    navigationController = [[UINavigationController alloc] initWithRootViewController:homeController];
+    adView_ = [ADViewComposer BuildAdView:homeController.view];
     [window addSubview:navigationController.view];
     [window makeKeyAndVisible];
     return YES;

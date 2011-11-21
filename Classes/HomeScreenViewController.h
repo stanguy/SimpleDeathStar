@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TableWithAdViewController.h"
 
-@interface HomeScreenViewController : UITableViewController <CLLocationManagerDelegate,UIAlertViewDelegate> {
+@interface HomeScreenViewController : TableWithAdViewController <CLLocationManagerDelegate,UIAlertViewDelegate> {
 @private
     NSMutableArray* menus_;
     NSArray* topFavorites_;
@@ -25,7 +26,7 @@
 }
 
 #ifndef VERSION_STLO
-@property (nonatomic, retain) CLLocationManager *locationManager;  
+@property (nonatomic, retain) CLLocationManager *locationManager;
 
 - (void)locationManager:(CLLocationManager *)manager
     didUpdateToLocation:(CLLocation *)newLocation

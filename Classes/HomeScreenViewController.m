@@ -94,7 +94,21 @@ NSString* positioningErrorDetails[] = {
 };
 
 #pragma mark -
+
+-(id)init {
+    self = [super init];
+    if ( self ) {
+        
+    }
+    return self;
+}
+
+- (UITableViewStyle)defaultStyle {
+    return UITableViewStyleGrouped;
+}
+
 #pragma mark View lifecycle
+
 
 -(void)refreshViewOfFavorites {
     [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:kFavoritesSection] withRowAnimation:YES];
@@ -182,11 +196,6 @@ NSString* positioningErrorDetails[] = {
 #endif
 }
 
-
-
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-}
 
 
 #pragma mark -
@@ -470,6 +479,7 @@ float hexToFloatColor( char c1, char c2 ) {
 #pragma mark Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [super tableView:tableView didSelectRowAtIndexPath:indexPath];
     // Navigation logic may go here. Create and push another view controller.
     switch ( indexPath.section) {
         case kLineSection:
@@ -482,7 +492,7 @@ float hexToFloatColor( char c1, char c2 ) {
         }
 #else
             if ( LineMenuValues[indexPath.row] > 0 ) {
-                LineViewController* lineViewController = [[LineViewController alloc] initWithNibName:@"LineViewController" bundle:nil];
+                LineViewController* lineViewController = [[LineViewController alloc] init];
                 lineViewController.usageType = LineMenuValues[indexPath.row];
                 [self.navigationController pushViewController:lineViewController animated:YES];
                 [lineViewController release];
@@ -544,7 +554,6 @@ float hexToFloatColor( char c1, char c2 ) {
         }
             break;
     }
-
 }
 
 - (void)didSelectFavorite:(NSIndexPath *)indexPath {

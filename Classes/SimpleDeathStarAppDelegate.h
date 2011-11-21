@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
 
+
 @interface SimpleDeathStarAppDelegate : NSObject <UIApplicationDelegate> {
     
     UIWindow *window;
@@ -25,6 +26,7 @@
     NSPersistentStoreCoordinator *userPersistentStoreCoordinator_;
     
     NSTimer* timerFavorites;
+    id adView_;
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
@@ -38,9 +40,13 @@
 
 @property (nonatomic, retain, readonly) NSPersistentStoreCoordinator *transitPersistentStoreCoordinator;
 @property (nonatomic, retain, readonly) NSPersistentStoreCoordinator *userPersistentStoreCoordinator;
+@property (nonatomic, retain) id adView;
 
 - (NSString *)applicationDocumentsDirectory;
 - (void)saveContext;
+
++ (id)adView;
+
 
 @end
 

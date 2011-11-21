@@ -7,12 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GridScrollView.h"
 
 @class Line;
 @class Stop;
-@class GridScrollView;
-@protocol GridScrollViewDataSource;
-@protocol GridScrollViewListener;
+@class ADViewComposer;
 
 @interface StopTimeViewController : UIViewController <NSFetchedResultsControllerDelegate,UIScrollViewDelegate, GridScrollViewDataSource, GridScrollViewListener, UIActionSheetDelegate> {
 @private
@@ -22,6 +21,7 @@
     int timeShift_;
     NSDate* viewedDate_;
     
+    UIView* containerView;
     GridScrollView *scrollView;	// holds floating grid
     UITableView *tableView;
     UIAlertView* alertNoResult_;
@@ -32,13 +32,14 @@
 
     UIView* dateChangeView_;
     UIDatePicker* datePicker_;
-    
+    ADViewComposer* viewComposer;
 
 }
 @property (nonatomic, retain) NSFetchedResultsController *fetchedResultsController;
 @property (nonatomic, retain) UIAlertView* alertNoResult;
 @property (nonatomic, retain) Line* line;
 @property (nonatomic, retain) Stop* stop;
+@property (nonatomic, retain) IBOutlet UIView* containerView;
 @property (nonatomic, retain) IBOutlet GridScrollView *scrollView;	// holds floating grid
 @property (nonatomic, retain) IBOutlet UITableView *tableView;
 @property (nonatomic, retain) IBOutlet UIToolbar* toolbar;

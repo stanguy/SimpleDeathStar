@@ -17,6 +17,7 @@
 
 #import "SimpleDeathStarAppDelegate.h"
 #import "PoiViewController.h"
+#import "ADViewComposer.h"
 
 
 const int kRowHeight = 50;
@@ -26,7 +27,7 @@ const int kCellWidth = 46;
 @implementation StopTimeViewController
 
 @synthesize fetchedResultsController = fetchedResultsController_, line = line_, stop = stop_;
-@synthesize tableView, scrollView, toolbar = toolbar_, favButton = favButton_, poiButton = poiButton_, alertNoResult = alertNoResult_, datePicker = datePicker_;
+@synthesize tableView, scrollView, containerView,toolbar = toolbar_, favButton = favButton_, poiButton = poiButton_, alertNoResult = alertNoResult_, datePicker = datePicker_;
 
 #pragma mark -
 #pragma mark View lifecycle
@@ -62,7 +63,14 @@ const int kCellWidth = 46;
     if ( [self.stop allCounts] > 0 ) {
         [poiButton_ setEnabled:YES];
     }
+    viewComposer = [[ADViewComposer alloc] initWithView:self.containerView];
 }
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [viewComposer changeDisplay:YES];
+}
+
 
 - (UIAlertView*)alertNoResult {
     if ( alertNoResult_ != nil ) {
@@ -262,6 +270,7 @@ const int kCellWidth = 46;
     if ( col >= [section numberOfObjects] ) {
         return;
     }
+    [viewComposer toDisappear];
     StopTime* st = [[section objects] objectAtIndex:col];
     TripViewController* tripViewController = [[TripViewController alloc] initWithNibName:@"TripViewController" bundle:nil];
     tripViewController.stopTime = st;
@@ -339,8 +348,7 @@ const int kCellWidth = 46;
 }
 
 - (void)reloadData {
-    [self.fetchedResultsController release];
-    fetchedResultsController_ = nil;
+    self.fetchedResultsController = nil;
     [self.tableView reloadData];
     [self.scrollView reloadData];
     [self createFloatingGrid];

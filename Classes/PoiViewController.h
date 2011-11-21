@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TableWithAdViewController.h"
 
 @class Stop;
 
-@interface PoiViewController : UITableViewController {
+@interface PoiViewController : TableWithAdViewController {
     
     @private
     Stop* stop_;

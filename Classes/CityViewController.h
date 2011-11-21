@@ -7,9 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TableWithAdViewController.h"
 
 
-@interface CityViewController : UITableViewController {
+@interface CityViewController : TableWithAdViewController {
 @private
     NSFetchedResultsController *fetchedResultsController_;
 

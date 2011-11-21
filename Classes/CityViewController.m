@@ -69,6 +69,7 @@
 #pragma mark Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [super tableView:tableView didSelectRowAtIndexPath:indexPath];
     // Navigation logic may go here. Create and push another view controller.
     StopViewController* stopViewController = [[StopViewController alloc] initWithNibName:@"StopViewController" bundle:nil];
     stopViewController.city = [self.fetchedResultsController objectAtIndexPath:indexPath];;

@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
+@class ADViewComposer;
 
 enum AboutType {
     ABOUT_ABOUT,
@@ -18,6 +19,7 @@ enum AboutType {
 @private
     IBOutlet UIWebView* webView;
     int type_;
+    ADViewComposer* viewComposer_;
 }
 
 @property (nonatomic) int type;

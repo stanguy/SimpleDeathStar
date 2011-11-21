@@ -13,6 +13,7 @@
 #import "StopAnnotation.h"
 #import "StopTimeViewController.h"
 #import "Stop.h"
+#import "ADViewComposer.h"
 
 #define MAP_KEY @"1c4548799006881c1748573593282eb8798be5d4"
 
@@ -25,6 +26,7 @@
 #pragma mark common map stuff
 
 - (void)navigateToAnnotation:(MKAnnotationView*)view {
+    [viewComposer toDisappear];
     StopAnnotation* annotation = view.annotation;
     Stop* stop = annotation.stop;
     StopTimeViewController* stoptimeView = [[StopTimeViewController alloc] initWithNibName:@"StopTimeViewController" bundle:nil];
@@ -169,6 +171,11 @@
     }
     self.mapView.region = region;
     self.mapView.showsUserLocation = YES;
+    viewComposer = [[ADViewComposer alloc] initWithView:self.mapView];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [viewComposer changeDisplay:YES andAnimate:animated];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -203,7 +210,7 @@
 
 - (void)dealloc {
     self.mapView.delegate = nil;
-    [self.mapView release];
+    [mapView_ release];
     [mapController_ release];
     [super dealloc];
 }

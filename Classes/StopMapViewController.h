@@ -10,6 +10,7 @@
 
 @class MKMapView;
 @class XMMapController;
+@class ADViewComposer;
 
 #import "MaptimizeKit.h"
 
@@ -21,6 +22,7 @@
     int errorCount;
     NSMutableArray* stopAnnotations;
     UILabel* infoLabel_;
+    ADViewComposer* viewComposer;
 }
 
 @property (nonatomic, retain) IBOutlet MKMapView *mapView;

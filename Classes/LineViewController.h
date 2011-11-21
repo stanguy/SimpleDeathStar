@@ -7,9 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TableWithAdViewController.h"
 
 
-@interface LineViewController : UITableViewController  <NSFetchedResultsControllerDelegate> {
+@interface LineViewController : TableWithAdViewController  <NSFetchedResultsControllerDelegate> {
 @private
     NSFetchedResultsController *fetchedResultsController_;
 

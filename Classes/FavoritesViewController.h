@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TableWithAdViewController.h"
 
-
-@interface FavoritesViewController : UITableViewController <UIAlertViewDelegate> {
+@interface FavoritesViewController : TableWithAdViewController <UIAlertViewDelegate> {
 @private
     NSFetchedResultsController* fetchedResultsController_;
 }
