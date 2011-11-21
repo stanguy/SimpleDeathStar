@@ -32,12 +32,12 @@ bool SHOW_ADS = YES;
 }
 
 - (void)changeDisplay:(BOOL)show andAnimate:(BOOL)animated {
-    NSLog( @"show: %d, display: %d", show, displayed );
+    //NSLog( @"show: %d, display: %d", show, displayed );
     if ( show && ! SHOW_ADS ) { return ; }
     if ( show == displayed ) { return; }
     ADBannerView *adBanner = [SimpleDeathStarAppDelegate adView];
     if ( show && adBanner.delegate != self ) {
-        NSLog( @"\t\tGetting the delegate" );
+        //NSLog( @"\t\tGetting the delegate" );
         adBanner.delegate = self;
         if( adBanner.superview != nil && adBanner.superview != composedView.superview ) {
             [adBanner removeFromSuperview];
@@ -73,6 +73,7 @@ bool SHOW_ADS = YES;
     } else if ( displayed ) {
         targetFrame = CGRectOffset( adBanner.frame, 0, bannerHeight );
     }
+#if 0
     NSLog( @"\tfirst Origin: %fx%f", adBanner.frame.origin.x, adBanner.frame.origin.y );
     NSLog( @"\tbannerOrigin: %fx%f", bannerOrigin.x, bannerOrigin.y );
     NSLog( @"\tsuperview: %@", composedView.superview );
@@ -80,6 +81,7 @@ bool SHOW_ADS = YES;
     NSLog( @"\ttarget frame: %fx%f / %fx%f" , targetFrame.origin.x, targetFrame.origin.y, targetFrame.size.width, targetFrame.size.height );
     NSLog( @"\tad superview: %@", adBanner.superview );
     NSLog( @"\tdelegate: %@", adBanner.delegate );
+#endif
     // And finally animate the changes, running layout for the content view if required.
     [UIView animateWithDuration:animationDuration
                      animations:^{
@@ -132,12 +134,12 @@ bool SHOW_ADS = YES;
 #pragma mark - Ad banner delegate
 
 - (void)bannerViewDidLoadAd:(ADBannerView *)banner {
-    NSLog( @"Loaded banner view" );
+    //NSLog( @"Loaded banner view" );
     [self changeDisplay:YES];
 }
 
 - (void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error {
-    NSLog( @"Error on bannerview" );
+    //NSLog( @"Error on bannerview" );
     if ( displayed ) {
         [self changeDisplay:NO andAnimate:YES];
     }

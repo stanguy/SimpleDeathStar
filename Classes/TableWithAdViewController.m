@@ -24,10 +24,8 @@
 -(void)loadView {
     [super loadView];
     //    self.view = [[UIView alloc] initWithFrame:self.parentViewController.view.bounds];
-    NSLog( @"my bundle class: %@", NSStringFromClass([self class]) ); 
     NSArray* arr = [[NSBundle mainBundle] loadNibNamed:NSStringFromClass([self class]) owner:self options:nil];
     self.view = [arr objectAtIndex:0];
-    NSLog( @"view: %@", self.view );
     tableView_ = [[UITableView alloc] initWithFrame:self.view.frame style:[self defaultStyle]];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
