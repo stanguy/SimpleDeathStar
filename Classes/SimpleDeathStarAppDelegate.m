@@ -16,6 +16,7 @@
 @implementation SimpleDeathStarAppDelegate
 
 @synthesize window;
+@synthesize useArrival;
 @synthesize navigationController;
 @synthesize adView = adView_;
 
@@ -55,18 +56,26 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {    
     
     // Override point for customization after application launch.
-    NSDictionary* appDefaults = [NSDictionary 
-                                 dictionaryWithObjects:[NSArray arrayWithObjects:[NSNumber numberWithBool:YES], nil] 
-                                 forKeys:[NSArray arrayWithObjects:@"enable_ads", nil]];
+    NSDictionary* appDefaults = 
+    [NSDictionary dictionaryWithObjectsAndKeys:
+         [NSNumber numberWithBool:YES], @"enable_ads",
+         @"arrival",                    @"reftime", nil ];
     [[NSUserDefaults standardUserDefaults] registerDefaults:appDefaults];
     [[NSUserDefaults standardUserDefaults] setObject:[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"] forKey:@"version"];
 #ifndef VERSION_STLO
     [Favorite updateAll];
 #endif
+    
+    NSString* reftime = [[NSUserDefaults standardUserDefaults] stringForKey:@"reftime"];
+    useArrival = YES;
+    if ( [reftime isEqualToString:@"departure"]) {
+        useArrival = NO;
+    }
     HomeScreenViewController* homeController = [[[HomeScreenViewController alloc] init] autorelease];
     navigationController = [[UINavigationController alloc] initWithRootViewController:homeController];
     
     if ( [[NSUserDefaults standardUserDefaults] boolForKey:@"enable_ads"] ) {
+        NSLog( @"ads enabled" );
         [ADViewComposer EnableAds:YES];
         adView_ = [[ADViewComposer BuildAdView:homeController.view] retain];
     } else {
@@ -97,7 +106,12 @@
             adView_ = nil;
         }
     }
-    
+    NSString* reftime = [[NSUserDefaults standardUserDefaults] stringForKey:@"reftime"];
+    if ( [reftime isEqualToString:@"arrival"]) {
+        useArrival = YES;
+    } else {
+        useArrival = NO;
+    }
 }
 
 

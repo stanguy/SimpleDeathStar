@@ -24,6 +24,26 @@
 			<key>Type</key>
 			<string>PSToggleSwitchSpecifier</string>
 		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSMultiValueSpecifier</string>
+			<key>Titles</key>
+			<array>
+				<string>Départ</string>
+				<string>Arrivée</string>
+			</array>
+			<key>Values</key>
+			<array>
+				<string>departure</string>
+				<string>arrival</string>
+			</array>
+			<key>Title</key>
+			<string>Temps de référence</string>
+			<key>Key</key>
+			<string>reftime</string>
+			<key>DefaultValue</key>
+			<string>arrival</string>
+		</dict>
 	</array>
 	<key>StringsTable</key>
 	<string>Root</string>

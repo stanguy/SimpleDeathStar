@@ -48,6 +48,14 @@ int HOLIDAYS[] = {
     0 // sentinel
 };
 
+NSString* sortKey(){
+    if ( ((SimpleDeathStarAppDelegate*)[[UIApplication sharedApplication] delegate]).useArrival ) {
+        return @"arrival";
+    } else {
+        return @"departure";
+    }
+}
+
 NSDateComponents* dateToComponents( NSDate* date ) {
     NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
     [gregorian setTimeZone:[NSTimeZone timeZoneWithName:@"Europe/Paris"]];
@@ -60,6 +68,16 @@ NSDateComponents* dateToComponents( NSDate* date ) {
 
 NSPredicate* buildPredicate( Line* line, Stop* stop, int min_arrival, int max_arrival, NSDateComponents* dateComponents ) {
     NSPredicate* predicate = nil;
+    
+    NSString* lineStrPred, *stopStrPred;
+    if ( ((SimpleDeathStarAppDelegate*)[[UIApplication sharedApplication] delegate]).useArrival ) {
+        lineStrPred = @"line = %@ AND stop = %@ AND arrival > %@ AND arrival < %@ AND calendar & %@ > 0";
+        stopStrPred = @"stop = %@ AND arrival > %@ AND arrival < %@ AND calendar & %@ > 0";
+    } else {
+        lineStrPred = @"line = %@ AND stop = %@ AND departure > %@ AND departure < %@ AND calendar & %@ > 0";
+        stopStrPred = @"stop = %@ AND departure > %@ AND departure < %@ AND calendar & %@ > 0";
+    }
+
     
     // weekday 1 = Sunday for Gregorian calendar
     int weekday = [dateComponents weekday] - 2;
@@ -91,10 +109,10 @@ NSPredicate* buildPredicate( Line* line, Stop* stop, int min_arrival, int max_ar
 
     if (line != nil) {
         predicate = [NSPredicate predicateWithFormat:
-                     @"line = %@ AND stop = %@ AND arrival > %@ AND arrival < %@ AND calendar & %@ > 0", line, stop, [NSNumber numberWithInt:min_arrival], [NSNumber numberWithInt:max_arrival], [NSNumber numberWithInt:calendar] ];
+                     lineStrPred, line, stop, [NSNumber numberWithInt:min_arrival], [NSNumber numberWithInt:max_arrival], [NSNumber numberWithInt:calendar] ];
     } else {
         predicate = [NSPredicate predicateWithFormat:
-                     @"stop = %@ AND arrival > %@ AND arrival < %@ AND calendar & %@ > 0", stop, [NSNumber numberWithInt:min_arrival], [NSNumber numberWithInt:max_arrival], [NSNumber numberWithInt:calendar] ];
+                     stopStrPred, stop, [NSNumber numberWithInt:min_arrival], [NSNumber numberWithInt:max_arrival], [NSNumber numberWithInt:calendar] ];
     }
     return predicate;
 }
@@ -136,7 +154,7 @@ NSPredicate* buildPredicate( Line* line, Stop* stop, int min_arrival, int max_ar
     // Edit the sort key as appropriate.
     NSSortDescriptor *sortDescriptor1;
     sortDescriptor1 = [[NSSortDescriptor alloc] initWithKey:@"direction" ascending:YES];
-    NSSortDescriptor *sortDescriptor2 = [[NSSortDescriptor alloc] initWithKey:@"arrival" ascending:YES];
+    NSSortDescriptor *sortDescriptor2 = [[NSSortDescriptor alloc] initWithKey:sortKey() ascending:YES];
     NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptor1, sortDescriptor2, nil];
     
     [fetchRequest setSortDescriptors:sortDescriptors];
@@ -175,9 +193,15 @@ NSPredicate* buildPredicate( Line* line, Stop* stop, int min_arrival, int max_ar
     [fetchRequest setEntity:entity];
     [fetchRequest setRelationshipKeyPathsForPrefetching:[NSArray arrayWithObject:@"stop"]];
     
-    NSPredicate* predicate = [NSPredicate predicateWithFormat:
+    NSPredicate* predicate;
+    if ( ((SimpleDeathStarAppDelegate*)[[UIApplication sharedApplication] delegate]).useArrival ) {
+        predicate =[NSPredicate predicateWithFormat:
                  @"trip_id = %@ AND arrival >= %@", stopTime.trip_id, stopTime.arrival];
-
+    } else {
+        predicate =[NSPredicate predicateWithFormat:
+                    @"trip_id = %@ AND departure >= %@", stopTime.trip_id, stopTime.departure];
+        
+    }
     
     
     [fetchRequest setPredicate:predicate];
@@ -253,7 +277,7 @@ NSPredicate* buildPredicate( Line* line, Stop* stop, int min_arrival, int max_ar
     
     // Edit the sort key as appropriate.
     NSSortDescriptor *sortDescriptor1;
-    sortDescriptor1 = [[NSSortDescriptor alloc] initWithKey:@"arrival" ascending:YES];
+    sortDescriptor1 = [[NSSortDescriptor alloc] initWithKey:sortKey() ascending:YES];
     NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptor1, nil];
     
     [fetchRequest setSortDescriptors:sortDescriptors];
@@ -276,7 +300,13 @@ NSPredicate* buildPredicate( Line* line, Stop* stop, int min_arrival, int max_ar
 }
 
 - (NSString*) formatArrival{
-    int arrival = [self.arrival intValue] / 60;
+    NSNumber* dbvalue;
+    if ( ((SimpleDeathStarAppDelegate*)[[UIApplication sharedApplication] delegate]).useArrival ) {
+        dbvalue = self.arrival;
+    } else {
+        dbvalue = self.departure;
+    }
+    int arrival = [dbvalue intValue] / 60;
     int mins = arrival % 60;
     int hours = ( arrival / 60 ) % 24;
     return [NSString stringWithFormat:@"%02d:%02d", hours, mins]; 

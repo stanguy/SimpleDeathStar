@@ -14,7 +14,8 @@
     
     UIWindow *window;
     UINavigationController *navigationController;
-    
+    BOOL useArrival;
+
 @private
     NSManagedObjectContext *transitManagedObjectContext_;
     NSManagedObjectModel *transitManagedObjectModel_;
@@ -41,6 +42,7 @@
 @property (nonatomic, retain, readonly) NSPersistentStoreCoordinator *transitPersistentStoreCoordinator;
 @property (nonatomic, retain, readonly) NSPersistentStoreCoordinator *userPersistentStoreCoordinator;
 @property (nonatomic, retain) id adView;
+@property BOOL useArrival;
 
 - (NSString *)applicationDocumentsDirectory;
 - (void)saveContext;
