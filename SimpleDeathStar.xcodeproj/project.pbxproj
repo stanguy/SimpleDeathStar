@@ -14,6 +14,10 @@
 		288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765A40DF7441C002DB57D /* CoreGraphics.framework */; };
 		28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD733E0D9D9553002E5188 /* MainWindow.xib */; };
 		28D801B40F44B63D00FB423F /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28D801B30F44B63D00FB423F /* CoreData.framework */; };
+		960F07BE14901279003ED2A6 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 960F07BC14901279003ED2A6 /* Default.png */; };
+		960F07BF14901279003ED2A6 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 960F07BC14901279003ED2A6 /* Default.png */; };
+		960F07C014901279003ED2A6 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 960F07BD14901279003ED2A6 /* Default@2x.png */; };
+		960F07C114901279003ED2A6 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 960F07BD14901279003ED2A6 /* Default@2x.png */; };
 		961A717112D26CB90085BCAA /* NoResult.xib in Resources */ = {isa = PBXBuildFile; fileRef = 961A717012D26CB90085BCAA /* NoResult.xib */; };
 		961A76E812D52FB20085BCAA /* panic_fr.html in Resources */ = {isa = PBXBuildFile; fileRef = 961A76E712D52FB20085BCAA /* panic_fr.html */; };
 		961A779112D664340085BCAA /* TripViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 961A778F12D664340085BCAA /* TripViewController.m */; };
@@ -360,6 +364,8 @@
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* SimpleDeathStar_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleDeathStar_Prefix.pch; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* SimpleDeathStar-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "SimpleDeathStar-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
+		960F07BC14901279003ED2A6 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		960F07BD14901279003ED2A6 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		961A717012D26CB90085BCAA /* NoResult.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoResult.xib; sourceTree = "<group>"; };
 		961A76E712D52FB20085BCAA /* panic_fr.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = panic_fr.html; sourceTree = "<group>"; };
 		961A778E12D664340085BCAA /* TripViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TripViewController.h; sourceTree = "<group>"; };
@@ -741,6 +747,8 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				960F07BC14901279003ED2A6 /* Default.png */,
+				960F07BD14901279003ED2A6 /* Default@2x.png */,
 				96A71C6C12CA87AC00FB1516 /* AboutViewController.xib */,
 				96FB3ADE1434D3A800830FC3 /* arrow_circle_right.png */,
 				96FB3ADF1434D3A800830FC3 /* arrow_circle_right@2x.png */,
@@ -1252,6 +1260,8 @@
 				96B93AA0147819F900206618 /* 2.png in Resources */,
 				96B93AA1147819F900206618 /* 1.png in Resources */,
 				96AE4C48147AD96100488607 /* Settings.bundle in Resources */,
+				960F07BE14901279003ED2A6 /* Default.png in Resources */,
+				960F07C014901279003ED2A6 /* Default@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1325,6 +1335,8 @@
 				96FB3AE31434D3A800830FC3 /* arrow_circle_right@2x.png in Resources */,
 				96FB3AFD1434D41200830FC3 /* simpledeathstar_stlo_appicon.png in Resources */,
 				96FB3AFE1434D41200830FC3 /* simpledeathstar_stlo_appicon@2x.png in Resources */,
+				960F07BF14901279003ED2A6 /* Default.png in Resources */,
+				960F07C114901279003ED2A6 /* Default@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
