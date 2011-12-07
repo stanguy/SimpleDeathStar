@@ -109,6 +109,11 @@ bool SHOW_ADS = YES;
 }
 
 + (id)BuildAdView:(UIView*)baseView{
+    static NSString * const kADBannerViewClass = @"ADBannerView";
+    if (NSClassFromString(kADBannerViewClass) == nil) {
+        NSLog( @"iAd not supported" );
+        return nil;
+    }
     ADBannerView* ad = [[ADBannerView alloc] initWithFrame:CGRectZero];
     
 	// Set the autoresizing mask so that the banner is pinned to the bottom
@@ -121,7 +126,7 @@ bool SHOW_ADS = YES;
     [NSSet setWithObjects:ADBannerContentSizeIdentifierPortrait, ADBannerContentSizeIdentifierLandscape, nil] : 
     [NSSet setWithObjects:ADBannerContentSizeIdentifier320x50, ADBannerContentSizeIdentifier480x32, nil];
     CGRect frame;
-    frame.size = [ADBannerView sizeFromBannerContentSizeIdentifier:ADBannerContentSizeIdentifierPortrait];
+    frame.size = [ADBannerView sizeFromBannerContentSizeIdentifier:( (&ADBannerContentSizeIdentifierPortrait != nil) ? ADBannerContentSizeIdentifierPortrait : ADBannerContentSizeIdentifier320x50 ) ];
     frame.origin = CGPointMake(CGRectGetMinX( baseView.frame ), CGRectGetMaxY(baseView.frame));
     // Now set the banner view's frame
 	ad.frame = frame;
