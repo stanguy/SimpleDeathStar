@@ -17,15 +17,13 @@
     int cachedFavoritesCount;
 #ifdef VERSION_STLO
     NSArray* lines;
-#else
+#endif
     CLLocationManager *locationManager_;
     int closeStopsCount;
     NSArray* closeStops;
     int positioningError;
-#endif
 }
 
-#ifndef VERSION_STLO
 @property (nonatomic, retain) CLLocationManager *locationManager;
 
 - (void)locationManager:(CLLocationManager *)manager
@@ -36,6 +34,5 @@
        didFailWithError:(NSError *)error;
 - (void) locationRetry;
 - (void) locationStop;
-#endif
 - (void)didSelectFavorite:(NSIndexPath *)indexPath;
 @end

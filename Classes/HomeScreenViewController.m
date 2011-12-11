@@ -28,18 +28,19 @@
 #ifdef VERSION_STLO
 NSString* menuTitles[] = {
     @"Favoris",
+    @"Arrêts proches",
     @"Lignes",
     @"Recherche par arrêt",
     @""
 };
 enum eSections {
     kFavoritesSection,
+    kCloseStopsSection,
     kLineSection,
     kStopsSection,
     kAboutSection
 };
 #else
-@synthesize locationManager = locationManager_;
 
 NSString* menuTitles[] = {
     @"Recherche par lignes",
@@ -65,6 +66,7 @@ int LineMenuValues[] = {
     -1
 };
 #endif
+@synthesize locationManager = locationManager_;
 
 int AboutMenuValues[] = {
     ABOUT_ABOUT,
@@ -134,13 +136,10 @@ NSString* positioningErrorDetails[] = {
 }
 
 -(void)refreshViewOfCloseStops {
-#ifndef VERSION_STLO
     [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:kCloseStopsSection] withRowAnimation:YES];
-#endif
 }
 
 - (void)reloadCloseStops:(CLLocation*)location{
-#ifndef VERSION_STLO
     NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
     NSArray* stops = [Stop findAroundLocation:location];
     [closeStops release];
@@ -148,7 +147,6 @@ NSString* positioningErrorDetails[] = {
     closeStopsCount = [stops count];
     [self performSelectorOnMainThread:@selector(refreshViewOfCloseStops) withObject:nil waitUntilDone:NO];
     [pool release];
-#endif
 }
 
 - (void)callFavLoading {
@@ -166,7 +164,8 @@ NSString* positioningErrorDetails[] = {
     lines = [[[Line findAll:LINE_USAGE_ALL] fetchedObjects] retain]; 
     [menus_ addObject:[NSArray arrayWithObjects:nil]];
     [menus_ addObject:[NSArray arrayWithObjects:nil]];
-    [menus_ addObject:[NSArray arrayWithObjects: NSLocalizedString( @"Tous les arrêts", @"" ), nil]];
+    [menus_ addObject:[NSArray arrayWithObjects:nil]];
+    [menus_ addObject:[NSArray arrayWithObjects: NSLocalizedString( @"Tous les arrêts", @"" ), NSLocalizedString( @"Sur la carte", @""), nil]];
     [menus_ addObject:[NSArray arrayWithObjects: NSLocalizedString( @"À propos", @"" ), NSLocalizedString( @"Pas de panique", @"" ), nil ]];
 #else
     NSArray* linesMenu = [NSArray arrayWithObjects:NSLocalizedString( @"Lignes urbaines", @""), 
@@ -188,12 +187,10 @@ NSString* positioningErrorDetails[] = {
     
     
 //    NSLog( @"Loading location manager" );
-#ifndef VERSION_STLO
     closeStopsCount = 0;
     closeStops = nil;
     locationManager_ = [[CLLocationManager alloc] init];
     [self locationRetry];
-#endif
 }
 
 
@@ -201,13 +198,19 @@ NSString* positioningErrorDetails[] = {
 #pragma mark -
 #pragma mark CoreLocation stuff
 
-#ifndef VERSION_STLO
 
 BOOL checkBounds( CLLocation* location ) {
+#ifndef VERSION_STLO
     const double N = 48.32;
     const double W = -2.02;
     const double S = 47.9;
     const double E = -1.3;
+#else
+    const double N = 49.17;
+    const double W = -1.22;
+    const double S = 49.05;
+    const double E = -0.9;
+#endif
     double latitude = location.coordinate.latitude;
     double longitude = location.coordinate.longitude;
     return ( ( latitude < N ) && ( latitude > S ) && ( longitude > W ) && ( longitude < E ) );
@@ -282,7 +285,6 @@ BOOL checkBounds( CLLocation* location ) {
     [locationManager_ stopUpdatingLocation];
 }
 
-#endif
 
 #pragma mark -
 #pragma mark Table view data source
@@ -296,10 +298,16 @@ BOOL checkBounds( CLLocation* location ) {
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
 #ifdef VERSION_STLO
-    if ( section != kFavoritesSection && section != kLineSection ) {
+    if ( section != kFavoritesSection && section != kLineSection && section != kCloseStopsSection) {
         return [[menus_ objectAtIndex:section] count];
     } else if ( section == kLineSection ) {
         return [lines count];
+    } else if ( section == kCloseStopsSection ) {
+        if ( closeStopsCount > 0 ) {
+            return closeStopsCount;
+        } else {
+            return 1;
+        }
 #else
     if ( section != kFavoritesSection && section != kCloseStopsSection ) {
         return [[menus_ objectAtIndex:section] count];
@@ -390,7 +398,7 @@ float hexToFloatColor( char c1, char c2 ) {
         frame.size.width += 120;
         cell.frame = frame;
         
-    } else if ( indexPath.section != kFavoritesSection ) {
+    } else if ( indexPath.section != kFavoritesSection && indexPath.section != kCloseStopsSection ) {
 #else
     if ( indexPath.section != kFavoritesSection && indexPath.section != kCloseStopsSection ) {
 #endif
@@ -402,7 +410,6 @@ float hexToFloatColor( char c1, char c2 ) {
         
     // Configure the cell...
         cell.textLabel.text = [[menus_ objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
-#ifndef VERSION_STLO
     } else if ( indexPath.section == kCloseStopsSection ) {
         if ( closeStopsCount > 0 ) {
             cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifierCloseStop];
@@ -429,7 +436,6 @@ float hexToFloatColor( char c1, char c2 ) {
             cell.textLabel.text = NSLocalizedString( positioningErrorTexts[positioningError], @"" );
             cell.detailTextLabel.text = NSLocalizedString( positioningErrorDetails[positioningError], @"" );
         }
-#endif
     } else if ( indexPath.section == kFavoritesSection ) {
 
         int topCount = [topFavorites_ count];
@@ -503,9 +509,18 @@ float hexToFloatColor( char c1, char c2 ) {
             
 #ifdef VERSION_STLO
         {
-            StopViewController* stopViewController = [[StopViewController alloc] initWithNibName:@"StopViewController" bundle:nil];
-            [self.navigationController pushViewController:stopViewController animated:YES];
-            [stopViewController release];
+            if ( indexPath.row == 0 ) {
+                StopViewController* stopViewController = [[StopViewController alloc] initWithNibName:@"StopViewController" bundle:nil];
+                [self.navigationController pushViewController:stopViewController animated:YES];
+                [stopViewController release];
+            } else {
+                StopMapViewController* stopMapViewController = [[StopMapViewController alloc] initWithNibName:@"StopMapViewController" bundle:nil];
+                if ( closeStopsCount > 0 ) {
+                    stopMapViewController.originalPosition = locationManager_.location;
+                }
+                [self.navigationController pushViewController:stopMapViewController animated:YES];
+                [stopMapViewController release];                
+            }
         }
 #else
             if ( indexPath.row == 0 ) {
@@ -531,7 +546,6 @@ float hexToFloatColor( char c1, char c2 ) {
             [self didSelectFavorite:indexPath];
         }
             break;
-#ifndef VERSION_STLO
         case kCloseStopsSection:
         {
             if ( closeStopsCount > 0 ) {
@@ -542,7 +556,6 @@ float hexToFloatColor( char c1, char c2 ) {
             }
         }
             break;
-#endif
         case kAboutSection:
         {
             if ( indexPath.row < 2 ) {
@@ -627,9 +640,7 @@ float hexToFloatColor( char c1, char c2 ) {
 
 - (void)dealloc {
     [favoritesTimes_ release];
-#ifndef VERSION_STLO
     [closeStops release];
-#endif
     [menus_ release];
     [super dealloc];
 }

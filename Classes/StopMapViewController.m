@@ -154,10 +154,19 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     errorCount = 0;
+#ifdef VERSION_STLO
+    self.mapView.delegate = self;
+    [self updateStopAnnotations];
+#else
     self.mapController.mapView = self.mapView;
+#endif
     MKCoordinateRegion region; 
     if ( originalPosition_ == nil ) {
+#ifdef VERSION_STLO
+        CLLocationCoordinate2D centerCoord = { 49.11716, -1.08854 };
+#else
         CLLocationCoordinate2D centerCoord = { 48.11, -1.68 };
+#endif
         //    [self.mapView setCenterCoordinate:centerCoord];
         region.center.latitude = centerCoord.latitude; 
         region.center.longitude = centerCoord.longitude; 

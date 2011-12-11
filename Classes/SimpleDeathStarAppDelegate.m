@@ -30,14 +30,12 @@
 }
 
 - (void)locationActive:(BOOL)shouldActivate {
-#ifndef VERSION_STLO
     HomeScreenViewController* home = [navigationController.viewControllers objectAtIndex:0];
     if ( shouldActivate ) {
         [home locationRetry];
     } else {
         [home locationStop];
     }
-#endif
 }
 
 - (void)createTimer {
