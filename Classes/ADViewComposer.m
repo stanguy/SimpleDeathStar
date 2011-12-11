@@ -11,8 +11,11 @@
 
 @implementation ADViewComposer
 
-
+#ifdef VERSION_STLO
+bool SHOW_ADS = NO;
+#else
 bool SHOW_ADS = YES;
+#endif
 
 - (id)initWithView:(UIView*)otherView
 {
@@ -134,7 +137,9 @@ bool SHOW_ADS = YES;
 }
 
 + (void)EnableAds:(BOOL)flag{
+#ifndef VERSION_STLO
     SHOW_ADS = flag;
+#endif
 }
 #pragma mark - Ad banner delegate
 

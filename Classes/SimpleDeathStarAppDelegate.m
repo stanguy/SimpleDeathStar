@@ -73,9 +73,11 @@
     navigationController = [[UINavigationController alloc] initWithRootViewController:homeController];
     
     if ( [[NSUserDefaults standardUserDefaults] boolForKey:@"enable_ads"] ) {
+#ifndef VERSION_STLO
         NSLog( @"ads enabled" );
         [ADViewComposer EnableAds:YES];
         adView_ = [[ADViewComposer BuildAdView:homeController.view] retain];
+#endif
     } else {
         [ADViewComposer EnableAds:NO];
     }
@@ -90,11 +92,13 @@
     NSLog( @"notice preferences change" );
     NSUserDefaults* defaults = (NSUserDefaults*) [notification object];
     if ( [defaults boolForKey:@"enable_ads"] ) {
+#ifndef VERSION_STLO
         if ( adView_ == nil ) {
             [ADViewComposer EnableAds:YES];
             HomeScreenViewController* homeController = [navigationController.viewControllers objectAtIndex:0];
             adView_ = [[ADViewComposer BuildAdView:homeController.view] retain];
         }
+#endif
     } else {
         if ( adView_ != nil ) {
             [ADViewComposer EnableAds:NO];
