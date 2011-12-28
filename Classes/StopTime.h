@@ -5,6 +5,13 @@
 
 @class Favorite;
 
+
+enum  {
+    STOPTIME_PREFERENCE = 0,
+    STOPTIME_DEPARTURE = 1,
+    STOPTIME_ARRIVAL
+} ;
+
 @interface StopTime : _StopTime {}
 // Custom logic goes here.
 
@@ -12,6 +19,7 @@
 + (NSFetchedResultsController*) findFollowing:(StopTime*)stopTime;
 + (NSArray*) findComingAt:(Favorite*)favorite;
 
-- (NSString*) formatArrival;
+- (NSString*) formatTime;
+- (NSString*) formatTime:(int)time_e;
 
 @end

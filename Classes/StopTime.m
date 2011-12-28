@@ -299,17 +299,32 @@ NSPredicate* buildPredicate( Line* line, Stop* stop, int min_arrival, int max_ar
     return stopTimes;
 }
 
-- (NSString*) formatArrival{
+- (NSString*) formatTime:(int)time_e {
     NSNumber* dbvalue;
-    if ( ((SimpleDeathStarAppDelegate*)[[UIApplication sharedApplication] delegate]).useArrival ) {
-        dbvalue = self.arrival;
-    } else {
-        dbvalue = self.departure;
+    switch ( time_e ) {
+        case STOPTIME_ARRIVAL:
+            dbvalue = self.arrival;
+            break;
+        case STOPTIME_DEPARTURE:
+            dbvalue = self.departure;
+            break;
+        case STOPTIME_PREFERENCE:
+        default:
+            if ( ((SimpleDeathStarAppDelegate*)[[UIApplication sharedApplication] delegate]).useArrival ) {
+                dbvalue = self.arrival;
+            } else {
+                dbvalue = self.departure;
+            }
+            break;
     }
     int arrival = [dbvalue intValue] / 60;
     int mins = arrival % 60;
     int hours = ( arrival / 60 ) % 24;
     return [NSString stringWithFormat:@"%02d:%02d", hours, mins]; 
+}
+
+- (NSString*) formatTime {
+    return [self formatTime:STOPTIME_PREFERENCE];
 }
 
 @end

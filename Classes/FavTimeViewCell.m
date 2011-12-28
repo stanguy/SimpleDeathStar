@@ -111,7 +111,7 @@ NSString* direction2label( NSString* bearing ) {
             directionName = [NSString stringWithFormat:NSLocalizedString( @"%@ vers %@", @"" ), stime.line.short_name, directionName];
         }
         imageViews_[i].accessibilityLabel = directionName;
-        timeLabels_[i].text = [stime formatArrival];
+        timeLabels_[i].text = [stime formatTime];
         imageViews_[i].hidden = NO;
         timeLabels_[i].hidden = NO;
     }

@@ -59,7 +59,7 @@
     Stop* stop = stopTime.stop;
     Line* line = stopTime.line;
 
-    cell.arrivalTime.text = [stopTime formatArrival];
+    cell.arrivalTime.text = [stopTime formatTime:STOPTIME_ARRIVAL];
     cell.stopName.text = stop.name;
     cell.metro.hidden = [stop.metro_count intValue] == 0;
     cell.bike.hidden = [stop.bike_count intValue] == 0;

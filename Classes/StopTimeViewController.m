@@ -204,7 +204,7 @@ const int kCellWidth = 46;
         NSIndexPath* indexPath = [NSIndexPath indexPathForRow:column inSection:row];
         StopTime* st = [self.fetchedResultsController objectAtIndexPath:indexPath];
              
-        label.text = [st formatArrival];
+        label.text = [st formatTime];
     }
 
     
