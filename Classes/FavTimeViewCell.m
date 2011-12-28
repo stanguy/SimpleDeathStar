@@ -7,6 +7,9 @@
 //
 
 #import "FavTimeViewCell.h"
+#import "Direction.h"
+#import "Favorite.h"
+#import "Line.h"
 #import "StopTime.h"
 
 @implementation FavTimeViewCell
@@ -26,7 +29,7 @@
         [self addSubview:nameLabel_];
         
         timeLabels_ = malloc( sizeof(UILabel*) * 4 );
-        imageViews_ = malloc( sizeof(UIImageView) * 4 );
+        imageViews_ = malloc( sizeof(UIImageView*) * 4 );
         
         const int kBaseLineY = 20;
         const int kBaseLineX = 20;
@@ -42,7 +45,6 @@
             imageViews_[i] = [[UIImageView alloc] init];
             imageViews_[i].frame = viewRect;
             imageViews_[i].contentMode =  UIViewContentModeCenter;
-            imageViews_[i].isAccessibilityElement = YES;
             [self addSubview:imageViews_[i]];
             [imageViews_[i] release];
             viewRect = CGRectMake( subcell_x + kImageWidth + kMarginIn, kBaseLineY, kLabelWidth, kLineHeight - 2);
@@ -102,6 +104,13 @@ NSString* direction2label( NSString* bearing ) {
             bearing = @"circle_right";
         }
         imageViews_[i].image = [UIImage imageNamed:[NSString stringWithFormat:@"arrow_%@", bearing]];
+        NSString *directionName = stime.direction.headsign;
+        if ( self.favorite.line_id != nil ) {
+            directionName = [NSString stringWithFormat:NSLocalizedString( @"%@ vers %@", @"" ), self.favorite.line_short_name, directionName];
+        } else {
+            directionName = [NSString stringWithFormat:NSLocalizedString( @"%@ vers %@", @"" ), stime.line.short_name, directionName];
+        }
+        imageViews_[i].accessibilityLabel = directionName;
         timeLabels_[i].text = [stime formatArrival];
         imageViews_[i].hidden = NO;
         timeLabels_[i].hidden = NO;
