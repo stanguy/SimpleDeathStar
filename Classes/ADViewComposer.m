@@ -39,6 +39,7 @@ bool SHOW_ADS = YES;
     if ( show && ! SHOW_ADS ) { return ; }
     if ( show == displayed ) { return; }
     ADBannerView *adBanner = [SimpleDeathStarAppDelegate adView];
+    if ( nil == adBanner ) { return; }
     if ( show && adBanner.delegate != self ) {
         //NSLog( @"\t\tGetting the delegate" );
         adBanner.delegate = self;
@@ -119,12 +120,12 @@ bool SHOW_ADS = YES;
     }
     ADBannerView* ad = [[ADBannerView alloc] initWithFrame:CGRectZero];
     
-	// Set the autoresizing mask so that the banner is pinned to the bottom
-	ad.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleTopMargin;
+    // Set the autoresizing mask so that the banner is pinned to the bottom
+    ad.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleTopMargin;
     
-	// Since we support all orientations, support portrait and landscape content sizes.
-	// If you only supported landscape or portrait, you could remove the other from this set
-	ad.requiredContentSizeIdentifiers = 
+    // Since we support all orientations, support portrait and landscape content sizes.
+    // If you only supported landscape or portrait, you could remove the other from this set
+    ad.requiredContentSizeIdentifiers = 
     (&ADBannerContentSizeIdentifierPortrait != nil) ?
     [NSSet setWithObjects:ADBannerContentSizeIdentifierPortrait, ADBannerContentSizeIdentifierLandscape, nil] : 
     [NSSet setWithObjects:ADBannerContentSizeIdentifier320x50, ADBannerContentSizeIdentifier480x32, nil];
@@ -133,7 +134,7 @@ bool SHOW_ADS = YES;
     frame.origin = CGPointMake(CGRectGetMinX( baseView.frame ), CGRectGetMaxY(baseView.frame));
     // Now set the banner view's frame
 	ad.frame = frame;
-    return ad;
+    return [ad autorelease];
 }
 
 + (void)EnableAds:(BOOL)flag{
