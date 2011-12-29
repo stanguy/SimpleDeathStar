@@ -312,6 +312,8 @@
 		96B93AA1147819F900206618 /* 1.png in Resources */ = {isa = PBXBuildFile; fileRef = 96B93A2B147819F900206618 /* 1.png */; };
 		96B9FF9E12F232DD008C9F2E /* TripViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96B9FF9D12F232DD008C9F2E /* TripViewCell.xib */; };
 		96B9FFA312F233C2008C9F2E /* TripViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 96B9FFA212F233C2008C9F2E /* TripViewCell.m */; };
+		96CACA6A14ABD4E30012C10B /* FavTimeRelativeViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 96CACA6914ABD4E20012C10B /* FavTimeRelativeViewCell.m */; };
+		96CACA6B14ABD4E30012C10B /* FavTimeRelativeViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 96CACA6914ABD4E20012C10B /* FavTimeRelativeViewCell.m */; };
 		96CB93AC12EE1E8100EFB75C /* favorites_add.png in Resources */ = {isa = PBXBuildFile; fileRef = 96CB93A612EE1E8100EFB75C /* favorites_add.png */; };
 		96CB93AD12EE1E8100EFB75C /* favorites_add@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96CB93A712EE1E8100EFB75C /* favorites_add@2x.png */; };
 		96CB93AF12EE1E8100EFB75C /* favorites_remove.png in Resources */ = {isa = PBXBuildFile; fileRef = 96CB93A912EE1E8100EFB75C /* favorites_remove.png */; };
@@ -580,6 +582,8 @@
 		96B9FF9D12F232DD008C9F2E /* TripViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TripViewCell.xib; sourceTree = "<group>"; };
 		96B9FFA112F233C2008C9F2E /* TripViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TripViewCell.h; sourceTree = "<group>"; };
 		96B9FFA212F233C2008C9F2E /* TripViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TripViewCell.m; sourceTree = "<group>"; };
+		96CACA6814ABD4E20012C10B /* FavTimeRelativeViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FavTimeRelativeViewCell.h; sourceTree = "<group>"; };
+		96CACA6914ABD4E20012C10B /* FavTimeRelativeViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FavTimeRelativeViewCell.m; sourceTree = "<group>"; };
 		96CB93A612EE1E8100EFB75C /* favorites_add.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = favorites_add.png; sourceTree = "<group>"; };
 		96CB93A712EE1E8100EFB75C /* favorites_add@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "favorites_add@2x.png"; sourceTree = "<group>"; };
 		96CB93A912EE1E8100EFB75C /* favorites_remove.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = favorites_remove.png; sourceTree = "<group>"; };
@@ -703,6 +707,8 @@
 				9685666B14408D3600907877 /* ADViewComposer.m */,
 				96B939C91477161900206618 /* TableWithAdViewController.h */,
 				96B939CA1477161900206618 /* TableWithAdViewController.m */,
+				96CACA6814ABD4E20012C10B /* FavTimeRelativeViewCell.h */,
+				96CACA6914ABD4E20012C10B /* FavTimeRelativeViewCell.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -1388,6 +1394,7 @@
 				96F5F368135CD3F40058C487 /* _StopAlias.m in Sources */,
 				9685666C14408D3900907877 /* ADViewComposer.m in Sources */,
 				96B939CB1477161A00206618 /* TableWithAdViewController.m in Sources */,
+				96CACA6A14ABD4E30012C10B /* FavTimeRelativeViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1436,6 +1443,7 @@
 				96234B561434CD6900CCCAFD /* _StopAlias.m in Sources */,
 				9685666D14408D3900907877 /* ADViewComposer.m in Sources */,
 				96B939CC1477161A00206618 /* TableWithAdViewController.m in Sources */,
+				96CACA6B14ABD4E30012C10B /* FavTimeRelativeViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1474,6 +1482,7 @@
 				GCC_PREFIX_HEADER = SimpleDeathStar_Prefix.pch;
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				INFOPLIST_FILE = "SimpleDeathStar-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				PRODUCT_NAME = SimpleDeathStar;
 			};
 			name = Debug;
@@ -1487,6 +1496,7 @@
 				GCC_PREFIX_HEADER = SimpleDeathStar_Prefix.pch;
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				INFOPLIST_FILE = "SimpleDeathStar-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				PRODUCT_NAME = SimpleDeathStar;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1504,6 +1514,7 @@
 				GCC_PREPROCESSOR_DEFINITIONS = "VERSION_STLO=1";
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				INFOPLIST_FILE = "SimpleDeathStarStLo-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = SimpleDeathStarStLo;
 			};
@@ -1519,6 +1530,7 @@
 				GCC_PREPROCESSOR_DEFINITIONS = "VERSION_STLO=1";
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				INFOPLIST_FILE = "SimpleDeathStarStLo-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = SimpleDeathStarStLo;
 				VALIDATE_PRODUCT = YES;

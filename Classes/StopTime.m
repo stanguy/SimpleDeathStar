@@ -244,7 +244,11 @@ NSPredicate* buildPredicate( Line* line, Stop* stop, int min_arrival, int max_ar
         NSLog( @"nil favorite in fav!" );
         return (NSArray*)[NSNull null];
     }
+    return [self findComingAtStop:stop andLine:line];
+}
 
++ (NSArray*) findComingAtStop:(Stop*)stop andLine:(Line*)line {
+    
     SimpleDeathStarAppDelegate* delegate = (SimpleDeathStarAppDelegate*)[[UIApplication sharedApplication] delegate];
     NSManagedObjectContext* context = [delegate  transitManagedObjectContext];
     
@@ -300,6 +304,9 @@ NSPredicate* buildPredicate( Line* line, Stop* stop, int min_arrival, int max_ar
 }
 
 - (NSString*) formatTime:(int)time_e {
+    return [self formatTime:time_e asRelative:NO];
+}
+- (NSString*) formatTime:(int)time_e asRelative:(BOOL)isRelative {
     NSNumber* dbvalue;
     switch ( time_e ) {
         case STOPTIME_ARRIVAL:
@@ -318,9 +325,21 @@ NSPredicate* buildPredicate( Line* line, Stop* stop, int min_arrival, int max_ar
             break;
     }
     int arrival = [dbvalue intValue] / 60;
-    int mins = arrival % 60;
-    int hours = ( arrival / 60 ) % 24;
-    return [NSString stringWithFormat:@"%02d:%02d", hours, mins]; 
+    if ( isRelative ) {
+        NSDate* date = [NSDate date];
+        NSDateComponents *dateComponents = dateToComponents( date );
+        int reft = [dateComponents hour] * 60 + [dateComponents minute];
+        if ( arrival > 24 * 60 ) {
+            if ( reft < 12 * 60 ) {
+                reft = reft + 24*60;
+            }
+        }
+        return [NSString stringWithFormat:@"%d", arrival - reft];
+    } else {
+        int mins = arrival % 60;
+        int hours = ( arrival / 60 ) % 24;
+        return [NSString stringWithFormat:@"%02d:%02d", hours, mins]; 
+    }
 }
 
 - (NSString*) formatTime {

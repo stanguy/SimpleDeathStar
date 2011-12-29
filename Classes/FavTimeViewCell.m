@@ -10,12 +10,31 @@
 #import "Direction.h"
 #import "Favorite.h"
 #import "Line.h"
+#import "Stop.h"
 #import "StopTime.h"
 
 @implementation FavTimeViewCell
 
-@synthesize favorite = favorite_, times = times_;
+@synthesize favorite = favorite_, times = times_, stop = stop_;
 
+
+-(void) setFramesAt:(int)i{
+    const int kBaseLineY = 20;
+    const int kBaseLineX = 20;
+    const int kImageWidth = 22;
+    const int kLineHeight = 22;
+    const int kLabelWidth = 37;
+    const int kMarginIn = 5;
+    const int kMarginOut = 2;
+    const int kGlobalTimeWidth = kImageWidth + kLabelWidth + kMarginIn + kMarginOut;
+
+    int subcell_x = kBaseLineX + i * kGlobalTimeWidth;
+    CGRect  viewRect = CGRectMake( subcell_x, kBaseLineY, kImageWidth, kLineHeight );
+    imageViews_[i].frame = viewRect;
+    viewRect = CGRectMake( subcell_x + kImageWidth + kMarginIn, kBaseLineY, kLabelWidth, kLineHeight - 2);
+    timeLabels_[i].frame = viewRect;
+
+}
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     
@@ -27,31 +46,29 @@
         nameLabel_.frame = CGRectMake( 30, 2, 250, 20 );
         nameLabel_.font = [UIFont boldSystemFontOfSize:14.0];
         [self addSubview:nameLabel_];
+
+        distanceLabel_ = [[UILabel alloc] init];
+        distanceLabel_.frame = CGRectMake( 250, 2, 50, 20 );
+        distanceLabel_.font = [UIFont boldSystemFontOfSize:12.0];
+        distanceLabel_.textColor = [UIColor darkGrayColor];
+        [self addSubview:distanceLabel_];
         
         timeLabels_ = malloc( sizeof(UILabel*) * 4 );
         imageViews_ = malloc( sizeof(UIImageView*) * 4 );
         
-        const int kBaseLineY = 20;
-        const int kBaseLineX = 20;
-        const int kImageWidth = 22;
-        const int kLineHeight = 22;
-        const int kLabelWidth = 37;
-        const int kMarginIn = 5;
-        const int kMarginOut = 2;
-        const int kGlobalTimeWidth = kImageWidth + kLabelWidth + kMarginIn + kMarginOut;
         for ( int i = 0 ; i < 4; ++i) {
-            int subcell_x = kBaseLineX + i * kGlobalTimeWidth;
-            CGRect  viewRect = CGRectMake( subcell_x, kBaseLineY, kImageWidth, kLineHeight );
             imageViews_[i] = [[UIImageView alloc] init];
-            imageViews_[i].frame = viewRect;
-            imageViews_[i].contentMode =  UIViewContentModeCenter;
-            [self addSubview:imageViews_[i]];
-            [imageViews_[i] release];
-            viewRect = CGRectMake( subcell_x + kImageWidth + kMarginIn, kBaseLineY, kLabelWidth, kLineHeight - 2);
             timeLabels_[i] = [[UILabel alloc] init];
+
+            [self setFramesAt:i];
+
+            imageViews_[i].contentMode =  UIViewContentModeCenter;
             timeLabels_[i].font = [UIFont systemFontOfSize:12];
-            timeLabels_[i].frame = viewRect;
+            timeLabels_[i].textAlignment = UITextAlignmentRight;
+            [self addSubview:imageViews_[i]];
             [self addSubview:timeLabels_[i]];
+
+            [imageViews_[i] release];
             [timeLabels_[i] release];
         }
     }
@@ -61,9 +78,11 @@
 - (void)prepareForReuse {
     self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     nameLabel_.textColor = [UIColor blackColor];
+    distanceLabel_.text = @"";
     for ( int i = 0; i < 4; ++i) {
         imageViews_[i].hidden = YES;
         timeLabels_[i].hidden = YES;
+        timeLabels_[i].textColor = [UIColor blackColor];
     }
 }
 
@@ -83,6 +102,16 @@ NSString* direction2label( NSString* bearing ) {
 -(void)setFavorite:(Favorite *)fav {
     favorite_ = [fav retain];
     nameLabel_.text = [favorite_ title];
+}
+
+-(void)setStop:(Stop *)stop {
+    stop_ = [stop retain];
+    nameLabel_.text = stop.name;
+    distanceLabel_.text = [NSString stringWithFormat:@"%d m", stop.distance];
+}
+
+-(void) formatTime:(StopTime*)st atIndex:(int)i{
+    timeLabels_[i].text = [st formatTime];
 }
 
 -(void)setTimes:(NSArray *)times {
@@ -111,7 +140,7 @@ NSString* direction2label( NSString* bearing ) {
             directionName = [NSString stringWithFormat:NSLocalizedString( @"%@ vers %@", @"" ), stime.line.short_name, directionName];
         }
         imageViews_[i].accessibilityLabel = directionName;
-        timeLabels_[i].text = [stime formatTime];
+        [self formatTime:stime atIndex:i];
         imageViews_[i].hidden = NO;
         timeLabels_[i].hidden = NO;
     }

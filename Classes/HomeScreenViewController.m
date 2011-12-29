@@ -22,6 +22,7 @@
 
 
 #import "FavTimeViewCell.h"
+#import "FavTimeRelativeViewCell.h"
 
 @implementation HomeScreenViewController
 
@@ -130,10 +131,32 @@ NSString* positioningErrorDetails[] = {
         NSArray* oldFavorites = topFavorites_;
         topFavorites_ = favorites;
         [oldFavorites release];
+
     }
-    [self performSelectorOnMainThread:@selector(refreshViewOfFavorites) withObject:nil waitUntilDone:NO];
+    [self performSelectorOnMainThread:@selector(refreshViewOfFavorites) withObject:nil waitUntilDone:YES];
     [pool release];
 }
+
+- (void)reloadProximity {
+    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+    NSMutableArray* proxtimes = [[NSMutableArray alloc] initWithCapacity:[closeStops count]];
+    for ( Stop* stop in closeStops ) {
+        [proxtimes addObject:[StopTime findComingAtStop:stop andLine:nil]];
+    }
+    @synchronized(self) {        
+        [proximityTimes_ release];
+        proximityTimes_ = [proxtimes retain];
+    }
+    [self performSelectorOnMainThread:@selector(refreshViewOfCloseStops) withObject:nil waitUntilDone:YES];
+    [pool release];
+}
+
+
+-(void)reloadByTimer {
+    [self reloadFavorites];
+    [self reloadProximity];
+}
+
 
 -(void)refreshViewOfCloseStops {
     [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:kCloseStopsSection] withRowAnimation:YES];
@@ -145,6 +168,7 @@ NSString* positioningErrorDetails[] = {
     [closeStops release];
     closeStops = [stops retain];
     closeStopsCount = [stops count];
+    [self reloadProximity];
     [self performSelectorOnMainThread:@selector(refreshViewOfCloseStops) withObject:nil waitUntilDone:NO];
     [pool release];
 }
@@ -179,7 +203,8 @@ NSString* positioningErrorDetails[] = {
     [menus_ addObject:[NSArray arrayWithObjects:nil]];
     [menus_ addObject:[NSArray arrayWithObjects: NSLocalizedString( @"À propos", @"" ), NSLocalizedString( @"Pas de panique", @"" ), nil ]];
 #endif
-    favoritesTimes_ =  [[NSMutableArray alloc] init];
+    favoritesTimes_ = [[NSMutableArray alloc] init];
+    proximityTimes_ = [[NSMutableArray alloc] init];
     topFavorites_ = [NSArray arrayWithObjects:nil];
     cachedFavoritesCount = 0;
     [self callFavLoading];
@@ -370,6 +395,14 @@ float hexToFloatColor( char c1, char c2 ) {
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
+    Class favClass;
+    SimpleDeathStarAppDelegate* delegate = (SimpleDeathStarAppDelegate*)[[UIApplication sharedApplication] delegate];
+    if (  [delegate useRelativeTime] ) {
+        favClass = [FavTimeRelativeViewCell class];
+    } else {
+        favClass = [FavTimeViewCell class];
+    }
+    
     static NSString *CellIdentifier = @"Cell";
     static NSString *CellIdentifierLine = @"Line";
     static NSString *CellIdentifierFavNone = @"CellFavNone";
@@ -412,15 +445,19 @@ float hexToFloatColor( char c1, char c2 ) {
         cell.textLabel.text = [[menus_ objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
     } else if ( indexPath.section == kCloseStopsSection ) {
         if ( closeStopsCount > 0 ) {
+//            cell.detailTextLabel.text = [NSString stringWithFormat:@"%d m", stop.distance];
+
+        
+            NSArray* times = nil;
+            times = [proximityTimes_ objectAtIndex:indexPath.row];
             cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifierCloseStop];
-            if (cell == nil) {
-                cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifierCloseStop] autorelease];
-                cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+            if( cell == nil ) {
+                cell = [[[favClass alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifierCloseStop] autorelease];
             }
-            // Configure the cell...
             Stop* stop = [closeStops objectAtIndex:indexPath.row];
-            cell.textLabel.text = stop.name;
-            cell.detailTextLabel.text = [NSString stringWithFormat:@"%d m", stop.distance];
+            ((FavTimeViewCell*)cell).times = times;
+            ((FavTimeViewCell*)cell).stop = stop;
+        
         } else {
             cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifierCloseStopError];
             if (cell == nil) {
@@ -456,7 +493,7 @@ float hexToFloatColor( char c1, char c2 ) {
                 times = [favoritesTimes_ objectAtIndex:indexPath.row];
                 cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifierFav];
                 if( cell == nil ) {
-                    cell = [[[FavTimeViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifierFav] autorelease];
+                    cell = [[[favClass alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifierFav] autorelease];
                 }
                 ((FavTimeViewCell*)cell).favorite = fav;
                 ((FavTimeViewCell*)cell).times = times;
@@ -639,6 +676,7 @@ float hexToFloatColor( char c1, char c2 ) {
 
 
 - (void)dealloc {
+    [proximityTimes_ release];
     [favoritesTimes_ release];
     [closeStops release];
     [menus_ release];

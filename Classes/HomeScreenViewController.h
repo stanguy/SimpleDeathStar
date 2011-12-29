@@ -14,6 +14,7 @@
     NSMutableArray* menus_;
     NSArray* topFavorites_;
     NSArray* favoritesTimes_;
+    NSArray* proximityTimes_;
     int cachedFavoritesCount;
 #ifdef VERSION_STLO
     NSArray* lines;

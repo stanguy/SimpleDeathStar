@@ -18,8 +18,10 @@ enum  {
 + (NSFetchedResultsController*) findByLine:(Line*) line andStop:(Stop*) stop atDate:(NSDate*) date;
 + (NSFetchedResultsController*) findFollowing:(StopTime*)stopTime;
 + (NSArray*) findComingAt:(Favorite*)favorite;
++ (NSArray*) findComingAtStop:(Stop*)stop andLine:(Line*)line;
 
 - (NSString*) formatTime;
 - (NSString*) formatTime:(int)time_e;
+- (NSString*) formatTime:(int)time_e asRelative:(BOOL)isRelative;
 
 @end

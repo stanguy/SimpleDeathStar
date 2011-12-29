@@ -17,6 +17,7 @@
 
 @synthesize window;
 @synthesize useArrival;
+@synthesize useRelativeTime;
 @synthesize navigationController;
 @synthesize adView = adView_;
 
@@ -26,7 +27,7 @@
 
 - (void)handleTimer:(NSTimer*)t {
     HomeScreenViewController* home = [navigationController.viewControllers objectAtIndex:0];
-    [home performSelectorInBackground:@selector(reloadFavorites) withObject:nil];
+    [home performSelectorInBackground:@selector(reloadByTimer) withObject:nil];
 }
 
 - (void)locationActive:(BOOL)shouldActivate {
@@ -57,7 +58,8 @@
     NSDictionary* appDefaults = 
     [NSDictionary dictionaryWithObjectsAndKeys:
          [NSNumber numberWithBool:YES], @"enable_ads",
-         @"arrival",                    @"reftime", nil ];
+         @"arrival",                    @"reftime", 
+         [NSNumber numberWithBool:FALSE], @"relative_time", nil ];
     [[NSUserDefaults standardUserDefaults] registerDefaults:appDefaults];
     [[NSUserDefaults standardUserDefaults] setObject:[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"] forKey:@"version"];
 #ifndef VERSION_STLO
@@ -71,6 +73,8 @@
     }
     HomeScreenViewController* homeController = [[[HomeScreenViewController alloc] init] autorelease];
     navigationController = [[UINavigationController alloc] initWithRootViewController:homeController];
+    
+    useRelativeTime = [[NSUserDefaults standardUserDefaults] boolForKey:@"relative_time"];
     
     if ( [[NSUserDefaults standardUserDefaults] boolForKey:@"enable_ads"] ) {
 #ifndef VERSION_STLO
@@ -114,6 +118,7 @@
     } else {
         useArrival = NO;
     }
+    useRelativeTime = [[NSUserDefaults standardUserDefaults] boolForKey:@"relative_time"];
 }
 
 
