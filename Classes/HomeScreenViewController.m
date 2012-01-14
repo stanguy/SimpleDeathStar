@@ -118,7 +118,6 @@ NSString* positioningErrorDetails[] = {
 }
 
 - (void)reloadFavorites {
-    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
     NSArray* favorites = [[Favorite topFavorites] retain];
     NSMutableArray* favtimes = [[NSMutableArray alloc] initWithCapacity:[favorites count]];
     for ( Favorite* fav in favorites ) {
@@ -133,12 +132,10 @@ NSString* positioningErrorDetails[] = {
         [oldFavorites release];
 
     }
-    [self performSelectorOnMainThread:@selector(refreshViewOfFavorites) withObject:nil waitUntilDone:YES];
-    [pool release];
+    [self refreshViewOfFavorites];
 }
 
 - (void)reloadProximity {
-    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
     NSMutableArray* proxtimes = [[NSMutableArray alloc] initWithCapacity:[closeStops count]];
     for ( Stop* stop in closeStops ) {
         [proxtimes addObject:[StopTime findComingAtStop:stop andLine:nil]];
@@ -147,8 +144,7 @@ NSString* positioningErrorDetails[] = {
         [proximityTimes_ release];
         proximityTimes_ = [proxtimes retain];
     }
-    [self performSelectorOnMainThread:@selector(refreshViewOfCloseStops) withObject:nil waitUntilDone:YES];
-    [pool release];
+    [self refreshViewOfCloseStops];
 }
 
 
@@ -163,18 +159,16 @@ NSString* positioningErrorDetails[] = {
 }
 
 - (void)reloadCloseStops:(CLLocation*)location{
-    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
     NSArray* stops = [Stop findAroundLocation:location];
     [closeStops release];
     closeStops = [stops retain];
     closeStopsCount = [stops count];
     [self reloadProximity];
-    [self performSelectorOnMainThread:@selector(refreshViewOfCloseStops) withObject:nil waitUntilDone:NO];
-    [pool release];
+    [self refreshViewOfCloseStops];
 }
 
 - (void)callFavLoading {
-    [self performSelectorInBackground:@selector(reloadFavorites) withObject:nil];
+    [self reloadFavorites];
 }
 
 - (void)viewDidLoad {
@@ -244,7 +238,7 @@ BOOL checkBounds( CLLocation* location ) {
 - (void)commitLocationUpdate {
     CLLocation* newLocation = locationManager_.location;
     if ( checkBounds( newLocation ) ) {
-        [self performSelectorInBackground:@selector(reloadCloseStops:) withObject:newLocation];
+        [self reloadCloseStops:newLocation];
     } else {
         positioningError = kOutOfBoundsPositionError;
         [self refreshViewOfCloseStops];            
@@ -289,7 +283,7 @@ BOOL checkBounds( CLLocation* location ) {
 - (void) locationRetry {
 //    NSLog( @"location retry" );
     positioningError = kNoPositionError;
-    if ( locationManager_.locationServicesEnabled == YES ) {
+    if ( [locationManager_ locationServicesEnabled] ) {
         locationManager_.delegate = self;
         locationManager_.desiredAccuracy = kCLLocationAccuracyHundredMeters;
         // Set a movement threshold for new events

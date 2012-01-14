@@ -27,7 +27,7 @@
 
 - (void)handleTimer:(NSTimer*)t {
     HomeScreenViewController* home = [navigationController.viewControllers objectAtIndex:0];
-    [home performSelectorInBackground:@selector(reloadByTimer) withObject:nil];
+    [home reloadByTimer];
 }
 
 - (void)locationActive:(BOOL)shouldActivate {
@@ -192,10 +192,10 @@
  */
 - (NSManagedObjectContext *)transitManagedObjectContext {
     @synchronized(self) {
-        if (transitManagedObjectContext_ != nil) {
+        if (transitManagedObjectContext_ != nil ) {
             return transitManagedObjectContext_;
         }
-        
+        NSManagedObjectContext* someContext = nil;
         NSPersistentStoreCoordinator *coordinator = [self transitPersistentStoreCoordinator];
         if (coordinator != nil) {
             transitManagedObjectContext_ = [[NSManagedObjectContext alloc] init];
