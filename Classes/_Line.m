@@ -29,15 +29,34 @@
 
 
 
-@dynamic fgcolor;
-
-
-
-
-
-
 @dynamic long_name;
 
+
+
+
+
+
+@dynamic has_picto;
+
+
+
+- (BOOL)has_pictoValue {
+	NSNumber *result = [self has_picto];
+	return [result boolValue];
+}
+
+- (void)setHas_pictoValue:(BOOL)value_ {
+	[self setHas_picto:[NSNumber numberWithBool:value_]];
+}
+
+- (BOOL)primitiveHas_pictoValue {
+	NSNumber *result = [self primitiveHas_picto];
+	return [result boolValue];
+}
+
+- (void)setPrimitiveHas_pictoValue:(BOOL)value_ {
+	[self setPrimitiveHas_picto:[NSNumber numberWithBool:value_]];
+}
 
 
 
@@ -123,31 +142,30 @@
 
 
 
-@dynamic has_picto;
+@dynamic old_src_id;
 
 
 
-- (BOOL)has_pictoValue {
-	NSNumber *result = [self has_picto];
-	return [result boolValue];
+
+
+
+@dynamic fgcolor;
+
+
+
+
+
+
+@dynamic stops;
+
+	
+- (NSMutableSet*)stopsSet {
+	[self willAccessValueForKey:@"stops"];
+	NSMutableSet *result = [self mutableSetValueForKey:@"stops"];
+	[self didAccessValueForKey:@"stops"];
+	return result;
 }
-
-- (void)setHas_pictoValue:(BOOL)value_ {
-	[self setHas_picto:[NSNumber numberWithBool:value_]];
-}
-
-- (BOOL)primitiveHas_pictoValue {
-	NSNumber *result = [self primitiveHas_picto];
-	return [result boolValue];
-}
-
-- (void)setPrimitiveHas_pictoValue:(BOOL)value_ {
-	[self setPrimitiveHas_picto:[NSNumber numberWithBool:value_]];
-}
-
-
-
-
+	
 
 @dynamic headsigns;
 
@@ -160,6 +178,17 @@
 }
 	
 
+@dynamic polylines;
+
+	
+- (NSMutableSet*)polylinesSet {
+	[self willAccessValueForKey:@"polylines"];
+	NSMutableSet *result = [self mutableSetValueForKey:@"polylines"];
+	[self didAccessValueForKey:@"polylines"];
+	return result;
+}
+	
+
 @dynamic stop_times;
 
 	
@@ -167,17 +196,6 @@
 	[self willAccessValueForKey:@"stop_times"];
 	NSMutableSet *result = [self mutableSetValueForKey:@"stop_times"];
 	[self didAccessValueForKey:@"stop_times"];
-	return result;
-}
-	
-
-@dynamic stops;
-
-	
-- (NSMutableSet*)stopsSet {
-	[self willAccessValueForKey:@"stops"];
-	NSMutableSet *result = [self mutableSetValueForKey:@"stops"];
-	[self didAccessValueForKey:@"stops"];
 	return result;
 }
 	

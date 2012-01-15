@@ -21,6 +21,7 @@
 
 
 
+
 @interface StopID : NSManagedObjectID {}
 @end
 
@@ -89,6 +90,12 @@
 @property (nonatomic, retain) NSDecimalNumber *lat;
 
 //- (BOOL)validateLat:(id*)value_ error:(NSError**)error_;
+
+
+
+@property (nonatomic, retain) NSString *old_src_id;
+
+//- (BOOL)validateOld_src_id:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -206,6 +213,10 @@
 
 - (NSDecimalNumber*)primitiveLat;
 - (void)setPrimitiveLat:(NSDecimalNumber*)value;
+
+
+- (NSString*)primitiveOld_src_id;
+- (void)setPrimitiveOld_src_id:(NSString*)value;
 
 
 - (NSNumber*)primitivePos_count;

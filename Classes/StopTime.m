@@ -194,14 +194,8 @@ NSPredicate* buildPredicate( Line* line, Stop* stop, int min_arrival, int max_ar
     [fetchRequest setRelationshipKeyPathsForPrefetching:[NSArray arrayWithObject:@"stop"]];
     
     NSPredicate* predicate;
-    if ( ((SimpleDeathStarAppDelegate*)[[UIApplication sharedApplication] delegate]).useArrival ) {
-        predicate =[NSPredicate predicateWithFormat:
-                 @"trip_id = %@ AND arrival >= %@", stopTime.trip_id, stopTime.arrival];
-    } else {
-        predicate =[NSPredicate predicateWithFormat:
-                    @"trip_id = %@ AND departure >= %@", stopTime.trip_id, stopTime.departure];
-        
-    }
+    predicate =[NSPredicate predicateWithFormat:
+                 @"trip_id = %@ AND stop_sequence >= %@", stopTime.trip_id, stopTime.stop_sequence];
     
     
     [fetchRequest setPredicate:predicate];
@@ -212,7 +206,7 @@ NSPredicate* buildPredicate( Line* line, Stop* stop, int min_arrival, int max_ar
     
     // Edit the sort key as appropriate.
     NSSortDescriptor *sortDescriptor;
-    sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"arrival" ascending:YES];
+    sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"stop_sequence" ascending:YES];
     NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptor, nil];
     
     [fetchRequest setSortDescriptors:sortDescriptors];

@@ -4,9 +4,10 @@
 #import <CoreData/CoreData.h>
 
 
-@class Direction;
 @class Line;
+@class Direction;
 @class Stop;
+
 
 
 
@@ -32,6 +33,16 @@
 - (void)setArrivalValue:(int)value_;
 
 //- (BOOL)validateArrival:(id*)value_ error:(NSError**)error_;
+
+
+
+@property (nonatomic, retain) NSNumber *stop_sequence;
+
+@property short stop_sequenceValue;
+- (short)stop_sequenceValue;
+- (void)setStop_sequenceValue:(short)value_;
+
+//- (BOOL)validateStop_sequence:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -72,24 +83,19 @@
 
 
 
-@property (nonatomic, retain) Direction* direction;
-//- (BOOL)validateDirection:(id*)value_ error:(NSError**)error_;
-
-
-
 @property (nonatomic, retain) Line* line;
 //- (BOOL)validateLine:(id*)value_ error:(NSError**)error_;
+
+
+
+@property (nonatomic, retain) Direction* direction;
+//- (BOOL)validateDirection:(id*)value_ error:(NSError**)error_;
 
 
 
 @property (nonatomic, retain) Stop* stop;
 //- (BOOL)validateStop:(id*)value_ error:(NSError**)error_;
 
-
-
-
-+ (NSArray*)fetchStopTimeComing:(NSManagedObjectContext*)moc_ ;
-+ (NSArray*)fetchStopTimeComing:(NSManagedObjectContext*)moc_ error:(NSError**)error_;
 
 
 
@@ -106,6 +112,13 @@
 
 - (int)primitiveArrivalValue;
 - (void)setPrimitiveArrivalValue:(int)value_;
+
+
+- (NSNumber*)primitiveStop_sequence;
+- (void)setPrimitiveStop_sequence:(NSNumber*)value;
+
+- (short)primitiveStop_sequenceValue;
+- (void)setPrimitiveStop_sequenceValue:(short)value_;
 
 
 - (NSNumber*)primitiveTrip_id;
@@ -135,13 +148,13 @@
 
 
 
-- (Direction*)primitiveDirection;
-- (void)setPrimitiveDirection:(Direction*)value;
-
-
-
 - (Line*)primitiveLine;
 - (void)setPrimitiveLine:(Line*)value;
+
+
+
+- (Direction*)primitiveDirection;
+- (void)setPrimitiveDirection:(Direction*)value;
 
 
 

@@ -55,6 +55,32 @@
 
 
 
+@dynamic stop_sequence;
+
+
+
+- (short)stop_sequenceValue {
+	NSNumber *result = [self stop_sequence];
+	return [result shortValue];
+}
+
+- (void)setStop_sequenceValue:(short)value_ {
+	[self setStop_sequence:[NSNumber numberWithShort:value_]];
+}
+
+- (short)primitiveStop_sequenceValue {
+	NSNumber *result = [self primitiveStop_sequence];
+	return [result shortValue];
+}
+
+- (void)setPrimitiveStop_sequenceValue:(short)value_ {
+	[self setPrimitiveStop_sequence:[NSNumber numberWithShort:value_]];
+}
+
+
+
+
+
 @dynamic trip_id;
 
 
@@ -140,11 +166,11 @@
 
 
 
-@dynamic direction;
+@dynamic line;
 
 	
 
-@dynamic line;
+@dynamic direction;
 
 	
 
@@ -154,37 +180,6 @@
 
 
 
-
-
-
-+ (NSArray*)fetchStopTimeComing:(NSManagedObjectContext*)moc_ {
-	NSError *error = nil;
-	NSArray *result = [self fetchStopTimeComing:moc_ error:&error];
-	if (error) {
-#if TARGET_OS_IPHONE
-		NSLog(@"error: %@", error);
-#else
-		[NSApp presentError:error];
-#endif
-	}
-	return result;
-}
-+ (NSArray*)fetchStopTimeComing:(NSManagedObjectContext*)moc_ error:(NSError**)error_ {
-	NSParameterAssert(moc_);
-	NSError *error = nil;
-	
-	NSManagedObjectModel *model = [[moc_ persistentStoreCoordinator] managedObjectModel];
-	
-	NSDictionary *substitutionVariables = [NSDictionary dictionary];
-										
-	NSFetchRequest *fetchRequest = [model fetchRequestFromTemplateWithName:@"StopTimeComing"
-													 substitutionVariables:substitutionVariables];
-	NSAssert(fetchRequest, @"Can't find fetch request named \"StopTimeComing\".");
-	
-	NSArray *result = [moc_ executeFetchRequest:fetchRequest error:&error];
-	if (error_) *error_ = error;
-	return result;
-}
 
 
 @end

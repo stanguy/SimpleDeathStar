@@ -9,6 +9,7 @@
 
 
 
+
 @interface StopAliasID : NSManagedObjectID {}
 @end
 
@@ -29,6 +30,12 @@
 @property (nonatomic, retain) NSString *src_id;
 
 //- (BOOL)validateSrc_id:(id*)value_ error:(NSError**)error_;
+
+
+
+@property (nonatomic, retain) NSString *old_src_id;
+
+//- (BOOL)validateOld_src_id:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -53,6 +60,10 @@
 
 - (NSString*)primitiveSrc_id;
 - (void)setPrimitiveSrc_id:(NSString*)value;
+
+
+- (NSString*)primitiveOld_src_id;
+- (void)setPrimitiveOld_src_id:(NSString*)value;
 
 
 

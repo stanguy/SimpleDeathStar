@@ -142,6 +142,13 @@
 
 
 
+@dynamic old_src_id;
+
+
+
+
+
+
 @dynamic pos_count;
 
 

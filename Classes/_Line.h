@@ -4,9 +4,11 @@
 #import <CoreData/CoreData.h>
 
 
-@class Direction;
-@class StopTime;
 @class Stop;
+@class Direction;
+@class Polyline;
+@class StopTime;
+
 
 
 
@@ -29,15 +31,19 @@
 
 
 
-@property (nonatomic, retain) NSString *fgcolor;
-
-//- (BOOL)validateFgcolor:(id*)value_ error:(NSError**)error_;
-
-
-
 @property (nonatomic, retain) NSString *long_name;
 
 //- (BOOL)validateLong_name:(id*)value_ error:(NSError**)error_;
+
+
+
+@property (nonatomic, retain) NSNumber *has_picto;
+
+@property BOOL has_pictoValue;
+- (BOOL)has_pictoValue;
+- (void)setHas_pictoValue:(BOOL)value_;
+
+//- (BOOL)validateHas_picto:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -85,24 +91,16 @@
 
 
 
-@property (nonatomic, retain) NSNumber *has_picto;
+@property (nonatomic, retain) NSString *old_src_id;
 
-@property BOOL has_pictoValue;
-- (BOOL)has_pictoValue;
-- (void)setHas_pictoValue:(BOOL)value_;
-
-//- (BOOL)validateHas_picto:(id*)value_ error:(NSError**)error_;
+//- (BOOL)validateOld_src_id:(id*)value_ error:(NSError**)error_;
 
 
 
+@property (nonatomic, retain) NSString *fgcolor;
 
-@property (nonatomic, retain) NSSet* headsigns;
-- (NSMutableSet*)headsignsSet;
+//- (BOOL)validateFgcolor:(id*)value_ error:(NSError**)error_;
 
-
-
-@property (nonatomic, retain) NSSet* stop_times;
-- (NSMutableSet*)stop_timesSet;
 
 
 
@@ -111,36 +109,59 @@
 
 
 
+@property (nonatomic, retain) NSSet* headsigns;
+- (NSMutableSet*)headsignsSet;
+
+
+
+@property (nonatomic, retain) NSSet* polylines;
+- (NSMutableSet*)polylinesSet;
+
+
+
+@property (nonatomic, retain) NSSet* stop_times;
+- (NSMutableSet*)stop_timesSet;
+
+
+
 
 @end
 
 @interface _Line (CoreDataGeneratedAccessors)
-
-- (void)addHeadsigns:(NSSet*)value_;
-- (void)removeHeadsigns:(NSSet*)value_;
-- (void)addHeadsignsObject:(Direction*)value_;
-- (void)removeHeadsignsObject:(Direction*)value_;
-
-- (void)addStop_times:(NSSet*)value_;
-- (void)removeStop_times:(NSSet*)value_;
-- (void)addStop_timesObject:(StopTime*)value_;
-- (void)removeStop_timesObject:(StopTime*)value_;
 
 - (void)addStops:(NSSet*)value_;
 - (void)removeStops:(NSSet*)value_;
 - (void)addStopsObject:(Stop*)value_;
 - (void)removeStopsObject:(Stop*)value_;
 
+- (void)addHeadsigns:(NSSet*)value_;
+- (void)removeHeadsigns:(NSSet*)value_;
+- (void)addHeadsignsObject:(Direction*)value_;
+- (void)removeHeadsignsObject:(Direction*)value_;
+
+- (void)addPolylines:(NSSet*)value_;
+- (void)removePolylines:(NSSet*)value_;
+- (void)addPolylinesObject:(Polyline*)value_;
+- (void)removePolylinesObject:(Polyline*)value_;
+
+- (void)addStop_times:(NSSet*)value_;
+- (void)removeStop_times:(NSSet*)value_;
+- (void)addStop_timesObject:(StopTime*)value_;
+- (void)removeStop_timesObject:(StopTime*)value_;
+
 @end
 
 @interface _Line (CoreDataGeneratedPrimitiveAccessors)
 
-- (NSString*)primitiveFgcolor;
-- (void)setPrimitiveFgcolor:(NSString*)value;
-
-
 - (NSString*)primitiveLong_name;
 - (void)setPrimitiveLong_name:(NSString*)value;
+
+
+- (NSNumber*)primitiveHas_picto;
+- (void)setPrimitiveHas_picto:(NSNumber*)value;
+
+- (BOOL)primitiveHas_pictoValue;
+- (void)setPrimitiveHas_pictoValue:(BOOL)value_;
 
 
 - (NSString*)primitiveUsage;
@@ -173,12 +194,18 @@
 - (void)setPrimitiveSrc_id:(NSString*)value;
 
 
-- (NSNumber*)primitiveHas_picto;
-- (void)setPrimitiveHas_picto:(NSNumber*)value;
+- (NSString*)primitiveOld_src_id;
+- (void)setPrimitiveOld_src_id:(NSString*)value;
 
-- (BOOL)primitiveHas_pictoValue;
-- (void)setPrimitiveHas_pictoValue:(BOOL)value_;
 
+- (NSString*)primitiveFgcolor;
+- (void)setPrimitiveFgcolor:(NSString*)value;
+
+
+
+
+- (NSMutableSet*)primitiveStops;
+- (void)setPrimitiveStops:(NSMutableSet*)value;
 
 
 
@@ -187,13 +214,13 @@
 
 
 
+- (NSMutableSet*)primitivePolylines;
+- (void)setPrimitivePolylines:(NSMutableSet*)value;
+
+
+
 - (NSMutableSet*)primitiveStop_times;
 - (void)setPrimitiveStop_times:(NSMutableSet*)value;
-
-
-
-- (NSMutableSet*)primitiveStops;
-- (void)setPrimitiveStops:(NSMutableSet*)value;
 
 
 @end
