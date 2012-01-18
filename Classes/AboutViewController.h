@@ -12,7 +12,8 @@
 
 enum AboutType {
     ABOUT_ABOUT,
-    ABOUT_PANIC
+    ABOUT_PANIC,
+    ABOUT_ONLINE
 };
 
 @interface AboutViewController : UIViewController {

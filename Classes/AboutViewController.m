@@ -56,16 +56,16 @@
             self.navigationItem.title = NSLocalizedString( @"Pas de panique", @"" );
             fileUrl = [NSURL fileURLWithPath: [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"panic_%@", currentLocale] ofType:@"html"]];
             break;
+        case ABOUT_ONLINE:
+            self.navigationItem.title = NSLocalizedString( @"En ligne", @"" );
+            fileUrl = [NSURL URLWithString:@"http://maps.dthg.net"];
+            break;
         default:
             return;
             break;
     }
-    NSString* filePath = [fileUrl path];
-    NSString* content = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:nil];
-    [webView loadHTMLString:content baseURL:[fileUrl baseURL]];
-//    [webView removeFromSuperview];
+    [webView loadRequest:[NSURLRequest requestWithURL:fileUrl]];
     viewComposer_ = [[ADViewComposer alloc] initWithView:webView];
-//    [viewComposer changeDisplay:YES];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -84,6 +84,7 @@
 
 
 - (void)dealloc {
+    [viewComposer_ release];
     [super dealloc];
 }
 

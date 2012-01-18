@@ -77,6 +77,7 @@ int LineMenuValues[] = {
 int AboutMenuValues[] = {
     ABOUT_ABOUT,
     ABOUT_PANIC,
+    ABOUT_ONLINE,
     -1
 };
 
@@ -218,7 +219,7 @@ NSString* positioningErrorDetails[] = {
     [menus_ addObject:[NSArray arrayWithObjects: NSLocalizedString( @"Arrêts par ville", @"" ), NSLocalizedString( @"Tous les arrêts", @"" ), NSLocalizedString( @"Sur la carte", @""), nil]];
     [menus_ addObject:[NSArray arrayWithObjects:nil]];
     [menus_ addObject:[NSArray arrayWithObjects:nil]];
-    [menus_ addObject:[NSArray arrayWithObjects: NSLocalizedString( @"À propos", @"" ), NSLocalizedString( @"Pas de panique", @"" ), nil ]];
+    [menus_ addObject:[NSArray arrayWithObjects: NSLocalizedString( @"À propos", @"" ), NSLocalizedString( @"Pas de panique", @"" ), NSLocalizedString( @"En ligne", @"" ), nil ]];
 #endif
     favoritesTimes_ = [[NSMutableArray alloc] init];
     proximityTimes_ = [[NSMutableArray alloc] init];
@@ -612,12 +613,12 @@ float hexToFloatColor( char c1, char c2 ) {
             break;
         case kAboutSection:
         {
-            if ( indexPath.row < 2 ) {
-                AboutViewController* aboutVC = [[AboutViewController alloc] initWithNibName:@"AboutViewController" bundle:nil];
-                aboutVC.type = AboutMenuValues[indexPath.row];
-                [self.navigationController pushViewController:aboutVC animated:YES];
-                [aboutVC release];
-            }
+            NSLog( @"Row about %d/%d", indexPath.row, AboutMenuValues[indexPath.row] );
+            AboutViewController* aboutVC = [[AboutViewController alloc] initWithNibName:@"AboutViewController" bundle:nil];
+            aboutVC.type = AboutMenuValues[indexPath.row];
+            [self.navigationController pushViewController:aboutVC animated:YES];
+            [aboutVC release];
+            
         }
             break;
     }
