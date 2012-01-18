@@ -8,6 +8,7 @@
 
 #import "_Stop.h"
 
+@class NSManagegObjectContext;
 
 @interface Stop : _Stop {
     int distance_;
@@ -19,11 +20,7 @@
 + (NSFetchedResultsController*) findByName:(NSString*) text;
 + (Stop*) findFirstBySrcId:(NSString*)src_id;
 + (Stop*) findFirstBySlug:(NSString*)slug;
-+ (NSArray*) findAroundLocation:(CLLocation*)location;
-+ (NSArray*) findFromPosition:(CLLocationCoordinate2D)center 
-            withLatitudeDelta:(CLLocationDegrees)latitudeDelta 
-            andLongitudeDelta:(CLLocationDegrees)longitudeDelta;
-+ (Stop*)findFirstByOldSrcId:(NSString*)old_src_id;
++ (NSArray*) findAroundLocation:(CLLocation*)location withinContext:(NSManagedObjectContext*)context;
 
 - (int) allCounts;
 

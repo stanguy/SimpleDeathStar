@@ -24,6 +24,11 @@
 #import "FavTimeViewCell.h"
 #import "FavTimeRelativeViewCell.h"
 
+
+@interface HomeScreenViewController ()
+-(void)refreshViewOfCloseStops;
+@end
+
 @implementation HomeScreenViewController
 
 #ifdef VERSION_STLO
@@ -123,15 +128,12 @@ NSString* positioningErrorDetails[] = {
     for ( Favorite* fav in favorites ) {
         [favtimes addObject:[StopTime findComingAt:fav]];
     }
-    @synchronized(self) {
-        [favoritesTimes_ release];
-        favoritesTimes_ = [favtimes retain];
-        cachedFavoritesCount = [Favorite count];
-        NSArray* oldFavorites = topFavorites_;
-        topFavorites_ = favorites;
-        [oldFavorites release];
-
-    }
+    [favoritesTimes_ release];
+    favoritesTimes_ = [favtimes retain];
+    cachedFavoritesCount = [Favorite count];
+    NSArray* oldFavorites = topFavorites_;
+    topFavorites_ = favorites;
+    [oldFavorites release];
     [self refreshViewOfFavorites];
 }
 
@@ -140,10 +142,8 @@ NSString* positioningErrorDetails[] = {
     for ( Stop* stop in closeStops ) {
         [proxtimes addObject:[StopTime findComingAtStop:stop andLine:nil]];
     }
-    @synchronized(self) {        
-        [proximityTimes_ release];
-        proximityTimes_ = [proxtimes retain];
-    }
+    [proximityTimes_ release];
+    proximityTimes_ = [proxtimes retain];
     [self refreshViewOfCloseStops];
 }
 
@@ -158,13 +158,36 @@ NSString* positioningErrorDetails[] = {
     [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:kCloseStopsSection] withRowAnimation:YES];
 }
 
-- (void)reloadCloseStops:(CLLocation*)location{
-    NSArray* stops = [Stop findAroundLocation:location];
+
+-(void)finishReloadCloseStops:(NSArray*)thr_stops {
+    SimpleDeathStarAppDelegate* delegate = (SimpleDeathStarAppDelegate*)[[UIApplication sharedApplication] delegate];
+    NSManagedObjectContext* context = [delegate transitManagedObjectContext];
+    NSMutableArray* stops = [NSMutableArray arrayWithCapacity:[thr_stops count]];
+    for( Stop* stop in thr_stops ) {
+        Stop* correct_stop = (Stop*) [context objectWithID:[stop objectID]];
+        correct_stop.distance = stop.distance;
+        [stops addObject:correct_stop];
+    }
     [closeStops release];
     closeStops = [stops retain];
     closeStopsCount = [stops count];
     [self reloadProximity];
-    [self refreshViewOfCloseStops];
+    
+}
+
+-(void)runReloadCloseStops:(CLLocation*)location {
+    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+    NSManagedObjectContext* context = [[NSManagedObjectContext alloc] init];
+    SimpleDeathStarAppDelegate* delegate = (SimpleDeathStarAppDelegate*)[[UIApplication sharedApplication] delegate];
+    [context setPersistentStoreCoordinator:[delegate transitPersistentStoreCoordinator]];
+    NSArray* stops = [Stop findAroundLocation:location withinContext:context];
+    [self performSelectorOnMainThread:@selector(finishReloadCloseStops:) withObject:stops waitUntilDone:YES];
+    [context release];
+    [pool release];
+}
+
+- (void)reloadCloseStops:(CLLocation*)location{
+    [self performSelectorInBackground:@selector(runReloadCloseStops:) withObject:location];
 }
 
 - (void)callFavLoading {
@@ -283,7 +306,7 @@ BOOL checkBounds( CLLocation* location ) {
 - (void) locationRetry {
 //    NSLog( @"location retry" );
     positioningError = kNoPositionError;
-    if ( [locationManager_ locationServicesEnabled] ) {
+    if ( [CLLocationManager locationServicesEnabled] ) {
         locationManager_.delegate = self;
         locationManager_.desiredAccuracy = kCLLocationAccuracyHundredMeters;
         // Set a movement threshold for new events

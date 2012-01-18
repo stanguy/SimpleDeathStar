@@ -195,10 +195,10 @@
         if (transitManagedObjectContext_ != nil ) {
             return transitManagedObjectContext_;
         }
-        NSManagedObjectContext* someContext = nil;
         NSPersistentStoreCoordinator *coordinator = [self transitPersistentStoreCoordinator];
         if (coordinator != nil) {
             transitManagedObjectContext_ = [[NSManagedObjectContext alloc] init];
+            [transitManagedObjectContext_ setUndoManager:nil];
             [transitManagedObjectContext_ setPersistentStoreCoordinator:coordinator];
         }
         return transitManagedObjectContext_;
@@ -235,6 +235,7 @@
         NSPersistentStoreCoordinator *coordinator = [self userPersistentStoreCoordinator];
         if (coordinator != nil) {
             userManagedObjectContext_ = [[NSManagedObjectContext alloc] init];
+            [userManagedObjectContext_ setUndoManager:nil];
             [userManagedObjectContext_ setPersistentStoreCoordinator:coordinator];
         }
         return userManagedObjectContext_;

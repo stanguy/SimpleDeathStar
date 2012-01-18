@@ -36,4 +36,5 @@
 - (void) locationRetry;
 - (void) locationStop;
 - (void)didSelectFavorite:(NSIndexPath *)indexPath;
+- (void)reloadByTimer;
 @end

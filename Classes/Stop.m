@@ -9,6 +9,14 @@
 #import "Stop.h"
 #import "SimpleDeathStarAppDelegate.h"
 
+@interface Stop ()
++ (NSArray*) findFromPosition:(CLLocationCoordinate2D)center 
+            withLatitudeDelta:(CLLocationDegrees)latitudeDelta 
+            andLongitudeDelta:(CLLocationDegrees)longitudeDelta;
++ (Stop*)findFirstByOldSrcId:(NSString*)old_src_id;
+
+@end
+
 
 @implementation Stop
 
@@ -144,9 +152,9 @@
 }
 
 
-+ (NSArray*) findAroundLocation:(CLLocationCoordinate2D)location withRadius:(float)radius {
-    SimpleDeathStarAppDelegate* delegate = (SimpleDeathStarAppDelegate*)[[UIApplication sharedApplication] delegate];
-    NSManagedObjectContext* context = [delegate  transitManagedObjectContext];
++ (NSArray*) findAroundLocation:(CLLocationCoordinate2D)location
+                     withRadius:(float)radius 
+                  withinContext:(NSManagedObjectContext*) context {
     
     // Create the fetch request for the entity.
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
@@ -189,13 +197,16 @@
 }
 
 
-+ (NSArray*) findAroundLocation:(CLLocation*)location{
++ (NSArray*) findAroundLocation:(CLLocation*)location 
+                  withinContext:(NSManagedObjectContext*)context{
     NSArray* result = nil;
     float radius = 0.0001;
     int previous_count = 0;
 //    NSLog( @"findAroundLocation" );
     do {
-        result = [Stop findAroundLocation:location.coordinate withRadius:radius];
+        result = [Stop findAroundLocation:location.coordinate 
+                               withRadius:radius 
+                            withinContext:context];
         if ([result count] > previous_count ) {
             radius *= 2;
         } else {
@@ -266,8 +277,12 @@
             withLatitudeDelta:(CLLocationDegrees)latitudeDelta 
             andLongitudeDelta:(CLLocationDegrees)longitudeDelta
 {
+    SimpleDeathStarAppDelegate* delegate = (SimpleDeathStarAppDelegate*)[[UIApplication sharedApplication] delegate];
+    NSManagedObjectContext* context = [delegate  transitManagedObjectContext];
     double radius = MAX( latitudeDelta, longitudeDelta ) / 2;
-    return [Stop findAroundLocation:center withRadius:radius];
+    return [Stop findAroundLocation:center 
+                         withRadius:radius
+                      withinContext:context];
 }
 
 + (Stop*)findFirstByOldSrcId:(NSString*)old_src_id {
