@@ -613,7 +613,6 @@ float hexToFloatColor( char c1, char c2 ) {
             break;
         case kAboutSection:
         {
-            NSLog( @"Row about %d/%d", indexPath.row, AboutMenuValues[indexPath.row] );
             AboutViewController* aboutVC = [[AboutViewController alloc] initWithNibName:@"AboutViewController" bundle:nil];
             aboutVC.type = AboutMenuValues[indexPath.row];
             [self.navigationController pushViewController:aboutVC animated:YES];

@@ -16,7 +16,7 @@ enum AboutType {
     ABOUT_ONLINE
 };
 
-@interface AboutViewController : UIViewController {
+@interface AboutViewController : UIViewController <UIWebViewDelegate> {
 @private
     IBOutlet UIWebView* webView;
     int type_;

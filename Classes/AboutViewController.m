@@ -68,6 +68,17 @@
     viewComposer_ = [[ADViewComposer alloc] initWithView:webView];
 }
 
+-(void)webView:(UIWebView*)view didFailLoadWithError:(NSError*)error {
+    UIAlertView *alert =
+    [[UIAlertView alloc] initWithTitle: NSLocalizedString( @"Erreur", @"" )
+                               message: NSLocalizedString( @"Impossible de charger la page.", @"" )
+                              delegate: nil
+                     cancelButtonTitle: @"OK"
+                     otherButtonTitles: nil];
+    [alert show];
+    [alert release];
+}
+
 - (void)didReceiveMemoryWarning {
     // Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
