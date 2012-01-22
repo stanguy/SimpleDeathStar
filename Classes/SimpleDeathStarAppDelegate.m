@@ -60,13 +60,14 @@
          [NSNumber numberWithBool:YES], @"enable_ads",
          @"arrival",                    @"reftime", 
          [NSNumber numberWithBool:FALSE], @"relative_time", nil ];
-    [[NSUserDefaults standardUserDefaults] registerDefaults:appDefaults];
-    [[NSUserDefaults standardUserDefaults] setObject:[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"] forKey:@"version"];
+    NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults] ;
+    [defaults registerDefaults:appDefaults];
+    [defaults setObject:[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"] forKey:@"version"];
 #ifndef VERSION_STLO
     [Favorite updateAll];
 #endif
     
-    NSString* reftime = [[NSUserDefaults standardUserDefaults] stringForKey:@"reftime"];
+    NSString* reftime = [defaults stringForKey:@"reftime"];
     useArrival = YES;
     if ( [reftime isEqualToString:@"departure"]) {
         useArrival = NO;
@@ -74,9 +75,9 @@
     HomeScreenViewController* homeController = [[[HomeScreenViewController alloc] init] autorelease];
     navigationController = [[UINavigationController alloc] initWithRootViewController:homeController];
     
-    useRelativeTime = [[NSUserDefaults standardUserDefaults] boolForKey:@"relative_time"];
+    useRelativeTime = [defaults boolForKey:@"relative_time"];
     
-    if ( [[NSUserDefaults standardUserDefaults] boolForKey:@"enable_ads"] ) {
+    if ( [defaults boolForKey:@"enable_ads"] ) {
 #ifndef VERSION_STLO
         NSLog( @"ads enabled" );
         [ADViewComposer EnableAds:YES];
@@ -86,7 +87,7 @@
         [ADViewComposer EnableAds:NO];
     }
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(preferencesChanged:) name:NSUserDefaultsDidChangeNotification object:nil];
-
+    
     [window addSubview:navigationController.view];
     [window makeKeyAndVisible];
     return YES;
