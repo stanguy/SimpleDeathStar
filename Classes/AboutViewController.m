@@ -44,8 +44,10 @@
     //NSLog( @"%@", currentLocale );
 #ifdef VERSION_STLO
     NSString* about_format = @"about_stlo_%@";
+    NSString* online_url = @"http://maps.dthg.net/city/saint-lo";
 #else
     NSString* about_format = @"about_%@";
+    NSString* online_url = @"http://maps.dthg.net/city/rennes";
 #endif
     switch ( self.type ) {
         case ABOUT_ABOUT:
@@ -58,7 +60,7 @@
             break;
         case ABOUT_ONLINE:
             self.navigationItem.title = NSLocalizedString( @"En ligne", @"" );
-            fileUrl = [NSURL URLWithString:@"http://maps.dthg.net"];
+            fileUrl = [NSURL URLWithString:online_url];
             break;
         default:
             return;
