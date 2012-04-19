@@ -95,6 +95,8 @@
 
 
 - (void)dealloc {
+    webView.delegate = nil;
+    [webView stopLoading];
     [viewComposer_ release];
     [super dealloc];
 }
