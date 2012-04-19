@@ -41,7 +41,7 @@ static NSString* STM_TWITS_URL = @"http://api.twitter.com/1/statuses/user_timeli
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.twits_  = [[NSArray alloc] init];
+    self.twits_  = [[[NSArray alloc] init] autorelease];
     self.navigationItem.title = @"@starbusmetro";
     UIBarButtonItem *settingsButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"reload"]
                                                                        style:UIBarButtonItemStyleBordered target:self action:@selector(refreshTwits)];
@@ -125,6 +125,7 @@ enum {
     [formatter setDateFormat:@"dd/MM\nHH:mm"];
     
     dateLabel.text = [formatter stringFromDate:twit.created_at];
+    [formatter release];
     [dateLabel sizeToFit];
 //    [textLabel sizeToFit];
     return cell;
@@ -192,7 +193,9 @@ enum {
             [newTwits addObject:twit];
             [twit release];
         }
+        [frm release];
         self.twits_ = newTwits;
+        [newTwits release];
         [self.tableView reloadData];
     }
 }
