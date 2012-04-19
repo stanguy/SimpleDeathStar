@@ -13,7 +13,8 @@
 enum AboutType {
     ABOUT_ABOUT,
     ABOUT_PANIC,
-    ABOUT_ONLINE
+    ABOUT_ONLINE,
+    ABOUT_TWITS
 };
 
 @interface AboutViewController : UIViewController <UIWebViewDelegate> {
