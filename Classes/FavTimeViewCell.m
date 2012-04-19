@@ -19,7 +19,7 @@
 
 
 -(void) setFramesAt:(int)i{
-    const int kBaseLineY = 20;
+    const int kBaseLineY = 30;
     const int kBaseLineX = 20;
     const int kImageWidth = 22;
     const int kLineHeight = 22;
@@ -43,12 +43,12 @@
         self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 
         nameLabel_ = [[UILabel alloc] init];
-        nameLabel_.frame = CGRectMake( 30, 2, 250, 20 );
+        nameLabel_.frame = CGRectMake( 30, 5, 250, 20 );
         nameLabel_.font = [UIFont boldSystemFontOfSize:14.0];
         [self addSubview:nameLabel_];
 
         distanceLabel_ = [[UILabel alloc] init];
-        distanceLabel_.frame = CGRectMake( 250, 2, 50, 20 );
+        distanceLabel_.frame = CGRectMake( 250, 5, 50, 20 );
         distanceLabel_.font = [UIFont boldSystemFontOfSize:12.0];
         distanceLabel_.textColor = [UIColor darkGrayColor];
         [self addSubview:distanceLabel_];

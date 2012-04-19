@@ -29,6 +29,7 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     self.navigationItem.title = NSLocalizedString( @"Favoris", @"" );
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleDataChange) name:@"favorites" object:nil];
+    self.tableView.rowHeight = 60.0f;
 }
 
 -(void)handleDataChange {

@@ -13,7 +13,7 @@
 @implementation FavTimeRelativeViewCell
 
 -(void) setFramesAt:(int)i{
-    const int kBaseLineY = 20;
+    const int kBaseLineY = 30;
     const int kBaseLineX = 20;
     const int kImageWidth = 22;
     const int kLineHeight = 22;

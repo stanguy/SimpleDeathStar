@@ -336,7 +336,13 @@ BOOL checkBounds( CLLocation* location ) {
     // Return the number of sections.
     return sizeof(menuTitles) / sizeof(NSString*);
 }
-
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if ( indexPath.section == kFavoritesSection || indexPath.section == kCloseStopsSection ) {
+        return 60.0f;
+    } else {
+        return 44.0f;
+    }
+}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
