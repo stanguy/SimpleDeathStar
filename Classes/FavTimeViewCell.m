@@ -43,11 +43,13 @@
         self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 
         nameLabel_ = [[UILabel alloc] init];
+        nameLabel_.backgroundColor = [UIColor clearColor];
         nameLabel_.frame = CGRectMake( 30, 5, 250, 20 );
         nameLabel_.font = [UIFont boldSystemFontOfSize:14.0];
         [self addSubview:nameLabel_];
 
         distanceLabel_ = [[UILabel alloc] init];
+        distanceLabel_.backgroundColor = [UIColor clearColor];
         distanceLabel_.frame = CGRectMake( 250, 5, 50, 20 );
         distanceLabel_.font = [UIFont boldSystemFontOfSize:12.0];
         distanceLabel_.textColor = [UIColor darkGrayColor];
@@ -65,6 +67,7 @@
             imageViews_[i].contentMode =  UIViewContentModeCenter;
             timeLabels_[i].font = [UIFont systemFontOfSize:12];
             timeLabels_[i].textAlignment = UITextAlignmentRight;
+            timeLabels_[i].backgroundColor = [UIColor clearColor];
             [self addSubview:imageViews_[i]];
             [self addSubview:timeLabels_[i]];
 
