@@ -275,10 +275,14 @@
         NSString* dbName = @"TransitStLo";
 #endif
         NSURL *storeURL = [NSURL fileURLWithPath: [[NSBundle mainBundle] pathForResource:dbName ofType:@"sqlite"]];
+        NSDictionary 
+          *options = [NSDictionary dictionaryWithObject:[NSNumber numberWithBool:1]
+                                                 forKey:NSReadOnlyPersistentStoreOption];
+        
         
         NSError *error = nil;
         transitPersistentStoreCoordinator_ = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self transitManagedObjectModel]];
-        if (![transitPersistentStoreCoordinator_ addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error]) {
+        if (![transitPersistentStoreCoordinator_ addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:options error:&error]) {
             /*
              Replace this implementation with code to handle the error appropriately.
              
