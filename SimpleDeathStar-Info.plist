@@ -26,16 +26,18 @@
 	<true/>
 	<key>NSMainNibFile</key>
 	<string>MainWindow</string>
+	<key>NSMainNibFile~ipad</key>
+	<string>MainWindow~ipad</string>
+	<key>Required Device Capabilities</key>
+	<array>
+		<string>armv6</string>
+		<string>armv7</string>
+	</array>
 	<key>UILaunchImageFile</key>
 	<string>Default.png</string>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
-	</array>
-	<key>Required Device Capabilities</key>
-	<array>
-		<string>armv6</string>
-		<string>armv7</string>
 	</array>
 </dict>
 </plist>

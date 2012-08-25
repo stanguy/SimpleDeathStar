@@ -102,7 +102,9 @@ enum {
         dateLabel.textAlignment = UITextAlignmentCenter;
         [cell.contentView addSubview:dateLabel];
         
-        textLabel = [[[UILabel alloc] initWithFrame:CGRectMake( 65.0f, 5.0f, 230.0f, 95.0f)] autorelease];
+        double textWidth = [tableView bounds].size.width - 60 - 30 - 20;
+        
+        textLabel = [[[UILabel alloc] initWithFrame:CGRectMake( 65.0f, 5.0f, textWidth, 95.0f)] autorelease];
         textLabel.tag = TEXT_TAG;
         textLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:14.0f];
         textLabel.textAlignment = UITextAlignmentRight;

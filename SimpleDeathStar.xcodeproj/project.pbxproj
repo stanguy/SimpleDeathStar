@@ -18,6 +18,23 @@
 		960F07BF14901279003ED2A6 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 960F07BC14901279003ED2A6 /* Default.png */; };
 		960F07C014901279003ED2A6 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 960F07BD14901279003ED2A6 /* Default@2x.png */; };
 		960F07C114901279003ED2A6 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 960F07BD14901279003ED2A6 /* Default@2x.png */; };
+		96162DB915E93BB90085B361 /* MainWindow~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96162D9515E935370085B361 /* MainWindow~ipad.xib */; };
+		96162DBA15E93BBD0085B361 /* HomeScreenViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96162D9615E935370085B361 /* HomeScreenViewController~ipad.xib */; };
+		96162DBB15E93BC00085B361 /* LineViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96162D9715E935370085B361 /* LineViewController~ipad.xib */; };
+		96162DBC15E93BC30085B361 /* StopViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96162D9815E935370085B361 /* StopViewController~ipad.xib */; };
+		96162DBD15E93BC60085B361 /* StopTimeViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96162D9915E935370085B361 /* StopTimeViewController~ipad.xib */; };
+		96162DBE15E93BC90085B361 /* CityViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96162D9A15E935370085B361 /* CityViewController~ipad.xib */; };
+		96162DBF15E93BCC0085B361 /* AboutViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96162D9B15E935370085B361 /* AboutViewController~ipad.xib */; };
+		96162DC015E93BCF0085B361 /* GridCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96162D9C15E935370085B361 /* GridCell~ipad.xib */; };
+		96162DC115E93BD20085B361 /* NoResult~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96162D9D15E935370085B361 /* NoResult~ipad.xib */; };
+		96162DC215E93BD50085B361 /* TripViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96162D9E15E935370085B361 /* TripViewController~ipad.xib */; };
+		96162DC315E93BD80085B361 /* DateNavigation~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96162D9F15E935370085B361 /* DateNavigation~ipad.xib */; };
+		96162DC415E93BDB0085B361 /* FavoritesViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96162DA215E935370085B361 /* FavoritesViewController~ipad.xib */; };
+		96162DC515E93BDF0085B361 /* PoiViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96162DA315E935370085B361 /* PoiViewController~ipad.xib */; };
+		96162DC615E93BE20085B361 /* StopViewCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96162DA415E935370085B361 /* StopViewCell~ipad.xib */; };
+		96162DC715E93BE50085B361 /* TripViewCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96162DA515E935370085B361 /* TripViewCell~ipad.xib */; };
+		96162DC815E93BE80085B361 /* StopMapViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96162DA615E935370085B361 /* StopMapViewController~ipad.xib */; };
+		96162DC915E93BEB0085B361 /* TwitsViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96162DA715E935370085B361 /* TwitsViewController~ipad.xib */; };
 		961A717112D26CB90085BCAA /* NoResult.xib in Resources */ = {isa = PBXBuildFile; fileRef = 961A717012D26CB90085BCAA /* NoResult.xib */; };
 		961A76E812D52FB20085BCAA /* panic_fr.html in Resources */ = {isa = PBXBuildFile; fileRef = 961A76E712D52FB20085BCAA /* panic_fr.html */; };
 		961A779112D664340085BCAA /* TripViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 961A778F12D664340085BCAA /* TripViewController.m */; };
@@ -459,6 +476,25 @@
 		8D1107310486CEB800E47090 /* SimpleDeathStar-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "SimpleDeathStar-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		960F07BC14901279003ED2A6 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		960F07BD14901279003ED2A6 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		96162D9415E935120085B361 /* SimpleDeathStar copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "SimpleDeathStar copy-Info.plist"; path = "/Users/seb/src/ios/SimpleDeathStar/SimpleDeathStar copy-Info.plist"; sourceTree = "<absolute>"; };
+		96162D9515E935370085B361 /* MainWindow~ipad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "MainWindow~ipad.xib"; path = "Resources-iPad/MainWindow~ipad.xib"; sourceTree = "<group>"; };
+		96162D9615E935370085B361 /* HomeScreenViewController~ipad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "HomeScreenViewController~ipad.xib"; path = "Resources-iPad/Classes/HomeScreenViewController~ipad.xib"; sourceTree = "<group>"; };
+		96162D9715E935370085B361 /* LineViewController~ipad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "LineViewController~ipad.xib"; path = "Resources-iPad/Classes/LineViewController~ipad.xib"; sourceTree = "<group>"; };
+		96162D9815E935370085B361 /* StopViewController~ipad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "StopViewController~ipad.xib"; path = "Resources-iPad/Classes/StopViewController~ipad.xib"; sourceTree = "<group>"; };
+		96162D9915E935370085B361 /* StopTimeViewController~ipad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "StopTimeViewController~ipad.xib"; path = "Resources-iPad/Classes/StopTimeViewController~ipad.xib"; sourceTree = "<group>"; };
+		96162D9A15E935370085B361 /* CityViewController~ipad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "CityViewController~ipad.xib"; path = "Resources-iPad/Classes/CityViewController~ipad.xib"; sourceTree = "<group>"; };
+		96162D9B15E935370085B361 /* AboutViewController~ipad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "AboutViewController~ipad.xib"; path = "Resources-iPad/Classes/AboutViewController~ipad.xib"; sourceTree = "<group>"; };
+		96162D9C15E935370085B361 /* GridCell~ipad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "GridCell~ipad.xib"; path = "Resources-iPad/Classes/GridCell~ipad.xib"; sourceTree = "<group>"; };
+		96162D9D15E935370085B361 /* NoResult~ipad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "NoResult~ipad.xib"; path = "Resources-iPad/NoResult~ipad.xib"; sourceTree = "<group>"; };
+		96162D9E15E935370085B361 /* TripViewController~ipad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "TripViewController~ipad.xib"; path = "Resources-iPad/Classes/TripViewController~ipad.xib"; sourceTree = "<group>"; };
+		96162DA015E935370085B361 /* fr */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = fr; path = "Resources-iPad/fr.lproj/DateNavigation~ipad.xib"; sourceTree = "<group>"; };
+		96162DA115E935370085B361 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = "Resources-iPad/en.lproj/DateNavigation~ipad.xib"; sourceTree = "<group>"; };
+		96162DA215E935370085B361 /* FavoritesViewController~ipad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "FavoritesViewController~ipad.xib"; path = "Resources-iPad/Classes/FavoritesViewController~ipad.xib"; sourceTree = "<group>"; };
+		96162DA315E935370085B361 /* PoiViewController~ipad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "PoiViewController~ipad.xib"; path = "Resources-iPad/Classes/PoiViewController~ipad.xib"; sourceTree = "<group>"; };
+		96162DA415E935370085B361 /* StopViewCell~ipad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "StopViewCell~ipad.xib"; path = "Resources-iPad/StopViewCell~ipad.xib"; sourceTree = "<group>"; };
+		96162DA515E935370085B361 /* TripViewCell~ipad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "TripViewCell~ipad.xib"; path = "Resources-iPad/TripViewCell~ipad.xib"; sourceTree = "<group>"; };
+		96162DA615E935370085B361 /* StopMapViewController~ipad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "StopMapViewController~ipad.xib"; path = "Resources-iPad/Classes/StopMapViewController~ipad.xib"; sourceTree = "<group>"; };
+		96162DA715E935370085B361 /* TwitsViewController~ipad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "TwitsViewController~ipad.xib"; path = "Resources-iPad/TwitsViewController~ipad.xib"; sourceTree = "<group>"; };
 		961A717012D26CB90085BCAA /* NoResult.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoResult.xib; sourceTree = "<group>"; };
 		961A76E712D52FB20085BCAA /* panic_fr.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = panic_fr.html; sourceTree = "<group>"; };
 		961A778E12D664340085BCAA /* TripViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TripViewController.h; sourceTree = "<group>"; };
@@ -916,12 +952,15 @@
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
+				96162D9315E935120085B361 /* Resources-iPad */,
+				96162C5715E933980085B361 /* iPad */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
 				96B169B412FB65B100B71302 /* CFNetwork.framework */,
 				96B169B612FB65B100B71302 /* CoreFoundation.framework */,
 				96B169B812FB65B100B71302 /* MobileCoreServices.framework */,
 				96B169BA12FB65B100B71302 /* SystemConfiguration.framework */,
+				96162D9415E935120085B361 /* SimpleDeathStar copy-Info.plist */,
 			);
 			name = CustomTemplate;
 			sourceTree = "<group>";
@@ -938,11 +977,8 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				960F07BC14901279003ED2A6 /* Default.png */,
-				960F07BD14901279003ED2A6 /* Default@2x.png */,
+				96162C5A15E934810085B361 /* images */,
 				96A71C6C12CA87AC00FB1516 /* AboutViewController.xib */,
-				96FB3ADE1434D3A800830FC3 /* arrow_circle_right.png */,
-				96FB3ADF1434D3A800830FC3 /* arrow_circle_right@2x.png */,
 				96539CBB12C94C68002FDF29 /* CityViewController.xib */,
 				B816B04E12F050130006C6ED /* DateNavigation.xib */,
 				9677AF6D12F0C95A0016A460 /* FavoritesViewController.xib */,
@@ -957,11 +993,6 @@
 				961A717012D26CB90085BCAA /* NoResult.xib */,
 				9677B3BD12F209950016A460 /* PoiViewController.xib */,
 				8D1107310486CEB800E47090 /* SimpleDeathStar-Info.plist */,
-				96DBF54612CBFAFD0096C240 /* simpledeathstar_appicon.png */,
-				96DBF54512CBFAFD0096C240 /* simpledeathstar_appicon@2x.png */,
-				96DBF54712CBFAFD0096C240 /* simpledeathstar_appstore.png */,
-				96FB3AFB1434D41200830FC3 /* simpledeathstar_stlo_appicon.png */,
-				96FB3AFC1434D41200830FC3 /* simpledeathstar_stlo_appicon@2x.png */,
 				96234B6F1434CE0100CCCAFD /* SimpleDeathStarStLo-Info.plist */,
 				96B1696112FB587600B71302 /* StopMapViewController.xib */,
 				9631C13012C77D660002EB78 /* StopTimeViewController.xib */,
@@ -991,6 +1022,53 @@
 				9688A0EA1301E6DA00B218A2 /* CoreLocation.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		96162C5715E933980085B361 /* iPad */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = iPad;
+			sourceTree = "<group>";
+		};
+		96162C5A15E934810085B361 /* images */ = {
+			isa = PBXGroup;
+			children = (
+				960F07BC14901279003ED2A6 /* Default.png */,
+				960F07BD14901279003ED2A6 /* Default@2x.png */,
+				96FB3ADE1434D3A800830FC3 /* arrow_circle_right.png */,
+				96FB3ADF1434D3A800830FC3 /* arrow_circle_right@2x.png */,
+				96DBF54612CBFAFD0096C240 /* simpledeathstar_appicon.png */,
+				96DBF54512CBFAFD0096C240 /* simpledeathstar_appicon@2x.png */,
+				96DBF54712CBFAFD0096C240 /* simpledeathstar_appstore.png */,
+				96FB3AFB1434D41200830FC3 /* simpledeathstar_stlo_appicon.png */,
+				96FB3AFC1434D41200830FC3 /* simpledeathstar_stlo_appicon@2x.png */,
+			);
+			name = images;
+			sourceTree = "<group>";
+		};
+		96162D9315E935120085B361 /* Resources-iPad */ = {
+			isa = PBXGroup;
+			children = (
+				96162D9B15E935370085B361 /* AboutViewController~ipad.xib */,
+				96162D9A15E935370085B361 /* CityViewController~ipad.xib */,
+				96162D9F15E935370085B361 /* DateNavigation~ipad.xib */,
+				96162DA215E935370085B361 /* FavoritesViewController~ipad.xib */,
+				96162D9C15E935370085B361 /* GridCell~ipad.xib */,
+				96162D9615E935370085B361 /* HomeScreenViewController~ipad.xib */,
+				96162D9715E935370085B361 /* LineViewController~ipad.xib */,
+				96162D9515E935370085B361 /* MainWindow~ipad.xib */,
+				96162D9D15E935370085B361 /* NoResult~ipad.xib */,
+				96162DA315E935370085B361 /* PoiViewController~ipad.xib */,
+				96162DA615E935370085B361 /* StopMapViewController~ipad.xib */,
+				96162D9915E935370085B361 /* StopTimeViewController~ipad.xib */,
+				96162DA415E935370085B361 /* StopViewCell~ipad.xib */,
+				96162D9815E935370085B361 /* StopViewController~ipad.xib */,
+				96162DA515E935370085B361 /* TripViewCell~ipad.xib */,
+				96162D9E15E935370085B361 /* TripViewController~ipad.xib */,
+				96162DA715E935370085B361 /* TwitsViewController~ipad.xib */,
+			);
+			name = "Resources-iPad";
 			sourceTree = "<group>";
 		};
 		962B81AA12C6C141007EA09F /* ManagedObjects */ = {
@@ -1633,6 +1711,23 @@
 				966FF248153F783400A8AA6F /* STN@2x.png in Resources */,
 				966FF249153F783400A8AA6F /* TTZ.png in Resources */,
 				966FF24A153F783400A8AA6F /* TTZ@2x.png in Resources */,
+				96162DB915E93BB90085B361 /* MainWindow~ipad.xib in Resources */,
+				96162DBA15E93BBD0085B361 /* HomeScreenViewController~ipad.xib in Resources */,
+				96162DBB15E93BC00085B361 /* LineViewController~ipad.xib in Resources */,
+				96162DBC15E93BC30085B361 /* StopViewController~ipad.xib in Resources */,
+				96162DBD15E93BC60085B361 /* StopTimeViewController~ipad.xib in Resources */,
+				96162DBE15E93BC90085B361 /* CityViewController~ipad.xib in Resources */,
+				96162DBF15E93BCC0085B361 /* AboutViewController~ipad.xib in Resources */,
+				96162DC015E93BCF0085B361 /* GridCell~ipad.xib in Resources */,
+				96162DC115E93BD20085B361 /* NoResult~ipad.xib in Resources */,
+				96162DC215E93BD50085B361 /* TripViewController~ipad.xib in Resources */,
+				96162DC315E93BD80085B361 /* DateNavigation~ipad.xib in Resources */,
+				96162DC415E93BDB0085B361 /* FavoritesViewController~ipad.xib in Resources */,
+				96162DC515E93BDF0085B361 /* PoiViewController~ipad.xib in Resources */,
+				96162DC615E93BE20085B361 /* StopViewCell~ipad.xib in Resources */,
+				96162DC715E93BE50085B361 /* TripViewCell~ipad.xib in Resources */,
+				96162DC815E93BE80085B361 /* StopMapViewController~ipad.xib in Resources */,
+				96162DC915E93BEB0085B361 /* TwitsViewController~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1816,6 +1911,15 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		96162D9F15E935370085B361 /* DateNavigation~ipad.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				96162DA015E935370085B361 /* fr */,
+				96162DA115E935370085B361 /* en */,
+			);
+			name = "DateNavigation~ipad.xib";
+			sourceTree = "<group>";
+		};
 		B816AFCC12F049290006C6ED /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -1852,8 +1956,9 @@
 				GCC_PREFIX_HEADER = SimpleDeathStar_Prefix.pch;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "SimpleDeathStar-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = SimpleDeathStar;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -1870,8 +1975,9 @@
 				GCC_PREFIX_HEADER = SimpleDeathStar_Prefix.pch;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "SimpleDeathStar-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = SimpleDeathStar;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;

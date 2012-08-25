@@ -185,7 +185,7 @@ const int kCellWidth = 46;
 }
 
 - (void)adjustScrollViewFrame {
-    scrollView.frame = CGRectMake(6, 0, 320, self.view.frame.size.height - self.toolbar.frame.size.height); 
+    scrollView.frame = CGRectMake(6, 0, self.view.frame.size.width, self.view.frame.size.height - self.toolbar.frame.size.height); 
     
 }
 
