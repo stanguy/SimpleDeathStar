@@ -44,6 +44,12 @@
     }
 }
 
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+    // Return YES for supported orientations
+    return interfaceOrientation == UIInterfaceOrientationPortrait 
+    || interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown;
+}
+
 #pragma mark -
 #pragma mark Table view data source
 

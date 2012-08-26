@@ -66,6 +66,13 @@ const int kCellWidth = 46;
     viewComposer = [[ADViewComposer alloc] initWithView:self.containerView];
 }
 
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+    // Return YES for supported orientations
+    return interfaceOrientation == UIInterfaceOrientationPortrait 
+    || interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown;
+}
+
+
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [viewComposer changeDisplay:YES];

@@ -31,6 +31,11 @@
     self.navigationItem.title = [NSString stringWithFormat:NSLocalizedString( @"%@ vers %@", @"" ), stopTime_.line.short_name, stopTime_.direction.headsign];
 }
 
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+    // Return YES for supported orientations
+    return interfaceOrientation == UIInterfaceOrientationPortrait 
+    || interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown;
+}
 
 
 #pragma mark -

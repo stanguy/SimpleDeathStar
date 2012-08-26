@@ -51,6 +51,13 @@ static NSString* STM_TWITS_URL = @"http://api.twitter.com/1/statuses/user_timeli
     [self loadTwits];
 }
 
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+    // Return YES for supported orientations
+    return interfaceOrientation == UIInterfaceOrientationPortrait 
+    || interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown;
+}
+
+
 #pragma -
 #pragma Table stuff
 
