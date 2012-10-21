@@ -240,8 +240,7 @@ NSString* positioningErrorDetails[] = {
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     // Return YES for supported orientations
-    return interfaceOrientation == UIInterfaceOrientationPortrait 
-      || interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown;
+    return UIInterfaceOrientationIsPortrait(interfaceOrientation);
 }
 
 
