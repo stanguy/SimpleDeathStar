@@ -31,11 +31,10 @@
 }
 
 - (void)locationActive:(BOOL)shouldActivate {
-    HomeScreenViewController* home = [navigationController.viewControllers objectAtIndex:0];
     if ( shouldActivate ) {
-        [home locationRetry];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"locationRetry" object:nil];
     } else {
-        [home locationStop];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"locationStop" object:nil];
     }
 }
 
@@ -53,6 +52,9 @@
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {    
+    
+    [window setFrame:[[UIScreen mainScreen] bounds]];
+    NSLog( @"%f", [[UIScreen mainScreen] bounds].size.height );
     
     // Override point for customization after application launch.
     NSDictionary* appDefaults = 
@@ -88,7 +90,7 @@
     }
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(preferencesChanged:) name:NSUserDefaultsDidChangeNotification object:nil];
     
-    [window addSubview:navigationController.view];
+    [window setRootViewController:navigationController];
     [window makeKeyAndVisible];
     return YES;
 }
