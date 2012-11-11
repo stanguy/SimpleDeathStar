@@ -80,7 +80,6 @@
 
 - (void) layoutSubviews {
     [super layoutSubviews];
-    NSLog( @"wooh, look at me: %@", self );
     if ( ( self.contentView.frame.size.width - 60 ) != distanceLabel_.frame.origin.x ) {
         distanceLabel_.frame = CGRectMake( self.contentView.frame.size.width - 60, 5, 50, 20 );
     }
