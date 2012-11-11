@@ -9,13 +9,14 @@
 #import <UIKit/UIKit.h>
 #import "ADViewComposer.h"
 
-@interface TableWithAdViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+@interface TableWithAdViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
 {
   @private
-    UITableView* tableView_;
     ADViewComposer* viewComposer;
 }
-@property (nonatomic, retain) UITableView* tableView;
+
+@property (nonatomic,retain) UITableView* tableView;
 
 - (UITableViewStyle)defaultStyle ;
+
 @end

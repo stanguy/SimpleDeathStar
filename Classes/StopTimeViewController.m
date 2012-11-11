@@ -27,7 +27,7 @@ const int kCellWidth = 46;
 @implementation StopTimeViewController
 
 @synthesize fetchedResultsController = fetchedResultsController_, line = line_, stop = stop_;
-@synthesize tableView, scrollView, containerView,toolbar = toolbar_, favButton = favButton_, poiButton = poiButton_, alertNoResult = alertNoResult_, datePicker = datePicker_;
+@synthesize tableView, scrollView, containerView, favButton = favButton_, poiButton = poiButton_, alertNoResult = alertNoResult_, datePicker = datePicker_;
 
 #pragma mark -
 #pragma mark View lifecycle
@@ -35,6 +35,9 @@ const int kCellWidth = 46;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    self.containerView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+
 
     timeShift_ = 0;
     viewedDate_ = [NSDate date];
@@ -53,15 +56,25 @@ const int kCellWidth = 46;
     } else if ( self.stop != nil ) {
         self.navigationItem.title = self.stop.name;
     }
-        
+    
+    
+    UIBarButtonItem* dateChangeItem = [[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"clock"] style:UIBarButtonItemStylePlain target:self action:@selector(changeDate:)] autorelease];
+    UIImage* favImage;
     if ( [Favorite existsWithLine:line_ andStop:stop_ andOhBTWIncCounter:YES] ) {
-        favButton_.image = [UIImage imageNamed:@"favorites_remove"];
+        favImage = [UIImage imageNamed:@"favorites_remove"];
     } else {
-        favButton_.image = [UIImage imageNamed:@"favorites_add"];
+        favImage = [UIImage imageNamed:@"favorites_add"];
     }
+    favButton_ = [[UIBarButtonItem alloc] initWithImage:favImage style:UIBarButtonItemStylePlain target:self action:@selector(toggleFavorite:)];
+    poiButton_ = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"app_globe"] style:UIBarButtonItemStylePlain target:self action:@selector(showPoi:)];
+    UIBarButtonItem *flexible = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease];
+    
+    self.toolbarItems = [NSArray arrayWithObjects:dateChangeItem, flexible, poiButton_, flexible,favButton_, nil];
 
     if ( [self.stop allCounts] > 0 ) {
         [poiButton_ setEnabled:YES];
+    } else {
+        [poiButton_ setEnabled:NO];
     }
     viewComposer = [[ADViewComposer alloc] initWithView:self.containerView];
 }
@@ -75,6 +88,12 @@ const int kCellWidth = 46;
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [viewComposer changeDisplay:YES];
+    self.navigationController.toolbarHidden = NO;
+}
+- (void)viewWillDisappear:(BOOL)animated
+{
+    self.navigationController.toolbarHidden = YES;
+    [super viewWillDisappear:animated];
 }
 
 
@@ -191,7 +210,7 @@ const int kCellWidth = 46;
 }
 
 - (void)adjustScrollViewFrame {
-    scrollView.frame = CGRectMake(6, 0, self.view.frame.size.width, self.view.frame.size.height - self.toolbar.frame.size.height); 
+    scrollView.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
     
 }
 
@@ -391,7 +410,7 @@ const int kCellWidth = 46;
         }
     }
     poiIndexes = [indexes retain];
-    [sheet showInView:self.view];
+    [sheet showFromToolbar:self.navigationController.toolbar];
     [sheet release];
 }
 

@@ -24,41 +24,38 @@ bool SHOW_ADS = YES;
         // Initialization code here.
         displayed = NO;
         composedView = otherView;
-        ADBannerView* adview = [SimpleDeathStarAppDelegate adView];
-        if ( adview.bannerLoaded ) {
-            NSLog( @"init with loaded banner" );
-            [self changeDisplay:YES];
-        }
-    }
-    
+    }    
     return self;
 }
 
 - (void)changeDisplay:(BOOL)show andAnimate:(BOOL)animated {
     //NSLog( @"show: %d, display: %d", show, displayed );
-    if ( show && ! SHOW_ADS ) { return ; }
-    if ( show == displayed ) { return; }
     ADBannerView *adBanner = [SimpleDeathStarAppDelegate adView];
     if ( nil == adBanner ) { return; }
-    if ( show && adBanner.delegate != self ) {
-        //NSLog( @"\t\tGetting the delegate" );
-        adBanner.delegate = self;
-        if( adBanner.superview != nil && adBanner.superview != composedView.superview ) {
-            [adBanner removeFromSuperview];
+    if ( show ) {
+        if ( ! SHOW_ADS ) { return; }
+        if ( displayed ) { return; }
+        if ( adBanner.delegate != self ) {
+            //NSLog( @"\t\tGetting the delegate" );
+            adBanner.delegate = self;
+            if( adBanner.superview != nil && adBanner.superview != composedView.superview ) {
+                [adBanner removeFromSuperview];
+            }
         }
-        [composedView.superview addSubview:adBanner];
-    }
-    if ( ! ( adBanner.bannerLoaded || displayed ) ) { return ; }
-    if ( show && adBanner.superview == nil ) {
-        [composedView.superview addSubview:adBanner];
-    }
-	
-	CGFloat animationDuration = animated ? 0.3f : 0.0f;
+        if ( ! adBanner.bannerLoaded  ) { return ; }
+        if ( adBanner.superview == nil ) {
+            [composedView.superview addSubview:adBanner];
+        }
+    } else if ( ! displayed ) {
+        return;
+    }        
+    
+    CGFloat animationDuration = animated ? 0.3f : 0.0f;
     // by default content consumes the entire view area
     CGRect contentFrame = composedView.superview.bounds;
     // the banner still needs to be adjusted further, but this is a reasonable starting point
     // the y value will need to be adjusted by the banner height to get the final position
-	CGPoint bannerOrigin = CGPointMake(CGRectGetMinX(contentFrame), CGRectGetMaxY(contentFrame));
+    CGPoint bannerOrigin = CGPointMake(CGRectGetMinX(contentFrame), CGRectGetMaxY(contentFrame));
     CGFloat bannerHeight = adBanner.bounds.size.height;
     
     if ( ! displayed ) {
@@ -77,12 +74,13 @@ bool SHOW_ADS = YES;
     } else if ( displayed ) {
         targetFrame = CGRectOffset( adBanner.frame, 0, bannerHeight );
     }
-#if 0
-    NSLog( @"\tfirst Origin: %fx%f", adBanner.frame.origin.x, adBanner.frame.origin.y );
-    NSLog( @"\tbannerOrigin: %fx%f", bannerOrigin.x, bannerOrigin.y );
+#if 1
+    NSLog( @"\tfirst Origin: %.0fx%.0f", adBanner.frame.origin.x, adBanner.frame.origin.y );
+    NSLog( @"\tbannerOrigin: %.0fx%.0f", bannerOrigin.x, bannerOrigin.y );
     NSLog( @"\tsuperview: %@", composedView.superview );
     
-    NSLog( @"\ttarget frame: %fx%f / %fx%f" , targetFrame.origin.x, targetFrame.origin.y, targetFrame.size.width, targetFrame.size.height );
+    NSLog( @"\tcomposed frame: %.0fx%.0f / %.0fx%.0f" , contentFrame.origin.x, contentFrame.origin.y, contentFrame.size.width, contentFrame.size.height );
+    NSLog( @"\ttarget frame: %.0fx%.0f / %.0fx%.0f" , targetFrame.origin.x, targetFrame.origin.y, targetFrame.size.width, targetFrame.size.height );
     NSLog( @"\tad superview: %@", adBanner.superview );
     NSLog( @"\tdelegate: %@", adBanner.delegate );
 #endif
@@ -104,9 +102,9 @@ bool SHOW_ADS = YES;
 }
 
 -(void)toDisappear {
-    [self changeDisplay:NO andAnimate:YES];
     ADBannerView *adBanner = [SimpleDeathStarAppDelegate adView];
     if ( adBanner.delegate == self ) {
+        [self changeDisplay:NO andAnimate:YES];
         adBanner.delegate = nil;
         [adBanner removeFromSuperview];
     }
@@ -119,21 +117,21 @@ bool SHOW_ADS = YES;
         return nil;
     }
     ADBannerView* ad = [[ADBannerView alloc] initWithFrame:CGRectZero];
-    
+
     // Set the autoresizing mask so that the banner is pinned to the bottom
     ad.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleTopMargin;
     
     // Since we support all orientations, support portrait and landscape content sizes.
     // If you only supported landscape or portrait, you could remove the other from this set
-    ad.requiredContentSizeIdentifiers = 
-    (&ADBannerContentSizeIdentifierPortrait != nil) ?
-    [NSSet setWithObjects:ADBannerContentSizeIdentifierPortrait, ADBannerContentSizeIdentifierLandscape, nil] : 
-    [NSSet setWithObjects:ADBannerContentSizeIdentifier320x50, ADBannerContentSizeIdentifier480x32, nil];
+    /*    ad.requiredContentSizeIdentifiers =
+     (&ADBannerContentSizeIdentifierPortrait != nil) ?
+     [NSSet setWithObjects:ADBannerContentSizeIdentifierPortrait, ADBannerContentSizeIdentifierLandscape, nil] :
+     [NSSet setWithObjects:ADBannerContentSizeIdentifier320x50, ADBannerContentSizeIdentifier480x32, nil];*/
     CGRect frame;
-    frame.size = [ADBannerView sizeFromBannerContentSizeIdentifier:( (&ADBannerContentSizeIdentifierPortrait != nil) ? ADBannerContentSizeIdentifierPortrait : ADBannerContentSizeIdentifier320x50 ) ];
+    //    frame.size = [ADBannerView sizeFromBannerContentSizeIdentifier:ADBannerContentSizeIdentifierPortrait ];
     frame.origin = CGPointMake(CGRectGetMinX( baseView.frame ), CGRectGetMaxY(baseView.frame));
     // Now set the banner view's frame
-	ad.frame = frame;
+    ad.frame = frame;
     return [ad autorelease];
 }
 

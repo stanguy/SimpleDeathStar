@@ -70,6 +70,16 @@
     viewComposer_ = [[ADViewComposer alloc] initWithView:webView];
 }
 
+-(void) viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [viewComposer_ changeDisplay:YES];
+}
+
+-(void) viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [viewComposer_ toDisappear];
+}
+
 -(void)webView:(UIWebView*)view didFailLoadWithError:(NSError*)error {
     UIAlertView *alert =
     [[UIAlertView alloc] initWithTitle: NSLocalizedString( @"Erreur", @"" )

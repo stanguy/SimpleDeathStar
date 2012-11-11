@@ -9,7 +9,6 @@
 #import "TableWithAdViewController.h"
 
 @implementation TableWithAdViewController
-@synthesize tableView = tableView_;
 
 - (id)init
 {
@@ -22,18 +21,23 @@
 }
 
 -(void)loadView {
+    NSLog( @"loadView" );
     [super loadView];
-    //    self.view = [[UIView alloc] initWithFrame:self.parentViewController.view.bounds];
     NSArray* arr = [[NSBundle mainBundle] loadNibNamed:NSStringFromClass([self class]) owner:self options:nil];
     self.view = [arr objectAtIndex:0];
-    tableView_ = [[UITableView alloc] initWithFrame:self.view.frame style:[self defaultStyle]];
+    self.tableView = nil;
+    self.tableView = [[UITableView alloc] initWithFrame:self.view.frame style:[self defaultStyle]];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self.view addSubview:self.tableView];
+    self.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    self.tableView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+
     viewComposer = [[ADViewComposer alloc] initWithView:self.tableView];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
+    NSLog( @"viewWillAppear %@", self );
     [super viewWillAppear:animated];
     NSIndexPath* indexPath = [self.tableView indexPathForSelectedRow];
     if ( indexPath ) {
@@ -42,7 +46,8 @@
     [viewComposer changeDisplay:YES];
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+- (void)viewWillDisappear:(BOOL)animated {
+    NSLog( @"viewWillDisAppear %@", self );
     [viewComposer toDisappear];
 }
 
@@ -52,7 +57,6 @@
 
 - (void)dealloc {
     self.view = nil;
-    [tableView_ release]; tableView_ = nil;
     [viewComposer release]; viewComposer = nil;
     [super dealloc];
 }

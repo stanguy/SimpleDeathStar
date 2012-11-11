@@ -25,10 +25,10 @@
     GridScrollView *scrollView;	// holds floating grid
     UITableView *tableView;
     UIAlertView* alertNoResult_;
-    UIToolbar* toolbar_;
+
     UIBarButtonItem* favButton_;
-	UIBarButtonItem* poiButton_;
-	NSDictionary* poiIndexes;
+    UIBarButtonItem* poiButton_;
+    NSDictionary* poiIndexes;
 
     UIView* dateChangeView_;
     UIDatePicker* datePicker_;
@@ -42,7 +42,6 @@
 @property (nonatomic, retain) IBOutlet UIView* containerView;
 @property (nonatomic, retain) IBOutlet GridScrollView *scrollView;	// holds floating grid
 @property (nonatomic, retain) IBOutlet UITableView *tableView;
-@property (nonatomic, retain) IBOutlet UIToolbar* toolbar;
 @property (nonatomic, retain) IBOutlet UIBarButtonItem* favButton;
 @property (nonatomic, retain) IBOutlet UIBarButtonItem* poiButton;
 @property (nonatomic, retain) IBOutlet UIDatePicker* datePicker;

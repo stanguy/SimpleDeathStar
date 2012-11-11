@@ -91,7 +91,6 @@
 #pragma mark Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [super tableView:tableView didSelectRowAtIndexPath:indexPath];
     Favorite* fav = [self.fetchedResultsController objectAtIndexPath:indexPath];
     if ( (NSArray*)[NSNull null] == [StopTime findComingAt:fav] ) {
         // try to fix or remove it

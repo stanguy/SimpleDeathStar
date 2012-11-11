@@ -47,6 +47,7 @@
     for( Stop* stop in stops ) {
         StopAnnotation* annotation = [[StopAnnotation alloc] initWithStop:stop];
         [stopAnnotations addObject:annotation];
+        [annotation release];
     }
     if ( [stopAnnotations count] > 0) {
         infoLabel_.hidden = YES;
