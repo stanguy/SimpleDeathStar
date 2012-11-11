@@ -35,19 +35,31 @@
 
 @implementation TwitsViewController
 
-@synthesize twits_;
+@synthesize twits_,refreshControl;
 
 static NSString* STM_TWITS_URL = @"http://api.twitter.com/1/statuses/user_timeline.json?user_id=97672707&trim_user=1&include_rts=0&exclude_replies=1&count=100";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
     self.twits_  = [[[NSArray alloc] init] autorelease];
     self.navigationItem.title = @"@starbusmetro";
     UIBarButtonItem *settingsButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"reload"]
                                                                        style:UIBarButtonItemStyleBordered target:self action:@selector(refreshTwits)];
     self.navigationItem.rightBarButtonItem = settingsButton;
-    self.tableView.rowHeight = 100.f;
     [settingsButton release];
+    self.tableView.rowHeight = 100.f;
+/*    if ( [self respondsToSelector:@selector(refreshControl)] ) {
+        self.refreshControl = [[[UIRefreshControl alloc] init] autorelease];
+        [self.refreshControl addTarget:self action:@selector(refreshTwits) forControlEvents:UIControlEventValueChanged];
+    }*/
+    static NSString * const kRefreshClass = @"UIRefreshControl";
+    if ( NSClassFromString(kRefreshClass) != nil) {
+        refreshControl = [[UIRefreshControl alloc] init];
+        [refreshControl addTarget:self action:@selector(refreshTwits) forControlEvents:UIControlEventValueChanged];
+        [self.tableView addSubview:refreshControl];
+    }
+
     [self loadTwits];
 }
 
@@ -150,6 +162,9 @@ enum {
 }
 
 - (void)refreshTwits {
+    if ( self.refreshControl != nil ) {
+        [self.refreshControl beginRefreshing];
+    }
     NSLog( @"refresh!" );
     NSURL *url = [NSURL URLWithString:STM_TWITS_URL];
     NSData *urlData = [NSData dataWithContentsOfURL:url];
@@ -166,6 +181,11 @@ enum {
         return;
     }
     [self loadTwits];
+    
+    
+    if ( self.refreshControl != nil ) {
+        [self.refreshControl endRefreshing];
+    }
 }
 
 - (void)loadTwits {
@@ -192,7 +212,7 @@ enum {
             if ( find.location != NSNotFound ) {
                 continue;
             }
-            NSLog( @"%@", text );
+            //            NSLog( @"%@", text );
             Twit* twit = [[Twit alloc] init];
             twit.text = text;
             NSString* created_at = [post valueForKey:@"created_at"];
@@ -209,7 +229,6 @@ enum {
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [super tableView:tableView didSelectRowAtIndexPath:indexPath];
     // Navigation logic may go here. Create and push another view controller.
     Twit* twit = [self.twits_ objectAtIndex:indexPath.row];
     NSString* statusUrl = [NSString stringWithFormat:@"http://twitter.com/starbusmetro/status/%@", twit.twit_id];

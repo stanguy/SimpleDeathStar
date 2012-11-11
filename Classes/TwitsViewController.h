@@ -10,4 +10,6 @@
 
 @interface TwitsViewController : TableWithAdViewController
 
+@property (nonatomic,retain) UIRefreshControl* refreshControl;
+
 @end
