@@ -51,6 +51,8 @@ NSString* positioningErrorDetails[] = {
     [self locationRetry];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(locationRetry) name:@"locationRetry" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(locationStop) name:@"locationStop" object:nil];
+    currentDelay = 1;
+    lastUpdate = 0;
     return self;
 }
 
@@ -202,9 +204,18 @@ BOOL checkBounds( CLLocation* location ) {
     didUpdateToLocation:(CLLocation *)newLocation
            fromLocation:(CLLocation *)oldLocation
 {
-    //    NSLog(@"Location: %@ (%d)", [newLocation description], abs( [newLocation.timestamp timeIntervalSinceDate:oldLocation.timestamp] ) );
+        NSLog(@"Location: %@ (%d)", [newLocation description], abs( [newLocation.timestamp timeIntervalSinceDate:oldLocation.timestamp] ) );
     [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(commitLocationUpdate) object:nil];
-    [self performSelector:@selector(commitLocationUpdate) withObject:nil afterDelay:1];
+    
+    time_t now = time( NULL );
+    if ( ( now - 10 ) > lastUpdate ) {
+        NSLog( @"delaying update" );
+        currentDelay = currentDelay * 2;
+    } else {
+        currentDelay = 1;
+    }
+    lastUpdate = now;
+    [self performSelector:@selector(commitLocationUpdate) withObject:nil afterDelay:currentDelay];
 }
 
 - (void)locationManager:(CLLocationManager *)manager

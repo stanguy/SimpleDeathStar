@@ -14,6 +14,9 @@
     
     int closeStopsCount;
     int positioningError;
+    
+    time_t lastUpdate;
+    int currentDelay;
 }
 
 @property (retain) CLLocationManager *locationManager;
