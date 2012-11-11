@@ -1,0 +1,25 @@
+//
+//  CloseStopsHomeSection.h
+//  SimpleDeathStar
+//
+//  Created by Sebastien Tanguy on 10/21/12.
+//  Copyright (c) 2012 dthg.net. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+
+#import "AbstractHomeSection.h"
+
+@interface CloseStopsHomeSection : AbstractHomeSection <CLLocationManagerDelegate> {
+    
+    int closeStopsCount;
+    int positioningError;
+}
+
+@property (retain) CLLocationManager *locationManager;
+@property (retain) NSArray* closeStops;
+@property (retain) NSArray* proximityTimes;
+
+-(NSString*)title;
+
+@end

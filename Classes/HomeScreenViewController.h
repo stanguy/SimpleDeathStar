@@ -7,34 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+
+#import "AbstractHomeSection.h"
 #import "TableWithAdViewController.h"
 
-@interface HomeScreenViewController : TableWithAdViewController <CLLocationManagerDelegate,UIAlertViewDelegate> {
-@private
-    NSMutableArray* menus_;
-    NSArray* topFavorites_;
-    NSArray* favoritesTimes_;
-    NSArray* proximityTimes_;
-    int cachedFavoritesCount;
-#ifdef VERSION_STLO
-    NSArray* lines;
-#endif
-    CLLocationManager *locationManager_;
-    int closeStopsCount;
-    NSArray* closeStops;
-    int positioningError;
+
+@interface HomeScreenViewController : TableWithAdViewController <HomePageDelegate> {
+
 }
 
-@property (nonatomic, retain) CLLocationManager *locationManager;
+@property (retain) NSArray* sections;
 
-- (void)locationManager:(CLLocationManager *)manager
-    didUpdateToLocation:(CLLocation *)newLocation
-           fromLocation:(CLLocation *)oldLocation;
-
-- (void)locationManager:(CLLocationManager *)manager
-       didFailWithError:(NSError *)error;
-- (void) locationRetry;
-- (void) locationStop;
-- (void)didSelectFavorite:(NSIndexPath *)indexPath;
 - (void)reloadByTimer;
+
 @end
