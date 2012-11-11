@@ -167,6 +167,7 @@
 		9631C13112C77D660002EB78 /* StopTimeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9631C12F12C77D660002EB78 /* StopTimeViewController.m */; };
 		9631C13212C77D660002EB78 /* StopTimeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9631C13012C77D660002EB78 /* StopTimeViewController.xib */; };
 		9631C3CD12C7A0300002EB78 /* Transit.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 9631C3CC12C7A0300002EB78 /* Transit.sqlite */; };
+		963CCA4F16500727004081D3 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 962AAFD01649B79C0052BCA4 /* Default-568h@2x.png */; };
 		96539CBC12C94C68002FDF29 /* CityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96539CBA12C94C68002FDF29 /* CityViewController.m */; };
 		96539CBD12C94C68002FDF29 /* CityViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96539CBB12C94C68002FDF29 /* CityViewController.xib */; };
 		966FF0D5153E054A00A8AA6F /* TwitsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 966FF0D4153E054A00A8AA6F /* TwitsViewController.m */; };
@@ -1129,6 +1130,7 @@
 				96FB3AFE1434D41200830FC3 /* simpledeathstar_stlo_appicon@2x.png in Resources */,
 				960F07BF14901279003ED2A6 /* Default.png in Resources */,
 				960F07C114901279003ED2A6 /* Default@2x.png in Resources */,
+				963CCA4F16500727004081D3 /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
