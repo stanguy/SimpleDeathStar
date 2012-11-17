@@ -27,10 +27,8 @@
 
 - (void)viewDidLoad
 {
-    NSLog( @"view did load" );
     [super viewDidLoad];
     self.navigationItem.title = NSLocalizedString( [section title], @"" );
-    NSLog( @"my title: %@", self.navigationItem.title );
 }
 
 - (void)didReceiveMemoryWarning

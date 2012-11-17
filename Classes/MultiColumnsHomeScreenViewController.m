@@ -47,8 +47,6 @@
 {
     [super viewDidLoad];
 
-    self.pageControl.numberOfPages = [self.viewControllers count];
-    [self.pageControl sizeToFit];
 }
 
 - (void)didReceiveMemoryWarning

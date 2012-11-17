@@ -55,6 +55,12 @@
     self.titleLabel.autoresizingMask = (UIViewAutoresizingFlexibleTopMargin|
                                         UIViewAutoresizingFlexibleBottomMargin|
                                         UIViewAutoresizingFlexibleHeight);
+    if ( nil != self.viewControllers ) {
+        self.pageControl.numberOfPages = [self.viewControllers count];
+        UIViewController* current = [self.viewControllers objectAtIndex:0];
+        self.titleLabel.text = current.navigationItem.title;
+    }
+    
     
     [titleView addSubview:self.titleLabel];
     
@@ -105,6 +111,9 @@
                        forKeyPath:@"currentPage"
                           options:(NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld)
                           context:nil];
+    UIViewController* currentcontroller = [self.viewControllers objectAtIndex:self.pageControl.currentPage];
+    NSLog( @"current: %@ dans %@", currentcontroller.navigationItem.title, self.titleLabel );
+    self.titleLabel.text = currentcontroller.navigationItem.title;
 }
 
 - (void)viewDidUnload
@@ -274,6 +283,9 @@
     CGFloat offset = self.scrollView.contentOffset.x;
     CGFloat width = self.scrollView.frame.size.width;
     self.pageControl.currentPage = (offset+(width/2))/width;
+
+    UIViewController* currentcontroller = [self.viewControllers objectAtIndex:self.pageControl.currentPage];
+    self.titleLabel.text = currentcontroller.navigationItem.title;
     
     [self disableScrollsToTop];
 }
