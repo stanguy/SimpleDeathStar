@@ -876,7 +876,7 @@
 		96D2324916345B820053E0E2 /* CloseStopsHomeSection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CloseStopsHomeSection.m; sourceTree = "<group>"; };
 		96D2324D163481B90053E0E2 /* AbstractHomeSection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractHomeSection.h; sourceTree = "<group>"; };
 		96D2324E163481B90053E0E2 /* AbstractHomeSection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractHomeSection.m; sourceTree = "<group>"; };
-		96D23251163485C30053E0E2 /* Location.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = Location.gpx; path = Classes/Location.gpx; sourceTree = "<group>"; };
+		96D23251163485C30053E0E2 /* Rennes centre.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = "Rennes centre.gpx"; path = "Classes/Rennes centre.gpx"; sourceTree = "<group>"; };
 		96DBF3EC12CBCD7E0096C240 /* GridScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GridScrollView.h; sourceTree = "<group>"; };
 		96DBF3ED12CBCD7E0096C240 /* GridScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GridScrollView.m; sourceTree = "<group>"; };
 		96DBF44512CBD5890096C240 /* GridCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GridCell.h; sourceTree = "<group>"; };
@@ -1040,7 +1040,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				96D23251163485C30053E0E2 /* Location.gpx */,
+				96D23251163485C30053E0E2 /* Rennes centre.gpx */,
 				96162C5A15E934810085B361 /* images */,
 				96A71C6C12CA87AC00FB1516 /* AboutViewController.xib */,
 				96539CBB12C94C68002FDF29 /* CityViewController.xib */,
