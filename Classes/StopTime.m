@@ -279,7 +279,6 @@ NSPredicate* buildPredicate( Line* line, Stop* stop, int min_arrival, int max_ar
     
     [fetchRequest setSortDescriptors:sortDescriptors];
     NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:context sectionNameKeyPath:nil cacheName:nil];
-    aFetchedResultsController.delegate = self;
     
     [fetchRequest release];
     [sortDescriptor1 release];
