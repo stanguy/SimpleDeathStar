@@ -204,14 +204,15 @@ BOOL checkBounds( CLLocation* location ) {
     didUpdateToLocation:(CLLocation *)newLocation
            fromLocation:(CLLocation *)oldLocation
 {
-        NSLog(@"Location: %@ (%d)", [newLocation description], abs( [newLocation.timestamp timeIntervalSinceDate:oldLocation.timestamp] ) );
+    //NSLog(@"Location: %@ (%d)", [newLocation description], abs( [newLocation.timestamp timeIntervalSinceDate:oldLocation.timestamp] ) );
     [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(commitLocationUpdate) object:nil];
     
     time_t now = time( NULL );
-    if ( ( now - 10 ) > lastUpdate ) {
+    if ( ( now - lastUpdate ) < 10 ) {
         NSLog( @"delaying update" );
         currentDelay = currentDelay * 2;
     } else {
+        NSLog( @"reseting update" );
         currentDelay = 1;
     }
     lastUpdate = now;
