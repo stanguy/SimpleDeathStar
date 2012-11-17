@@ -21,6 +21,10 @@
 + (Stop*) findFirstBySrcId:(NSString*)src_id;
 + (Stop*) findFirstBySlug:(NSString*)slug;
 + (NSArray*) findAroundLocation:(CLLocation*)location withinContext:(NSManagedObjectContext*)context;
++ (NSArray*) findFromPosition:(CLLocationCoordinate2D)center
+            withLatitudeDelta:(CLLocationDegrees)latitudeDelta
+            andLongitudeDelta:(CLLocationDegrees)longitudeDelta;
++ (Stop*)findFirstByOldSrcId:(NSString*)old_src_id;
 
 - (int) allCounts;
 
