@@ -403,7 +403,6 @@
 		9677B45212F21EDC0016A460 /* metro@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9677B44A12F21EDC0016A460 /* metro@2x.png */; };
 		9677B45312F21EDC0016A460 /* pos.png in Resources */ = {isa = PBXBuildFile; fileRef = 9677B44B12F21EDC0016A460 /* pos.png */; };
 		9677B45412F21EDC0016A460 /* pos@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9677B44C12F21EDC0016A460 /* pos@2x.png */; };
-		96856669143F762700907877 /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96856668143F762600907877 /* iAd.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		9685666C14408D3900907877 /* ADViewComposer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9685666B14408D3600907877 /* ADViewComposer.m */; };
 		9685666D14408D3900907877 /* ADViewComposer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9685666B14408D3600907877 /* ADViewComposer.m */; };
 		9685666F1440BA1600907877 /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9685666E1440BA1600907877 /* iAd.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
@@ -411,6 +410,7 @@
 		9688A16F1301F14F00B218A2 /* StopAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 9688A16E1301F14F00B218A2 /* StopAnnotation.m */; };
 		9688A5CB1307002D00B218A2 /* reload.png in Resources */ = {isa = PBXBuildFile; fileRef = 9688A5C91307002D00B218A2 /* reload.png */; };
 		9688A5CC1307002D00B218A2 /* reload@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9688A5CA1307002D00B218A2 /* reload@2x.png */; };
+		968ACD0C1657A02F003D70AD /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9685666E1440BA1600907877 /* iAd.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		969229BE12C6B799007C965D /* HomeScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 969229BC12C6B799007C965D /* HomeScreenViewController.m */; };
 		969229BF12C6B799007C965D /* HomeScreenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 969229BD12C6B799007C965D /* HomeScreenViewController.xib */; };
 		96A71C6D12CA87AC00FB1516 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96A71C6B12CA87AC00FB1516 /* AboutViewController.m */; };
@@ -511,7 +511,6 @@
 		8D1107310486CEB800E47090 /* SimpleDeathStar-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "SimpleDeathStar-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		960F07BC14901279003ED2A6 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		960F07BD14901279003ED2A6 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
-		96162D9415E935120085B361 /* SimpleDeathStar copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "SimpleDeathStar copy-Info.plist"; path = "/Users/seb/src/ios/SimpleDeathStar/SimpleDeathStar copy-Info.plist"; sourceTree = "<absolute>"; };
 		96162D9515E935370085B361 /* MainWindow~ipad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "MainWindow~ipad.xib"; path = "Resources-iPad/MainWindow~ipad.xib"; sourceTree = "<group>"; };
 		96162D9615E935370085B361 /* HomeScreenViewController~ipad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "HomeScreenViewController~ipad.xib"; path = "Resources-iPad/Classes/HomeScreenViewController~ipad.xib"; sourceTree = "<group>"; };
 		96162D9715E935370085B361 /* LineViewController~ipad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "LineViewController~ipad.xib"; path = "Resources-iPad/Classes/LineViewController~ipad.xib"; sourceTree = "<group>"; };
@@ -812,7 +811,6 @@
 		9677B44A12F21EDC0016A460 /* metro@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "metro@2x.png"; sourceTree = "<group>"; };
 		9677B44B12F21EDC0016A460 /* pos.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pos.png; sourceTree = "<group>"; };
 		9677B44C12F21EDC0016A460 /* pos@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pos@2x.png"; sourceTree = "<group>"; };
-		96856668143F762600907877 /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
 		9685666A14408D3500907877 /* ADViewComposer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADViewComposer.h; sourceTree = "<group>"; };
 		9685666B14408D3600907877 /* ADViewComposer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADViewComposer.m; sourceTree = "<group>"; };
 		9685666E1440BA1600907877 /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
@@ -909,7 +907,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				96856669143F762700907877 /* iAd.framework in Frameworks */,
 				96B1693312FB4E2600B71302 /* libMaptimizeKit.a in Frameworks */,
 				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
@@ -922,6 +919,7 @@
 				96B16A0B12FB65F600B71302 /* libz.dylib in Frameworks */,
 				96B16A0F12FB660E00B71302 /* MapKit.framework in Frameworks */,
 				9688A0EB1301E6DA00B218A2 /* CoreLocation.framework in Frameworks */,
+				968ACD0C1657A02F003D70AD /* iAd.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -964,10 +962,7 @@
 				96CACA6914ABD4E20012C10B /* FavTimeRelativeViewCell.m */,
 				96CB971C12EF963800EFB75C /* FavTimeViewCell.h */,
 				96CB971D12EF963800EFB75C /* FavTimeViewCell.m */,
-				96DBF44512CBD5890096C240 /* GridCell.h */,
-				96DBF44612CBD5890096C240 /* GridCell.m */,
-				96DBF3EC12CBCD7E0096C240 /* GridScrollView.h */,
-				96DBF3ED12CBCD7E0096C240 /* GridScrollView.m */,
+				968ACD0D1657A099003D70AD /* grid */,
 				962B81A512C6C122007EA09F /* LineViewController.h */,
 				962B81A612C6C122007EA09F /* LineViewController.m */,
 				962B81AA12C6C141007EA09F /* ManagedObjects */,
@@ -1009,21 +1004,12 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
-				9685666E1440BA1600907877 /* iAd.framework */,
-				96856668143F762600907877 /* iAd.framework */,
 				96B1691F12FB4D8700B71302 /* MaptimizeKit.xcodeproj */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
-				96162D9315E935120085B361 /* Resources-iPad */,
-				96162C5715E933980085B361 /* iPad */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
-				96B169B412FB65B100B71302 /* CFNetwork.framework */,
-				96B169B612FB65B100B71302 /* CoreFoundation.framework */,
-				96B169B812FB65B100B71302 /* MobileCoreServices.framework */,
-				96B169BA12FB65B100B71302 /* SystemConfiguration.framework */,
-				96162D9415E935120085B361 /* SimpleDeathStar copy-Info.plist */,
 			);
 			name = CustomTemplate;
 			sourceTree = "<group>";
@@ -1040,36 +1026,19 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				96D23251163485C30053E0E2 /* Rennes centre.gpx */,
-				96162C5A15E934810085B361 /* images */,
-				96A71C6C12CA87AC00FB1516 /* AboutViewController.xib */,
-				96539CBB12C94C68002FDF29 /* CityViewController.xib */,
-				B816B04E12F050130006C6ED /* DateNavigation.xib */,
-				9677AF6D12F0C95A0016A460 /* FavoritesViewController.xib */,
-				96DBF44712CBD5890096C240 /* GridCell.xib */,
 				B8C431B612F2F37300DEC9B2 /* help */,
-				969229BD12C6B799007C965D /* HomeScreenViewController.xib */,
-				9677B45D12F220D20016A460 /* images */,
+				968ACD0E1657A0DC003D70AD /* ib */,
+				96162D9315E935120085B361 /* ib-iPad */,
+				96162C5A15E934810085B361 /* images */,
 				96B9007E12F339F2008C9F2E /* line_images */,
-				962B81A712C6C122007EA09F /* LineViewController.xib */,
 				B816AFCC12F049290006C6ED /* Localizable.strings */,
-				28AD733E0D9D9553002E5188 /* MainWindow.xib */,
-				961A717012D26CB90085BCAA /* NoResult.xib */,
-				9677B3BD12F209950016A460 /* PoiViewController.xib */,
-				8D1107310486CEB800E47090 /* SimpleDeathStar-Info.plist */,
+				96D23251163485C30053E0E2 /* Rennes centre.gpx */,
+				96AE4C47147AD96100488607 /* Settings.bundle */,
 				96234B6F1434CE0100CCCAFD /* SimpleDeathStarStLo-Info.plist */,
-				96B1696112FB587600B71302 /* StopMapViewController.xib */,
-				9631C13012C77D660002EB78 /* StopTimeViewController.xib */,
-				9677B44212F21E020016A460 /* StopViewCell.xib */,
-				962B82CC12C6D30D007EA09F /* StopViewController.xib */,
 				9631C3CC12C7A0300002EB78 /* Transit.sqlite */,
 				962B828312C6CE60007EA09F /* Transit.xcdatamodeld */,
 				96FB3AD21434D32C00830FC3 /* TransitStLo.sqlite */,
-				96B9FF9D12F232DD008C9F2E /* TripViewCell.xib */,
-				961A779012D664340085BCAA /* TripViewController.xib */,
 				96B1E19512DB851D008007BD /* UserData.xcdatamodeld */,
-				96AE4C47147AD96100488607 /* Settings.bundle */,
-				966FF0D6153E10BC00A8AA6F /* TwitsViewController.xib */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -1077,92 +1046,23 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
-				1D30AB110D05D00D00671497 /* Foundation.framework */,
-				288765A40DF7441C002DB57D /* CoreGraphics.framework */,
+				96B169B412FB65B100B71302 /* CFNetwork.framework */,
 				28D801B30F44B63D00FB423F /* CoreData.framework */,
+				96B169B612FB65B100B71302 /* CoreFoundation.framework */,
+				288765A40DF7441C002DB57D /* CoreGraphics.framework */,
+				9688A0EA1301E6DA00B218A2 /* CoreLocation.framework */,
+				1D30AB110D05D00D00671497 /* Foundation.framework */,
+				9685666E1440BA1600907877 /* iAd.framework */,
 				96B16A0A12FB65F600B71302 /* libz.dylib */,
 				96B16A0E12FB660E00B71302 /* MapKit.framework */,
-				9688A0EA1301E6DA00B218A2 /* CoreLocation.framework */,
+				96B169B812FB65B100B71302 /* MobileCoreServices.framework */,
+				96B169BA12FB65B100B71302 /* SystemConfiguration.framework */,
+				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		96162C5715E933980085B361 /* iPad */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = iPad;
-			sourceTree = "<group>";
-		};
 		96162C5A15E934810085B361 /* images */ = {
-			isa = PBXGroup;
-			children = (
-				963CCBD9165042E8004081D3 /* simpledeathstar_appicon~ipad.png */,
-				960F07BC14901279003ED2A6 /* Default.png */,
-				960F07BD14901279003ED2A6 /* Default@2x.png */,
-				96FB3ADE1434D3A800830FC3 /* arrow_circle_right.png */,
-				96FB3ADF1434D3A800830FC3 /* arrow_circle_right@2x.png */,
-				96DBF54612CBFAFD0096C240 /* simpledeathstar_appicon.png */,
-				96DBF54512CBFAFD0096C240 /* simpledeathstar_appicon@2x.png */,
-				96DBF54712CBFAFD0096C240 /* simpledeathstar_appstore.png */,
-				96FB3AFB1434D41200830FC3 /* simpledeathstar_stlo_appicon.png */,
-				96FB3AFC1434D41200830FC3 /* simpledeathstar_stlo_appicon@2x.png */,
-			);
-			name = images;
-			sourceTree = "<group>";
-		};
-		96162D9315E935120085B361 /* Resources-iPad */ = {
-			isa = PBXGroup;
-			children = (
-				96162D9B15E935370085B361 /* AboutViewController~ipad.xib */,
-				96162D9A15E935370085B361 /* CityViewController~ipad.xib */,
-				96162D9F15E935370085B361 /* DateNavigation~ipad.xib */,
-				96162DA215E935370085B361 /* FavoritesViewController~ipad.xib */,
-				96162D9C15E935370085B361 /* GridCell~ipad.xib */,
-				96162D9615E935370085B361 /* HomeScreenViewController~ipad.xib */,
-				96162D9715E935370085B361 /* LineViewController~ipad.xib */,
-				96162D9515E935370085B361 /* MainWindow~ipad.xib */,
-				96162D9D15E935370085B361 /* NoResult~ipad.xib */,
-				96162DA315E935370085B361 /* PoiViewController~ipad.xib */,
-				96162DA615E935370085B361 /* StopMapViewController~ipad.xib */,
-				96162D9915E935370085B361 /* StopTimeViewController~ipad.xib */,
-				96162DA415E935370085B361 /* StopViewCell~ipad.xib */,
-				96162D9815E935370085B361 /* StopViewController~ipad.xib */,
-				96162DA515E935370085B361 /* TripViewCell~ipad.xib */,
-				96162D9E15E935370085B361 /* TripViewController~ipad.xib */,
-				96162DA715E935370085B361 /* TwitsViewController~ipad.xib */,
-			);
-			name = "Resources-iPad";
-			sourceTree = "<group>";
-		};
-		962B81AA12C6C141007EA09F /* ManagedObjects */ = {
-			isa = PBXGroup;
-			children = (
-				96B1E1C112DB860F008007BD /* Auto */,
-				9631C11812C758890002EB78 /* City.h */,
-				9631C11912C758890002EB78 /* City.m */,
-				9677B3CE12F20CA40016A460 /* ClosePoi.h */,
-				9677B3CF12F20CA40016A460 /* ClosePoi.m */,
-				9631C11A12C758890002EB78 /* Direction.h */,
-				9631C11B12C758890002EB78 /* Direction.m */,
-				96B1E1BD12DB8607008007BD /* Favorite.h */,
-				96B1E1BE12DB8607008007BD /* Favorite.m */,
-				962B81AB12C6C153007EA09F /* Line.h */,
-				962B81AC12C6C153007EA09F /* Line.m */,
-				9677B3D012F20CA40016A460 /* Poi.h */,
-				9677B3D112F20CA40016A460 /* Poi.m */,
-				962B82BF12C6D1FB007EA09F /* Stop.h */,
-				962B82C012C6D1FB007EA09F /* Stop.m */,
-				96F5F363135CD3E60058C487 /* StopAlias.h */,
-				96F5F364135CD3E60058C487 /* StopAlias.m */,
-				9631C11C12C758890002EB78 /* StopTime.h */,
-				9631C11D12C758890002EB78 /* StopTime.m */,
-			);
-			name = ManagedObjects;
-			sourceTree = "<group>";
-		};
-		9677B45D12F220D20016A460 /* images */ = {
 			isa = PBXGroup;
 			children = (
 				9677B44512F21EDC0016A460 /* accessible.png */,
@@ -1200,8 +1100,104 @@
 				9677B44C12F21EDC0016A460 /* pos@2x.png */,
 				9688A5C91307002D00B218A2 /* reload.png */,
 				9688A5CA1307002D00B218A2 /* reload@2x.png */,
+				963CCBD9165042E8004081D3 /* simpledeathstar_appicon~ipad.png */,
+				960F07BC14901279003ED2A6 /* Default.png */,
+				960F07BD14901279003ED2A6 /* Default@2x.png */,
+				96FB3ADE1434D3A800830FC3 /* arrow_circle_right.png */,
+				96FB3ADF1434D3A800830FC3 /* arrow_circle_right@2x.png */,
+				96DBF54612CBFAFD0096C240 /* simpledeathstar_appicon.png */,
+				96DBF54512CBFAFD0096C240 /* simpledeathstar_appicon@2x.png */,
+				96DBF54712CBFAFD0096C240 /* simpledeathstar_appstore.png */,
+				96FB3AFB1434D41200830FC3 /* simpledeathstar_stlo_appicon.png */,
+				96FB3AFC1434D41200830FC3 /* simpledeathstar_stlo_appicon@2x.png */,
 			);
 			name = images;
+			sourceTree = "<group>";
+		};
+		96162D9315E935120085B361 /* ib-iPad */ = {
+			isa = PBXGroup;
+			children = (
+				96162D9B15E935370085B361 /* AboutViewController~ipad.xib */,
+				96162D9A15E935370085B361 /* CityViewController~ipad.xib */,
+				96162D9F15E935370085B361 /* DateNavigation~ipad.xib */,
+				96162DA215E935370085B361 /* FavoritesViewController~ipad.xib */,
+				96162D9C15E935370085B361 /* GridCell~ipad.xib */,
+				96162D9615E935370085B361 /* HomeScreenViewController~ipad.xib */,
+				96162D9715E935370085B361 /* LineViewController~ipad.xib */,
+				96162D9515E935370085B361 /* MainWindow~ipad.xib */,
+				96162D9D15E935370085B361 /* NoResult~ipad.xib */,
+				96162DA315E935370085B361 /* PoiViewController~ipad.xib */,
+				96162DA615E935370085B361 /* StopMapViewController~ipad.xib */,
+				96162D9915E935370085B361 /* StopTimeViewController~ipad.xib */,
+				96162DA415E935370085B361 /* StopViewCell~ipad.xib */,
+				96162D9815E935370085B361 /* StopViewController~ipad.xib */,
+				96162DA515E935370085B361 /* TripViewCell~ipad.xib */,
+				96162D9E15E935370085B361 /* TripViewController~ipad.xib */,
+				96162DA715E935370085B361 /* TwitsViewController~ipad.xib */,
+			);
+			name = "ib-iPad";
+			sourceTree = "<group>";
+		};
+		962B81AA12C6C141007EA09F /* ManagedObjects */ = {
+			isa = PBXGroup;
+			children = (
+				96B1E1C112DB860F008007BD /* Auto */,
+				9631C11812C758890002EB78 /* City.h */,
+				9631C11912C758890002EB78 /* City.m */,
+				9677B3CE12F20CA40016A460 /* ClosePoi.h */,
+				9677B3CF12F20CA40016A460 /* ClosePoi.m */,
+				9631C11A12C758890002EB78 /* Direction.h */,
+				9631C11B12C758890002EB78 /* Direction.m */,
+				96B1E1BD12DB8607008007BD /* Favorite.h */,
+				96B1E1BE12DB8607008007BD /* Favorite.m */,
+				962B81AB12C6C153007EA09F /* Line.h */,
+				962B81AC12C6C153007EA09F /* Line.m */,
+				9677B3D012F20CA40016A460 /* Poi.h */,
+				9677B3D112F20CA40016A460 /* Poi.m */,
+				962B82BF12C6D1FB007EA09F /* Stop.h */,
+				962B82C012C6D1FB007EA09F /* Stop.m */,
+				96F5F363135CD3E60058C487 /* StopAlias.h */,
+				96F5F364135CD3E60058C487 /* StopAlias.m */,
+				9631C11C12C758890002EB78 /* StopTime.h */,
+				9631C11D12C758890002EB78 /* StopTime.m */,
+			);
+			name = ManagedObjects;
+			sourceTree = "<group>";
+		};
+		968ACD0D1657A099003D70AD /* grid */ = {
+			isa = PBXGroup;
+			children = (
+				96DBF44512CBD5890096C240 /* GridCell.h */,
+				96DBF44612CBD5890096C240 /* GridCell.m */,
+				96DBF3EC12CBCD7E0096C240 /* GridScrollView.h */,
+				96DBF3ED12CBCD7E0096C240 /* GridScrollView.m */,
+			);
+			name = grid;
+			sourceTree = "<group>";
+		};
+		968ACD0E1657A0DC003D70AD /* ib */ = {
+			isa = PBXGroup;
+			children = (
+				96A71C6C12CA87AC00FB1516 /* AboutViewController.xib */,
+				96539CBB12C94C68002FDF29 /* CityViewController.xib */,
+				B816B04E12F050130006C6ED /* DateNavigation.xib */,
+				9677AF6D12F0C95A0016A460 /* FavoritesViewController.xib */,
+				96DBF44712CBD5890096C240 /* GridCell.xib */,
+				969229BD12C6B799007C965D /* HomeScreenViewController.xib */,
+				962B81A712C6C122007EA09F /* LineViewController.xib */,
+				28AD733E0D9D9553002E5188 /* MainWindow.xib */,
+				961A717012D26CB90085BCAA /* NoResult.xib */,
+				9677B3BD12F209950016A460 /* PoiViewController.xib */,
+				8D1107310486CEB800E47090 /* SimpleDeathStar-Info.plist */,
+				96B1696112FB587600B71302 /* StopMapViewController.xib */,
+				9631C13012C77D660002EB78 /* StopTimeViewController.xib */,
+				9677B44212F21E020016A460 /* StopViewCell.xib */,
+				962B82CC12C6D30D007EA09F /* StopViewController.xib */,
+				96B9FF9D12F232DD008C9F2E /* TripViewCell.xib */,
+				961A779012D664340085BCAA /* TripViewController.xib */,
+				966FF0D6153E10BC00A8AA6F /* TwitsViewController.xib */,
+			);
+			name = ib;
 			sourceTree = "<group>";
 		};
 		96B1692012FB4D8700B71302 /* Products */ = {
