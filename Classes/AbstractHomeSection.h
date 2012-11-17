@@ -19,8 +19,12 @@
 @interface AbstractHomeSection : NSObject
 
 @property (nonatomic,assign) id<HomePageDelegate> delegate;
+@property (readonly) NSString* title;
 
 -(void)selectRow:(NSInteger)row from:(UIViewController*)controller;
 - (void)reloadByTimer;
-
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath;
+-(NSInteger)numberOfElements;
+-(void)selectRow:(NSInteger)row from:(UIViewController*)controller;
+-(CGFloat)rowHeight;
 @end

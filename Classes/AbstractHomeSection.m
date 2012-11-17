@@ -10,11 +10,19 @@
 
 @implementation AbstractHomeSection
 
+@synthesize title;
+
 -(void)selectRow:(NSInteger)row from:(UIViewController*)controller
 {
     [self doesNotRecognizeSelector:_cmd];
 }
 
 - (void)reloadByTimer{}
+
+
+-(CGFloat)rowHeight {
+    return 44.0f;
+}
+
 
 @end

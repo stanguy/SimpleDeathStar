@@ -29,8 +29,11 @@ int LineMenuValues[] = {
                           NSLocalizedString( @"Lignes express", @""),
                           NSLocalizedString( @"Lignes spéciales", @""),
                           NSLocalizedString( @"Toutes les lignes", @""), /*@"Favorites",*/ nil ];
-    self.title = @"Lignes";
     return self;
+}
+
+-(NSString*) title {
+    return @"Lignes";
 }
 
 -(void)selectRow:(NSInteger)row from:(UIViewController*)controller{

@@ -8,6 +8,7 @@
 
 #import "SimpleDeathStarAppDelegate.h"
 #import "HomeScreenViewController.h"
+#import "MultiColumnsHomeScreenViewController.h"
 #import "Favorite.h"
 
 #import <iAd/ADBannerView.h>
@@ -74,22 +75,28 @@
     if ( [reftime isEqualToString:@"departure"]) {
         useArrival = NO;
     }
-    HomeScreenViewController* homeController = [[[HomeScreenViewController alloc] init] autorelease];
-    navigationController = [[UINavigationController alloc] initWithRootViewController:homeController];
     
     useRelativeTime = [defaults boolForKey:@"relative_time"];
+
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(preferencesChanged:) name:NSUserDefaultsDidChangeNotification object:nil];
     
+    UIViewController* home;
+    if ( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone ) {
+         home = [[[MultiColumnsHomeScreenViewController alloc] init] autorelease];
+    } else {
+        home = [[[HomeScreenViewController alloc] init] autorelease];
+    }
     if ( [defaults boolForKey:@"enable_ads"] ) {
 #ifndef VERSION_STLO
         NSLog( @"ads enabled" );
         [ADViewComposer EnableAds:YES];
-        adView_ = [[ADViewComposer BuildAdView:homeController.view] retain];
+        adView_ = [[ADViewComposer BuildAdView:home.view] retain];
 #endif
     } else {
         [ADViewComposer EnableAds:NO];
     }
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(preferencesChanged:) name:NSUserDefaultsDidChangeNotification object:nil];
     
+    navigationController = [[UINavigationController alloc] initWithRootViewController:home];
     [window setRootViewController:navigationController];
     [window makeKeyAndVisible];
     return YES;
