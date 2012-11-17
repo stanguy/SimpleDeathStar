@@ -111,8 +111,7 @@ bool SHOW_ADS = YES;
 }
 
 + (id)BuildAdView:(UIView*)baseView{
-    static NSString * const kADBannerViewClass = @"ADBannerView";
-    if (NSClassFromString(kADBannerViewClass) == nil) {
+    if ([ADBannerView class]) {
         NSLog( @"iAd not supported" );
         return nil;
     }

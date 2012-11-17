@@ -53,8 +53,7 @@ static NSString* STM_TWITS_URL = @"http://api.twitter.com/1/statuses/user_timeli
         self.refreshControl = [[[UIRefreshControl alloc] init] autorelease];
         [self.refreshControl addTarget:self action:@selector(refreshTwits) forControlEvents:UIControlEventValueChanged];
     }*/
-    static NSString * const kRefreshClass = @"UIRefreshControl";
-    if ( NSClassFromString(kRefreshClass) != nil) {
+    if ( [UIRefreshControl class]) {
         refreshControl = [[UIRefreshControl alloc] init];
         [refreshControl addTarget:self action:@selector(refreshTwits) forControlEvents:UIControlEventValueChanged];
         [self.tableView addSubview:refreshControl];
