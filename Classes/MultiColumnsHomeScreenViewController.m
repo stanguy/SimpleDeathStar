@@ -8,9 +8,11 @@
 
 #import "MultiColumnsHomeScreenViewController.h"
 
+
 #import "CloseStopsHomeSection.h"
 #import "ColumnedHomeScreenViewController.h"
 #import "FavoritesHomeSection.h"
+#import "HomeScreenViewController.h"
 #import "LineTypesHomeSection.h"
 #import "StopsHomeSection.h"
 #import "HelpHomeSection.h"
@@ -28,7 +30,8 @@
     if (self) {
         // Custom initialization
         NSMutableArray* columns = [[[NSMutableArray alloc] init] autorelease];
-        NSArray* sectionClasses = [NSArray arrayWithObjects:[LineTypesHomeSection class], [StopsHomeSection class], [FavoritesHomeSection class], [CloseStopsHomeSection class],  [HelpHomeSection class], nil];
+        [columns addObject:[[[HomeScreenViewController alloc] initWithHomeStyle:kHomeStyleStart] autorelease]];
+        NSArray* sectionClasses = [NSArray arrayWithObjects:[FavoritesHomeSection class], [CloseStopsHomeSection class],  [HelpHomeSection class], nil];
         for (Class class in sectionClasses) {
             AbstractHomeSection* section = [[class alloc] init];
             ColumnedHomeScreenViewController* column = [[ColumnedHomeScreenViewController alloc] init];
@@ -37,8 +40,6 @@
             [columns addObject:column];
         }
         self.viewControllers = columns;
-        viewComposer = [[ADViewComposer alloc] initWithView:self.scrollView];
-
     }
     return self;
 }
@@ -58,6 +59,11 @@
 #pragma - Home
 
 - (void)reloadByTimer
-{}
+{
+    UIViewController* currentController = [self.viewControllers objectAtIndex:self.pageControl.currentPage];
+    if ( nil != currentController && [currentController respondsToSelector:@selector(reloadByTimer)]) {
+        [currentController performSelector:@selector(reloadByTimer)];
+    }
+}
 
 @end

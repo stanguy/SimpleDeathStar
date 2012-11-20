@@ -37,6 +37,17 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(void) viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    NSLog( @"viewWillAppear" );
+}
+
+-(void) viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    NSLog( @"viewWillDisAppear" );
+}
+
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -81,6 +92,11 @@
 -(void)reloadSection:(id)section{
     NSLog( @"reload section" );
     [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:YES];
+}
+
+- (void)reloadByTimer {
+    NSLog( @"Column:reloadByTimer" );
+    [section reloadByTimer];
 }
 
 @end

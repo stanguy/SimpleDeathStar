@@ -112,7 +112,6 @@
                           options:(NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld)
                           context:nil];
     UIViewController* currentcontroller = [self.viewControllers objectAtIndex:self.pageControl.currentPage];
-    NSLog( @"current: %@ dans %@", currentcontroller.navigationItem.title, self.titleLabel );
     self.titleLabel.text = currentcontroller.navigationItem.title;
 }
 

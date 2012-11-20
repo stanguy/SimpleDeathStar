@@ -11,6 +11,11 @@
 #import "AbstractHomeSection.h"
 #import "TableWithAdViewController.h"
 
+typedef enum  {
+    kHomeStyleFull,
+    kHomeStyleStart
+} HomeStyle;
+
 
 @interface HomeScreenViewController : TableWithAdViewController <HomePageDelegate> {
 
@@ -19,5 +24,6 @@
 @property (retain) NSArray* sections;
 
 - (void)reloadByTimer;
+- (id)initWithHomeStyle:(HomeStyle)style;
 
 @end
