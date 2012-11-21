@@ -122,6 +122,14 @@
     [super viewDidUnload];
 }
 
+-(void)viewDidAppear:(BOOL)animated{
+    [[self.viewControllers objectAtIndex:self.pageControl.currentPage] didBecomeActive];
+}
+-(void)viewWillDisappear:(BOOL)animated {
+    NSLog( @"viewWillDisappear" );
+    [[self.viewControllers objectAtIndex:self.pageControl.currentPage] didResignActive];
+}
+
 - (void)dealloc
 {
     [self removeObserver:self forKeyPath:@"viewControllers"];
@@ -281,11 +289,20 @@
 {
     CGFloat offset = self.scrollView.contentOffset.x;
     CGFloat width = self.scrollView.frame.size.width;
+    UIViewController<ISColumnsControllerChild>* previousController = [self.viewControllers objectAtIndex:self.pageControl.currentPage];
     self.pageControl.currentPage = (offset+(width/2))/width;
 
-    UIViewController* currentcontroller = [self.viewControllers objectAtIndex:self.pageControl.currentPage];
+    UIViewController<ISColumnsControllerChild>* currentcontroller = [self.viewControllers objectAtIndex:self.pageControl.currentPage];
     self.titleLabel.text = currentcontroller.navigationItem.title;
-    
+    if ( previousController != currentcontroller ) {
+        if ([previousController respondsToSelector:@selector(didResignActive)]) {
+            [previousController didResignActive];
+        }
+        if ([currentcontroller respondsToSelector:@selector(didBecomeActive)]) {
+            [currentcontroller didBecomeActive];
+        }
+    }
+
     [self disableScrollsToTop];
 }
 

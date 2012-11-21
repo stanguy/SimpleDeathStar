@@ -11,11 +11,11 @@
 
 @interface TableWithAdViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
 {
-  @private
     ADViewComposer* viewComposer;
 }
 
 @property (nonatomic,retain) UITableView* tableView;
+@property (atomic) BOOL skipComposingOnEvents;
 
 - (UITableViewStyle)defaultStyle ;
 

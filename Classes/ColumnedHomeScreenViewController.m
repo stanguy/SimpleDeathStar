@@ -18,7 +18,7 @@
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
-    self = [super initWithStyle:[self defaultStyle]];
+    self = [super init];
     if (self) {
         // Custom initialization
     }
@@ -71,12 +71,6 @@
     return UITableViewStyleGrouped;
 }
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    return NSLocalizedString( [self.section title], nil);
-}
-
-
-
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [section selectRow:indexPath.row from:self];
@@ -98,5 +92,20 @@
     NSLog( @"Column:reloadByTimer" );
     [section reloadByTimer];
 }
+
+#pragma mark - child
+
+- (void)didBecomeActive{
+    NSLog( @"didBecomeActive" );
+    [viewComposer changeDisplay:YES];
+}
+
+
+- (void)didResignActive{
+    NSLog( @"didResignActive" );
+    [viewComposer toDisappear];
+}
+
+
 
 @end

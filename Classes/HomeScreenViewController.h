@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 #import "AbstractHomeSection.h"
+#import "ISColumnsController.h"
 #import "TableWithAdViewController.h"
 
 typedef enum  {
@@ -17,7 +18,7 @@ typedef enum  {
 } HomeStyle;
 
 
-@interface HomeScreenViewController : TableWithAdViewController <HomePageDelegate> {
+@interface HomeScreenViewController : TableWithAdViewController <HomePageDelegate,ISColumnsControllerChild> {
 
 }
 

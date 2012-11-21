@@ -9,9 +9,11 @@
 #import <UIKit/UIKit.h>
 
 #import "AbstractHomeSection.h"
+#import "ISColumnsController.h"
+#import "TableWithAdViewController.h"
 
 
-@interface ColumnedHomeScreenViewController : UITableViewController <HomePageDelegate>
+@interface ColumnedHomeScreenViewController : TableWithAdViewController <HomePageDelegate,ISColumnsControllerChild>
 
 @property (retain) AbstractHomeSection* section;
 

@@ -134,6 +134,20 @@
     return NSLocalizedString( [[sections objectAtIndex:section] title], nil);
 }
 
+#pragma mark - child
+
+- (void)didBecomeActive{
+    NSLog( @"didBecomeActive" );
+    [viewComposer changeDisplay:YES];
+}
+
+
+- (void)didResignActive{
+    NSLog( @"didResignActive" );
+    [viewComposer toDisappear];
+}
+
+
 
 
 #pragma mark -

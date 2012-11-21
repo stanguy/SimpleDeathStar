@@ -39,6 +39,9 @@
             section.delegate = column;
             [columns addObject:column];
         }
+        for ( TableWithAdViewController* children in columns ) {
+            children.skipComposingOnEvents = YES;
+        }
         self.viewControllers = columns;
     }
     return self;
