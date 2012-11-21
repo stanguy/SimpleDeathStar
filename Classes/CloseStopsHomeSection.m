@@ -211,6 +211,11 @@ BOOL checkBounds( CLLocation* location ) {
     if ( ( now - lastUpdate ) < 10 ) {
         NSLog( @"delaying update" );
         currentDelay = currentDelay * 2;
+        if ( currentDelay > 16 ) {
+            NSLog( @"It takes too long to update location, cancelling" );
+            [self locationStop];
+            return;
+        }
     } else {
         NSLog( @"reseting update" );
         currentDelay = 1;
