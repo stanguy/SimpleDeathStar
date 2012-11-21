@@ -208,7 +208,7 @@ BOOL checkBounds( CLLocation* location ) {
     [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(commitLocationUpdate) object:nil];
     
     time_t now = time( NULL );
-    if ( ( now - lastUpdate ) < 10 ) {
+    if ( ( now - lastUpdate ) < 30 ) {
         NSLog( @"delaying update" );
         currentDelay = currentDelay * 2;
         if ( currentDelay > 16 ) {
