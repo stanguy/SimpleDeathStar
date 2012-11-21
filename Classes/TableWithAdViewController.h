@@ -14,7 +14,7 @@
     ADViewComposer* viewComposer;
 }
 
-@property (nonatomic,retain) UITableView* tableView;
+@property (nonatomic,retain) IBOutlet UITableView* tableView;
 @property (atomic) BOOL skipComposingOnEvents;
 
 - (UITableViewStyle)defaultStyle ;
