@@ -28,6 +28,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.tableView.backgroundColor = [UIColor colorWithRed:215.0/255.0 green:217.0/255.0 blue:223.0/255.0 alpha:1.0];
     self.navigationItem.title = NSLocalizedString( [section title], @"" );
 }
 
@@ -60,6 +61,11 @@
     return [self.section numberOfElements];
 }
 
+-(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    cell.backgroundColor = [UIColor whiteColor];    
+}
+
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return [section tableView:tableView cellForRowAtIndexPath:indexPath];
@@ -68,7 +74,7 @@
 #pragma mark - Table view delegate
 
 - (UITableViewStyle)defaultStyle {
-    return UITableViewStyleGrouped;
+    return UITableViewStylePlain;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -78,7 +84,7 @@
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return [section rowHeight];
+    return [section rowHeight] + 5.0;
 }
 
 #pragma mark - Home

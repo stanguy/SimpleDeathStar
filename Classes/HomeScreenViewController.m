@@ -48,7 +48,8 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     self.navigationItem.title = NSLocalizedString( @"Accueil", @"" );
-    
+    self.tableView.backgroundView = nil;
+    self.tableView.backgroundColor = [UIColor colorWithRed:215.0/255.0 green:217.0/255.0 blue:223.0/255.0 alpha:1.0];
     
     NSMutableArray* buildSections = [[[NSMutableArray alloc] init] autorelease];
     NSArray* sectionClasses;

@@ -24,5 +24,12 @@
     return 44.0f;
 }
 
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return nil;
+}
+-(NSInteger)numberOfElements{
+    return 0;
+}
+
 
 @end
