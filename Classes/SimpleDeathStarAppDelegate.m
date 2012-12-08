@@ -82,7 +82,13 @@
     
     UIViewController* home;
     if ( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone ) {
-         home = [[[MultiColumnsHomeScreenViewController alloc] init] autorelease];
+        MultiColumnsHomeScreenViewController* tmp_home = [[[MultiColumnsHomeScreenViewController alloc] init] autorelease];
+        NSNumber* page = [defaults objectForKey:@"startupPage"];
+        if ( nil != page ) {
+            tmp_home.pageControl.currentPage = [page intValue];
+        }
+        [tmp_home switchPage:false];
+        home = tmp_home;
     } else {
         home = [[[HomeScreenViewController alloc] init] autorelease];
     }
@@ -139,6 +145,14 @@
      */
     [timerFavorites invalidate];
     [self locationActive:NO];
+    
+    UIViewController* home = [navigationController.viewControllers objectAtIndex:0];
+    if ( [home isKindOfClass:[MultiColumnsHomeScreenViewController class]]) {
+        MultiColumnsHomeScreenViewController* home_col = (MultiColumnsHomeScreenViewController*)home;
+        NSInteger currentPage = home_col.pageControl.currentPage;
+        NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults] ;
+        [defaults setObject:[NSNumber numberWithInteger:currentPage] forKey:@"startupPage"];
+    }
 }
 
 

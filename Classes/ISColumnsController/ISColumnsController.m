@@ -188,7 +188,11 @@
 
 #pragma mark - action
 
-- (void)didTapPageControl
+- (void)didTapPageControl{
+    [self switchPage:YES];
+}
+
+- (void)switchPage:(BOOL)animated
 {
     CGFloat offset = self.scrollView.contentOffset.x;
     CGFloat width  = self.scrollView.frame.size.width;
@@ -196,7 +200,7 @@
     NSInteger currentPage = (offset+(width/2))/width;
     NSInteger nextPage    = self.pageControl.currentPage;
     
-    [self.scrollView setContentOffset:CGPointMake(self.scrollView.frame.size.width*nextPage, 0) animated:YES];
+    [self.scrollView setContentOffset:CGPointMake(self.scrollView.frame.size.width*nextPage, 0) animated:animated];
     
     if (currentPage != nextPage) {
         [self didChangeCurrentPage:nextPage previousPage:currentPage];

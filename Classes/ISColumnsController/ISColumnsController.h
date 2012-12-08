@@ -13,4 +13,6 @@
 @property (retain, nonatomic) UILabel       *titleLabel;
 @property (retain, nonatomic) UIPageControl *pageControl;
 
+- (void)switchPage:(BOOL)animated;
+
 @end
