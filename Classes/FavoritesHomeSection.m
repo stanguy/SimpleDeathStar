@@ -104,6 +104,12 @@
     }
 }
 
+- (void)refresh:(UIRefreshControl*) control {
+    [control beginRefreshing];
+    [self reloadFavorites];
+    [control endRefreshing];
+}
+
 
 - (void)reloadFavorites {
     NSArray* favorites = [[Favorite topFavorites] retain];

@@ -144,6 +144,12 @@ NSString* positioningErrorDetails[] = {
     return cell;
 }
 
+- (void)refresh:(UIRefreshControl*) control {
+    [control beginRefreshing];
+    [self reloadProximity];
+    [control endRefreshing];
+}
+
 - (void)reloadByTimer {
     [self reloadProximity];
 }

@@ -29,6 +29,17 @@
 {
     [super viewDidLoad];
     self.tableView.backgroundColor = [UIColor colorWithRed:215.0/255.0 green:217.0/255.0 blue:223.0/255.0 alpha:1.0];
+/*    UIImageView* newBg = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Default"]];
+    newBg.contentMode = UIViewContentModeScaleToFill;
+    self.tableView.backgroundView = newBg;*/
+    
+    if ( [UIRefreshControl class] && [self.section respondsToSelector:@selector(refresh:)]) {
+        UIRefreshControl* refreshControl = [[UIRefreshControl alloc] init];
+        [refreshControl addTarget:self.section action:@selector(refresh:) forControlEvents:UIControlEventValueChanged];
+        [self.tableView addSubview:refreshControl];
+    }
+
+    
     self.navigationItem.title = NSLocalizedString( [section title], @"" );
 }
 
@@ -104,6 +115,7 @@
 - (void)didBecomeActive{
     NSLog( @"didBecomeActive" );
     [viewComposer changeDisplay:YES];
+    [section reloadByTimer];
 }
 
 
