@@ -7,6 +7,10 @@
 //
 
 #import "AbstractHomeSection.h"
+#import "ADViewComposer.h"
+
+
+#define IS_IPHONE_5 ( fabs( ( double )[ [ UIScreen mainScreen ] bounds ].size.height - ( double )568 ) < DBL_EPSILON )
 
 @implementation AbstractHomeSection
 
@@ -29,6 +33,19 @@
 }
 -(NSInteger)numberOfElements{
     return 0;
+}
+
+-(NSInteger)bestMaxFitRows{
+    NSInteger rows = 5;
+    if ( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone ) {
+        if ( IS_IPHONE_5 ) {
+            rows++;
+        }
+        if ( ! [ADViewComposer AdsEnabled] ) {
+            rows++;
+        }
+    }
+    return rows;
 }
 
 

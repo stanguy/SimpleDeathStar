@@ -21,5 +21,6 @@
 
 + (id)BuildAdView:(UIView*)baseView;
 + (void)EnableAds:(BOOL)flag;
++ (BOOL)AdsEnabled;
 
 @end

@@ -139,6 +139,10 @@ bool SHOW_ADS = YES;
     SHOW_ADS = flag;
 #endif
 }
+
++ (BOOL)AdsEnabled{
+    return SHOW_ADS;
+}
 #pragma mark - Ad banner delegate
 
 - (void)bannerViewDidLoadAd:(ADBannerView *)banner {

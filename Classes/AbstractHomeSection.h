@@ -27,4 +27,7 @@
 -(NSInteger)numberOfElements;
 -(void)selectRow:(NSInteger)row from:(UIViewController*)controller;
 -(CGFloat)rowHeight;
+
+-(NSInteger)bestMaxFitRows;
+
 @end

@@ -197,7 +197,7 @@
 }
 
 
-+ (NSArray*) findAroundLocation:(CLLocation*)location 
++ (NSArray*) findAroundLocation:(CLLocation*)location maxStops:(NSInteger) maxStops
                   withinContext:(NSManagedObjectContext*)context{
     NSArray* result = nil;
     float radius = 0.0001;
@@ -214,7 +214,7 @@
         }
         previous_count = [result count];
 //        NSLog( @"found %d stops in a radius of %f", previous_count, radius );
-    } while ( result != nil && previous_count < 5 );
+    } while ( result != nil && previous_count < maxStops );
     for( Stop* stop in result ) {
         CLLocation* stopLocation = [[CLLocation alloc] initWithLatitude:[stop.lat doubleValue] longitude:[stop.lon doubleValue]];
         stop.distance = (int) [location distanceFromLocation:stopLocation];
@@ -227,10 +227,10 @@
         if ( ad < bd ) { return (NSComparisonResult)NSOrderedAscending; }
         return (NSComparisonResult)NSOrderedSame;
     }];
-    if ( previous_count > 5 ) {
+    if ( previous_count > maxStops ) {
         NSRange r;
         r.location = 0;
-        r.length = 5;
+        r.length = maxStops;
         sortedResult = [sortedResult subarrayWithRange:r];
     }
     return sortedResult;

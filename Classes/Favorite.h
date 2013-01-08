@@ -14,7 +14,7 @@
 + (void)deleteWithLine:(Line*)line andStop:(Stop*) stop;
 + (int)count;
 +(NSFetchedResultsController*) findAll;
-+ (NSArray*)topFavorites;
++ (NSArray*)topFavorites:(NSInteger)max;
 + (void)updateAll;
 
 - (NSString*) title;

@@ -177,14 +177,14 @@ BOOL checkBounds( CLLocation* location ) {
 }
 
 -(void)runReloadCloseStops:(CLLocation*)location {
-    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-    NSManagedObjectContext* context = [[NSManagedObjectContext alloc] init];
-    SimpleDeathStarAppDelegate* delegate = (SimpleDeathStarAppDelegate*)[[UIApplication sharedApplication] delegate];
-    [context setPersistentStoreCoordinator:[delegate transitPersistentStoreCoordinator]];
-    NSArray* stops = [Stop findAroundLocation:location withinContext:context];
-    [self performSelectorOnMainThread:@selector(finishReloadCloseStops:) withObject:stops waitUntilDone:YES];
-    [context release];
-    [pool release];
+    @autoreleasepool {
+        NSManagedObjectContext* context = [[NSManagedObjectContext alloc] init];
+        SimpleDeathStarAppDelegate* delegate = (SimpleDeathStarAppDelegate*)[[UIApplication sharedApplication] delegate];
+        [context setPersistentStoreCoordinator:[delegate transitPersistentStoreCoordinator]];
+        NSArray* stops = [Stop findAroundLocation:location maxStops:[self bestMaxFitRows] withinContext:context];
+        [self performSelectorOnMainThread:@selector(finishReloadCloseStops:) withObject:stops waitUntilDone:YES];
+        [context release];
+    }
 }
 
 - (void)reloadCloseStops:(CLLocation*)location{
