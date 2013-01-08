@@ -69,6 +69,7 @@ NSString* positioningErrorDetails[] = {
     //    NSLog( @"location retry" );
     positioningError = kNoPositionError;
     if ( [CLLocationManager locationServicesEnabled] ) {
+        lastUpdate = 0;
         locationManager.delegate = self;
         locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters;
         // Set a movement threshold for new events
