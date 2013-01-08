@@ -74,7 +74,7 @@ bool SHOW_ADS = YES;
     } else if ( displayed ) {
         targetFrame = CGRectOffset( adBanner.frame, 0, bannerHeight );
     }
-#if 1
+#if 0
     NSLog( @"\tfirst Origin: %.0fx%.0f", adBanner.frame.origin.x, adBanner.frame.origin.y );
     NSLog( @"\tbannerOrigin: %.0fx%.0f", bannerOrigin.x, bannerOrigin.y );
     NSLog( @"\tsuperview: %@", composedView.superview );
