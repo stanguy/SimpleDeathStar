@@ -8,6 +8,11 @@
 
 #import "TableWithAdViewController.h"
 
+@interface TableWithAdViewController () {
+}
+@end
+
+
 @implementation TableWithAdViewController
 
 - (id)init
@@ -15,6 +20,7 @@
     self = [super init];
     if (self) {
         // Initialization code here.
+        self.skipComposingOnEvents = NO;
     }
     
     return self;
@@ -22,14 +28,16 @@
 
 -(void)loadView {
     NSLog( @"loadView" );
-    [super loadView];
-    NSArray* arr = [[NSBundle mainBundle] loadNibNamed:NSStringFromClass([self class]) owner:self options:nil];
-    self.view = [arr objectAtIndex:0];
-    self.tableView = nil;
-    self.tableView = [[UITableView alloc] initWithFrame:self.view.frame style:[self defaultStyle]];
-    self.tableView.delegate = self;
-    self.tableView.dataSource = self;
-    [self.view addSubview:self.tableView];
+    if ( nil != self.nibName ) {
+        NSArray* arr = [[NSBundle mainBundle] loadNibNamed:NSStringFromClass([self class]) owner:self options:nil];
+        self.view = [arr objectAtIndex:0];
+    } else {
+        self.view = [[[UIView alloc] init] autorelease];
+        self.tableView = [[UITableView alloc] initWithFrame:self.view.frame style:[self defaultStyle]];
+        self.tableView.delegate = self;
+        self.tableView.dataSource = self;
+        [self.view addSubview:self.tableView];
+    }
     self.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     self.tableView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
 
@@ -43,12 +51,16 @@
     if ( indexPath ) {
         [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
     }
-    [viewComposer changeDisplay:YES];
+    if ( ! self.skipComposingOnEvents ) {
+        [viewComposer changeDisplay:YES];
+    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
     NSLog( @"viewWillDisAppear %@", self );
-    [viewComposer toDisappear];
+    if ( ! self.skipComposingOnEvents ) {
+        [viewComposer toDisappear];
+    }
 }
 
 - (UITableViewStyle)defaultStyle {

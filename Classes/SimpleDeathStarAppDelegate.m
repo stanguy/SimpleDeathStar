@@ -8,6 +8,7 @@
 
 #import "SimpleDeathStarAppDelegate.h"
 #import "HomeScreenViewController.h"
+#import "MultiColumnsHomeScreenViewController.h"
 #import "Favorite.h"
 
 #import <iAd/ADBannerView.h>
@@ -74,22 +75,34 @@
     if ( [reftime isEqualToString:@"departure"]) {
         useArrival = NO;
     }
-    HomeScreenViewController* homeController = [[[HomeScreenViewController alloc] init] autorelease];
-    navigationController = [[UINavigationController alloc] initWithRootViewController:homeController];
     
     useRelativeTime = [defaults boolForKey:@"relative_time"];
+
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(preferencesChanged:) name:NSUserDefaultsDidChangeNotification object:nil];
     
+    UIViewController* home;
+    if ( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone ) {
+        MultiColumnsHomeScreenViewController* tmp_home = [[[MultiColumnsHomeScreenViewController alloc] init] autorelease];
+        NSNumber* page = [defaults objectForKey:@"startupPage"];
+        if ( nil != page ) {
+            tmp_home.pageControl.currentPage = [page intValue];
+        }
+        [tmp_home switchPage:false];
+        home = tmp_home;
+    } else {
+        home = [[[HomeScreenViewController alloc] init] autorelease];
+    }
     if ( [defaults boolForKey:@"enable_ads"] ) {
 #ifndef VERSION_STLO
         NSLog( @"ads enabled" );
         [ADViewComposer EnableAds:YES];
-        adView_ = [[ADViewComposer BuildAdView:homeController.view] retain];
+        adView_ = [[ADViewComposer BuildAdView:home.view] retain];
 #endif
     } else {
         [ADViewComposer EnableAds:NO];
     }
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(preferencesChanged:) name:NSUserDefaultsDidChangeNotification object:nil];
     
+    navigationController = [[UINavigationController alloc] initWithRootViewController:home];
     [window setRootViewController:navigationController];
     [window makeKeyAndVisible];
     return YES;
@@ -132,6 +145,14 @@
      */
     [timerFavorites invalidate];
     [self locationActive:NO];
+    
+    UIViewController* home = [navigationController.viewControllers objectAtIndex:0];
+    if ( [home isKindOfClass:[MultiColumnsHomeScreenViewController class]]) {
+        MultiColumnsHomeScreenViewController* home_col = (MultiColumnsHomeScreenViewController*)home;
+        NSInteger currentPage = home_col.pageControl.currentPage;
+        NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults] ;
+        [defaults setObject:[NSNumber numberWithInteger:currentPage] forKey:@"startupPage"];
+    }
 }
 
 

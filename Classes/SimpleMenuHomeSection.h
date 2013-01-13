@@ -15,6 +15,5 @@
 - (NSInteger)numberOfElements;
 
 @property (retain) NSArray* menu;
-@property (retain) NSString* title;
 
 @end

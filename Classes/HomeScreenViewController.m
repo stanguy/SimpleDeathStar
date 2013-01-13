@@ -15,15 +15,22 @@
 #import "HelpHomeSection.h"
 
 
+@interface HomeScreenViewController () {
+    int homeStyle;
+}
+
+@end
+
+
 @implementation HomeScreenViewController;
 
 @synthesize sections;
 #pragma mark -
 
--(id)init {
+-(id)initWithHomeStyle:(HomeStyle)style {
     self = [super init];
     if ( self ) {
-        
+        homeStyle = style;
     }
     return self;
 }
@@ -42,9 +49,20 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     self.navigationItem.title = NSLocalizedString( @"Accueil", @"" );
     
-    
     NSMutableArray* buildSections = [[[NSMutableArray alloc] init] autorelease];
-    NSArray* sectionClasses = [NSArray arrayWithObjects:[LineTypesHomeSection class], [StopsHomeSection class], [FavoritesHomeSection class], [CloseStopsHomeSection class],  [HelpHomeSection class], nil];
+    NSArray* sectionClasses;
+    
+    switch ( homeStyle ) {
+        case kHomeStyleStart:
+            sectionClasses = [NSArray arrayWithObjects:[LineTypesHomeSection class], [StopsHomeSection class], nil];
+            break;
+
+        default:
+        case kHomeStyleFull:
+            sectionClasses = [NSArray arrayWithObjects:[LineTypesHomeSection class], [StopsHomeSection class], [FavoritesHomeSection class], [CloseStopsHomeSection class],  [HelpHomeSection class], nil];
+            break;
+            
+    }
     for (Class class in sectionClasses) {
         AbstractHomeSection* section = [[class alloc] init];
         section.delegate = self;
@@ -114,6 +132,20 @@
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     return NSLocalizedString( [[sections objectAtIndex:section] title], nil);
 }
+
+#pragma mark - child
+
+- (void)didBecomeActive{
+    NSLog( @"didBecomeActive" );
+    [viewComposer changeDisplay:YES];
+}
+
+
+- (void)didResignActive{
+    NSLog( @"didResignActive" );
+    [viewComposer toDisappear];
+}
+
 
 
 

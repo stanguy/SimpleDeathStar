@@ -43,7 +43,7 @@
 }
 
 - (CGFloat)rowHeight {
-    return 60.0f;
+    return 55.0f;
 }
 
 - (NSString*)title{
@@ -104,15 +104,25 @@
     }
 }
 
+- (void)refresh:(UIRefreshControl*) control {
+    [control beginRefreshing];
+    [self reloadFavorites];
+    [control endRefreshing];
+}
+
 
 - (void)reloadFavorites {
-    NSArray* favorites = [[Favorite topFavorites] retain];
+    cachedFavoritesCount = [Favorite count];
+    NSInteger maxfit = [self bestMaxFitRows];
+    if ( cachedFavoritesCount >= maxfit ) {
+        maxfit--;
+    }
+    NSArray* favorites = [[Favorite topFavorites:maxfit] retain];
     NSMutableArray* favtimes = [[NSMutableArray alloc] initWithCapacity:[favorites count]];
     for ( Favorite* fav in favorites ) {
         [favtimes addObject:[StopTime findComingAt:fav]];
     }
     favoriteTimes = [favtimes retain];
-    cachedFavoritesCount = [Favorite count];
     NSArray* oldFavorites = topFavorites;
     topFavorites = favorites;
     [oldFavorites release];

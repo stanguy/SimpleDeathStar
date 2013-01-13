@@ -20,7 +20,7 @@
 + (NSFetchedResultsController*) findByName:(NSString*) text;
 + (Stop*) findFirstBySrcId:(NSString*)src_id;
 + (Stop*) findFirstBySlug:(NSString*)slug;
-+ (NSArray*) findAroundLocation:(CLLocation*)location withinContext:(NSManagedObjectContext*)context;
++ (NSArray*) findAroundLocation:(CLLocation*)location maxStops:(NSInteger) maxStops withinContext:(NSManagedObjectContext*)context;
 + (NSArray*) findFromPosition:(CLLocationCoordinate2D)center
             withLatitudeDelta:(CLLocationDegrees)latitudeDelta
             andLongitudeDelta:(CLLocationDegrees)longitudeDelta;

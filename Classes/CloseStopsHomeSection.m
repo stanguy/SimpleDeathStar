@@ -69,6 +69,7 @@ NSString* positioningErrorDetails[] = {
     //    NSLog( @"location retry" );
     positioningError = kNoPositionError;
     if ( [CLLocationManager locationServicesEnabled] ) {
+        lastUpdate = 0;
         locationManager.delegate = self;
         locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters;
         // Set a movement threshold for new events
@@ -144,6 +145,12 @@ NSString* positioningErrorDetails[] = {
     return cell;
 }
 
+- (void)refresh:(UIRefreshControl*) control {
+    [control beginRefreshing];
+    [self reloadProximity];
+    [control endRefreshing];
+}
+
 - (void)reloadByTimer {
     [self reloadProximity];
 }
@@ -170,14 +177,14 @@ BOOL checkBounds( CLLocation* location ) {
 }
 
 -(void)runReloadCloseStops:(CLLocation*)location {
-    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-    NSManagedObjectContext* context = [[NSManagedObjectContext alloc] init];
-    SimpleDeathStarAppDelegate* delegate = (SimpleDeathStarAppDelegate*)[[UIApplication sharedApplication] delegate];
-    [context setPersistentStoreCoordinator:[delegate transitPersistentStoreCoordinator]];
-    NSArray* stops = [Stop findAroundLocation:location withinContext:context];
-    [self performSelectorOnMainThread:@selector(finishReloadCloseStops:) withObject:stops waitUntilDone:YES];
-    [context release];
-    [pool release];
+    @autoreleasepool {
+        NSManagedObjectContext* context = [[NSManagedObjectContext alloc] init];
+        SimpleDeathStarAppDelegate* delegate = (SimpleDeathStarAppDelegate*)[[UIApplication sharedApplication] delegate];
+        [context setPersistentStoreCoordinator:[delegate transitPersistentStoreCoordinator]];
+        NSArray* stops = [Stop findAroundLocation:location maxStops:[self bestMaxFitRows] withinContext:context];
+        [self performSelectorOnMainThread:@selector(finishReloadCloseStops:) withObject:stops waitUntilDone:YES];
+        [context release];
+    }
 }
 
 - (void)reloadCloseStops:(CLLocation*)location{
@@ -208,9 +215,14 @@ BOOL checkBounds( CLLocation* location ) {
     [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(commitLocationUpdate) object:nil];
     
     time_t now = time( NULL );
-    if ( ( now - lastUpdate ) < 10 ) {
+    if ( ( now - lastUpdate ) < 30 ) {
         NSLog( @"delaying update" );
         currentDelay = currentDelay * 2;
+        if ( currentDelay > 16 ) {
+            NSLog( @"It takes too long to update location, cancelling" );
+            [self locationStop];
+            return;
+        }
     } else {
         NSLog( @"reseting update" );
         currentDelay = 1;
@@ -260,7 +272,7 @@ BOOL checkBounds( CLLocation* location ) {
 }
 
 - (CGFloat)rowHeight {
-    return 60.0f;
+    return 55.0f;
 }
 
 - (void)reloadProximity {

@@ -49,6 +49,7 @@
     NSString* about_format = @"about_%@";
     NSString* online_url = @"http://maps.dthg.net/city/rennes";
 #endif
+    BOOL need_navigation = NO;
     switch ( self.type ) {
         case ABOUT_ABOUT:
             self.navigationItem.title = NSLocalizedString( @"À propos", @"" );
@@ -61,13 +62,34 @@
         case ABOUT_ONLINE:
             self.navigationItem.title = NSLocalizedString( @"En ligne", @"" );
             fileUrl = [NSURL URLWithString:online_url];
+            need_navigation = YES;
+            break;
+        case ABOUT_TWITS:
+            self.navigationItem.title = @"@starbusmetro";
+            if ( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone ) {
+                fileUrl = [NSURL URLWithString:@"http://mobile.twitter.com/starbusmetro"];
+            } else {
+                fileUrl = [NSURL URLWithString:@"http://twitter.com/starbusmetro"];
+            }
+            need_navigation = YES;
             break;
         default:
             return;
             break;
     }
+    if ( need_navigation ) {
+        UIBarButtonItem* backButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"back"] style:UIBarButtonItemStylePlain target:self action:@selector(goBack)];
+        
+        self.toolbarItems = [NSArray arrayWithObjects:backButton, nil];
+        self.navigationController.toolbarHidden = NO;
+    }
+    
     [webView loadRequest:[NSURLRequest requestWithURL:fileUrl]];
     viewComposer_ = [[ADViewComposer alloc] initWithView:webView];
+}
+
+-(void) goBack {
+    [webView goBack];
 }
 
 -(void) viewWillAppear:(BOOL)animated {
@@ -76,9 +98,13 @@
 }
 
 -(void) viewWillDisappear:(BOOL)animated {
+    self.navigationController.toolbarHidden = YES;
     [super viewWillDisappear:animated];
     [viewComposer_ toDisappear];
 }
+
+#pragma -
+#pragma WebView
 
 -(void)webView:(UIWebView*)view didFailLoadWithError:(NSError*)error {
     UIAlertView *alert =
@@ -90,6 +116,15 @@
     [alert show];
     [alert release];
 }
+
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
+{
+    NSLog( @"%@", request );
+    return TRUE;
+}
+
+#pragma -
+#pragma Misc
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     // Return YES for supported orientations

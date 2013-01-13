@@ -22,8 +22,11 @@
                  NSLocalizedString( @"Tous les arrêts", @"" ),
                  NSLocalizedString( @"Sur la carte", @""),
                  nil];
-    self.title = @"Recherche par arrêt";
     return self;
+}
+
+-(NSString*)title {
+    return @"Recherche par arrêt";
 }
 
 -(void)selectRow:(NSInteger)row from:(UIViewController*)controller{

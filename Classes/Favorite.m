@@ -8,7 +8,6 @@
 
 // Custom logic goes here.
 
-int kMaxTopFavorites = 5;
 + (Favorite*)fetchWithLine:(Line*)line andStop:(Stop*) stop {
     return [Favorite fetchWithLine:line andStop:stop inContext:nil];
 }
@@ -139,7 +138,7 @@ int kMaxTopFavorites = 5;
     return count;
 }
 
-+ (NSArray*)topFavorites {
++ (NSArray*)topFavorites:(NSInteger)max {
     SimpleDeathStarAppDelegate* delegate = (SimpleDeathStarAppDelegate*)[[UIApplication sharedApplication] delegate];
     NSManagedObjectContext* context = [delegate  userManagedObjectContext];
     
@@ -150,7 +149,7 @@ int kMaxTopFavorites = 5;
     [fetchRequest setEntity:entity];
     
     // Set the batch size to a suitable number.
-    [fetchRequest setFetchLimit:kMaxTopFavorites];
+    [fetchRequest setFetchLimit:max];
         
     // Edit the sort key as appropriate.
     NSSortDescriptor *sortDescriptor1 = [[NSSortDescriptor alloc] initWithKey:@"view_count" ascending:NO];

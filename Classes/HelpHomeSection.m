@@ -17,7 +17,7 @@ int AboutMenuValues[] = {
     ABOUT_ABOUT,
     ABOUT_PANIC,
     ABOUT_ONLINE,
-    ABOUT_TWITS
+    ABOUT_TWITS,
     -1
 };
 
@@ -35,12 +35,8 @@ int AboutMenuValues[] = {
 
 -(void)selectRow:(NSInteger)row from:(UIViewController*)controller{
     UIViewController* nextController;
-    if ( row != ABOUT_TWITS ) {
-        nextController = [[AboutViewController alloc] initWithNibName:@"AboutViewController" bundle:nil];
-        ((AboutViewController*)nextController).type = AboutMenuValues[row];
-    } else {
-        nextController = [[TwitsViewController alloc] initWithNibName:@"TwitsViewController" bundle:nil];
-    }
+    nextController = [[AboutViewController alloc] initWithNibName:@"AboutViewController" bundle:nil];
+    ((AboutViewController*)nextController).type = AboutMenuValues[row];
     [controller.navigationController pushViewController:nextController animated:YES];
     [nextController release];
 }

@@ -9,15 +9,22 @@
 #import <UIKit/UIKit.h>
 
 #import "AbstractHomeSection.h"
+#import "ISColumnsController.h"
 #import "TableWithAdViewController.h"
 
+typedef enum  {
+    kHomeStyleFull,
+    kHomeStyleStart
+} HomeStyle;
 
-@interface HomeScreenViewController : TableWithAdViewController <HomePageDelegate> {
+
+@interface HomeScreenViewController : TableWithAdViewController <HomePageDelegate,ISColumnsControllerChild> {
 
 }
 
 @property (retain) NSArray* sections;
 
 - (void)reloadByTimer;
+- (id)initWithHomeStyle:(HomeStyle)style;
 
 @end
