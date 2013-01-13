@@ -29,6 +29,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     NSURL* fileUrl = nil;
+    NSURL* backupUrl = nil;
     NSArray* preferredLangs = [NSLocale preferredLanguages];
     NSString* currentLocale = nil;
     NSArray* knownLanguages = [NSArray arrayWithObjects:@"fr", @"en", nil];
@@ -49,7 +50,7 @@
     NSString* about_format = @"about_%@";
     NSString* online_url = @"http://maps.dthg.net/city/rennes";
 #endif
-    BOOL need_navigation = NO;
+    BOOL open_external = NO;
     switch ( self.type ) {
         case ABOUT_ABOUT:
             self.navigationItem.title = NSLocalizedString( @"À propos", @"" );
@@ -62,34 +63,34 @@
         case ABOUT_ONLINE:
             self.navigationItem.title = NSLocalizedString( @"En ligne", @"" );
             fileUrl = [NSURL URLWithString:online_url];
-            need_navigation = YES;
+            open_external = YES;
             break;
         case ABOUT_TWITS:
             self.navigationItem.title = @"@starbusmetro";
             if ( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone ) {
-                fileUrl = [NSURL URLWithString:@"http://mobile.twitter.com/starbusmetro"];
+                backupUrl = [NSURL URLWithString:@"http://mobile.twitter.com/starbusmetro"];
             } else {
-                fileUrl = [NSURL URLWithString:@"http://twitter.com/starbusmetro"];
+                backupUrl = [NSURL URLWithString:@"http://twitter.com/starbusmetro"];
             }
-            need_navigation = YES;
+            fileUrl = [NSURL URLWithString:@"twitter://user?screen_name=starbusmetro"];
+            open_external = YES;
             break;
         default:
             return;
             break;
     }
-    if ( need_navigation ) {
-        UIBarButtonItem* backButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"back"] style:UIBarButtonItemStylePlain target:self action:@selector(goBack)];
-        
-        self.toolbarItems = [NSArray arrayWithObjects:backButton, nil];
-        self.navigationController.toolbarHidden = NO;
+    if ( open_external ) {
+        UIApplication *ourApplication = [UIApplication sharedApplication];
+        NSURL* url = fileUrl;
+        if ( ! [ourApplication canOpenURL:url] ) {
+            url = backupUrl;
+        }
+        [ourApplication openURL:url];
+        [self.navigationController popViewControllerAnimated:NO];
     }
     
     [webView loadRequest:[NSURLRequest requestWithURL:fileUrl]];
     viewComposer_ = [[ADViewComposer alloc] initWithView:webView];
-}
-
--(void) goBack {
-    [webView goBack];
 }
 
 -(void) viewWillAppear:(BOOL)animated {
