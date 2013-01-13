@@ -272,7 +272,7 @@ BOOL checkBounds( CLLocation* location ) {
 }
 
 - (CGFloat)rowHeight {
-    return 60.0f;
+    return 55.0f;
 }
 
 - (void)reloadProximity {

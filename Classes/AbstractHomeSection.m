@@ -36,7 +36,7 @@
 }
 
 -(NSInteger)bestMaxFitRows{
-    NSInteger rows = 5;
+    NSInteger rows = 6;
     if ( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone ) {
         if ( IS_IPHONE_5 ) {
             rows++;

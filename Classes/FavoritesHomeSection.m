@@ -43,7 +43,7 @@
 }
 
 - (CGFloat)rowHeight {
-    return 60.0f;
+    return 55.0f;
 }
 
 - (NSString*)title{
