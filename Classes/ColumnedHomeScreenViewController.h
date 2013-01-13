@@ -17,4 +17,7 @@
 
 @property (retain) AbstractHomeSection* section;
 
+
+- (id)initWithStyle:(UITableViewStyle)style;
+
 @end

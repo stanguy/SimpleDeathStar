@@ -34,7 +34,8 @@
         NSArray* sectionClasses = [NSArray arrayWithObjects:[FavoritesHomeSection class], [CloseStopsHomeSection class],  [HelpHomeSection class], nil];
         for (Class class in sectionClasses) {
             AbstractHomeSection* section = [[class alloc] init];
-            ColumnedHomeScreenViewController* column = [[ColumnedHomeScreenViewController alloc] init];
+            ColumnedHomeScreenViewController* column = [[ColumnedHomeScreenViewController alloc] initWithStyle:
+                                                        ( class == [HelpHomeSection class] ? UITableViewStyleGrouped : UITableViewStylePlain )];
             column.section = section;
             section.delegate = column;
             [columns addObject:column];

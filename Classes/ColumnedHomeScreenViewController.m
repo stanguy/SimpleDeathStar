@@ -10,6 +10,8 @@
 
 @interface ColumnedHomeScreenViewController ()
 
+@property (atomic) UITableViewStyle myStyle;
+
 @end
 
 @implementation ColumnedHomeScreenViewController
@@ -21,6 +23,7 @@
     self = [super init];
     if (self) {
         // Custom initialization
+        self.myStyle = style;
     }
     return self;
 }
@@ -80,7 +83,7 @@
 #pragma mark - Table view delegate
 
 - (UITableViewStyle)defaultStyle {
-    return UITableViewStyleGrouped;
+    return self.myStyle;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
