@@ -54,17 +54,28 @@
     
     switch ( homeStyle ) {
         case kHomeStyleStart:
-            sectionClasses = [NSArray arrayWithObjects:[LineTypesHomeSection class], [StopsHomeSection class], nil];
+            sectionClasses = [NSArray arrayWithObjects:
+                              [[LineTypesHomeSection alloc] init],
+                              [[StopsHomeSection alloc] init], nil];
             break;
-
         default:
+        case kHomeStyleHelp:
+            sectionClasses = [NSArray arrayWithObjects:
+                              [[HelpHomeSection alloc] initWithType:kHelpLocal],
+                              [[HelpHomeSection alloc] initWithType:kHelpRemote],
+                              nil];
+            break;
         case kHomeStyleFull:
-            sectionClasses = [NSArray arrayWithObjects:[LineTypesHomeSection class], [StopsHomeSection class], [FavoritesHomeSection class], [CloseStopsHomeSection class],  [HelpHomeSection class], nil];
+            sectionClasses = [NSArray arrayWithObjects:
+                              [[LineTypesHomeSection alloc] init],
+                              [[StopsHomeSection alloc] init],
+                              [[FavoritesHomeSection alloc] init],
+                              [[CloseStopsHomeSection alloc] init],
+                              [[HelpHomeSection alloc] init], nil];
             break;
             
     }
-    for (Class class in sectionClasses) {
-        AbstractHomeSection* section = [[class alloc] init];
+    for ( AbstractHomeSection* section in sectionClasses) {
         section.delegate = self;
         [buildSections addObject:section];
     }

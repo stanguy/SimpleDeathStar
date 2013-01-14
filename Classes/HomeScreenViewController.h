@@ -14,7 +14,8 @@
 
 typedef enum  {
     kHomeStyleFull,
-    kHomeStyleStart
+    kHomeStyleStart,
+    kHomeStyleHelp
 } HomeStyle;
 
 

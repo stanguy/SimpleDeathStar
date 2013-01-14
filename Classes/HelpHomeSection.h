@@ -8,6 +8,16 @@
 
 #import "SimpleMenuHomeSection.h"
 
+typedef enum  {
+    kHelpFull,
+    kHelpLocal,
+    kHelpRemote
+} HelpType;
+
 @interface HelpHomeSection : SimpleMenuHomeSection
+
+-(id)initWithType:(HelpType)type;
+
+@property (nonatomic, retain) NSString* title;
 
 @end

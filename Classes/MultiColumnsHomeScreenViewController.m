@@ -31,15 +31,15 @@
         // Custom initialization
         NSMutableArray* columns = [[[NSMutableArray alloc] init] autorelease];
         [columns addObject:[[[HomeScreenViewController alloc] initWithHomeStyle:kHomeStyleStart] autorelease]];
-        NSArray* sectionClasses = [NSArray arrayWithObjects:[FavoritesHomeSection class], [CloseStopsHomeSection class],  [HelpHomeSection class], nil];
+        NSArray* sectionClasses = [NSArray arrayWithObjects:[FavoritesHomeSection class], [CloseStopsHomeSection class], nil];
         for (Class class in sectionClasses) {
             AbstractHomeSection* section = [[class alloc] init];
-            ColumnedHomeScreenViewController* column = [[ColumnedHomeScreenViewController alloc] initWithStyle:
-                                                        ( class == [HelpHomeSection class] ? UITableViewStyleGrouped : UITableViewStylePlain )];
+            ColumnedHomeScreenViewController* column = [[ColumnedHomeScreenViewController alloc] initWithStyle:UITableViewStylePlain];
             column.section = section;
             section.delegate = column;
             [columns addObject:column];
         }
+        [columns addObject:[[[HomeScreenViewController alloc] initWithHomeStyle:kHomeStyleHelp] autorelease]];
         for ( TableWithAdViewController* children in columns ) {
             children.skipComposingOnEvents = YES;
         }

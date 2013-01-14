@@ -65,6 +65,10 @@
             fileUrl = [NSURL URLWithString:online_url];
             open_external = YES;
             break;
+        case ABOUT_MSBM:
+            fileUrl = [NSURL URLWithString:@"http://m.starbusmetro.fr"];
+            open_external = YES;
+            break;
         case ABOUT_TWITS:
             self.navigationItem.title = @"@starbusmetro";
             if ( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone ) {
