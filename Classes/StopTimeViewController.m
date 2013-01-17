@@ -7,6 +7,8 @@
 //
 
 #import "StopTimeViewController.h"
+#import "KeolisRennesAPI.h"
+#import "APIStopTime.h"
 #import "Line.h"
 #import "Stop.h"
 #import "StopTime.h"
@@ -19,21 +21,38 @@
 #import "PoiViewController.h"
 #import "ADViewComposer.h"
 
+#define xstr(s) str(s)
+#define str(s) #s
 
 const int kRowHeight = 50;
 const int kCellWidth = 46;
 
 
+@interface StopTimeViewController () {
+    BOOL realtime;
+}
+
+@property (nonatomic, retain) NSDictionary* realtimeStoptimes;
+@property (nonatomic, retain) NSArray* realtimeDirections;
+
+@end
+
 @implementation StopTimeViewController
 
-@synthesize fetchedResultsController = fetchedResultsController_, line = line_, stop = stop_;
-@synthesize tableView, scrollView, containerView, favButton = favButton_, poiButton = poiButton_, alertNoResult = alertNoResult_, datePicker = datePicker_;
+@synthesize fetchedResultsController = _fetchedResultsController, line, stop, dateChangeView, realtimeStoptimes, realtimeDirections, refreshItem, dateChangeItem;
+@synthesize tableView, scrollView, containerView, favButton, poiButton, alertNoResult = alertNoResult_, datePicker;
+
+enum SHEET_IDS {
+    SHEET_POI,
+    SHEET_TIME
+};
 
 #pragma mark -
 #pragma mark View lifecycle
 
 
 - (void)viewDidLoad {
+    realtime = false;
     [super viewDidLoad];
     self.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     self.containerView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
@@ -43,8 +62,6 @@ const int kCellWidth = 46;
     viewedDate_ = [NSDate date];
     [viewedDate_ retain];
 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     self.scrollView.tileWidth  = kCellWidth;
     self.scrollView.tileHeight = kRowHeight;
     self.view.clipsToBounds = YES;
@@ -58,25 +75,31 @@ const int kCellWidth = 46;
     }
     
     
-    UIBarButtonItem* dateChangeItem = [[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"clock"] style:UIBarButtonItemStylePlain target:self action:@selector(changeDate:)] autorelease];
+    self.dateChangeItem = [[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"clock"] style:UIBarButtonItemStylePlain target:self action:@selector(changeDate:)] autorelease];
+    self.refreshItem = [[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"reload"] style:UIBarButtonItemStylePlain target:self action:@selector(refreshRealtime:)] autorelease];
     UIImage* favImage;
-    if ( [Favorite existsWithLine:line_ andStop:stop_ andOhBTWIncCounter:YES] ) {
+    if ( [Favorite existsWithLine:self.line andStop:self.stop andOhBTWIncCounter:YES] ) {
         favImage = [UIImage imageNamed:@"favorites_remove"];
     } else {
         favImage = [UIImage imageNamed:@"favorites_add"];
     }
-    favButton_ = [[UIBarButtonItem alloc] initWithImage:favImage style:UIBarButtonItemStylePlain target:self action:@selector(toggleFavorite:)];
-    poiButton_ = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"app_globe"] style:UIBarButtonItemStylePlain target:self action:@selector(showPoi:)];
+    self.favButton = [[UIBarButtonItem alloc] initWithImage:favImage style:UIBarButtonItemStylePlain target:self action:@selector(toggleFavorite:)];
+    self.poiButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"app_globe"] style:UIBarButtonItemStylePlain target:self action:@selector(selectOption:)];
     UIBarButtonItem *flexible = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease];
     
-    self.toolbarItems = [NSArray arrayWithObjects:dateChangeItem, flexible, poiButton_, flexible,favButton_, nil];
+    self.toolbarItems = [NSArray arrayWithObjects:self.dateChangeItem , flexible, self.poiButton, flexible, self.favButton, nil];
 
     if ( [self.stop allCounts] > 0 ) {
-        [poiButton_ setEnabled:YES];
+        [self.poiButton setEnabled:YES];
     } else {
-        [poiButton_ setEnabled:NO];
+        [self.poiButton setEnabled:NO];
     }
+    self.activity.hidden = YES;
+    self.activity.hidesWhenStopped = YES;
     viewComposer = [[ADViewComposer alloc] initWithView:self.containerView];
+    
+    UILongPressGestureRecognizer* longPressure = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPress:)];
+    [self.view addGestureRecognizer:longPressure];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
@@ -120,7 +143,15 @@ const int kCellWidth = 46;
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
-    return [[self.fetchedResultsController sections] count];
+    if ( realtime ) {
+        if  ( nil != self.realtimeStoptimes ) {
+            return [[self.realtimeStoptimes allKeys] count];
+        } else {
+            return 0;
+        }
+    } else {
+        return [[self.fetchedResultsController sections] count];
+    }
 }
 
 
@@ -140,11 +171,16 @@ const int kCellWidth = 46;
         cell.accessoryType =  UITableViewCellAccessoryNone; 
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
-    id<NSFetchedResultsSectionInfo> section = [[self.fetchedResultsController sections] objectAtIndex:indexPath.row];
-    StopTime* st = [[section objects] objectAtIndex:0];
-    NSString *directionName = st.direction.headsign;
-    if ( line_ == nil ) {
-        directionName = [NSString stringWithFormat:NSLocalizedString( @"%@ vers %@", @"" ), st.line.short_name, directionName];
+    NSString *directionName;
+    if ( realtime ) {
+        directionName = [self.realtimeDirections objectAtIndex:indexPath.row];
+    } else {
+        id<NSFetchedResultsSectionInfo> section = [[self.fetchedResultsController sections] objectAtIndex:indexPath.row];
+        StopTime* st = [[section objects] objectAtIndex:0];
+        directionName = st.direction.headsign;
+        if ( self.line == nil ) {
+            directionName = [NSString stringWithFormat:NSLocalizedString( @"%@ vers %@", @"" ), st.line.short_name, directionName];
+        }
     }
     cell.textLabel.font = [UIFont boldSystemFontOfSize:12.0];
     cell.textLabel.text =  directionName;
@@ -155,16 +191,15 @@ const int kCellWidth = 46;
 
 
 - (NSFetchedResultsController*) fetchedResultsController {
-    if ( nil != fetchedResultsController_) {
-        return fetchedResultsController_;
+    if ( nil != _fetchedResultsController) {
+        return _fetchedResultsController;
     }
-    fetchedResultsController_ = [StopTime findByLine:line_ andStop:stop_ atDate:viewedDate_];
-    [fetchedResultsController_ retain];
-    if ( [[fetchedResultsController_ sections] count] < 1 ) {
+    self.fetchedResultsController = [StopTime findByLine:self.line andStop:self.stop atDate:viewedDate_];
+    if ( [[_fetchedResultsController sections] count] < 1 ) {
         [self.alertNoResult show];
     }
     
-    return fetchedResultsController_;
+    return _fetchedResultsController;
 }
 
 
@@ -215,24 +250,47 @@ const int kCellWidth = 46;
 }
 
 - (UIView *)gridScrollView:(GridScrollView *)scrollView tileForRow:(int)row column:(int)column {
-    if ( row >= [[self.fetchedResultsController sections] count] ) {
-        return nil;
+    NSString* ftime = @"";
+    BOOL use_em = NO;
+    if ( realtime ) {
+        if (  self.realtimeStoptimes ) {
+            if ( self.realtimeDirections && row >= [self.realtimeDirections count]) {
+                return nil;
+            }
+            NSArray* times = [self.realtimeStoptimes objectForKey:[self.realtimeDirections objectAtIndex:row]];
+            if ( column >= [times count] ) {
+                ftime = @"\u2014:\u2014";
+            } else {
+                NSDateFormatter* formatter = [[NSDateFormatter alloc] init];
+                [formatter setDateFormat:@"HH:mm"];
+                APIStopTime* stoptime = [times objectAtIndex:column];
+                ftime = [formatter stringFromDate:stoptime.date];
+                use_em = ! stoptime.accurate;
+            }
+        }
+    } else {
+        if ( row >= [[self.fetchedResultsController sections] count] ) {
+            return nil;
+        }
+        if ( column >= [ [[self.fetchedResultsController sections] objectAtIndex:row] numberOfObjects] ) {
+            ftime =  @"\u2014:\u2014";
+        } else {
+            NSIndexPath* indexPath = [NSIndexPath indexPathForRow:column inSection:row];
+            StopTime* st = [self.fetchedResultsController objectAtIndexPath:indexPath];
+            
+            ftime = [st formatTime];
+        }
     }
     UIView *cellview = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kCellWidth, kRowHeight)];
     UILabel *label = [[UILabel alloc] init];
-    label.font = [UIFont systemFontOfSize:12.0];
+    if ( use_em ) {
+        label.font = [UIFont italicSystemFontOfSize:12.0];
+    } else {
+        label.font = [UIFont systemFontOfSize:12.0];
+    }
     // fill
     
-    if ( column >= [ [[self.fetchedResultsController sections] objectAtIndex:row] numberOfObjects] ) {
-        label.text =  @"\u2014:\u2014";
-    } else {
-        NSIndexPath* indexPath = [NSIndexPath indexPathForRow:column inSection:row];
-        StopTime* st = [self.fetchedResultsController objectAtIndexPath:indexPath];
-             
-        label.text = [st formatTime];
-    }
-
-    
+    label.text = ftime;    
     label.backgroundColor = [UIColor clearColor];
     
     if (column % 2 == 0) {
@@ -246,7 +304,7 @@ const int kCellWidth = 46;
     [label release];
     
    
-    return [cellview autorelease]; 
+    return [cellview autorelease];
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)aScrollView {
@@ -285,6 +343,7 @@ const int kCellWidth = 46;
 }
 
 - (void)touchedRowAndCol:(NSArray*)rowAndCol {
+    if ( realtime ) { return; }
     int row = [[rowAndCol objectAtIndex:0] intValue];
     int col = [[rowAndCol objectAtIndex:1] intValue];
     NSArray* sections = [self.fetchedResultsController sections];
@@ -304,6 +363,8 @@ const int kCellWidth = 46;
 }
 
 - (void)doubleTouchedRowAndCol:(NSArray*)rowAndCol {
+    NSLog( @"%@", rowAndCol );
+    if ( realtime ) { return; }
 //    int row = [[rowAndCol objectAtIndex:0] intValue];
     int col = [[rowAndCol objectAtIndex:1] intValue];
     int nb_max_stops = 0;
@@ -326,51 +387,73 @@ const int kCellWidth = 46;
     }
 }
 
+#pragma mark -
+#pragma mark Date handling
+
 -(void)changeDate:(id)sender {
-    if ( dateChangeView_ == nil ) {
+    if ( self.dateChangeView == nil ) {
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"DateNavigation" owner:self options:nil];
         NSEnumerator *enumerator = [nib objectEnumerator];
         id object;
         while ((object = [enumerator nextObject])) {
             if ([object isMemberOfClass:[UIView class]]) {
-                dateChangeView_ = (UIView*) object;
+                self.dateChangeView = (UIView*) object;
+                break;
             }
         }
-        dateChangeView_.frame = CGRectMake( 0, self.view.frame.size.height - 260, self.view.frame.size.width, 260 );
-        [self.view addSubview:dateChangeView_]; 
+        self.dateChangeView.frame = CGRectMake( 0, self.view.frame.size.height - 260, self.view.frame.size.width, 260 );
+        [self.view addSubview:self.dateChangeView];
+    } else if ( ! [self.dateChangeView isHidden] ) {
+        [self.view sendSubviewToBack:self.dateChangeView];
+        self.dateChangeView.hidden = YES;
+        return;
     }
     self.datePicker.date = viewedDate_;
-    [self.view bringSubviewToFront:dateChangeView_];
+    [self.view bringSubviewToFront:self.dateChangeView];
+    self.dateChangeView.hidden = NO;
 }
 
 -(void)onChangeDate:(id)sender {
-    [self.view sendSubviewToBack:dateChangeView_];
+    [self.view sendSubviewToBack:self.dateChangeView];
+    self.dateChangeView.hidden = YES;
     [viewedDate_ release];
     viewedDate_ = [self.datePicker.date retain];
     [self reloadData];    
 }
 - (void)onDismissChangeDate:(id)sender {
-    [self.view sendSubviewToBack:dateChangeView_];
+    [self.view sendSubviewToBack:self.dateChangeView];
+    self.dateChangeView.hidden = YES;
 }
 
 
-#pragma mark -
-#pragma mark Others
-
 - (IBAction)shiftLeft:(id)sender {
-    [self.view sendSubviewToBack:dateChangeView_];
+    [self.view sendSubviewToBack:self.dateChangeView];
+    self.dateChangeView.hidden = YES;
     NSDate* tmpDate = [[viewedDate_ dateByAddingTimeInterval:-BASE_TIMESHIFT] retain];
     [viewedDate_ release];
     viewedDate_ = tmpDate;
     [self reloadData];
 }
 - (IBAction)shiftRight:(id)sender {
-    [self.view sendSubviewToBack:dateChangeView_];
+    [self.view sendSubviewToBack:self.dateChangeView];
+    self.dateChangeView.hidden = YES;
     NSDate* tmpDate = [[viewedDate_ dateByAddingTimeInterval:BASE_TIMESHIFT] retain];
     [viewedDate_ release];
     viewedDate_ = tmpDate;
     [self reloadData];
 }
+
+-(void)handleLongPress:(id)sender {
+    NSLog( @"long press" );
+    if ( realtime ) {
+        [self refreshRealtime:nil];
+    } else {
+     [self reloadData];
+    }
+}
+
+#pragma mark -
+#pragma mark Others
 
 - (void)reloadData {
     self.fetchedResultsController = nil;
@@ -382,48 +465,112 @@ const int kCellWidth = 46;
 
 - (IBAction)toggleFavorite:(id)sender {
 
-    if ( [Favorite existsWithLine:line_ andStop:stop_] ) {
+    if ( [Favorite existsWithLine:self.line andStop:self.stop] ) {
         // remove
-        [Favorite deleteWithLine:line_ andStop:stop_];
-        favButton_.image = [UIImage imageNamed:@"favorites_add"];
+        [Favorite deleteWithLine:self.line andStop:self.stop];
+        self.favButton.image = [UIImage imageNamed:@"favorites_add"];
     } else {
         // create new favorite
-        [Favorite addWithLine:line_ andStop:stop_];
-        favButton_.image = [UIImage imageNamed:@"favorites_remove"];
+        [Favorite addWithLine:self.line andStop:self.stop];
+        self.favButton.image = [UIImage imageNamed:@"favorites_remove"];
     }
     [[NSNotificationCenter defaultCenter] postNotificationName:@"favorites" object:nil];
 }
 
-- (IBAction)showPoi:(id)sender {
-    UIActionSheet* sheet = [[UIActionSheet alloc ] initWithTitle:NSLocalizedString( @"Points d'intérêts proches", @"")
+- (IBAction)selectOption:(id)sender {
+    UIActionSheet* sheet = [[UIActionSheet alloc ] initWithTitle:NSLocalizedString( @"Options", @"")
                                                         delegate:self 
                                                cancelButtonTitle:NSLocalizedString( @"Annuler", @"" )
                                           destructiveButtonTitle:nil 
                                                otherButtonTitles:nil];
-    NSArray* poiTypes = [NSArray arrayWithObjects:@"pos", @"bike", @"metro", nil];
-    NSMutableDictionary* indexes = [NSMutableDictionary dictionaryWithCapacity:3];
-    for ( NSString* poiType in poiTypes ) {
-        NSString* poi_counter = [NSString stringWithFormat:@"%@_count", poiType];
-        if ( [[self.stop valueForKey:poi_counter] intValue] > 0 ) {
-            NSInteger current_index = [sheet addButtonWithTitle:NSLocalizedString( poiType, @"" )];
-            [indexes setValue:poiType forKey:[NSString stringWithFormat:@"%d", current_index]];
-        }
+    if ( realtime ) {
+        [sheet addButtonWithTitle:NSLocalizedString( @"Horaires théoriques", @"" )];
+    } else {
+        [sheet addButtonWithTitle:NSLocalizedString( @"Temps réel", @"" )];        
     }
-    poiIndexes = [indexes retain];
+    [sheet addButtonWithTitle:NSLocalizedString( @"Points d'intérêt", @"" )];
     [sheet showFromToolbar:self.navigationController.toolbar];
     [sheet release];
 }
 
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
-    NSString* poiType = [poiIndexes valueForKey:[NSString stringWithFormat:@"%d", buttonIndex]];
-    if ( poiType == nil ) {
-        return;
+-(void)loadRealTimeData{
+    KeolisRennesAPI* api = [[KeolisRennesAPI alloc] init];
+    api.key = @str(KEOLIS_API_KEY);
+    NSArray* stoptimes = [api findNextDepartureAtStop:self.stop];
+    NSMutableDictionary* sorted_times = [NSMutableDictionary dictionaryWithCapacity:[stoptimes count] / 2];
+    for ( APIStopTime* stoptime in stoptimes ) {
+        NSString* st_title;
+        if ( nil != self.line ) {
+            if ( ! [self.line isEqual:stoptime.line] ) {
+                continue;
+            }
+            st_title = stoptime.direction;
+        } else {
+            st_title = [NSString stringWithFormat:NSLocalizedString( @"%@ vers %@", @"" ), stoptime.line.short_name, stoptime.direction];
+        }
+        NSMutableArray* times = [sorted_times objectForKey:st_title];
+        if ( nil == times ) {
+            times = [NSMutableArray arrayWithCapacity:1];
+        }
+        [times addObject:stoptime];
+        [sorted_times setObject:times forKey:st_title];
     }
-    PoiViewController* poiViewController = [[PoiViewController alloc] initWithNibName:@"PoiViewController" bundle:nil];
-    poiViewController.stop = self.stop;
-    poiViewController.poiType = poiType;
-    [self.navigationController pushViewController:poiViewController animated:YES];
-    [poiViewController release];
+    @synchronized(self) {
+        self.realtimeStoptimes = sorted_times;
+        self.realtimeDirections = [[sorted_times allKeys] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
+    }
+    [self performSelectorOnMainThread:@selector(endRealtimeFetch) withObject:nil waitUntilDone:NO];
+}
+
+- (void)endRealtimeFetch {
+    [self.activity stopAnimating];
+    [self reloadData];
+}
+
+- (void)exchangeButton:(UIBarButtonItem*)current with:(UIBarButtonItem*)other{
+    NSMutableArray *toolbarButtons = [self.toolbarItems mutableCopy];
+
+    [toolbarButtons replaceObjectAtIndex:0 withObject:other];
+    [self setToolbarItems:toolbarButtons animated:YES];
+    
+}
+
+-(void)refreshRealtime:(id)sender {
+    [self.activity startAnimating];
+    [self performSelectorInBackground:@selector(loadRealTimeData) withObject:nil];
+}
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+    switch ( buttonIndex ) {
+        case 0:
+            // cancelled
+            break;
+        case 1:
+            if ( realtime ) {
+                realtime = NO;
+                [self exchangeButton:self.refreshItem with:self.dateChangeItem];
+                [self reloadData];
+            } else {
+                realtime = YES;
+                [self exchangeButton:self.dateChangeItem with:self.refreshItem];
+                self.activity.hidden = NO;
+                [self.activity startAnimating];
+                [self reloadData];
+                [self performSelectorInBackground:@selector(loadRealTimeData) withObject:nil];
+            }
+            break;
+        case 2:
+        {
+            PoiViewController* poiViewController = [[PoiViewController alloc] initWithNibName:@"PoiViewController" bundle:nil];
+            poiViewController.stop = self.stop;
+            [self.navigationController pushViewController:poiViewController animated:YES];
+            [poiViewController release];
+        }
+            break;
+        default:
+            break;
+    }
+    
 }
 
 #pragma mark -

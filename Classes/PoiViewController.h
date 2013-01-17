@@ -15,12 +15,8 @@
     
     @private
     Stop* stop_;
-    NSString* poiType_;
-    NSArray* pois_;
-    int poiCount_;
-
 }
-@property (nonatomic, retain) NSString* poiType;
 @property (nonatomic, retain) Stop* stop;
+@property (nonatomic, retain) NSDictionary* pois;
 
 @end

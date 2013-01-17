@@ -15,23 +15,11 @@
 
 @interface StopTimeViewController : UIViewController <NSFetchedResultsControllerDelegate,UIScrollViewDelegate, GridScrollViewDataSource, GridScrollViewListener, UIActionSheetDelegate> {
 @private
-    NSFetchedResultsController *fetchedResultsController_;
-    Line* line_;
-    Stop* stop_;
     int timeShift_;
     NSDate* viewedDate_;
     
-    UIView* containerView;
-    GridScrollView *scrollView;	// holds floating grid
-    UITableView *tableView;
     UIAlertView* alertNoResult_;
 
-    UIBarButtonItem* favButton_;
-    UIBarButtonItem* poiButton_;
-    NSDictionary* poiIndexes;
-
-    UIView* dateChangeView_;
-    UIDatePicker* datePicker_;
     ADViewComposer* viewComposer;
 
 }
@@ -45,6 +33,10 @@
 @property (nonatomic, retain) IBOutlet UIBarButtonItem* favButton;
 @property (nonatomic, retain) IBOutlet UIBarButtonItem* poiButton;
 @property (nonatomic, retain) IBOutlet UIDatePicker* datePicker;
+@property (nonatomic, retain) UIView* dateChangeView;
+@property (nonatomic, retain) IBOutlet UIActivityIndicatorView* activity;
+@property (nonatomic, retain) UIBarButtonItem* dateChangeItem;
+@property (nonatomic, retain) UIBarButtonItem* refreshItem;
 
 - (void)createFloatingGrid;
 - (void)adjustScrollViewFrame;

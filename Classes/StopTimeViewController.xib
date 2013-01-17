@@ -2,7 +2,7 @@
 <archive type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="7.10">
 	<data>
 		<int key="IBDocument.SystemTarget">1536</int>
-		<string key="IBDocument.SystemVersion">12C60</string>
+		<string key="IBDocument.SystemVersion">12C3012</string>
 		<string key="IBDocument.InterfaceBuilderVersion">2844</string>
 		<string key="IBDocument.AppKitVersion">1187.34</string>
 		<string key="IBDocument.HIToolboxVersion">625.00</string>
@@ -13,6 +13,7 @@
 		<object class="NSArray" key="IBDocument.IntegratedClassDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
 			<string>IBProxyObject</string>
+			<string>IBUIActivityIndicatorView</string>
 			<string>IBUIScrollView</string>
 			<string>IBUITableView</string>
 			<string>IBUIView</string>
@@ -79,6 +80,18 @@
 								<int key="IBUIIndicatorStyle">1</int>
 								<bool key="IBUIBouncesZoom">NO</bool>
 							</object>
+							<object class="IBUIActivityIndicatorView" id="595930878">
+								<reference key="NSNextResponder" ref="163857477"/>
+								<int key="NSvFlags">256</int>
+								<string key="NSFrame">{{151, 219}, {20, 20}}</string>
+								<reference key="NSSuperview" ref="163857477"/>
+								<reference key="NSWindow"/>
+								<string key="NSReuseIdentifierKey">_NS:9</string>
+								<bool key="IBUIOpaque">NO</bool>
+								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+								<bool key="IBUIHidesWhenStopped">NO</bool>
+								<int key="IBUIStyle">2</int>
+							</object>
 						</object>
 						<string key="NSFrameSize">{320, 460}</string>
 						<reference key="NSSuperview" ref="563665192"/>
@@ -97,7 +110,6 @@
 				<string key="NSFrame">{{0, 20}, {320, 460}}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
-				<reference key="NSNextKeyView"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">3</int>
 					<bytes key="NSWhite">MQA</bytes>
@@ -141,6 +153,14 @@
 						<reference key="destination" ref="209643354"/>
 					</object>
 					<int key="connectionID">15</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">activity</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="595930878"/>
+					</object>
+					<int key="connectionID">41</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
@@ -213,6 +233,7 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="509483726"/>
 							<reference ref="209643354"/>
+							<reference ref="595930878"/>
 						</object>
 						<reference key="parent" ref="563665192"/>
 					</object>
@@ -224,6 +245,11 @@
 					<object class="IBObjectRecord">
 						<int key="objectID">9</int>
 						<reference key="object" ref="209643354"/>
+						<reference key="parent" ref="163857477"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">40</int>
+						<reference key="object" ref="595930878"/>
 						<reference key="parent" ref="163857477"/>
 					</object>
 				</object>
@@ -238,6 +264,7 @@
 					<string>-2.IBPluginDependency</string>
 					<string>10.IBPluginDependency</string>
 					<string>37.IBPluginDependency</string>
+					<string>40.IBPluginDependency</string>
 					<string>8.IBPluginDependency</string>
 					<string>9.CustomClassName</string>
 					<string>9.IBPluginDependency</string>
@@ -247,6 +274,7 @@
 					<string>StopTimeViewController</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>UIResponder</string>
+					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -267,7 +295,7 @@
 				<reference key="dict.values" ref="0"/>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">39</int>
+			<int key="maxID">41</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -354,6 +382,7 @@
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>activity</string>
 							<string>containerView</string>
 							<string>datePicker</string>
 							<string>favButton</string>
@@ -363,6 +392,7 @@
 						</object>
 						<object class="NSArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>UIActivityIndicatorView</string>
 							<string>UIView</string>
 							<string>UIDatePicker</string>
 							<string>UIBarButtonItem</string>
@@ -375,6 +405,7 @@
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>activity</string>
 							<string>containerView</string>
 							<string>datePicker</string>
 							<string>favButton</string>
@@ -384,6 +415,10 @@
 						</object>
 						<object class="NSArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<object class="IBToOneOutletInfo">
+								<string key="name">activity</string>
+								<string key="candidateClassName">UIActivityIndicatorView</string>
+							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">containerView</string>
 								<string key="candidateClassName">UIView</string>

@@ -13,7 +13,7 @@
 
 @implementation PoiViewController
 
-@synthesize poiType = poiType_, stop = stop_;
+@synthesize pois, stop = stop_;
 
 #pragma mark -
 #pragma mark View lifecycle
@@ -22,25 +22,19 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    self.title = NSLocalizedString( poiType_, @"" );
+    self.title = NSLocalizedString( @"Points d'intérêt", @"" );
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    poiCount_ = [[stop_ valueForKey:[NSString stringWithFormat:@"%@_count", poiType_]] intValue];
-    NSMutableArray* pois = [NSMutableArray arrayWithCapacity:poiCount_];
-    NSArray* close_pois = [[stop_.close_pois allObjects] sortedArrayUsingComparator:^(id a, id b) {
-        int ad = [((ClosePoi*)a).distance intValue];
-        int bd = [((ClosePoi*)b).distance intValue];
-        if ( ad > bd ) { return (NSComparisonResult)NSOrderedDescending; }
-        if ( ad < bd ) { return (NSComparisonResult)NSOrderedAscending; }
-        return (NSComparisonResult)NSOrderedSame;
-    }];
-    for( ClosePoi* cpoi in close_pois ) {
-        Poi* poi = cpoi.poi;
-        if ( [poiType_ isEqualToString:poi.type] ) {
-            [pois addObject:poi];
+    NSMutableDictionary* pois_types = [NSMutableDictionary dictionaryWithCapacity:4];
+    for ( ClosePoi* close_poi in stop_.close_pois ) {
+        NSMutableArray* values = [pois_types objectForKey:close_poi.poi.type];
+        if ( nil == values ) {
+            values = [NSMutableArray arrayWithCapacity:3];
         }
+        [values addObject:close_poi.poi];
+        [pois_types setObject:values forKey:close_poi.poi.type];
     }
-    pois_ = [pois retain];
+    self.pois = pois_types;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
@@ -54,13 +48,19 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     // Return the number of sections.
-    return 1;
+    return [[self.pois allKeys] count];
 }
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
-    return poiCount_;
+    NSString* key = [[self.pois allKeys] objectAtIndex:section];
+    return [[self.pois objectForKey:key] count];
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    NSString* key = [[self.pois allKeys] objectAtIndex:section];
+    return key;
 }
 
 
@@ -73,8 +73,8 @@
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
     }
-    
-    Poi* poi = [pois_ objectAtIndex:indexPath.row];
+    NSString* key = [[self.pois allKeys] objectAtIndex:indexPath.section];
+    Poi* poi = [[self.pois objectForKey:key] objectAtIndex:indexPath.row];
     // Configure the cell...
     cell.textLabel.text = poi.name;
     cell.detailTextLabel.text = poi.address;

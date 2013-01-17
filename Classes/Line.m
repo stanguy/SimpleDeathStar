@@ -77,11 +77,15 @@
 }
 
 + (Line*) findFirstBySrcId:(NSString*)src_id {
+    SimpleDeathStarAppDelegate* delegate = (SimpleDeathStarAppDelegate*)[[UIApplication sharedApplication] delegate];
+    NSManagedObjectContext* context = [delegate  transitManagedObjectContext];
+    return [self findFirstBySrcId:src_id inContext:context];
+}
+
++ (Line*) findFirstBySrcId:(NSString*)src_id inContext:(NSManagedObjectContext*)context{
     if ( nil == src_id ) {
         return nil;
     }
-    SimpleDeathStarAppDelegate* delegate = (SimpleDeathStarAppDelegate*)[[UIApplication sharedApplication] delegate];
-    NSManagedObjectContext* context = [delegate  transitManagedObjectContext];
     
     // Create the fetch request for the entity.
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];

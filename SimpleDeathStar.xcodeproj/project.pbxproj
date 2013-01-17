@@ -408,6 +408,11 @@
 		9685666C14408D3900907877 /* ADViewComposer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9685666B14408D3600907877 /* ADViewComposer.m */; };
 		9685666D14408D3900907877 /* ADViewComposer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9685666B14408D3600907877 /* ADViewComposer.m */; };
 		9685666F1440BA1600907877 /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9685666E1440BA1600907877 /* iAd.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		9686F8B216A614F000EC4F0E /* KeolisRennesAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 9686F8A916A614F000EC4F0E /* KeolisRennesAPI.m */; };
+		9686F8B316A614F000EC4F0E /* APIStopTime.m in Sources */ = {isa = PBXBuildFile; fileRef = 9686F8AB16A614F000EC4F0E /* APIStopTime.m */; };
+		9686F8B416A614F000EC4F0E /* NSDictionary+ToQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 9686F8AD16A614F000EC4F0E /* NSDictionary+ToQuery.m */; };
+		9686F8B516A614F000EC4F0E /* NSObject+ToQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 9686F8AF16A614F000EC4F0E /* NSObject+ToQuery.m */; };
+		9686F8B616A614F000EC4F0E /* NSArray+ToQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 9686F8B116A614F000EC4F0E /* NSArray+ToQuery.m */; };
 		9688A0EB1301E6DA00B218A2 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9688A0EA1301E6DA00B218A2 /* CoreLocation.framework */; };
 		9688A16F1301F14F00B218A2 /* StopAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 9688A16E1301F14F00B218A2 /* StopAnnotation.m */; };
 		9688A5CB1307002D00B218A2 /* reload.png in Resources */ = {isa = PBXBuildFile; fileRef = 9688A5C91307002D00B218A2 /* reload.png */; };
@@ -822,6 +827,16 @@
 		9685666A14408D3500907877 /* ADViewComposer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADViewComposer.h; sourceTree = "<group>"; };
 		9685666B14408D3600907877 /* ADViewComposer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADViewComposer.m; sourceTree = "<group>"; };
 		9685666E1440BA1600907877 /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
+		9686F8A816A614F000EC4F0E /* KeolisRennesAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeolisRennesAPI.h; sourceTree = "<group>"; };
+		9686F8A916A614F000EC4F0E /* KeolisRennesAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeolisRennesAPI.m; sourceTree = "<group>"; };
+		9686F8AA16A614F000EC4F0E /* APIStopTime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APIStopTime.h; sourceTree = "<group>"; };
+		9686F8AB16A614F000EC4F0E /* APIStopTime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APIStopTime.m; sourceTree = "<group>"; };
+		9686F8AC16A614F000EC4F0E /* NSDictionary+ToQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+ToQuery.h"; sourceTree = "<group>"; };
+		9686F8AD16A614F000EC4F0E /* NSDictionary+ToQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+ToQuery.m"; sourceTree = "<group>"; };
+		9686F8AE16A614F000EC4F0E /* NSObject+ToQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+ToQuery.h"; sourceTree = "<group>"; };
+		9686F8AF16A614F000EC4F0E /* NSObject+ToQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+ToQuery.m"; sourceTree = "<group>"; };
+		9686F8B016A614F000EC4F0E /* NSArray+ToQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+ToQuery.h"; sourceTree = "<group>"; };
+		9686F8B116A614F000EC4F0E /* NSArray+ToQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+ToQuery.m"; sourceTree = "<group>"; };
 		9688A0EA1301E6DA00B218A2 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		9688A16D1301F14F00B218A2 /* StopAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StopAnnotation.h; sourceTree = "<group>"; };
 		9688A16E1301F14F00B218A2 /* StopAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StopAnnotation.m; sourceTree = "<group>"; };
@@ -965,6 +980,7 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				9686F8A616A614B900EC4F0E /* API */,
 				968ACD131657ACD6003D70AD /* ISColumnsController */,
 				96D23233163428640053E0E2 /* Home */,
 				96A71C6A12CA87AC00FB1516 /* AboutViewController.h */,
@@ -1183,6 +1199,23 @@
 				9631C11D12C758890002EB78 /* StopTime.m */,
 			);
 			name = ManagedObjects;
+			sourceTree = "<group>";
+		};
+		9686F8A616A614B900EC4F0E /* API */ = {
+			isa = PBXGroup;
+			children = (
+				9686F8A816A614F000EC4F0E /* KeolisRennesAPI.h */,
+				9686F8A916A614F000EC4F0E /* KeolisRennesAPI.m */,
+				9686F8AA16A614F000EC4F0E /* APIStopTime.h */,
+				9686F8AB16A614F000EC4F0E /* APIStopTime.m */,
+				9686F8AC16A614F000EC4F0E /* NSDictionary+ToQuery.h */,
+				9686F8AD16A614F000EC4F0E /* NSDictionary+ToQuery.m */,
+				9686F8AE16A614F000EC4F0E /* NSObject+ToQuery.h */,
+				9686F8AF16A614F000EC4F0E /* NSObject+ToQuery.m */,
+				9686F8B016A614F000EC4F0E /* NSArray+ToQuery.h */,
+				9686F8B116A614F000EC4F0E /* NSArray+ToQuery.m */,
+			);
+			name = API;
 			sourceTree = "<group>";
 		};
 		968ACD0D1657A099003D70AD /* grid */ = {
@@ -2013,6 +2046,11 @@
 				968ACD121657A818003D70AD /* ColumnedHomeScreenViewController.m in Sources */,
 				968ACD161657ACD7003D70AD /* ISColumnsController.m in Sources */,
 				968ACD1B1657ADB9003D70AD /* MultiColumnsHomeScreenViewController.m in Sources */,
+				9686F8B216A614F000EC4F0E /* KeolisRennesAPI.m in Sources */,
+				9686F8B316A614F000EC4F0E /* APIStopTime.m in Sources */,
+				9686F8B416A614F000EC4F0E /* NSDictionary+ToQuery.m in Sources */,
+				9686F8B516A614F000EC4F0E /* NSObject+ToQuery.m in Sources */,
+				9686F8B616A614F000EC4F0E /* NSArray+ToQuery.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2126,6 +2164,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = SimpleDeathStar_Prefix.pch;
+				GCC_PREPROCESSOR_DEFINITIONS = "KEOLIS_API_KEY=$KEOLIS_API_KEY";
 				GCC_THUMB_SUPPORT = NO;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				HEADER_SEARCH_PATHS = (
@@ -2151,6 +2190,7 @@
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = SimpleDeathStar_Prefix.pch;
+				GCC_PREPROCESSOR_DEFINITIONS = "KEOLIS_API_KEY=$KEOLIS_API_KEY";
 				GCC_THUMB_SUPPORT = NO;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				HEADER_SEARCH_PATHS = (
