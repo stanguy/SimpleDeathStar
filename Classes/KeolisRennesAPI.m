@@ -29,6 +29,9 @@
     NSString* full_url = [NSString stringWithFormat:@"%@?%@", base_url, [query_params to_query]];
     NSLog( @"full url: %@", full_url );
     NSData* data = [NSData dataWithContentsOfURL:[NSURL URLWithString:full_url]];
+    if ( nil == data ) {
+        return nil;
+    }
     NSError* error = nil;
     id json = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
     //    NSLog( @"%@", json);
@@ -62,6 +65,9 @@
         
         [params setObject:current_stops forKey:@"stop"];
         id answer = [self callRemoteMethod:@"getbusnextdepartures" with:params];
+        if ( nil == answer ) {
+            continue;
+        }
         id data = [[[answer objectForKey:@"opendata"] objectForKey:@"answer"] objectForKey:@"data"];
         NSString* remote_time = [[data objectForKey:@"@attributes"] objectForKey:@"localdatetime"];
         NSLog( @"%@", remote_time );
