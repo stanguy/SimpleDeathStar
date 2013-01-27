@@ -8,9 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
-#import "AbstractHomeSection.h"
+#import "TimePresenterSection.h"
 
-@interface FavoritesHomeSection : AbstractHomeSection {
+@interface FavoritesHomeSection : TimePresenterSection {
     int cachedFavoritesCount;
 }
 

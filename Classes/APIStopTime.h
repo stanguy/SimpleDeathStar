@@ -7,17 +7,18 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "TimePoint.h"
 
 @class Stop;
 @class Line;
 
-@interface APIStopTime : NSObject
+@interface APIStopTime : NSObject <TimePoint>
 
 
 @property (nonatomic, retain) Stop* stop;
 @property (nonatomic, retain) Line* line;
 @property (nonatomic, retain) NSString* direction;
 @property (atomic) BOOL accurate;
-@property (nonatomic, retain) NSDate* date;
+@property (nonatomic, retain) NSDate* departure;
 
 @end

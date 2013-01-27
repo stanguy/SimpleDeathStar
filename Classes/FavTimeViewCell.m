@@ -12,10 +12,11 @@
 #import "Line.h"
 #import "Stop.h"
 #import "StopTime.h"
+#import "StopTimeFormatter.h"
 
 @implementation FavTimeViewCell
 
-@synthesize favorite = favorite_, times = times_, stop = stop_;
+@synthesize favorite = favorite_, times = times_, stop = stop_, time_formatter;
 
 
 -(void) setFramesAt:(int)i{
@@ -122,7 +123,7 @@ NSString* direction2label( NSString* bearing ) {
 }
 
 -(void) formatTime:(StopTime*)st atIndex:(int)i{
-    timeLabels_[i].text = [st formatTime];
+    timeLabels_[i].text = [self.time_formatter format:st];
 }
 
 -(void)setTimes:(NSArray *)times {

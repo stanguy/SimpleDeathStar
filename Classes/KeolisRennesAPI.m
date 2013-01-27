@@ -99,7 +99,7 @@
                     stoptime.accurate = 1 == [[[departure objectForKey:@"@attributes"] objectForKey:@"accurate"] integerValue];
                     stoptime.stop = stop;
                     stoptime.line = line;
-                    stoptime.date = [frm dateFromString:[departure objectForKey:@"content"]];
+                    stoptime.departure = [frm dateFromString:[departure objectForKey:@"content"]];
                     [stoptimes addObject:stoptime];
                 }
             }

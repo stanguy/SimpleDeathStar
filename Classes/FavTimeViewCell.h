@@ -11,6 +11,7 @@
 @class Favorite;
 @class StopTime;
 @class Stop;
+@class StopTimeFormatter;
 
 @interface FavTimeViewCell : UITableViewCell {
 
@@ -28,7 +29,7 @@
 @property (nonatomic, retain) Favorite* favorite;
 @property (nonatomic, retain) Stop* stop;
 @property (nonatomic, retain) NSArray* times;
-
+@property (nonatomic, retain) StopTimeFormatter* time_formatter;
 
 // semi-protected
 -(void) setFramesAt:(int)i;

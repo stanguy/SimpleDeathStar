@@ -9,6 +9,7 @@
 #import "FavTimeRelativeViewCell.h"
 
 #import "StopTime.h"
+#import "StopTimeFormatter.h"
 
 @implementation FavTimeRelativeViewCell
 
@@ -31,7 +32,7 @@
 }
 
 -(void) formatTime:(StopTime*)st atIndex:(int)i{
-    NSString* str = [st formatTime:STOPTIME_PREFERENCE asRelative:YES];
+    NSString* str = [self.time_formatter format:st];
     if ( [str length] < 2 ) {
         timeLabels_[i].textColor = [UIColor redColor];
     }

@@ -8,7 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "TableWithAdViewController.h"
+
 @class StopTime;
+@class StopTimeFormatter;
 
 @interface TripViewController : TableWithAdViewController {
 @private
@@ -17,4 +19,5 @@
 }
 @property (nonatomic,retain) StopTime* stopTime;
 @property (nonatomic,retain) NSFetchedResultsController* fetchedResultsController;
+@property (nonatomic, retain) StopTimeFormatter* time_formatter;
 @end

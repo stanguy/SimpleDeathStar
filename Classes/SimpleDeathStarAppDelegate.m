@@ -135,6 +135,7 @@
         useArrival = NO;
     }
     useRelativeTime = [[NSUserDefaults standardUserDefaults] boolForKey:@"relative_time"];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"preferencesChanged" object:self];
 }
 
 

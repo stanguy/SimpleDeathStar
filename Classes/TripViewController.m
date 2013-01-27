@@ -12,12 +12,14 @@
 #import "TripViewCell.h"
 #import "Line.h"
 #import "Direction.h"
+#import "StopTimeFormatter.h"
 
 
 @implementation TripViewController
 
 @synthesize fetchedResultsController = fetchedResultsController_;
 @synthesize stopTime = stopTime_;
+@synthesize time_formatter;
 
 #pragma mark -
 #pragma mark View lifecycle
@@ -27,6 +29,9 @@
     [super viewDidLoad];
 
     self.navigationItem.title = [NSString stringWithFormat:NSLocalizedString( @"%@ vers %@", @"" ), stopTime_.line.short_name, stopTime_.direction.headsign];
+    self.time_formatter = [[StopTimeFormatter alloc] init];
+    self.time_formatter.relative = false;
+    self.time_formatter.time_type = STOPTIME_ARRIVAL;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
@@ -61,7 +66,7 @@
     Stop* stop = stopTime.stop;
     Line* line = stopTime.line;
 
-    cell.arrivalTime.text = [stopTime formatTime:STOPTIME_ARRIVAL];
+    cell.arrivalTime.text = [self.time_formatter format:stopTime];
     cell.stopName.text = stop.name;
     cell.metro.hidden = [stop.metro_count intValue] == 0;
     cell.bike.hidden = [stop.bike_count intValue] == 0;

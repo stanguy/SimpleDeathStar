@@ -17,6 +17,7 @@
 #import "Stop.h"
 #import "StopTime.h"
 #import "StopTimeViewController.h"
+#import "StopTimeFormatter.h"
 
 @interface FavoritesHomeSection ()
 
@@ -144,15 +145,19 @@
 
     Class favClass;
     SimpleDeathStarAppDelegate* delegate = (SimpleDeathStarAppDelegate*)[[UIApplication sharedApplication] delegate];
+    static NSString *CellIdentifierFavRel = @"CellFavRel";
+    static NSString *CellIdentifierFavAbs = @"CellFavAbs";
+    NSString* CellIdentifierFav;
     if (  [delegate useRelativeTime] ) {
         favClass = [FavTimeRelativeViewCell class];
+        CellIdentifierFav = CellIdentifierFavRel;
     } else {
         favClass = [FavTimeViewCell class];
+        CellIdentifierFav = CellIdentifierFavAbs;
     }
     
     UITableViewCell *cell = nil;
     static NSString *CellIdentifierFavNone = @"CellFavNone";
-    static NSString *CellIdentifierFav = @"CellFav";
     static NSString *CellIdentifierFavMore = @"CellFavMore";
     
     int topCount = [topFavorites count];
@@ -169,14 +174,17 @@
         } else {
             NSArray* times = nil;
             Favorite* fav = nil;
+            FavTimeViewCell* time_cell;
             fav = [topFavorites objectAtIndex:indexPath.row];
             times = [favoriteTimes objectAtIndex:indexPath.row];
-            cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifierFav];
+            time_cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifierFav];
             if( cell == nil ) {
-                cell = [[[favClass alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifierFav] autorelease];
+                time_cell = [[[favClass alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifierFav] autorelease];
             }
-            ((FavTimeViewCell*)cell).favorite = fav;
-            ((FavTimeViewCell*)cell).times = times;
+            time_cell.time_formatter = self.time_formatter;
+            time_cell.favorite = fav;
+            time_cell.times = times;
+            cell = time_cell;
         }
     } else {
         cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifierFavNone];
@@ -188,7 +196,6 @@
     }
     return cell;
 }
-
 
 
 @end

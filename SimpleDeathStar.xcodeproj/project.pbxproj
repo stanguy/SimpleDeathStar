@@ -424,6 +424,10 @@
 		968ACD1B1657ADB9003D70AD /* MultiColumnsHomeScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 968ACD1A1657ADB9003D70AD /* MultiColumnsHomeScreenViewController.m */; };
 		969229BE12C6B799007C965D /* HomeScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 969229BC12C6B799007C965D /* HomeScreenViewController.m */; };
 		969229BF12C6B799007C965D /* HomeScreenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 969229BD12C6B799007C965D /* HomeScreenViewController.xib */; };
+		969E010C16ADE6050000A8C4 /* StopTimeFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 969E010B16ADE6050000A8C4 /* StopTimeFormatter.m */; };
+		969E010D16ADE6050000A8C4 /* StopTimeFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 969E010B16ADE6050000A8C4 /* StopTimeFormatter.m */; };
+		969E011116B331DD0000A8C4 /* TimePresenterSection.m in Sources */ = {isa = PBXBuildFile; fileRef = 969E011016B331DD0000A8C4 /* TimePresenterSection.m */; };
+		969E011216B331DD0000A8C4 /* TimePresenterSection.m in Sources */ = {isa = PBXBuildFile; fileRef = 969E011016B331DD0000A8C4 /* TimePresenterSection.m */; };
 		96A71C6D12CA87AC00FB1516 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96A71C6B12CA87AC00FB1516 /* AboutViewController.m */; };
 		96A71C6E12CA87AC00FB1516 /* AboutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96A71C6C12CA87AC00FB1516 /* AboutViewController.xib */; };
 		96A71C8D12CA89B700FB1516 /* about_fr.html in Resources */ = {isa = PBXBuildFile; fileRef = 96A71C8C12CA89B700FB1516 /* about_fr.html */; };
@@ -853,6 +857,11 @@
 		969229BB12C6B799007C965D /* HomeScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeScreenViewController.h; sourceTree = "<group>"; };
 		969229BC12C6B799007C965D /* HomeScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeScreenViewController.m; sourceTree = "<group>"; };
 		969229BD12C6B799007C965D /* HomeScreenViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = HomeScreenViewController.xib; path = Classes/HomeScreenViewController.xib; sourceTree = "<group>"; };
+		969E010A16ADE6050000A8C4 /* StopTimeFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StopTimeFormatter.h; sourceTree = "<group>"; };
+		969E010B16ADE6050000A8C4 /* StopTimeFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StopTimeFormatter.m; sourceTree = "<group>"; };
+		969E010E16AF28420000A8C4 /* TimePoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimePoint.h; sourceTree = "<group>"; };
+		969E010F16B331DD0000A8C4 /* TimePresenterSection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimePresenterSection.h; sourceTree = "<group>"; };
+		969E011016B331DD0000A8C4 /* TimePresenterSection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimePresenterSection.m; sourceTree = "<group>"; };
 		96A71C6A12CA87AC00FB1516 /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
 		96A71C6B12CA87AC00FB1516 /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
 		96A71C6C12CA87AC00FB1516 /* AboutViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = AboutViewController.xib; path = Classes/AboutViewController.xib; sourceTree = "<group>"; };
@@ -1021,6 +1030,9 @@
 				961A778F12D664340085BCAA /* TripViewController.m */,
 				966FF0D3153E054A00A8AA6F /* TwitsViewController.h */,
 				966FF0D4153E054A00A8AA6F /* TwitsViewController.m */,
+				969E010A16ADE6050000A8C4 /* StopTimeFormatter.h */,
+				969E010B16ADE6050000A8C4 /* StopTimeFormatter.m */,
+				969E010E16AF28420000A8C4 /* TimePoint.h */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -1521,6 +1533,8 @@
 				968ACD111657A818003D70AD /* ColumnedHomeScreenViewController.m */,
 				968ACD191657ADB9003D70AD /* MultiColumnsHomeScreenViewController.h */,
 				968ACD1A1657ADB9003D70AD /* MultiColumnsHomeScreenViewController.m */,
+				969E010F16B331DD0000A8C4 /* TimePresenterSection.h */,
+				969E011016B331DD0000A8C4 /* TimePresenterSection.m */,
 			);
 			name = Home;
 			sourceTree = "<group>";
@@ -2051,6 +2065,8 @@
 				9686F8B416A614F000EC4F0E /* NSDictionary+ToQuery.m in Sources */,
 				9686F8B516A614F000EC4F0E /* NSObject+ToQuery.m in Sources */,
 				9686F8B616A614F000EC4F0E /* NSArray+ToQuery.m in Sources */,
+				969E010C16ADE6050000A8C4 /* StopTimeFormatter.m in Sources */,
+				969E011116B331DD0000A8C4 /* TimePresenterSection.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2107,6 +2123,8 @@
 				96D2324716344F2A0053E0E2 /* FavoritesHomeSection.m in Sources */,
 				96D2324B16345B820053E0E2 /* CloseStopsHomeSection.m in Sources */,
 				96D23250163481B90053E0E2 /* AbstractHomeSection.m in Sources */,
+				969E010D16ADE6050000A8C4 /* StopTimeFormatter.m in Sources */,
+				969E011216B331DD0000A8C4 /* TimePresenterSection.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

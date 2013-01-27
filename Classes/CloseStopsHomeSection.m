@@ -14,6 +14,7 @@
 #import "Stop.h"
 #import "StopTime.h"
 #import "StopTimeViewController.h"
+#import "StopTimeFormatter.h"
 
 @implementation CloseStopsHomeSection
 
@@ -100,7 +101,9 @@ NSString* positioningErrorDetails[] = {
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *CellIdentifierCloseStop = @"CellCloseStops";
+    static NSString *CellIdentifierCloseStopAbs = @"CellCloseStopsAbs";
+    static NSString *CellIdentifierCloseStopRel = @"CellCloseStopsRel";
+    NSString *CellIdentifierCloseStop;
     static NSString *CellIdentifierCloseStopError = @"CellCloseStopsError";
     UITableViewCell *cell = nil;
     
@@ -108,25 +111,25 @@ NSString* positioningErrorDetails[] = {
     SimpleDeathStarAppDelegate* delegate = (SimpleDeathStarAppDelegate*)[[UIApplication sharedApplication] delegate];
     if (  [delegate useRelativeTime] ) {
         favClass = [FavTimeRelativeViewCell class];
+        CellIdentifierCloseStop = CellIdentifierCloseStopRel;
     } else {
         favClass = [FavTimeViewCell class];
+        CellIdentifierCloseStop = CellIdentifierCloseStopAbs;
     }
 
     
     if ( closeStopsCount > 0 ) {
-        //            cell.detailTextLabel.text = [NSString stringWithFormat:@"%d m", stop.distance];
-        
-        
         NSArray* times = nil;
         times = [self.proximityTimes objectAtIndex:indexPath.row];
-        cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifierCloseStop];
-        if( cell == nil ) {
-            cell = [[[favClass alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifierCloseStop] autorelease];
+        FavTimeViewCell* time_cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifierCloseStop];
+        if( time_cell == nil ) {
+            time_cell = [[[favClass alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifierCloseStop] autorelease];
         }
+        time_cell.time_formatter = self.time_formatter;
         Stop* stop = [self.closeStops objectAtIndex:indexPath.row];
-        ((FavTimeViewCell*)cell).times = times;
-        ((FavTimeViewCell*)cell).stop = stop;
-        
+        time_cell.times = times;
+        time_cell.stop = stop;
+        cell = time_cell;
     } else {
         cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifierCloseStopError];
         if (cell == nil) {

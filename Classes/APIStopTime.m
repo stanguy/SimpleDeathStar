@@ -11,8 +11,13 @@
 
 @implementation APIStopTime
 
+@synthesize stop,line,accurate,departure,direction;
+
 -(NSString*)description {
-    return [NSString stringWithFormat:@"%@ %@ %@ %@", self.line, self.stop, self.direction, self.date];
+    return [NSString stringWithFormat:@"%@ %@ %@ %@", self.line, self.stop, self.direction, self.departure];
 }
 
+-(BOOL)canDistinguistArrivalAndDeparture {
+    return NO;
+}
 @end

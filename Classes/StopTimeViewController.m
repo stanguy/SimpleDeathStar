@@ -20,6 +20,7 @@
 #import "SimpleDeathStarAppDelegate.h"
 #import "PoiViewController.h"
 #import "ADViewComposer.h"
+#import "StopTimeFormatter.h"
 
 #define xstr(s) str(s)
 #define str(s) #s
@@ -34,6 +35,7 @@ const int kCellWidth = 46;
 
 @property (nonatomic, retain) NSDictionary* realtimeStoptimes;
 @property (nonatomic, retain) NSArray* realtimeDirections;
+@property (nonatomic, retain) StopTimeFormatter* time_formatter;
 
 @end
 
@@ -100,6 +102,8 @@ enum SHEET_IDS {
     
     UILongPressGestureRecognizer* longPressure = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPress:)];
     [self.view addGestureRecognizer:longPressure];
+    
+    self.time_formatter = [[StopTimeFormatter alloc] init];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
@@ -251,6 +255,7 @@ enum SHEET_IDS {
 
 - (UIView *)gridScrollView:(GridScrollView *)scrollView tileForRow:(int)row column:(int)column {
     NSString* ftime = @"";
+    static NSString* NO_TIME = @"\u2014:\u2014";
     BOOL use_em = NO;
     if ( realtime ) {
         if (  self.realtimeStoptimes ) {
@@ -259,12 +264,11 @@ enum SHEET_IDS {
             }
             NSArray* times = [self.realtimeStoptimes objectForKey:[self.realtimeDirections objectAtIndex:row]];
             if ( column >= [times count] ) {
-                ftime = @"\u2014:\u2014";
+                ftime = NO_TIME;
             } else {
-                NSDateFormatter* formatter = [[NSDateFormatter alloc] init];
-                [formatter setDateFormat:@"HH:mm"];
                 APIStopTime* stoptime = [times objectAtIndex:column];
-                ftime = [formatter stringFromDate:stoptime.date];
+
+                ftime = [self.time_formatter format:stoptime];
                 use_em = ! stoptime.accurate;
             }
         }
@@ -273,12 +277,12 @@ enum SHEET_IDS {
             return nil;
         }
         if ( column >= [ [[self.fetchedResultsController sections] objectAtIndex:row] numberOfObjects] ) {
-            ftime =  @"\u2014:\u2014";
+            ftime =  NO_TIME;
         } else {
             NSIndexPath* indexPath = [NSIndexPath indexPathForRow:column inSection:row];
             StopTime* st = [self.fetchedResultsController objectAtIndexPath:indexPath];
             
-            ftime = [st formatTime];
+            ftime = [self.time_formatter format:st];
         }
     }
     UIView *cellview = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kCellWidth, kRowHeight)];
@@ -495,7 +499,7 @@ enum SHEET_IDS {
 
 -(void)loadRealTimeData{
     KeolisRennesAPI* api = [[KeolisRennesAPI alloc] init];
-    api.key = @str(KEOLIS_API_KEY);
+    api.key = [NSString stringWithCString:xstr(KEOLIS_API_KEY) encoding:NSUTF8StringEncoding];
     NSArray* stoptimes = [api findNextDepartureAtStop:self.stop];
     NSMutableDictionary* sorted_times = [NSMutableDictionary dictionaryWithCapacity:[stoptimes count] / 2];
     for ( APIStopTime* stoptime in stoptimes ) {

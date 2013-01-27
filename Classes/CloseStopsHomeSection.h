@@ -8,9 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
-#import "AbstractHomeSection.h"
+#import "TimePresenterSection.h"
 
-@interface CloseStopsHomeSection : AbstractHomeSection <CLLocationManagerDelegate> {
+@interface CloseStopsHomeSection : TimePresenterSection <CLLocationManagerDelegate> {
     
     int closeStopsCount;
     int positioningError;

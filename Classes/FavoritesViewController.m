@@ -13,10 +13,17 @@
 #import "Favorite.h"
 #import "Line.h"
 #import "Stop.h"
+#import "StopTimeFormatter.h"
+
+@interface FavoritesViewController ()
+
+@property (atomic, retain) StopTimeFormatter* formatter;
+
+@end
 
 @implementation FavoritesViewController
 
-@synthesize fetchedResultsController = fetchedResultsController_;
+@synthesize fetchedResultsController = fetchedResultsController_,formatter;
 
 #pragma mark -
 #pragma mark View lifecycle
@@ -30,6 +37,8 @@
     self.navigationItem.title = NSLocalizedString( @"Favoris", @"" );
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleDataChange) name:@"favorites" object:nil];
     self.tableView.rowHeight = 60.0f;
+    
+    self.formatter = [[StopTimeFormatter alloc] init];
 }
 
 -(void)handleDataChange {
