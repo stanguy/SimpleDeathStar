@@ -299,4 +299,32 @@ NSPredicate* buildPredicate( Line* line, Stop* stop, int min_arrival, int max_ar
     return YES;
 }
 
+-(NSString*)format:(NSNumber*)datetime relativeTo:(NSDate*)relative_date {
+    int arrival = [datetime intValue] / 60;
+    if ( relative_date != nil ) {        
+        NSDateComponents *dateComponents = dateToComponents( relative_date );
+        int reft = [dateComponents hour] * 60 + [dateComponents minute];
+        if ( arrival > 24 * 60 ) {
+            if ( reft < 12 * 60 ) {
+                reft = reft + 24*60;
+            }
+        }
+        return [NSString stringWithFormat:@"%d", arrival - reft];
+    } else {
+        int mins = arrival % 60;
+        int hours = ( arrival / 60 ) % 24;
+        return [NSString stringWithFormat:@"%02d:%02d", hours, mins];
+    }
+
+}
+
+-(NSString*)departure:(NSDate *)relative_date{
+    return [self format:self.departure relativeTo:relative_date];
+}
+-(NSString*)arrival:(NSDate *)relative_date {
+    return [self format:self.arrival relativeTo:relative_date];
+    
+}
+
+
 @end

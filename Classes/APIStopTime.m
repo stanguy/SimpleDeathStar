@@ -20,4 +20,19 @@
 -(BOOL)canDistinguistArrivalAndDeparture {
     return NO;
 }
+
+-(NSString*)departure:(NSDate *)relative_date{
+    NSString* result;
+    if ( nil == relative_date ) {
+        NSDateFormatter* formatter = [[NSDateFormatter alloc] init];
+        [formatter setDateFormat:@"HH:mm"];
+        result = [formatter stringFromDate:self.departure];
+        [formatter release];
+    } else {
+        NSTimeInterval diff = [relative_date timeIntervalSinceDate:self.departure];
+        result = [NSString stringWithFormat:@"%d", (int)(diff / 60)];
+    }
+    return result;
+}
+
 @end

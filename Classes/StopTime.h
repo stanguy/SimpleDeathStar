@@ -14,4 +14,7 @@
 + (NSArray*) findComingAt:(Favorite*)favorite;
 + (NSArray*) findComingAtStop:(Stop*)stop andLine:(Line*)line;
 
+-(NSString*)departure:(NSDate *)relative_date;
+-(NSString*)arrival:(NSDate *)relative_date;
+
 @end

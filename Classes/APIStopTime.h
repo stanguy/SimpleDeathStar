@@ -21,4 +21,6 @@
 @property (atomic) BOOL accurate;
 @property (nonatomic, retain) NSDate* departure;
 
+-(NSString*)departure:(NSDate *)relative_date;
+
 @end

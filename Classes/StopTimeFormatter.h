@@ -10,7 +10,6 @@
 #import "TimePoint.h"
 
 enum  {
-    STOPTIME_PREFERENCE = 0,
     STOPTIME_DEPARTURE = 1,
     STOPTIME_ARRIVAL
 } ;
@@ -23,5 +22,6 @@ enum  {
 
 @property (atomic) BOOL relative;
 @property (atomic) NSInteger time_type;
+@property (atomic,retain) NSDate* ref_date;
 
 @end

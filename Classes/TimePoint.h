@@ -10,11 +10,10 @@
 
 @protocol TimePoint <NSObject>
 
-- (NSString*) formatTime:(int)time_e asRelative:(BOOL)isRelative;
 - (BOOL)canDistinguistArrivalAndDeparture;
-- (NSNumber*)departure;
+- (NSString*)departure:(NSDate*)relative_date;
 
 @optional
-- (NSNumber*)arrival;
+- (NSString*)arrival:(NSDate*)relative_date;
 
 @end
