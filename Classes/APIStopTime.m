@@ -7,6 +7,8 @@
 //
 
 #import "APIStopTime.h"
+#import "Line.h"
+#import "Stop.h"
 
 
 @implementation APIStopTime
@@ -14,7 +16,7 @@
 @synthesize stop,line,accurate,departure,direction;
 
 -(NSString*)description {
-    return [NSString stringWithFormat:@"%@ %@ %@ %@", self.line, self.stop, self.direction, self.departure];
+    return [NSString stringWithFormat:@"%@ %@ %@ %@", self.line.short_name, self.stop.name, self.direction, self.departure];
 }
 
 -(BOOL)canDistinguistArrivalAndDeparture {
