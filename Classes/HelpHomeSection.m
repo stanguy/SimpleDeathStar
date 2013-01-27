@@ -81,7 +81,7 @@ int AboutMenuValuesRemote[] = {
 -(void)selectRow:(NSInteger)row from:(UIViewController*)controller{
     UIViewController* nextController;
     nextController = [[AboutViewController alloc] initWithNibName:@"AboutViewController" bundle:nil];
-    int menu_type;
+    int menu_type=0;
     switch ( type_ ) {
         case kHelpFull:
             menu_type = AboutMenuValues[row];

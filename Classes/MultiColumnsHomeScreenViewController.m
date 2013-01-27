@@ -29,7 +29,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        NSMutableArray* columns = [[[NSMutableArray alloc] init] autorelease];
+        NSMutableArray* columns = [NSMutableArray array];
         [columns addObject:[[[HomeScreenViewController alloc] initWithHomeStyle:kHomeStyleStart] autorelease]];
         NSArray* sectionClasses = [NSArray arrayWithObjects:[FavoritesHomeSection class], [CloseStopsHomeSection class], nil];
         for (Class class in sectionClasses) {
@@ -37,7 +37,7 @@
             ColumnedHomeScreenViewController* column = [[ColumnedHomeScreenViewController alloc] initWithStyle:UITableViewStylePlain];
             column.section = section;
             section.delegate = column;
-            [columns addObject:column];
+            [columns addObject:[column autorelease]];
         }
         [columns addObject:[[[HomeScreenViewController alloc] initWithHomeStyle:kHomeStyleHelp] autorelease]];
         for ( TableWithAdViewController* children in columns ) {

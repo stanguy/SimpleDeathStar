@@ -35,7 +35,7 @@
     if ( [UIRefreshControl class] && [self.section respondsToSelector:@selector(refresh:)]) {
         UIRefreshControl* refreshControl = [[UIRefreshControl alloc] init];
         [refreshControl addTarget:self.section action:@selector(refresh:) forControlEvents:UIControlEventValueChanged];
-        [self.tableView addSubview:refreshControl];
+        [self.tableView addSubview:[refreshControl autorelease]];
     }
     
     self.navigationItem.title = NSLocalizedString( [section title], @"" );

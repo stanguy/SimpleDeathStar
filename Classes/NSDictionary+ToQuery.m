@@ -12,7 +12,7 @@
 
 -(NSString*) to_query:(NSString*)namespace
 {
-    NSMutableArray* array = [[NSMutableArray alloc] init];
+    NSMutableArray* array = [NSMutableArray array];
     for (NSString* key in [self keyEnumerator]) {
         id value = [self objectForKey:key];
         NSString* sub_namespace;

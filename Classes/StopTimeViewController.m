@@ -85,8 +85,8 @@ enum SHEET_IDS {
     } else {
         favImage = [UIImage imageNamed:@"favorites_add"];
     }
-    self.favButton = [[UIBarButtonItem alloc] initWithImage:favImage style:UIBarButtonItemStylePlain target:self action:@selector(toggleFavorite:)];
-    self.poiButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"app_globe"] style:UIBarButtonItemStylePlain target:self action:@selector(selectOption:)];
+    self.favButton = [[[UIBarButtonItem alloc] initWithImage:favImage style:UIBarButtonItemStylePlain target:self action:@selector(toggleFavorite:)] autorelease];
+    self.poiButton = [[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"app_globe"] style:UIBarButtonItemStylePlain target:self action:@selector(selectOption:)] autorelease];
     UIBarButtonItem *flexible = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease];
     
     self.toolbarItems = [NSArray arrayWithObjects:self.dateChangeItem , flexible, self.poiButton, flexible, self.favButton, nil];
@@ -103,7 +103,7 @@ enum SHEET_IDS {
     UILongPressGestureRecognizer* longPressure = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPress:)];
     [self.view addGestureRecognizer:longPressure];
     
-    self.time_formatter = [[StopTimeFormatter alloc] init];
+    self.time_formatter = [[[StopTimeFormatter alloc] init] autorelease];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
@@ -498,9 +498,9 @@ enum SHEET_IDS {
 }
 
 -(void)loadRealTimeData{
-    KeolisRennesAPI* api = [[KeolisRennesAPI alloc] init];
+    KeolisRennesAPI* api = [[[KeolisRennesAPI alloc] init] autorelease];
     api.key = [NSString stringWithCString:xstr(KEOLIS_API_KEY) encoding:NSUTF8StringEncoding];
-    NSArray* stoptimes = [api findNextDepartureAtStop:self.stop];
+    NSArray* stoptimes = [[api findNextDepartureAtStop:self.stop] retain];
     NSMutableDictionary* sorted_times = [NSMutableDictionary dictionaryWithCapacity:[stoptimes count] / 2];
     for ( APIStopTime* stoptime in stoptimes ) {
         NSString* st_title;
@@ -523,6 +523,7 @@ enum SHEET_IDS {
         self.realtimeStoptimes = sorted_times;
         self.realtimeDirections = [[sorted_times allKeys] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
     }
+    [stoptimes release];
     [self performSelectorOnMainThread:@selector(endRealtimeFetch) withObject:nil waitUntilDone:NO];
 }
 

@@ -29,7 +29,7 @@
     [super viewDidLoad];
 
     self.navigationItem.title = [NSString stringWithFormat:NSLocalizedString( @"%@ vers %@", @"" ), stopTime_.line.short_name, stopTime_.direction.headsign];
-    self.time_formatter = [[StopTimeFormatter alloc] init];
+    self.time_formatter = [[[StopTimeFormatter alloc] init] autorelease];
     self.time_formatter.relative = false;
     self.time_formatter.time_type = STOPTIME_ARRIVAL;
 }

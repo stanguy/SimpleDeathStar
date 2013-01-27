@@ -38,7 +38,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleDataChange) name:@"favorites" object:nil];
     self.tableView.rowHeight = 60.0f;
     
-    self.time_formatter = [[StopTimeFormatter alloc] init];
+    self.time_formatter = [[[StopTimeFormatter alloc] init] autorelease];
     self.time_formatter.relative = NO;
 }
 

@@ -94,7 +94,7 @@
                     stoptime.stop = stop;
                     stoptime.line = line;
                     stoptime.departure = [formatter dateFromString:[departure objectForKey:@"content"]];
-                    [stoptimes addObject:stoptime];
+                    [stoptimes addObject:[stoptime autorelease]];
                 }
             }
         }
