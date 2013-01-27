@@ -17,13 +17,13 @@
 
 @interface FavoritesViewController ()
 
-@property (atomic, retain) StopTimeFormatter* formatter;
+@property (atomic, retain) StopTimeFormatter* time_formatter;
 
 @end
 
 @implementation FavoritesViewController
 
-@synthesize fetchedResultsController = fetchedResultsController_,formatter;
+@synthesize fetchedResultsController = fetchedResultsController_,time_formatter;
 
 #pragma mark -
 #pragma mark View lifecycle
@@ -38,7 +38,8 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleDataChange) name:@"favorites" object:nil];
     self.tableView.rowHeight = 60.0f;
     
-    self.formatter = [[StopTimeFormatter alloc] init];
+    self.time_formatter = [[StopTimeFormatter alloc] init];
+    self.time_formatter.relative = NO;
 }
 
 -(void)handleDataChange {
@@ -79,9 +80,10 @@
     if( cell == nil ) {
         cell = [[[FavTimeViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
     }
+    cell.time_formatter = self.time_formatter;
     cell.favorite = fav;
     cell.times = [StopTime findComingAt:fav];
-        
+    
     return cell;
 }
 
