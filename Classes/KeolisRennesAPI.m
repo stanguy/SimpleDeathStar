@@ -13,6 +13,7 @@
 #import "Stop.h"
 #import "StopAlias.h"
 #import "NSObject+ToQuery.h"
+#import "ISO8601DateFormatter.h"
 
 @interface KeolisRennesAPI ()
 
@@ -46,14 +47,7 @@
     }
     //    NSLog( @"%@", data );
     
-    NSDateFormatter *frm = [[NSDateFormatter alloc] init];
-    NSLocale *locale = [[NSLocale alloc]
-                        initWithLocaleIdentifier:@"en_US_POSIX"];
-    [frm setLocale:locale];
-    //    [locale release];
-    [frm setDateStyle:NSDateFormatterLongStyle];
-    [frm setFormatterBehavior:NSDateFormatterBehavior10_4];
-    [frm setDateFormat:@"yyyy-MM-dd'T'HH:mm:ssZZZZZ"];
+    ISO8601DateFormatter *formatter = [[[ISO8601DateFormatter alloc] init] autorelease];
     
     NSMutableArray* stoptimes = [NSMutableArray array];
     NSArray* stoplines_a;
@@ -99,14 +93,14 @@
                     stoptime.accurate = 1 == [[[departure objectForKey:@"@attributes"] objectForKey:@"accurate"] integerValue];
                     stoptime.stop = stop;
                     stoptime.line = line;
-                    stoptime.departure = [frm dateFromString:[departure objectForKey:@"content"]];
+                    stoptime.departure = [formatter dateFromString:[departure objectForKey:@"content"]];
                     [stoptimes addObject:stoptime];
                 }
             }
         }
         NSLog( @"stoptimes currently: %u", [stoptimes count] );
     }
-    //    NSLog( @"%@", stoptimes );
+    //        NSLog( @"%@", stoptimes );
     return stoptimes;
 }
 

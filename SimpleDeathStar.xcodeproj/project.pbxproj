@@ -428,6 +428,8 @@
 		969E010D16ADE6050000A8C4 /* StopTimeFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 969E010B16ADE6050000A8C4 /* StopTimeFormatter.m */; };
 		969E011116B331DD0000A8C4 /* TimePresenterSection.m in Sources */ = {isa = PBXBuildFile; fileRef = 969E011016B331DD0000A8C4 /* TimePresenterSection.m */; };
 		969E011216B331DD0000A8C4 /* TimePresenterSection.m in Sources */ = {isa = PBXBuildFile; fileRef = 969E011016B331DD0000A8C4 /* TimePresenterSection.m */; };
+		969E011516B598430000A8C4 /* ISO8601DateFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 969E011416B598430000A8C4 /* ISO8601DateFormatter.m */; };
+		969E011616B598430000A8C4 /* ISO8601DateFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 969E011416B598430000A8C4 /* ISO8601DateFormatter.m */; };
 		96A71C6D12CA87AC00FB1516 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96A71C6B12CA87AC00FB1516 /* AboutViewController.m */; };
 		96A71C6E12CA87AC00FB1516 /* AboutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96A71C6C12CA87AC00FB1516 /* AboutViewController.xib */; };
 		96A71C8D12CA89B700FB1516 /* about_fr.html in Resources */ = {isa = PBXBuildFile; fileRef = 96A71C8C12CA89B700FB1516 /* about_fr.html */; };
@@ -862,6 +864,8 @@
 		969E010E16AF28420000A8C4 /* TimePoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimePoint.h; sourceTree = "<group>"; };
 		969E010F16B331DD0000A8C4 /* TimePresenterSection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimePresenterSection.h; sourceTree = "<group>"; };
 		969E011016B331DD0000A8C4 /* TimePresenterSection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimePresenterSection.m; sourceTree = "<group>"; };
+		969E011316B598430000A8C4 /* ISO8601DateFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISO8601DateFormatter.h; sourceTree = "<group>"; };
+		969E011416B598430000A8C4 /* ISO8601DateFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISO8601DateFormatter.m; sourceTree = "<group>"; };
 		96A71C6A12CA87AC00FB1516 /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
 		96A71C6B12CA87AC00FB1516 /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
 		96A71C6C12CA87AC00FB1516 /* AboutViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = AboutViewController.xib; path = Classes/AboutViewController.xib; sourceTree = "<group>"; };
@@ -1216,6 +1220,8 @@
 		9686F8A616A614B900EC4F0E /* API */ = {
 			isa = PBXGroup;
 			children = (
+				969E011316B598430000A8C4 /* ISO8601DateFormatter.h */,
+				969E011416B598430000A8C4 /* ISO8601DateFormatter.m */,
 				9686F8A816A614F000EC4F0E /* KeolisRennesAPI.h */,
 				9686F8A916A614F000EC4F0E /* KeolisRennesAPI.m */,
 				9686F8AA16A614F000EC4F0E /* APIStopTime.h */,
@@ -2067,6 +2073,7 @@
 				9686F8B616A614F000EC4F0E /* NSArray+ToQuery.m in Sources */,
 				969E010C16ADE6050000A8C4 /* StopTimeFormatter.m in Sources */,
 				969E011116B331DD0000A8C4 /* TimePresenterSection.m in Sources */,
+				969E011516B598430000A8C4 /* ISO8601DateFormatter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2125,6 +2132,7 @@
 				96D23250163481B90053E0E2 /* AbstractHomeSection.m in Sources */,
 				969E010D16ADE6050000A8C4 /* StopTimeFormatter.m in Sources */,
 				969E011216B331DD0000A8C4 /* TimePresenterSection.m in Sources */,
+				969E011616B598430000A8C4 /* ISO8601DateFormatter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
