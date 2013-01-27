@@ -101,7 +101,9 @@ enum SHEET_IDS {
     viewComposer = [[ADViewComposer alloc] initWithView:self.containerView];
     
     UILongPressGestureRecognizer* longPressure = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPress:)];
-    [self.view addGestureRecognizer:longPressure];
+    longPressure.minimumPressDuration = 1.5f;
+    longPressure.numberOfTouchesRequired = 1;
+    [self.view addGestureRecognizer:[longPressure autorelease]];
     
     self.time_formatter = [[[StopTimeFormatter alloc] init] autorelease];
 }
@@ -447,12 +449,14 @@ enum SHEET_IDS {
     [self reloadData];
 }
 
--(void)handleLongPress:(id)sender {
-    NSLog( @"long press" );
-    if ( realtime ) {
-        [self refreshRealtime:nil];
-    } else {
-     [self reloadData];
+-(void)handleLongPress:(UILongPressGestureRecognizer*)sender {
+    if (sender.state == UIGestureRecognizerStateBegan){
+        NSLog( @"long press" );
+        if ( realtime ) {
+            [self refreshRealtime:nil];
+        } else {
+            [self reloadData];
+        }
     }
 }
 
