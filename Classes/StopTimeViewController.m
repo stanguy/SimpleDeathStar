@@ -115,11 +115,11 @@ enum SHEET_IDS {
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [viewComposer changeDisplay:YES];
-    self.navigationController.toolbarHidden = NO;
+    [self.navigationController setToolbarHidden:NO animated:YES];
 }
 - (void)viewWillDisappear:(BOOL)animated
 {
-    self.navigationController.toolbarHidden = YES;
+    [self.navigationController setToolbarHidden:YES animated:YES];
     [super viewWillDisappear:animated];
 }
 
