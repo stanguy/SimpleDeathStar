@@ -19,6 +19,10 @@
     self = [super init];
     if ( self ) {
         self.time_formatter = [[StopTimeFormatter alloc] init];
+        SimpleDeathStarAppDelegate* app = (SimpleDeathStarAppDelegate*)[[UIApplication sharedApplication] delegate];
+        self.time_formatter.relative = app.useRelativeTime;
+        self.time_formatter.time_type = app.useArrival ? STOPTIME_ARRIVAL : STOPTIME_DEPARTURE;
+        
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(resetPreferences:) name:@"preferencesChanged" object:nil];
 
     }
