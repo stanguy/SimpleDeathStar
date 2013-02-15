@@ -87,7 +87,7 @@
         if ( nil != page ) {
             tmp_home.pageControl.currentPage = [page intValue];
         }
-        [tmp_home switchPage:false];
+        [tmp_home switchPage:true];
         home = tmp_home;
     } else {
         home = [[[HomeScreenViewController alloc] init] autorelease];
