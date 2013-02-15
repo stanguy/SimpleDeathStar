@@ -41,7 +41,7 @@
     return json;
 }
 
-- (NSArray*) findNextDepartureAtStop:(Stop*)stop{
+- (NSArray*) findNextDepartureAtStop:(Stop*)stop error:(NSError**)error {
     NSMutableDictionary* params=[NSMutableDictionary dictionaryWithCapacity:3];
     [params setObject:@"stop" forKey:@"mode"];
     NSMutableArray* stops = [NSMutableArray arrayWithCapacity:[[stop stop_aliases] count]];
@@ -66,7 +66,9 @@
         [params setObject:current_stops forKey:@"stop"];
         id answer = [self callRemoteMethod:@"getbusnextdepartures" with:params];
         if ( nil == answer ) {
-            continue;
+            NSLog( @"no answer" );
+            *error = [NSError errorWithDomain:@"SimpleDeathStar" code:500 userInfo:nil];
+            break;
         }
         id data = [[[answer objectForKey:@"opendata"] objectForKey:@"answer"] objectForKey:@"data"];
         NSString* remote_time = [[data objectForKey:@"@attributes"] objectForKey:@"localdatetime"];
@@ -95,7 +97,7 @@
                 }
                 for ( id departure in departures_a ) {
                     APIStopTime* stoptime = [[APIStopTime alloc] init];
-                    stoptime.direction = [[departure objectForKey:@"@attributes"] objectForKey:@"headsign"];
+                    stoptime.direction = [[[departure objectForKey:@"@attributes"] objectForKey:@"headsign"] stringByReplacingOccurrencesOfString:@" | " withString:@" "];
                     stoptime.accurate = 1 == [[[departure objectForKey:@"@attributes"] objectForKey:@"accurate"] integerValue];
                     stoptime.stop = stop;
                     stoptime.line = line;

@@ -504,7 +504,14 @@ enum SHEET_IDS {
 -(void)loadRealTimeData{
     KeolisRennesAPI* api = [[[KeolisRennesAPI alloc] init] autorelease];
     api.key = [NSString stringWithCString:xstr(KEOLIS_API_KEY) encoding:NSUTF8StringEncoding];
-    NSArray* stoptimes = [[api findNextDepartureAtStop:self.stop] retain];
+    NSError* error = nil;
+    NSArray* stoptimes = [[api findNextDepartureAtStop:self.stop error:&error] retain];
+    if ( error ) {
+        NSLog( @"failed to find departures" );
+        [self performSelectorOnMainThread:@selector(endRealtimeFetch:) withObject:@true waitUntilDone:NO];
+        [stoptimes release];
+        return;
+    }
     NSMutableDictionary* sorted_times = [NSMutableDictionary dictionaryWithCapacity:[stoptimes count] / 2];
     for ( APIStopTime* stoptime in stoptimes ) {
         NSString* st_title;
@@ -528,10 +535,13 @@ enum SHEET_IDS {
         self.realtimeDirections = [[sorted_times allKeys] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
     }
     [stoptimes release];
-    [self performSelectorOnMainThread:@selector(endRealtimeFetch) withObject:nil waitUntilDone:NO];
+    [self performSelectorOnMainThread:@selector(endRealtimeFetch:) withObject:@false waitUntilDone:NO];
 }
 
-- (void)endRealtimeFetch {
+- (void)endRealtimeFetch:(NSNumber*)hasError {
+    if ( [hasError boolValue] ) {
+        NSLog( @"end realtime fetch with error" );
+    }
     [self.activity stopAnimating];
     [self reloadData];
 }
@@ -541,7 +551,6 @@ enum SHEET_IDS {
 
     [toolbarButtons replaceObjectAtIndex:0 withObject:other];
     [self setToolbarItems:toolbarButtons animated:YES];
-    
 }
 
 -(void)refreshRealtime:(id)sender {

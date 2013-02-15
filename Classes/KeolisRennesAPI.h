@@ -14,7 +14,7 @@
 
 @interface KeolisRennesAPI : NSObject
 
-- (NSArray*) findNextDepartureAtStop:(Stop*)stop;
+- (NSArray*) findNextDepartureAtStop:(Stop*)stop error:(NSError**)error;
 
 @property (nonatomic,retain) NSString* key;
 
