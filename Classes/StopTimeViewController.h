@@ -49,8 +49,6 @@
 - (IBAction)onDismissChangeDate:(id)sender;
 - (IBAction)onChangeDate:(id)sender;
 
-- (IBAction)showPoi:(id)sender;
-
 - (IBAction)toggleFavorite:(id)sender;
 - (void)reloadData;
 @end

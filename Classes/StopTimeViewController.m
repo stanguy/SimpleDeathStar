@@ -150,8 +150,8 @@ enum SHEET_IDS {
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
     if ( realtime ) {
-        if  ( nil != self.realtimeStoptimes ) {
-            return [[self.realtimeStoptimes allKeys] count];
+        if  ( nil != self.realtimeDirections ) {
+            return [self.realtimeDirections count];
         } else {
             return 0;
         }
@@ -224,18 +224,24 @@ enum SHEET_IDS {
 
 - (void)createFloatingGrid {
     self.tableView.hidden = NO;
-    [self.tableView reloadData];
+    //    [self.tableView reloadData];
     self.scrollView.hidden = YES;
     
     int nb_max_stops = 0;
-    int nbStops = [[self.fetchedResultsController sections] count];
+    int nbStops = [self tableView:nil numberOfRowsInSection:0];
     if (nbStops == 0) {
         return;
     }
     for ( int i = 0; i < nbStops ; ++i) {
-        id <NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:i];
-        if ( [sectionInfo numberOfObjects] > nb_max_stops) {
-            nb_max_stops = [sectionInfo numberOfObjects];
+        NSInteger count;
+        if ( realtime ) {
+            count = [[self.realtimeStoptimes objectForKey:[self.realtimeDirections objectAtIndex:i]] count];
+        } else {
+            id <NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:i];
+            count = [sectionInfo numberOfObjects] ;
+        }
+        if ( count > nb_max_stops) {
+            nb_max_stops = count;
         }
     }
     int gridWidth = (nb_max_stops * kCellWidth) + 12;
@@ -464,7 +470,9 @@ enum SHEET_IDS {
 #pragma mark Others
 
 - (void)reloadData {
-    self.fetchedResultsController = nil;
+    if ( ! realtime ) {
+        self.fetchedResultsController = nil;
+    }
     [self.tableView reloadData];
     [self.scrollView reloadData];
     [self createFloatingGrid];
