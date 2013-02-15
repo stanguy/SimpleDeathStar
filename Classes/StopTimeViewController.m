@@ -251,7 +251,7 @@ enum SHEET_IDS {
 }
 
 - (void)adjustScrollViewFrame {
-    scrollView.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
+    scrollView.frame = CGRectMake(0, 0, self.containerView.frame.size.width, self.containerView.frame.size.height);
     
 }
 
