@@ -542,7 +542,9 @@ enum SHEET_IDS {
     }
     @synchronized(self) {
         self.realtimeStoptimes = sorted_times;
-        self.realtimeDirections = [[sorted_times allKeys] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
+        self.realtimeDirections = [[sorted_times allKeys] sortedArrayUsingComparator:^(id first, id second){
+            return [((NSString*)first) compare:((NSString*)second) options:NSNumericSearch];
+        }];
     }
     [stoptimes release];
     [self performSelectorOnMainThread:@selector(endRealtimeFetch:) withObject:@false waitUntilDone:NO];
