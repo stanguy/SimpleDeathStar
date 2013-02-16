@@ -22,6 +22,8 @@
 #import "ADViewComposer.h"
 #import "StopTimeFormatter.h"
 
+#import "iToast.h"
+
 #define xstr(s) str(s)
 #define str(s) #s
 
@@ -107,31 +109,45 @@ enum SHEET_IDS {
 }
 
 -(void)rotateFormatMode {
-    formatter_mode = ++formatter_mode % 5;
+    NSUInteger max_level;
+    if ( realtime ) {
+        max_level = 3;
+    } else {
+        max_level = 5;
+    }
+    formatter_mode = ++formatter_mode % max_level;
+    NSString* display_type;
     switch ( formatter_mode ) {
         case 0:
             [self.time_formatter resetDefaults];
+            display_type = @"Suivant les préférences";
             break;
         case 1:
             self.time_formatter.time_type = STOPTIME_DEPARTURE;
             self.time_formatter.relative = false;
+            display_type = @"Départ / absolu";
             break;
         case 2:
             self.time_formatter.time_type = STOPTIME_DEPARTURE;
             self.time_formatter.relative = true;
+            display_type = @"Départ / relatif";
             break;
         case 3:
             self.time_formatter.time_type = STOPTIME_ARRIVAL;
             self.time_formatter.relative = false;
+            display_type = @"Arrivée / absolu";
             break;
         case 4:
             self.time_formatter.time_type = STOPTIME_ARRIVAL;
             self.time_formatter.relative = true;
+            display_type = @"Arrivée / relatif";
             break;
         default:
             NSLog( @"WE SHOULD NOT HAVE COME HERE!#@" );
             break;
     }
+    NSString* full_text = [@"Affichage :\n" stringByAppendingString:display_type];
+    [[[iToast makeText:full_text] setGravity:iToastGravityBottom] show];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
@@ -497,7 +513,6 @@ enum SHEET_IDS {
 
 -(void)handleLongPress:(UILongPressGestureRecognizer*)sender {
     if (sender.state == UIGestureRecognizerStateBegan){
-        NSLog( @"long press" );
         [self rotateFormatMode];
         [self reloadData];
     }
@@ -633,6 +648,9 @@ enum SHEET_IDS {
                 [self reloadData];
             } else {
                 realtime = YES;
+                if ( formatter_mode > 2 ) {
+                    formatter_mode -= 2;
+                }
                 [self exchangeButton:self.dateChangeItem with:self.refreshItem];
                 self.activity.hidden = NO;
                 [self.activity startAnimating];
