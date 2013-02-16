@@ -508,7 +508,7 @@ enum SHEET_IDS {
         [sheet addButtonWithTitle:NSLocalizedString( @"Temps réel", @"" )];        
     }
     if ( [self.stop allCounts] > 0 ) {
-        [sheet addButtonWithTitle:NSLocalizedString( @"Points d'intérêt", @"" )];
+        [sheet addButtonWithTitle:NSLocalizedString( @"Points d'intérêts proches", @"" )];
     }
     [sheet showFromToolbar:self.navigationController.toolbar];
     [sheet release];

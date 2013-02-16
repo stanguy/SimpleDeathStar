@@ -22,7 +22,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    self.title = NSLocalizedString( @"Points d'intérêt", @"" );
+    self.title = NSLocalizedString( @"Points d'intérêts proches", @"" );
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     NSMutableDictionary* pois_types = [NSMutableDictionary dictionaryWithCapacity:4];
