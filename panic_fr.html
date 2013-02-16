@@ -1,17 +1,46 @@
 <html>
     <head>
         <meta charset="UTF-8" />
+        <link rel="stylesheet" href="normalize.css" />
+        <link rel="stylesheet" href="help.css" />
+        <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0;">
     </head>
   <body>
     <h1>Comment ça marche?</h1>
-    <p>L'application affiche par défaut les horaires dans les deux heures à venir.
-      S'il n'y a pas de passage dans cette tranche horaire, un message vous invitera
-      à trouver une autre période.</p>
-    <p>Vous pouvez vous déplacer dans le temps des horaires, soit avec le bouton horloge,
-      soit en utilisant une double-tape à gauche ou à droite (en étant sur la première, 
-      respectivement dernière, colonne présente).</p>
-    <p>Sur les favoris, la flèche indique la direction générale (Ouest, Est,...) du voyage dont 
-      l'heure de passage figure à droite. Seuls les 5 favoris les plus visités sont affichés en page
-      d'accueil.</p>
+    <dl>
+      <dt>Quels horaires sont affichés ?</dt>
+      <dd>Par défaut, l'application affiche les horaires dans les
+        deux heures à venir. En mode temps réel, sont indiqués les
+        horaires de l'heure à venir.</dd>
+      <dt>Voir les horaires précédents ou suivants</dt>
+      <dd>Il est possible de taper deux fois sur le côté gauche (ou
+        droit) pour voir les horaires précédents (suivants)</dd>
+      <dt>Voir les horaires à une autre date</dt>
+      <dd>Il est possible de sélectionner une autre date via le bouton
+        horloge</dd>
+      <dt>Que représente la flèche sur les favoris ?</dt>
+      <dd>la flèche indique la direction générale (Ouest, Est,...) du voyage dont 
+        l'heure de passage figure à droite.</dd>
+      <dt>Écart entre départ et arrivée</dt>
+      <dd>Dans certains cas, il peut y avoir un écart entre heure
+        d'arrivée à un arrêt et heure de départ. Il est possible de
+        choisir globalement l'affichage de l'un ou l'autre via les
+        préférences.<br />
+        Dans la grille principale, il est aussi possible de basculer
+        via un appui long.</dd>
+      <dt>Voir son heure d'arrivée</dt>
+      <dd>Sur la grille, il est possible d'appuyer sur une heure de
+        passage pour obtenir les horaires du reste du voyage</dd>
+      <dt>Horaires temps réel</dt>
+      <dd>Sur la grille, il est possible d'afficher les horaires temps
+        réel via le bouton central. (nécessite un accès internet)</dd>
+      <dt>Ordre des arrêts</dt>
+      <dd>Les arrêts sont uniquement affichés dans l'ordre
+        alphabétique, car faire autrement peut être un plus complexe
+        qu'il n'y parait (par exemple, certaines lignes peuvent avoir
+        des trajets plus ou moins différents pour une raison ou une autre)</dd>
+    </dl>
+    <script src="jquery.js"></script>
+    <script src="help.js"></script>
   </body>
 </html>
