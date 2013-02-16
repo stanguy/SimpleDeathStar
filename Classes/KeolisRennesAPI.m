@@ -27,7 +27,7 @@
     NSString* base_url = @"http://data.keolis-rennes.com/json/";
     NSMutableDictionary* query_params = [NSMutableDictionary dictionaryWithObjectsAndKeys:method, @"cmd", self.key, @"key", @"2.1", @"version", params, @"param", nil];
     NSString* full_url = [NSString stringWithFormat:@"%@?%@", base_url, [query_params to_query]];
-    NSLog( @"full url: %@", full_url );
+    //    NSLog( @"full url: %@", full_url );
     NSData* data = [NSData dataWithContentsOfURL:[NSURL URLWithString:full_url]];
     if ( nil == data ) {
         return nil;
@@ -71,7 +71,9 @@
             break;
         }
         id data = [[[answer objectForKey:@"opendata"] objectForKey:@"answer"] objectForKey:@"data"];
-        NSString* remote_time = [[data objectForKey:@"@attributes"] objectForKey:@"localdatetime"];
+        NSString* remote_time_str = [[data objectForKey:@"@attributes"] objectForKey:@"localdatetime"];
+        NSDate* remote_time = [formatter dateFromString:remote_time_str];
+        [remote_time_str release];
         NSLog( @"%@", remote_time );
         
         id stoplines = [data objectForKey:@"stopline"];
@@ -82,7 +84,6 @@
                 stoplines_a = [NSArray arrayWithObject:stoplines];
             }
             for ( id stopline in stoplines_a) {
-                NSLog( @"%@", [stopline objectForKey:@"stop"] );
                 Line* line = [Line findFirstBySrcId:[stopline objectForKey:@"route"] inContext:stop.managedObjectContext];
                 if ( nil == line ) {
                     NSLog( @"Unable to find route %@", [stopline objectForKey:@"route"]);
@@ -102,10 +103,12 @@
                     stoptime.stop = stop;
                     stoptime.line = line;
                     stoptime.departure = [formatter dateFromString:[departure objectForKey:@"content"]];
+                    stoptime.remoteReferenceTime = remote_time;
                     [stoptimes addObject:[stoptime autorelease]];
                 }
             }
         }
+        [remote_time release];
         NSLog( @"stoptimes currently: %u", [stoptimes count] );
     }
     //        NSLog( @"%@", stoptimes );

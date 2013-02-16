@@ -13,7 +13,7 @@
 
 @implementation APIStopTime
 
-@synthesize stop,line,accurate,departure,direction;
+@synthesize stop,line,accurate,departure,direction,remoteReferenceTime;
 
 -(NSString*)description {
     return [NSString stringWithFormat:@"%@ %@ %@ %@", self.line.short_name, self.stop.name, self.direction, self.departure];

@@ -20,6 +20,7 @@
 @property (nonatomic, retain) NSString* direction;
 @property (atomic) BOOL accurate;
 @property (nonatomic, retain) NSDate* departure;
+@property (nonatomic, retain) NSDate* remoteReferenceTime;
 
 -(NSString*)departure:(NSDate *)relative_date;
 
