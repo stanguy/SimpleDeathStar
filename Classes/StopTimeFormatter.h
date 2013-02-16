@@ -19,6 +19,7 @@ enum  {
 
 
 -(NSString*)format:(id<TimePoint>)timepoint;
+-(void)resetDefaults;
 
 @property (atomic) BOOL relative;
 @property (atomic) NSInteger time_type;

@@ -23,12 +23,16 @@ NSDateComponents* dateToComponents( NSDate* date );
 -(id)init {
     self = [super init];
     if ( self ) {
-        SimpleDeathStarAppDelegate* app = [[UIApplication sharedApplication] delegate];
-        self.time_type = app.useArrival ? STOPTIME_ARRIVAL : STOPTIME_DEPARTURE;
-        self.relative = FALSE;
-        self.ref_date = nil;
+        [self resetDefaults];
     }
     return self;
+}
+
+-(void)resetDefaults {
+    SimpleDeathStarAppDelegate* app = [[UIApplication sharedApplication] delegate];
+    self.time_type = app.useArrival ? STOPTIME_ARRIVAL : STOPTIME_DEPARTURE;
+    self.relative = FALSE;
+    self.ref_date = nil;
 }
 
 -(NSString*)format:(id<TimePoint>)timepoint {

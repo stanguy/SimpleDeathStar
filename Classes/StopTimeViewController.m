@@ -31,6 +31,7 @@ const int kCellWidth = 46;
 
 @interface StopTimeViewController () {
     BOOL realtime;
+    NSUInteger formatter_mode;
 }
 
 @property (nonatomic, retain) NSDictionary* realtimeStoptimes;
@@ -91,11 +92,6 @@ enum SHEET_IDS {
     
     self.toolbarItems = [NSArray arrayWithObjects:self.dateChangeItem , flexible, self.poiButton, flexible, self.favButton, nil];
 
-    if ( [self.stop allCounts] > 0 ) {
-        [self.poiButton setEnabled:YES];
-    } else {
-        [self.poiButton setEnabled:NO];
-    }
     self.activity.hidden = YES;
     self.activity.hidesWhenStopped = YES;
     viewComposer = [[ADViewComposer alloc] initWithView:self.containerView];
@@ -106,6 +102,36 @@ enum SHEET_IDS {
     [self.view addGestureRecognizer:[longPressure autorelease]];
     
     self.time_formatter = [[[StopTimeFormatter alloc] init] autorelease];
+    self.time_formatter.ref_date = viewedDate_;
+    formatter_mode = 0;
+}
+
+-(void)rotateFormatMode {
+    formatter_mode = ++formatter_mode % 5;
+    switch ( formatter_mode ) {
+        case 0:
+            [self.time_formatter resetDefaults];
+            break;
+        case 1:
+            self.time_formatter.time_type = STOPTIME_DEPARTURE;
+            self.time_formatter.relative = false;
+            break;
+        case 2:
+            self.time_formatter.time_type = STOPTIME_DEPARTURE;
+            self.time_formatter.relative = true;
+            break;
+        case 3:
+            self.time_formatter.time_type = STOPTIME_ARRIVAL;
+            self.time_formatter.relative = false;
+            break;
+        case 4:
+            self.time_formatter.time_type = STOPTIME_ARRIVAL;
+            self.time_formatter.relative = true;
+            break;
+        default:
+            NSLog( @"WE SHOULD NOT HAVE COME HERE!#@" );
+            break;
+    }
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
@@ -302,9 +328,17 @@ enum SHEET_IDS {
     } else {
         label.font = [UIFont systemFontOfSize:12.0];
     }
+    if ( self.time_formatter.relative ) {
+        if ( [ftime length] < 2 ) {
+            label.textColor = [UIColor redColor];
+        }
+        label.text = [ftime stringByAppendingString:@" min"];
+    } else {
+        label.text = ftime;        
+    }
+    
     // fill
     
-    label.text = ftime;    
     label.backgroundColor = [UIColor clearColor];
     
     if (column % 2 == 0) {
@@ -433,6 +467,7 @@ enum SHEET_IDS {
     self.dateChangeView.hidden = YES;
     [viewedDate_ release];
     viewedDate_ = [self.datePicker.date retain];
+    self.time_formatter.ref_date = viewedDate_;
     [self reloadData];    
 }
 - (void)onDismissChangeDate:(id)sender {
@@ -447,6 +482,7 @@ enum SHEET_IDS {
     NSDate* tmpDate = [[viewedDate_ dateByAddingTimeInterval:-BASE_TIMESHIFT] retain];
     [viewedDate_ release];
     viewedDate_ = tmpDate;
+    self.time_formatter.ref_date = viewedDate_;
     [self reloadData];
 }
 - (IBAction)shiftRight:(id)sender {
@@ -455,17 +491,15 @@ enum SHEET_IDS {
     NSDate* tmpDate = [[viewedDate_ dateByAddingTimeInterval:BASE_TIMESHIFT] retain];
     [viewedDate_ release];
     viewedDate_ = tmpDate;
+    self.time_formatter.ref_date = viewedDate_;
     [self reloadData];
 }
 
 -(void)handleLongPress:(UILongPressGestureRecognizer*)sender {
     if (sender.state == UIGestureRecognizerStateBegan){
         NSLog( @"long press" );
-        if ( realtime ) {
-            [self refreshRealtime:nil];
-        } else {
-            [self reloadData];
-        }
+        [self rotateFormatMode];
+        [self reloadData];
     }
 }
 
@@ -565,6 +599,9 @@ enum SHEET_IDS {
         UIAlertView* alert = self.alertNoResult;
         alert.message = NSLocalizedString( @"Il n'y a pas de bus à venir", @"" );
         [alert show];
+    } else {
+        APIStopTime* ref = [[self.realtimeStoptimes objectForKey:[self.realtimeDirections objectAtIndex:0]] objectAtIndex:0];
+        self.time_formatter.ref_date = ref.remoteReferenceTime;
     }
     [self reloadData];
 }
@@ -591,6 +628,7 @@ enum SHEET_IDS {
                 realtime = NO;
                 self.realtimeDirections = nil;
                 self.realtimeStoptimes = nil;
+                self.time_formatter.ref_date = viewedDate_;
                 [self exchangeButton:self.refreshItem with:self.dateChangeItem];
                 [self reloadData];
             } else {

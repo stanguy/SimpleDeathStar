@@ -31,7 +31,7 @@
         result = [formatter stringFromDate:self.departure];
         [formatter release];
     } else {
-        NSTimeInterval diff = [relative_date timeIntervalSinceDate:self.departure];
+        NSTimeInterval diff = [self.departure timeIntervalSinceDate:relative_date];
         result = [NSString stringWithFormat:@"%d", (int)(diff / 60)];
     }
     return result;
