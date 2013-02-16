@@ -73,7 +73,6 @@
         id data = [[[answer objectForKey:@"opendata"] objectForKey:@"answer"] objectForKey:@"data"];
         NSString* remote_time_str = [[data objectForKey:@"@attributes"] objectForKey:@"localdatetime"];
         NSDate* remote_time = [formatter dateFromString:remote_time_str];
-        [remote_time_str release];
         NSLog( @"%@", remote_time );
         
         id stoplines = [data objectForKey:@"stopline"];
