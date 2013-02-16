@@ -116,7 +116,7 @@ enum SHEET_IDS {
         max_level = 5;
     }
     formatter_mode = ++formatter_mode % max_level;
-    NSString* display_type;
+    NSString* display_type = @"";
     switch ( formatter_mode ) {
         case 0:
             [self.time_formatter resetDefaults];
