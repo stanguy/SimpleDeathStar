@@ -64,12 +64,12 @@ int AboutMenuValuesRemote[] = {
         case kHelpLocal:
             self.menu = [NSArray arrayWithObjects:NSLocalizedString( @"À propos", @"" ),
                          NSLocalizedString( @"Pas de panique", @"" ), nil];
-            self.title = @"Ici";
+            self.title = NSLocalizedString( @"Ici", @"" );
             break;
         case kHelpRemote:
             self.menu = [NSArray arrayWithObjects:NSLocalizedString( @"En ligne", @"" ),
                          @"@starbusmetro", @"m.starbusmetro.fr", nil ];
-            self.title = @"Et ailleurs";
+            self.title = NSLocalizedString( @"Et ailleurs", @"" );
             break;
         default:
             break;
