@@ -19,12 +19,14 @@
     int homeStyle;
 }
 
+@property (retain) UIView* footer;
+
 @end
 
 
 @implementation HomeScreenViewController;
 
-@synthesize sections;
+@synthesize sections, footer;
 #pragma mark -
 
 -(id)initWithHomeStyle:(HomeStyle)style {
@@ -171,10 +173,20 @@
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
     if ( homeStyle != kHomeStyleFull ) {
         if ( ( section + 1 ) == [sections count] ) {
-            UILabel* label = [[UILabel alloc] initWithFrame:CGRectMake( 30, 5, 200, 25 )];
-            label.text = @"hello";
-            label.backgroundColor = [UIColor clearColor];
-            return label;
+            if ( ! self.footer ) {
+                CGRect footerFrame = [tableView rectForFooterInSection:1];
+                CGRect labelFrame = CGRectMake( 15, 10, footerFrame.size.width - 40, footerFrame.size.height - 20);
+                
+                self.footer = [[[UIView alloc] initWithFrame:footerFrame] autorelease];
+                UILabel *footerLabel = [[UILabel alloc] initWithFrame:labelFrame];
+                
+                [footer addSubview:footerLabel];
+                [footerLabel release];
+                footerLabel.font = [UIFont systemFontOfSize:9.0];
+                footerLabel.text = NSLocalizedString( @"Faites glisser latéralement pour retrouver favoris et autres...", @"" );
+                footerLabel.backgroundColor = [UIColor clearColor];
+            }
+            return self.footer;
         }
     }
     return nil;
@@ -182,7 +194,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
     if ( homeStyle != kHomeStyleFull ) {
         if ( ( section + 1 ) == [sections count] ) {
-            return 30.0f;
+            return 40.0f;
         }
     }
     return 0.0f;
