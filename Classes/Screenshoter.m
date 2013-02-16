@@ -50,7 +50,7 @@ CGImageRef UIGetScreenImage(); //private API for getting an image of the entire 
     } else {
         NSLog(@"failed to save screenshot: %@", path);
     }
-
+    CGImageRelease( CGImage );
 }
 #else
 - (void)navigationController:(UINavigationController *)navigationController didShowViewController:(UIViewController *)viewController animated:(BOOL)animated {}

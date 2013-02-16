@@ -67,7 +67,9 @@
         id answer = [self callRemoteMethod:@"getbusnextdepartures" with:params];
         if ( nil == answer ) {
             NSLog( @"no answer" );
-            *error = [NSError errorWithDomain:@"SimpleDeathStar" code:500 userInfo:nil];
+            if ( error ) {
+                *error = [NSError errorWithDomain:@"SimpleDeathStar" code:500 userInfo:nil];
+            }
             break;
         }
         id data = [[[answer objectForKey:@"opendata"] objectForKey:@"answer"] objectForKey:@"data"];
@@ -107,7 +109,6 @@
                 }
             }
         }
-        [remote_time release];
         NSLog( @"stoptimes currently: %u", [stoptimes count] );
     }
     //        NSLog( @"%@", stoptimes );

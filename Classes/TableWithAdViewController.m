@@ -33,7 +33,7 @@
         self.view = [arr objectAtIndex:0];
     } else {
         self.view = [[[UIView alloc] init] autorelease];
-        self.tableView = [[UITableView alloc] initWithFrame:self.view.frame style:[self defaultStyle]];
+        self.tableView = [[[UITableView alloc] initWithFrame:self.view.frame style:[self defaultStyle]] autorelease];
         self.tableView.delegate = self;
         self.tableView.dataSource = self;
         [self.view addSubview:self.tableView];

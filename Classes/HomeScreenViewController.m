@@ -57,24 +57,24 @@
     switch ( homeStyle ) {
         case kHomeStyleStart:
             sectionClasses = [NSArray arrayWithObjects:
-                              [[LineTypesHomeSection alloc] init],
-                              [[StopsHomeSection alloc] init], nil];
+                              [[[LineTypesHomeSection alloc] init] autorelease],
+                              [[[StopsHomeSection alloc] init] autorelease], nil];
             break;
         default:
         case kHomeStyleHelp:
             self.navigationItem.title = NSLocalizedString( @"Aide", @"" );
             sectionClasses = [NSArray arrayWithObjects:
-                              [[HelpHomeSection alloc] initWithType:kHelpLocal],
-                              [[HelpHomeSection alloc] initWithType:kHelpRemote],
+                              [[[HelpHomeSection alloc] initWithType:kHelpLocal] autorelease],
+                              [[[HelpHomeSection alloc] initWithType:kHelpRemote] autorelease],
                               nil];
             break;
         case kHomeStyleFull:
             sectionClasses = [NSArray arrayWithObjects:
-                              [[LineTypesHomeSection alloc] init],
-                              [[StopsHomeSection alloc] init],
-                              [[FavoritesHomeSection alloc] init],
-                              [[CloseStopsHomeSection alloc] init],
-                              [[HelpHomeSection alloc] init], nil];
+                              [[[LineTypesHomeSection alloc] init] autorelease],
+                              [[[StopsHomeSection alloc] init] autorelease],
+                              [[[FavoritesHomeSection alloc] init] autorelease],
+                              [[[CloseStopsHomeSection alloc] init] autorelease],
+                              [[[HelpHomeSection alloc] init] autorelease], nil];
             break;
             
     }
