@@ -66,6 +66,8 @@
 "bike" = "Bike sharing";
 "metro" = "Subway";
 "Il n'y a pas de bus à venir" = "There is no bus coming";
+"Horaires théoriques" = "Planned times";
+"Temps réel" = "Realtime departures";
 
 /* City */
 "%@ arrêts" = "%@ stops";
