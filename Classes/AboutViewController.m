@@ -9,6 +9,12 @@
 #import "AboutViewController.h"
 #import "ADViewComposer.h"
 
+@interface AboutViewController ()
+
+@property (retain,nonatomic) IBOutlet UIActivityIndicatorView* activity;
+
+@end
+
 
 @implementation AboutViewController
 
@@ -91,10 +97,13 @@
         }
         [ourApplication openURL:url];
         [self.navigationController popViewControllerAnimated:NO];
+    } else {
+        webView.hidden = YES;
+        self.activity.hidden = NO;
+        [self.activity startAnimating];
+        [webView loadRequest:[NSURLRequest requestWithURL:fileUrl]];
+        viewComposer_ = [[ADViewComposer alloc] initWithView:webView];
     }
-    
-    [webView loadRequest:[NSURLRequest requestWithURL:fileUrl]];
-    viewComposer_ = [[ADViewComposer alloc] initWithView:webView];
 }
 
 -(void) viewWillAppear:(BOOL)animated {
@@ -111,6 +120,14 @@
 #pragma -
 #pragma WebView
 
+-(void)webViewDidFinishLoad:(UIWebView *)pwebView {
+    if ( webView.hidden ) {
+        webView.hidden = NO;
+        self.activity.hidden = YES;
+        [self.activity stopAnimating];
+    }
+}
+
 -(void)webView:(UIWebView*)view didFailLoadWithError:(NSError*)error {
     UIAlertView *alert =
     [[UIAlertView alloc] initWithTitle: NSLocalizedString( @"Erreur", @"" )
@@ -124,8 +141,13 @@
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
 {
-    NSLog( @"%@", request );
-    return TRUE;
+    if ( [request.URL.scheme isEqualToString:@"file"] ) {
+        return YES;
+    } else {
+        UIApplication *ourApplication = [UIApplication sharedApplication];
+        [ourApplication performSelector:@selector(openURL:) withObject:request.URL afterDelay:0.5];
+        return NO;
+    }
 }
 
 #pragma -
