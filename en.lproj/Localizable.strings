@@ -48,6 +48,7 @@
 /* Lines */
 "Lignes" = "Lines";
 "Ligne %@" = "Line %@";
+"Arrêt %@" = "%@ stop";
 
 /* Stops */
 "Arrêt à rechercher" = "Search stops";
