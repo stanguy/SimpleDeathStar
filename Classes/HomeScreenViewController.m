@@ -60,6 +60,7 @@
             break;
         default:
         case kHomeStyleHelp:
+            self.navigationItem.title = NSLocalizedString( @"Aide", @"" );
             sectionClasses = [NSArray arrayWithObjects:
                               [[HelpHomeSection alloc] initWithType:kHelpLocal],
                               [[HelpHomeSection alloc] initWithType:kHelpRemote],
@@ -165,6 +166,26 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [[self.sections objectAtIndex:indexPath.section] selectRow:indexPath.row from:self];
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
+    if ( homeStyle != kHomeStyleFull ) {
+        if ( ( section + 1 ) == [sections count] ) {
+            UILabel* label = [[UILabel alloc] initWithFrame:CGRectMake( 30, 5, 200, 25 )];
+            label.text = @"hello";
+            label.backgroundColor = [UIColor clearColor];
+            return label;
+        }
+    }
+    return nil;
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+    if ( homeStyle != kHomeStyleFull ) {
+        if ( ( section + 1 ) == [sections count] ) {
+            return 30.0f;
+        }
+    }
+    return 0.0f;
 }
 
 #pragma mark -
