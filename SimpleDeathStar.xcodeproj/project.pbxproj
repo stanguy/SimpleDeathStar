@@ -367,6 +367,8 @@
 		963CCBD616503B52004081D3 /* TTZ.png in Resources */ = {isa = PBXBuildFile; fileRef = 963CCB1216503B52004081D3 /* TTZ.png */; };
 		963CCBD716503B52004081D3 /* TTZ@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 963CCB1316503B52004081D3 /* TTZ@2x.png */; };
 		963CCBDA165042E8004081D3 /* simpledeathstar_appicon~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 963CCBD9165042E8004081D3 /* simpledeathstar_appicon~ipad.png */; };
+		96449D3B16CF8250004D6651 /* Screenshoter.m in Sources */ = {isa = PBXBuildFile; fileRef = 96449D3A16CF8250004D6651 /* Screenshoter.m */; };
+		96449D3C16CF8250004D6651 /* Screenshoter.m in Sources */ = {isa = PBXBuildFile; fileRef = 96449D3A16CF8250004D6651 /* Screenshoter.m */; };
 		96539CBC12C94C68002FDF29 /* CityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96539CBA12C94C68002FDF29 /* CityViewController.m */; };
 		96539CBD12C94C68002FDF29 /* CityViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96539CBB12C94C68002FDF29 /* CityViewController.xib */; };
 		966FF0D5153E054A00A8AA6F /* TwitsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 966FF0D4153E054A00A8AA6F /* TwitsViewController.m */; };
@@ -783,6 +785,8 @@
 		963CCB1216503B52004081D3 /* TTZ.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TTZ.png; sourceTree = "<group>"; };
 		963CCB1316503B52004081D3 /* TTZ@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TTZ@2x.png"; sourceTree = "<group>"; };
 		963CCBD9165042E8004081D3 /* simpledeathstar_appicon~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "simpledeathstar_appicon~ipad.png"; sourceTree = "<group>"; };
+		96449D3916CF8250004D6651 /* Screenshoter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Screenshoter.h; sourceTree = "<group>"; };
+		96449D3A16CF8250004D6651 /* Screenshoter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Screenshoter.m; sourceTree = "<group>"; };
 		96539CB912C94C68002FDF29 /* CityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CityViewController.h; sourceTree = "<group>"; };
 		96539CBA12C94C68002FDF29 /* CityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CityViewController.m; sourceTree = "<group>"; };
 		96539CBB12C94C68002FDF29 /* CityViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = CityViewController.xib; path = Classes/CityViewController.xib; sourceTree = "<group>"; };
@@ -1037,6 +1041,8 @@
 				969E010A16ADE6050000A8C4 /* StopTimeFormatter.h */,
 				969E010B16ADE6050000A8C4 /* StopTimeFormatter.m */,
 				969E010E16AF28420000A8C4 /* TimePoint.h */,
+				96449D3916CF8250004D6651 /* Screenshoter.h */,
+				96449D3A16CF8250004D6651 /* Screenshoter.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -2074,6 +2080,7 @@
 				969E010C16ADE6050000A8C4 /* StopTimeFormatter.m in Sources */,
 				969E011116B331DD0000A8C4 /* TimePresenterSection.m in Sources */,
 				969E011516B598430000A8C4 /* ISO8601DateFormatter.m in Sources */,
+				96449D3B16CF8250004D6651 /* Screenshoter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2133,6 +2140,7 @@
 				969E010D16ADE6050000A8C4 /* StopTimeFormatter.m in Sources */,
 				969E011216B331DD0000A8C4 /* TimePresenterSection.m in Sources */,
 				969E011616B598430000A8C4 /* ISO8601DateFormatter.m in Sources */,
+				96449D3C16CF8250004D6651 /* Screenshoter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

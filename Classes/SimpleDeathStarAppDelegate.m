@@ -13,6 +13,7 @@
 
 #import <iAd/ADBannerView.h>
 #import "ADViewComposer.h"
+#import "Screenshoter.h"
 
 @implementation SimpleDeathStarAppDelegate
 
@@ -105,6 +106,7 @@
     navigationController = [[UINavigationController alloc] initWithRootViewController:home];
     [window setRootViewController:navigationController];
     [window makeKeyAndVisible];
+    navigationController.delegate = [[Screenshoter alloc] init];
     return YES;
 }
 
