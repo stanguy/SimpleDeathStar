@@ -127,11 +127,13 @@ enum SHEET_IDS {
 
 
 - (UIAlertView*)alertNoResult {
+    NSString* defaultMsg = NSLocalizedString( @"Il n'y a pas d'horaire de passage prévu à la date indiquée", @"" );
     if ( alertNoResult_ != nil ) {
+        alertNoResult_.message = defaultMsg;
         return alertNoResult_;
     }
     alertNoResult_ = [[[UIAlertView alloc] initWithTitle:NSLocalizedString( @"Aucun passage", @"" )
-                                                 message:NSLocalizedString( @"Il n'y a pas d'horaire de passage prévu à la date indiquée", @"" )
+                                                 message:defaultMsg
                                                 delegate:nil 
                                        cancelButtonTitle:@"Ok" 
                                        otherButtonTitles:nil] retain];
@@ -551,10 +553,17 @@ enum SHEET_IDS {
 }
 
 - (void)endRealtimeFetch:(NSNumber*)hasError {
-    if ( [hasError boolValue] ) {
-        NSLog( @"end realtime fetch with error" );
-    }
     [self.activity stopAnimating];
+    if ( [hasError boolValue] ) {
+        UIAlertView* alert = self.alertNoResult;
+        alert.message = NSLocalizedString( @"Une erreur réseau a eu lieu", @"" );
+        [alert show];
+    } else if ( self.realtimeDirections && [self.realtimeDirections count] == 0) {
+        // noresult
+        UIAlertView* alert = self.alertNoResult;
+        alert.message = NSLocalizedString( @"Il n'y a pas de bus à venir", @"" );
+        [alert show];
+    }
     [self reloadData];
 }
 
@@ -578,6 +587,8 @@ enum SHEET_IDS {
         case 1:
             if ( realtime ) {
                 realtime = NO;
+                self.realtimeDirections = nil;
+                self.realtimeStoptimes = nil;
                 [self exchangeButton:self.refreshItem with:self.dateChangeItem];
                 [self reloadData];
             } else {

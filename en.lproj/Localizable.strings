@@ -65,6 +65,7 @@
 "pos" = "Point of sale";
 "bike" = "Bike sharing";
 "metro" = "Subway";
+"Il n'y a pas de bus à venir" = "There is no bus coming";
 
 /* City */
 "%@ arrêts" = "%@ stops";
