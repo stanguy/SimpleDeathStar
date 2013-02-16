@@ -27,7 +27,7 @@
 }
 
 -(void)loadView {
-    NSLog( @"loadView" );
+    //    NSLog( @"loadView" );
     if ( nil != self.nibName ) {
         NSArray* arr = [[NSBundle mainBundle] loadNibNamed:NSStringFromClass([self class]) owner:self options:nil];
         self.view = [arr objectAtIndex:0];
@@ -45,7 +45,7 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    NSLog( @"viewWillAppear %@", self );
+    //    NSLog( @"viewWillAppear %@", self );
     [super viewWillAppear:animated];
     NSIndexPath* indexPath = [self.tableView indexPathForSelectedRow];
     if ( indexPath ) {
@@ -57,7 +57,7 @@
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
-    NSLog( @"viewWillDisAppear %@", self );
+    //    NSLog( @"viewWillDisAppear %@", self );
     if ( ! self.skipComposingOnEvents ) {
         [viewComposer toDisappear];
     }

@@ -150,13 +150,13 @@
 #pragma mark - child
 
 - (void)didBecomeActive{
-    NSLog( @"didBecomeActive" );
+    //    NSLog( @"didBecomeActive" );
     [viewComposer changeDisplay:YES];
 }
 
 
 - (void)didResignActive{
-    NSLog( @"didResignActive" );
+    //    NSLog( @"didResignActive" );
     [viewComposer toDisappear];
 }
 

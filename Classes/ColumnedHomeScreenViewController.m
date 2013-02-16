@@ -52,12 +52,12 @@
 
 -(void) viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    NSLog( @"viewWillAppear" );
+    //    NSLog( @"viewWillAppear" );
 }
 
 -(void) viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    NSLog( @"viewWillDisAppear" );
+    //    NSLog( @"viewWillDisAppear" );
 }
 
 
@@ -102,26 +102,26 @@
 #pragma mark - Home
 
 -(void)reloadSection:(id)section{
-    NSLog( @"reload section" );
+    //    NSLog( @"reload section" );
     [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:YES];
 }
 
 - (void)reloadByTimer {
-    NSLog( @"Column:reloadByTimer" );
+    //    NSLog( @"Column:reloadByTimer" );
     [section reloadByTimer];
 }
 
 #pragma mark - child
 
 - (void)didBecomeActive{
-    NSLog( @"didBecomeActive" );
+    //    NSLog( @"didBecomeActive" );
     [viewComposer changeDisplay:YES];
     [section reloadByTimer];
 }
 
 
 - (void)didResignActive{
-    NSLog( @"didResignActive" );
+//    NSLog( @"didResignActive" );
     [viewComposer toDisappear];
 }
 

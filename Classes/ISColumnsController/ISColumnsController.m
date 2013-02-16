@@ -126,7 +126,7 @@
     [[self.viewControllers objectAtIndex:self.pageControl.currentPage] didBecomeActive];
 }
 -(void)viewWillDisappear:(BOOL)animated {
-    NSLog( @"viewWillDisappear" );
+    //    NSLog( @"viewWillDisappear" );
     [[self.viewControllers objectAtIndex:self.pageControl.currentPage] didResignActive];
 }
 
