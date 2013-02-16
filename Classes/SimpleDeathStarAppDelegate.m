@@ -106,7 +106,10 @@
     navigationController = [[UINavigationController alloc] initWithRootViewController:home];
     [window setRootViewController:navigationController];
     [window makeKeyAndVisible];
-    navigationController.delegate = [[Screenshoter alloc] init];
+#ifdef CAN_SCREENSHOT
+    self.screenshoter = [[[Screenshoter alloc] init] autorelease];
+    navigationController.delegate = self.screenshoter;
+#endif
     return YES;
 }
 

@@ -10,11 +10,25 @@
 
 CGImageRef UIGetScreenImage(); //private API for getting an image of the entire screen
 
+@interface Screenshoter ()
+
+-(void)takeDelayedScreenshot:(NSString*)name;
+
+@end
+
 @implementation Screenshoter
+
+#ifdef CAN_SCREENSHOT
+#warning Screenshots ahead!
 
 - (void)navigationController:(UINavigationController *)navigationController didShowViewController:(UIViewController *)viewController animated:(BOOL)animated
 {
-    [self performSelector:@selector(takeScreenshot:) withObject:[[viewController class] description] afterDelay:0.5];
+    [self takeDelayedScreenshot:[[viewController class] description]];
+}
+
+-(void)takeDelayedScreenshot:(NSString*)name
+{
+    [self performSelector:@selector(takeScreenshot:) withObject:name afterDelay:0.5];
 }
 
 -(void)takeScreenshot:(NSString*)name
@@ -38,5 +52,10 @@ CGImageRef UIGetScreenImage(); //private API for getting an image of the entire 
     }
 
 }
+#else
+- (void)navigationController:(UINavigationController *)navigationController didShowViewController:(UIViewController *)viewController animated:(BOOL)animated {}
+-(void)takeScreenshot:(NSString*)name{}
+#endif
+
 
 @end

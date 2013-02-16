@@ -14,3 +14,7 @@
     #import <CoreData/CoreData.h>
     #import <CoreLocation/CoreLocation.h>
 #endif
+
+#if defined(DEBUG) && defined(SCREENSHOT) && SCREENSHOT == 1
+#define CAN_SCREENSHOT
+#endif

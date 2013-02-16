@@ -9,6 +9,9 @@
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
 
+#ifdef CAN_SCREENSHOT
+#import "Screenshoter.h"
+#endif
 
 @interface SimpleDeathStarAppDelegate : NSObject <UIApplicationDelegate> {
     
@@ -43,12 +46,20 @@
 @property (nonatomic, retain) id adView;
 @property BOOL useArrival;
 @property BOOL useRelativeTime;
+#ifdef CAN_SCREENSHOT
+@property (nonatomic, retain) Screenshoter* screenshoter;
+#endif
 
 - (NSString *)applicationDocumentsDirectory;
 - (void)saveContext;
 
 + (id)adView;
 
-
 @end
+
+#ifdef CAN_SCREENSHOT
+#define TAKE_SCREENSHOT(name) if(true) { SimpleDeathStarAppDelegate* _sc_delegate = (SimpleDeathStarAppDelegate*)[[UIApplication sharedApplication] delegate]; [_sc_delegate.screenshoter takeDelayedScreenshot:name]; }
+#else
+#define TAKE_SCREENSHOT(name)
+#endif
 

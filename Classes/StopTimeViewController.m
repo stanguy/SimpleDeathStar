@@ -425,6 +425,7 @@ enum SHEET_IDS {
     self.datePicker.date = viewedDate_;
     [self.view bringSubviewToFront:self.dateChangeView];
     self.dateChangeView.hidden = NO;
+    TAKE_SCREENSHOT(@"ChangeDate");
 }
 
 -(void)onChangeDate:(id)sender {
@@ -511,6 +512,7 @@ enum SHEET_IDS {
     }
     [sheet showFromToolbar:self.navigationController.toolbar];
     [sheet release];
+    TAKE_SCREENSHOT(@"realtime");
 }
 
 -(void)loadRealTimeData{

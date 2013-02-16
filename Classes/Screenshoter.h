@@ -10,6 +10,7 @@
 
 @interface Screenshoter : NSObject <UINavigationControllerDelegate>
 
+-(void)takeDelayedScreenshot:(NSString*)name;
 -(void)takeScreenshot:(NSString*)name;
 
 @end
