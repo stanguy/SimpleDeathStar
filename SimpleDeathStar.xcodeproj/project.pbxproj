@@ -426,6 +426,8 @@
 		968ACD1B1657ADB9003D70AD /* MultiColumnsHomeScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 968ACD1A1657ADB9003D70AD /* MultiColumnsHomeScreenViewController.m */; };
 		969229BE12C6B799007C965D /* HomeScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 969229BC12C6B799007C965D /* HomeScreenViewController.m */; };
 		969229BF12C6B799007C965D /* HomeScreenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 969229BD12C6B799007C965D /* HomeScreenViewController.xib */; };
+		9694BE8B16CFD6AD00135522 /* home_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 9694BE8916CFD6AD00135522 /* home_bg.png */; };
+		9694BE8C16CFD6AD00135522 /* home_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9694BE8A16CFD6AD00135522 /* home_bg@2x.png */; };
 		969E010C16ADE6050000A8C4 /* StopTimeFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 969E010B16ADE6050000A8C4 /* StopTimeFormatter.m */; };
 		969E010D16ADE6050000A8C4 /* StopTimeFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 969E010B16ADE6050000A8C4 /* StopTimeFormatter.m */; };
 		969E011116B331DD0000A8C4 /* TimePresenterSection.m in Sources */ = {isa = PBXBuildFile; fileRef = 969E011016B331DD0000A8C4 /* TimePresenterSection.m */; };
@@ -863,6 +865,8 @@
 		969229BB12C6B799007C965D /* HomeScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeScreenViewController.h; sourceTree = "<group>"; };
 		969229BC12C6B799007C965D /* HomeScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeScreenViewController.m; sourceTree = "<group>"; };
 		969229BD12C6B799007C965D /* HomeScreenViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = HomeScreenViewController.xib; path = Classes/HomeScreenViewController.xib; sourceTree = "<group>"; };
+		9694BE8916CFD6AD00135522 /* home_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home_bg.png; sourceTree = "<group>"; };
+		9694BE8A16CFD6AD00135522 /* home_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home_bg@2x.png"; sourceTree = "<group>"; };
 		969E010A16ADE6050000A8C4 /* StopTimeFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StopTimeFormatter.h; sourceTree = "<group>"; };
 		969E010B16ADE6050000A8C4 /* StopTimeFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StopTimeFormatter.m; sourceTree = "<group>"; };
 		969E010E16AF28420000A8C4 /* TimePoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimePoint.h; sourceTree = "<group>"; };
@@ -1122,6 +1126,8 @@
 		96162C5A15E934810085B361 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				9694BE8916CFD6AD00135522 /* home_bg.png */,
+				9694BE8A16CFD6AD00135522 /* home_bg@2x.png */,
 				9630E98A169B6F23005F54A1 /* back.png */,
 				9630E98B169B6F23005F54A1 /* back@2x.png */,
 				9677B44512F21EDC0016A460 /* accessible.png */,
@@ -1934,6 +1940,8 @@
 				963CCBDA165042E8004081D3 /* simpledeathstar_appicon~ipad.png in Resources */,
 				9630E98C169B6F23005F54A1 /* back.png in Resources */,
 				9630E98D169B6F23005F54A1 /* back@2x.png in Resources */,
+				9694BE8B16CFD6AD00135522 /* home_bg.png in Resources */,
+				9694BE8C16CFD6AD00135522 /* home_bg@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2198,7 +2206,15 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = SimpleDeathStar_Prefix.pch;
-				GCC_PREPROCESSOR_DEFINITIONS = "KEOLIS_API_KEY=$KEOLIS_API_KEY";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"KEOLIS_API_KEY=$KEOLIS_API_KEY",
+					"DEBUG=1",
+				);
+				"GCC_PREPROCESSOR_DEFINITIONS[arch=*]" = (
+					"KEOLIS_API_KEY=$KEOLIS_API_KEY",
+					"DEBUG=1",
+					"SCREENSHOT=0",
+				);
 				GCC_THUMB_SUPPORT = NO;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				HEADER_SEARCH_PATHS = (

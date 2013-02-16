@@ -37,6 +37,9 @@
         [refreshControl addTarget:self.section action:@selector(refresh:) forControlEvents:UIControlEventValueChanged];
         [self.tableView addSubview:[refreshControl autorelease]];
     }
+    self.tableView.backgroundColor = [UIColor clearColor];
+    self.tableView.opaque = NO;
+    self.tableView.backgroundView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"home_bg"]] autorelease];
     
     self.navigationItem.title = NSLocalizedString( [section title], @"" );
 }
@@ -71,7 +74,7 @@
 }
 
 -(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
-    cell.backgroundColor = [UIColor whiteColor];    
+    cell.backgroundColor = [UIColor clearColor];
 }
 
 
