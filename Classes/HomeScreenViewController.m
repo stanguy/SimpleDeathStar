@@ -171,7 +171,7 @@
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
-    if ( homeStyle != kHomeStyleFull ) {
+    if ( homeStyle == kHomeStyleStart ) {
         if ( ( section + 1 ) == [sections count] ) {
             if ( ! self.footer ) {
                 CGRect footerFrame = [tableView rectForFooterInSection:1];
