@@ -40,7 +40,7 @@
     self.tableView.backgroundColor = [UIColor clearColor];
     self.tableView.opaque = NO;
     self.tableView.backgroundView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"home_bg"]] autorelease];
-    
+    self.tableView.separatorColor = [UIColor clearColor];
     self.navigationItem.title = NSLocalizedString( [section title], @"" );
 }
 
