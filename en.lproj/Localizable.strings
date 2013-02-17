@@ -92,3 +92,4 @@
 /* map */
 "Mode hors-ligne: zoomez pour afficher les arrêts" = "Offline mode: zoom-in to display stops";
 "Mode hors-ligne: pas d'arrêt dans la zone" = "Offline mode: no stops in the area";
+"Arrêts sur la carte" = "Stops on the map";

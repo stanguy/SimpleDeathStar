@@ -14,6 +14,7 @@
 #import "StopTimeViewController.h"
 #import "Stop.h"
 #import "ADViewComposer.h"
+#import "SimpleDeathStarAppDelegate.h"
 
 #define MAP_KEY @"768198d2ae5cae0d414a3c40bad1a80d2336fc36"
 
@@ -101,6 +102,7 @@
     }
     [view setAnnotation:marker];
     view.pinColor = MKPinAnnotationColorGreen;
+    TAKE_SCREENSHOT(@"map-marker");
     
     return view;
 }
@@ -133,8 +135,7 @@
     }
 
     view.pinColor = MKPinAnnotationColorGreen;
-    
-    return view;    
+    return view;
 }
 
 - (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control {
@@ -155,6 +156,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     errorCount = 0;
+    self.title = NSLocalizedString( @"Arrêts sur la carte", @"" );
 #ifdef VERSION_STLO
     self.mapView.delegate = self;
     [self updateStopAnnotations];
