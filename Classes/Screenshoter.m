@@ -28,6 +28,7 @@ CGImageRef UIGetScreenImage(); //private API for getting an image of the entire 
 
 -(void)takeDelayedScreenshot:(NSString*)name
 {
+    [NSObject cancelPreviousPerformRequestsWithTarget:self];
     [self performSelector:@selector(takeScreenshot:) withObject:name afterDelay:0.5];
 }
 
