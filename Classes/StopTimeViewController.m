@@ -348,7 +348,9 @@ enum SHEET_IDS {
         if ( [ftime length] < 2 ) {
             label.textColor = [UIColor redColor];
         }
-        label.text = [ftime stringByAppendingString:@" min"];
+        if ( ftime != NO_TIME ) {
+            label.text = [ftime stringByAppendingString:@" min"];
+        }
     } else {
         label.text = ftime;        
     }
