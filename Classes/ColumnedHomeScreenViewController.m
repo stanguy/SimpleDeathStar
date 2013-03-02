@@ -7,6 +7,7 @@
 //
 
 #import "ColumnedHomeScreenViewController.h"
+#import "SimpleDeathStarAppDelegate.h"
 
 @interface ColumnedHomeScreenViewController ()
 
@@ -117,6 +118,7 @@
     //    NSLog( @"didBecomeActive" );
     [viewComposer changeDisplay:YES];
     [section reloadByTimer];
+    TAKE_SCREENSHOT([[[self class] description] stringByAppendingString:@"active"]);
 }
 
 
