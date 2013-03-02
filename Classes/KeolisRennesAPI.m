@@ -38,6 +38,14 @@
     if ( nil != error ) {
         return nil;
     }
+    id status = [[[json objectForKey:@"opendata"] objectForKey:@"answer"] objectForKey:@"status"];
+    if ( nil == status ) {
+        return nil; // no status
+    }
+    id code = [[status objectForKey:@"@attributes"] objectForKey:@"code"];
+    if ( nil == code || 0 != [code intValue] ) {
+        return nil; // some error occurred
+    }
     return json;
 }
 
