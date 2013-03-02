@@ -566,6 +566,10 @@ enum SHEET_IDS {
     TAKE_SCREENSHOT(@"realtime");
 }
 
+#ifndef KEOLIS_API_KEY
+#error "Missing Key for the API"
+#endif
+
 -(void)loadRealTimeData{
     KeolisRennesAPI* api = [[[KeolisRennesAPI alloc] init] autorelease];
     api.key = [NSString stringWithCString:xstr(KEOLIS_API_KEY) encoding:NSUTF8StringEncoding];
