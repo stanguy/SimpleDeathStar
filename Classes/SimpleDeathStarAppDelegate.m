@@ -78,11 +78,12 @@
     }
     
     useRelativeTime = [defaults boolForKey:@"relative_time"];
+    BOOL use_old_home = [defaults boolForKey:@"old_home"];
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(preferencesChanged:) name:NSUserDefaultsDidChangeNotification object:nil];
     
     UIViewController* home;
-    if ( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone ) {
+    if ( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone && ! use_old_home ) {
         MultiColumnsHomeScreenViewController* tmp_home = [[[MultiColumnsHomeScreenViewController alloc] init] autorelease];
         NSNumber* page = [defaults objectForKey:@"startupPage"];
         if ( nil != page ) {
