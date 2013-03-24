@@ -156,6 +156,14 @@
 		962B82C112C6D1FB007EA09F /* Stop.m in Sources */ = {isa = PBXBuildFile; fileRef = 962B82C012C6D1FB007EA09F /* Stop.m */; };
 		962B82CD12C6D30D007EA09F /* StopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 962B82CB12C6D30D007EA09F /* StopViewController.m */; };
 		962B82CE12C6D30D007EA09F /* StopViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 962B82CC12C6D30D007EA09F /* StopViewController.xib */; };
+		9630AB2416FA6F9000E493CB /* _GTFSCalendarDate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9630AB1D16FA6F9000E493CB /* _GTFSCalendarDate.m */; };
+		9630AB2516FA6F9000E493CB /* _GTFSCalendarDate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9630AB1D16FA6F9000E493CB /* _GTFSCalendarDate.m */; };
+		9630AB2616FA6F9000E493CB /* GTFSCalendarDate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9630AB1F16FA6F9000E493CB /* GTFSCalendarDate.m */; };
+		9630AB2716FA6F9000E493CB /* GTFSCalendarDate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9630AB1F16FA6F9000E493CB /* GTFSCalendarDate.m */; };
+		9630AB2816FA6F9000E493CB /* _GTFSCalendar.m in Sources */ = {isa = PBXBuildFile; fileRef = 9630AB2116FA6F9000E493CB /* _GTFSCalendar.m */; };
+		9630AB2916FA6F9000E493CB /* _GTFSCalendar.m in Sources */ = {isa = PBXBuildFile; fileRef = 9630AB2116FA6F9000E493CB /* _GTFSCalendar.m */; };
+		9630AB2A16FA6F9000E493CB /* GTFSCalendar.m in Sources */ = {isa = PBXBuildFile; fileRef = 9630AB2316FA6F9000E493CB /* GTFSCalendar.m */; };
+		9630AB2B16FA6F9000E493CB /* GTFSCalendar.m in Sources */ = {isa = PBXBuildFile; fileRef = 9630AB2316FA6F9000E493CB /* GTFSCalendar.m */; };
 		9630E98C169B6F23005F54A1 /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = 9630E98A169B6F23005F54A1 /* back.png */; };
 		9630E98D169B6F23005F54A1 /* back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9630E98B169B6F23005F54A1 /* back@2x.png */; };
 		9631C0F812C757CF0002EB78 /* _Line.m in Sources */ = {isa = PBXBuildFile; fileRef = 9631C0F512C757CF0002EB78 /* _Line.m */; };
@@ -576,6 +584,14 @@
 		962B82CA12C6D30D007EA09F /* StopViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StopViewController.h; sourceTree = "<group>"; };
 		962B82CB12C6D30D007EA09F /* StopViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StopViewController.m; sourceTree = "<group>"; };
 		962B82CC12C6D30D007EA09F /* StopViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = StopViewController.xib; path = Classes/StopViewController.xib; sourceTree = "<group>"; };
+		9630AB1C16FA6F9000E493CB /* _GTFSCalendarDate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _GTFSCalendarDate.h; sourceTree = "<group>"; };
+		9630AB1D16FA6F9000E493CB /* _GTFSCalendarDate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _GTFSCalendarDate.m; sourceTree = "<group>"; };
+		9630AB1E16FA6F9000E493CB /* GTFSCalendarDate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTFSCalendarDate.h; sourceTree = "<group>"; };
+		9630AB1F16FA6F9000E493CB /* GTFSCalendarDate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTFSCalendarDate.m; sourceTree = "<group>"; };
+		9630AB2016FA6F9000E493CB /* _GTFSCalendar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _GTFSCalendar.h; sourceTree = "<group>"; };
+		9630AB2116FA6F9000E493CB /* _GTFSCalendar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _GTFSCalendar.m; sourceTree = "<group>"; };
+		9630AB2216FA6F9000E493CB /* GTFSCalendar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTFSCalendar.h; sourceTree = "<group>"; };
+		9630AB2316FA6F9000E493CB /* GTFSCalendar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTFSCalendar.m; sourceTree = "<group>"; };
 		9630E98A169B6F23005F54A1 /* back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back.png; sourceTree = "<group>"; };
 		9630E98B169B6F23005F54A1 /* back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "back@2x.png"; sourceTree = "<group>"; };
 		9631C0F412C757CF0002EB78 /* _Line.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _Line.h; sourceTree = "<group>"; };
@@ -1235,6 +1251,10 @@
 				9631C11B12C758890002EB78 /* Direction.m */,
 				96B1E1BD12DB8607008007BD /* Favorite.h */,
 				96B1E1BE12DB8607008007BD /* Favorite.m */,
+				9630AB2216FA6F9000E493CB /* GTFSCalendar.h */,
+				9630AB2316FA6F9000E493CB /* GTFSCalendar.m */,
+				9630AB1E16FA6F9000E493CB /* GTFSCalendarDate.h */,
+				9630AB1F16FA6F9000E493CB /* GTFSCalendarDate.m */,
 				962B81AB12C6C153007EA09F /* Line.h */,
 				962B81AC12C6C153007EA09F /* Line.m */,
 				9677B3D012F20CA40016A460 /* Poi.h */,
@@ -1333,6 +1353,10 @@
 		96B1E1C112DB860F008007BD /* Auto */ = {
 			isa = PBXGroup;
 			children = (
+				9630AB1C16FA6F9000E493CB /* _GTFSCalendarDate.h */,
+				9630AB1D16FA6F9000E493CB /* _GTFSCalendarDate.m */,
+				9630AB2016FA6F9000E493CB /* _GTFSCalendar.h */,
+				9630AB2116FA6F9000E493CB /* _GTFSCalendar.m */,
 				96F5F366135CD3F40058C487 /* _StopAlias.h */,
 				96F5F367135CD3F40058C487 /* _StopAlias.m */,
 				9677B3D412F20CB20016A460 /* _ClosePoi.h */,
@@ -2126,6 +2150,10 @@
 				969E011516B598430000A8C4 /* ISO8601DateFormatter.m in Sources */,
 				96449D3B16CF8250004D6651 /* Screenshoter.m in Sources */,
 				9694BE9116D00DB500135522 /* iToast.m in Sources */,
+				9630AB2416FA6F9000E493CB /* _GTFSCalendarDate.m in Sources */,
+				9630AB2616FA6F9000E493CB /* GTFSCalendarDate.m in Sources */,
+				9630AB2816FA6F9000E493CB /* _GTFSCalendar.m in Sources */,
+				9630AB2A16FA6F9000E493CB /* GTFSCalendar.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2187,6 +2215,10 @@
 				969E011616B598430000A8C4 /* ISO8601DateFormatter.m in Sources */,
 				96449D3C16CF8250004D6651 /* Screenshoter.m in Sources */,
 				9694BE9216D00DB500135522 /* iToast.m in Sources */,
+				9630AB2516FA6F9000E493CB /* _GTFSCalendarDate.m in Sources */,
+				9630AB2716FA6F9000E493CB /* GTFSCalendarDate.m in Sources */,
+				9630AB2916FA6F9000E493CB /* _GTFSCalendar.m in Sources */,
+				9630AB2B16FA6F9000E493CB /* GTFSCalendar.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,28 +1,12 @@
 #import "StopTime.h"
 #import "Favorite.h"
+#import "GTFSCalendar.h"
 #import "Line.h"
 #import "Stop.h"
 #import "SimpleDeathStarAppDelegate.h"
 
 @implementation StopTime
 
-/*
- Thanks, Yan!
- % perl -e 'while(<>) { next unless /joursFeries\.add\("(\d\d)(\d\d)(\d{4})"/ ; print $3 . $2 . $1 . ",\n" ; }' < JoursFeries.java
- */
-int HOLIDAYS[] = {
-    20130401,
-    20130501,
-    20130508,
-    20130509,
-    20130519,
-    20130714,
-    20130815,
-    20131101,
-    20131111,
-    20131225,
-    0 // sentinel
-};
 
 NSString* sortKey(){
     if ( ((SimpleDeathStarAppDelegate*)[[UIApplication sharedApplication] delegate]).useArrival ) {
@@ -42,53 +26,26 @@ NSDateComponents* dateToComponents( NSDate* date ) {
     return dateComponents;
 }
 
-NSPredicate* buildPredicate( Line* line, Stop* stop, int min_arrival, int max_arrival, NSDateComponents* dateComponents ) {
+NSPredicate* buildPredicate( Line* line, Stop* stop, int min_arrival, int max_arrival, NSDate* date ) {
     NSPredicate* predicate = nil;
     
     NSString* lineStrPred, *stopStrPred;
     if ( ((SimpleDeathStarAppDelegate*)[[UIApplication sharedApplication] delegate]).useArrival ) {
-        lineStrPred = @"line = %@ AND stop = %@ AND arrival > %@ AND arrival < %@ AND calendar & %@ > 0";
-        stopStrPred = @"stop = %@ AND arrival > %@ AND arrival < %@ AND calendar & %@ > 0";
+        lineStrPred = @"line = %@ AND stop = %@ AND arrival > %@ AND arrival < %@ AND calendar IN %@";
+        stopStrPred = @"stop = %@ AND arrival > %@ AND arrival < %@ AND calendar IN %@";
     } else {
-        lineStrPred = @"line = %@ AND stop = %@ AND departure > %@ AND departure < %@ AND calendar & %@ > 0";
-        stopStrPred = @"stop = %@ AND departure > %@ AND departure < %@ AND calendar & %@ > 0";
+        lineStrPred = @"line = %@ AND stop = %@ AND departure > %@ AND departure < %@ AND calendar IN %@";
+        stopStrPred = @"stop = %@ AND departure > %@ AND departure < %@ AND calendar IN %@ ";
     }
 
+    NSArray* calendars = [GTFSCalendar calendarsAt:date];
     
-    // weekday 1 = Sunday for Gregorian calendar
-    int weekday = [dateComponents weekday] - 2;
-    if (weekday < 0) {
-        weekday += 7;
-    }
-    
-    int month = [dateComponents month];
-    int day = [dateComponents day];
-    int year = [dateComponents year];
-    
-    if ( month == 5 && day == 1 ) {
-        // there is no bus on May 1st
-        predicate = [NSPredicate predicateWithFormat:@"FALSEPREDICATE"];
-        return predicate;
-    } else {
-        // holiday: like a sunday
-        int holiday = ( ( year * 100 ) + month ) * 100 + day;
-        int* ph = HOLIDAYS;
-        // look Ma'! Hairy C!
-        while ( *ph && *ph != holiday ) {
-            ++ph;
-        }
-        if ( *ph ) {
-            weekday = 6;
-        }
-    }
-    int calendar = 1 << weekday ;
-
     if (line != nil) {
         predicate = [NSPredicate predicateWithFormat:
-                     lineStrPred, line, stop, [NSNumber numberWithInt:min_arrival], [NSNumber numberWithInt:max_arrival], [NSNumber numberWithInt:calendar] ];
+                     lineStrPred, line, stop, [NSNumber numberWithInt:min_arrival], [NSNumber numberWithInt:max_arrival], calendars ];
     } else {
         predicate = [NSPredicate predicateWithFormat:
-                     stopStrPred, stop, [NSNumber numberWithInt:min_arrival], [NSNumber numberWithInt:max_arrival], [NSNumber numberWithInt:calendar] ];
+                     stopStrPred, stop, [NSNumber numberWithInt:min_arrival], [NSNumber numberWithInt:max_arrival], calendars ];
     }
     return predicate;
 }
@@ -110,14 +67,13 @@ NSPredicate* buildPredicate( Line* line, Stop* stop, int min_arrival, int max_ar
     int min_arrival = ([dateComponents hour] * 60 + [dateComponents minute]) * 60 + [dateComponents second];
     int max_arrival = min_arrival + BASE_TIMESHIFT;
 
-    predicate = buildPredicate( line, stop, min_arrival, max_arrival, dateComponents );
+    predicate = buildPredicate( line, stop, min_arrival, max_arrival, date );
     
     if ( [dateComponents hour] < 8 ) {
         NSDate* datePrevDay = [NSDate dateWithTimeInterval:-86400 sinceDate:date];
-        NSDateComponents* prevDateComponents = dateToComponents( datePrevDay );
         min_arrival = min_arrival + 24 * 60 * 60;
         max_arrival = max_arrival + 24 * 60 * 60;
-        predicate = [NSCompoundPredicate orPredicateWithSubpredicates:[NSArray arrayWithObjects:predicate, buildPredicate( line, stop, min_arrival, max_arrival, prevDateComponents ), nil]];
+        predicate = [NSCompoundPredicate orPredicateWithSubpredicates:[NSArray arrayWithObjects:predicate, buildPredicate( line, stop, min_arrival, max_arrival, datePrevDay ), nil]];
     }
     
 
@@ -233,13 +189,12 @@ NSPredicate* buildPredicate( Line* line, Stop* stop, int min_arrival, int max_ar
     int max_arrival = min_arrival + BASE_TIMESHIFT;
     
     
-    NSPredicate* predicate = buildPredicate( line, stop, min_arrival, max_arrival, dateComponents );
+    NSPredicate* predicate = buildPredicate( line, stop, min_arrival, max_arrival, date );
     if ( [dateComponents hour] < 8 ) {
         NSDate* datePrevDay = [NSDate dateWithTimeInterval:-86400 sinceDate:date];
-        NSDateComponents* prevDateComponents = dateToComponents( datePrevDay );
         min_arrival = min_arrival + 24 * 60 * 60;
         max_arrival = min_arrival + BASE_TIMESHIFT;
-        predicate = [NSCompoundPredicate orPredicateWithSubpredicates:[NSArray arrayWithObjects:buildPredicate( line, stop, min_arrival, max_arrival, prevDateComponents ), predicate, nil]];
+        predicate = [NSCompoundPredicate orPredicateWithSubpredicates:[NSArray arrayWithObjects:buildPredicate( line, stop, min_arrival, max_arrival, datePrevDay ), predicate, nil]];
     }
     
     [fetchRequest setPredicate:predicate];
