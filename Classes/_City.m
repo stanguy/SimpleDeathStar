@@ -3,6 +3,18 @@
 
 #import "_City.h"
 
+const struct CityAttributes CityAttributes = {
+	.name = @"name",
+	.stop_count = @"stop_count",
+};
+
+const struct CityRelationships CityRelationships = {
+	.stops = @"stops",
+};
+
+const struct CityFetchedProperties CityFetchedProperties = {
+};
+
 @implementation CityID
 @end
 
@@ -26,6 +38,18 @@
 	return (CityID*)[super objectID];
 }
 
++ (NSSet*)keyPathsForValuesAffectingValueForKey:(NSString*)key {
+	NSSet *keyPaths = [super keyPathsForValuesAffectingValueForKey:key];
+	
+	if ([key isEqualToString:@"stop_countValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"stop_count"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
+
+	return keyPaths;
+}
+
 
 
 
@@ -40,21 +64,21 @@
 
 
 
-- (short)stop_countValue {
+- (int16_t)stop_countValue {
 	NSNumber *result = [self stop_count];
 	return [result shortValue];
 }
 
-- (void)setStop_countValue:(short)value_ {
+- (void)setStop_countValue:(int16_t)value_ {
 	[self setStop_count:[NSNumber numberWithShort:value_]];
 }
 
-- (short)primitiveStop_countValue {
+- (int16_t)primitiveStop_countValue {
 	NSNumber *result = [self primitiveStop_count];
 	return [result shortValue];
 }
 
-- (void)setPrimitiveStop_countValue:(short)value_ {
+- (void)setPrimitiveStop_countValue:(int16_t)value_ {
 	[self setPrimitiveStop_count:[NSNumber numberWithShort:value_]];
 }
 
@@ -67,11 +91,14 @@
 	
 - (NSMutableSet*)stopsSet {
 	[self willAccessValueForKey:@"stops"];
-	NSMutableSet *result = [self mutableSetValueForKey:@"stops"];
+  
+	NSMutableSet *result = (NSMutableSet*)[self mutableSetValueForKey:@"stops"];
+  
 	[self didAccessValueForKey:@"stops"];
 	return result;
 }
 	
+
 
 
 

@@ -3,6 +3,18 @@
 
 #import "_Direction.h"
 
+const struct DirectionAttributes DirectionAttributes = {
+	.headsign = @"headsign",
+};
+
+const struct DirectionRelationships DirectionRelationships = {
+	.line = @"line",
+	.stop_times = @"stop_times",
+};
+
+const struct DirectionFetchedProperties DirectionFetchedProperties = {
+};
+
 @implementation DirectionID
 @end
 
@@ -26,6 +38,13 @@
 	return (DirectionID*)[super objectID];
 }
 
++ (NSSet*)keyPathsForValuesAffectingValueForKey:(NSString*)key {
+	NSSet *keyPaths = [super keyPathsForValuesAffectingValueForKey:key];
+	
+
+	return keyPaths;
+}
+
 
 
 
@@ -45,11 +64,14 @@
 	
 - (NSMutableSet*)stop_timesSet {
 	[self willAccessValueForKey:@"stop_times"];
-	NSMutableSet *result = [self mutableSetValueForKey:@"stop_times"];
+  
+	NSMutableSet *result = (NSMutableSet*)[self mutableSetValueForKey:@"stop_times"];
+  
 	[self didAccessValueForKey:@"stop_times"];
 	return result;
 }
 	
+
 
 
 

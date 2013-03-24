@@ -3,6 +3,17 @@
 
 #import "_ClosePoi.h"
 
+const struct ClosePoiAttributes ClosePoiAttributes = {
+	.distance = @"distance",
+};
+
+const struct ClosePoiRelationships ClosePoiRelationships = {
+	.poi = @"poi",
+};
+
+const struct ClosePoiFetchedProperties ClosePoiFetchedProperties = {
+};
+
 @implementation ClosePoiID
 @end
 
@@ -26,6 +37,18 @@
 	return (ClosePoiID*)[super objectID];
 }
 
++ (NSSet*)keyPathsForValuesAffectingValueForKey:(NSString*)key {
+	NSSet *keyPaths = [super keyPathsForValuesAffectingValueForKey:key];
+	
+	if ([key isEqualToString:@"distanceValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"distance"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
+
+	return keyPaths;
+}
+
 
 
 
@@ -33,21 +56,21 @@
 
 
 
-- (short)distanceValue {
+- (int16_t)distanceValue {
 	NSNumber *result = [self distance];
 	return [result shortValue];
 }
 
-- (void)setDistanceValue:(short)value_ {
+- (void)setDistanceValue:(int16_t)value_ {
 	[self setDistance:[NSNumber numberWithShort:value_]];
 }
 
-- (short)primitiveDistanceValue {
+- (int16_t)primitiveDistanceValue {
 	NSNumber *result = [self primitiveDistance];
 	return [result shortValue];
 }
 
-- (void)setPrimitiveDistanceValue:(short)value_ {
+- (void)setPrimitiveDistanceValue:(int16_t)value_ {
 	[self setPrimitiveDistance:[NSNumber numberWithShort:value_]];
 }
 
@@ -58,6 +81,7 @@
 @dynamic poi;
 
 	
+
 
 
 

@@ -4,10 +4,28 @@
 #import <CoreData/CoreData.h>
 
 
-@class Line;
-@class Direction;
-@class Stop;
+extern const struct StopTimeAttributes {
+	 NSString *arrival;
+	 NSString *departure;
+	 NSString *stop_sequence;
+	 NSString *trip_bearing;
+	 NSString *trip_id;
+} StopTimeAttributes;
 
+extern const struct StopTimeRelationships {
+	 NSString *calendar;
+	 NSString *direction;
+	 NSString *line;
+	 NSString *stop;
+} StopTimeRelationships;
+
+extern const struct StopTimeFetchedProperties {
+} StopTimeFetchedProperties;
+
+@class GTFSCalendar;
+@class Direction;
+@class Line;
+@class Stop;
 
 
 
@@ -26,75 +44,99 @@
 
 
 
-@property (nonatomic, retain) NSNumber *arrival;
 
-@property int arrivalValue;
-- (int)arrivalValue;
-- (void)setArrivalValue:(int)value_;
+
+@property (nonatomic, retain) NSNumber* arrival;
+
+
+
+@property int32_t arrivalValue;
+- (int32_t)arrivalValue;
+- (void)setArrivalValue:(int32_t)value_;
 
 //- (BOOL)validateArrival:(id*)value_ error:(NSError**)error_;
 
 
 
-@property (nonatomic, retain) NSNumber *stop_sequence;
 
-@property short stop_sequenceValue;
-- (short)stop_sequenceValue;
-- (void)setStop_sequenceValue:(short)value_;
 
-//- (BOOL)validateStop_sequence:(id*)value_ error:(NSError**)error_;
+@property (nonatomic, retain) NSNumber* departure;
 
 
 
-@property (nonatomic, retain) NSNumber *trip_id;
-
-@property int trip_idValue;
-- (int)trip_idValue;
-- (void)setTrip_idValue:(int)value_;
-
-//- (BOOL)validateTrip_id:(id*)value_ error:(NSError**)error_;
-
-
-
-@property (nonatomic, retain) NSNumber *calendar;
-
-@property short calendarValue;
-- (short)calendarValue;
-- (void)setCalendarValue:(short)value_;
-
-//- (BOOL)validateCalendar:(id*)value_ error:(NSError**)error_;
-
-
-
-@property (nonatomic, retain) NSString *trip_bearing;
-
-//- (BOOL)validateTrip_bearing:(id*)value_ error:(NSError**)error_;
-
-
-
-@property (nonatomic, retain) NSNumber *departure;
-
-@property int departureValue;
-- (int)departureValue;
-- (void)setDepartureValue:(int)value_;
+@property int32_t departureValue;
+- (int32_t)departureValue;
+- (void)setDepartureValue:(int32_t)value_;
 
 //- (BOOL)validateDeparture:(id*)value_ error:(NSError**)error_;
 
 
 
 
-@property (nonatomic, retain) Line* line;
-//- (BOOL)validateLine:(id*)value_ error:(NSError**)error_;
+
+@property (nonatomic, retain) NSNumber* stop_sequence;
 
 
 
-@property (nonatomic, retain) Direction* direction;
+@property int16_t stop_sequenceValue;
+- (int16_t)stop_sequenceValue;
+- (void)setStop_sequenceValue:(int16_t)value_;
+
+//- (BOOL)validateStop_sequence:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
+@property (nonatomic, retain) NSString* trip_bearing;
+
+
+
+//- (BOOL)validateTrip_bearing:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
+@property (nonatomic, retain) NSNumber* trip_id;
+
+
+
+@property int32_t trip_idValue;
+- (int32_t)trip_idValue;
+- (void)setTrip_idValue:(int32_t)value_;
+
+//- (BOOL)validateTrip_id:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
+@property (nonatomic, retain) GTFSCalendar *calendar;
+
+//- (BOOL)validateCalendar:(id*)value_ error:(NSError**)error_;
+
+
+
+
+@property (nonatomic, retain) Direction *direction;
+
 //- (BOOL)validateDirection:(id*)value_ error:(NSError**)error_;
 
 
 
-@property (nonatomic, retain) Stop* stop;
+
+@property (nonatomic, retain) Line *line;
+
+//- (BOOL)validateLine:(id*)value_ error:(NSError**)error_;
+
+
+
+
+@property (nonatomic, retain) Stop *stop;
+
 //- (BOOL)validateStop:(id*)value_ error:(NSError**)error_;
+
 
 
 
@@ -107,54 +149,62 @@
 
 @interface _StopTime (CoreDataGeneratedPrimitiveAccessors)
 
+
 - (NSNumber*)primitiveArrival;
 - (void)setPrimitiveArrival:(NSNumber*)value;
 
-- (int)primitiveArrivalValue;
-- (void)setPrimitiveArrivalValue:(int)value_;
+- (int32_t)primitiveArrivalValue;
+- (void)setPrimitiveArrivalValue:(int32_t)value_;
+
+
+
+
+- (NSNumber*)primitiveDeparture;
+- (void)setPrimitiveDeparture:(NSNumber*)value;
+
+- (int32_t)primitiveDepartureValue;
+- (void)setPrimitiveDepartureValue:(int32_t)value_;
+
+
 
 
 - (NSNumber*)primitiveStop_sequence;
 - (void)setPrimitiveStop_sequence:(NSNumber*)value;
 
-- (short)primitiveStop_sequenceValue;
-- (void)setPrimitiveStop_sequenceValue:(short)value_;
+- (int16_t)primitiveStop_sequenceValue;
+- (void)setPrimitiveStop_sequenceValue:(int16_t)value_;
 
 
-- (NSNumber*)primitiveTrip_id;
-- (void)setPrimitiveTrip_id:(NSNumber*)value;
-
-- (int)primitiveTrip_idValue;
-- (void)setPrimitiveTrip_idValue:(int)value_;
-
-
-- (NSNumber*)primitiveCalendar;
-- (void)setPrimitiveCalendar:(NSNumber*)value;
-
-- (short)primitiveCalendarValue;
-- (void)setPrimitiveCalendarValue:(short)value_;
 
 
 - (NSString*)primitiveTrip_bearing;
 - (void)setPrimitiveTrip_bearing:(NSString*)value;
 
 
-- (NSNumber*)primitiveDeparture;
-- (void)setPrimitiveDeparture:(NSNumber*)value;
-
-- (int)primitiveDepartureValue;
-- (void)setPrimitiveDepartureValue:(int)value_;
 
 
+- (NSNumber*)primitiveTrip_id;
+- (void)setPrimitiveTrip_id:(NSNumber*)value;
+
+- (int32_t)primitiveTrip_idValue;
+- (void)setPrimitiveTrip_idValue:(int32_t)value_;
 
 
-- (Line*)primitiveLine;
-- (void)setPrimitiveLine:(Line*)value;
+
+
+
+- (GTFSCalendar*)primitiveCalendar;
+- (void)setPrimitiveCalendar:(GTFSCalendar*)value;
 
 
 
 - (Direction*)primitiveDirection;
 - (void)setPrimitiveDirection:(Direction*)value;
+
+
+
+- (Line*)primitiveLine;
+- (void)setPrimitiveLine:(Line*)value;
 
 
 

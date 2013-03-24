@@ -3,6 +3,29 @@
 
 #import "_Line.h"
 
+const struct LineAttributes LineAttributes = {
+	.accessible = @"accessible",
+	.bgcolor = @"bgcolor",
+	.fgcolor = @"fgcolor",
+	.forced_id = @"forced_id",
+	.has_picto = @"has_picto",
+	.long_name = @"long_name",
+	.old_src_id = @"old_src_id",
+	.short_name = @"short_name",
+	.src_id = @"src_id",
+	.usage = @"usage",
+};
+
+const struct LineRelationships LineRelationships = {
+	.headsigns = @"headsigns",
+	.polylines = @"polylines",
+	.stop_times = @"stop_times",
+	.stops = @"stops",
+};
+
+const struct LineFetchedProperties LineFetchedProperties = {
+};
+
 @implementation LineID
 @end
 
@@ -26,45 +49,27 @@
 	return (LineID*)[super objectID];
 }
 
++ (NSSet*)keyPathsForValuesAffectingValueForKey:(NSString*)key {
+	NSSet *keyPaths = [super keyPathsForValuesAffectingValueForKey:key];
+	
+	if ([key isEqualToString:@"accessibleValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"accessible"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
+	if ([key isEqualToString:@"forced_idValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"forced_id"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
+	if ([key isEqualToString:@"has_pictoValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"has_picto"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
 
-
-
-@dynamic long_name;
-
-
-
-
-
-
-@dynamic has_picto;
-
-
-
-- (BOOL)has_pictoValue {
-	NSNumber *result = [self has_picto];
-	return [result boolValue];
+	return keyPaths;
 }
-
-- (void)setHas_pictoValue:(BOOL)value_ {
-	[self setHas_picto:[NSNumber numberWithBool:value_]];
-}
-
-- (BOOL)primitiveHas_pictoValue {
-	NSNumber *result = [self primitiveHas_picto];
-	return [result boolValue];
-}
-
-- (void)setPrimitiveHas_pictoValue:(BOOL)value_ {
-	[self setPrimitiveHas_picto:[NSNumber numberWithBool:value_]];
-}
-
-
-
-
-
-@dynamic usage;
-
-
 
 
 
@@ -102,7 +107,7 @@
 
 
 
-@dynamic short_name;
+@dynamic fgcolor;
 
 
 
@@ -113,21 +118,21 @@
 
 
 
-- (short)forced_idValue {
+- (int16_t)forced_idValue {
 	NSNumber *result = [self forced_id];
 	return [result shortValue];
 }
 
-- (void)setForced_idValue:(short)value_ {
+- (void)setForced_idValue:(int16_t)value_ {
 	[self setForced_id:[NSNumber numberWithShort:value_]];
 }
 
-- (short)primitiveForced_idValue {
+- (int16_t)primitiveForced_idValue {
 	NSNumber *result = [self primitiveForced_id];
 	return [result shortValue];
 }
 
-- (void)setPrimitiveForced_idValue:(short)value_ {
+- (void)setPrimitiveForced_idValue:(int16_t)value_ {
 	[self setPrimitiveForced_id:[NSNumber numberWithShort:value_]];
 }
 
@@ -135,7 +140,33 @@
 
 
 
-@dynamic src_id;
+@dynamic has_picto;
+
+
+
+- (BOOL)has_pictoValue {
+	NSNumber *result = [self has_picto];
+	return [result boolValue];
+}
+
+- (void)setHas_pictoValue:(BOOL)value_ {
+	[self setHas_picto:[NSNumber numberWithBool:value_]];
+}
+
+- (BOOL)primitiveHas_pictoValue {
+	NSNumber *result = [self primitiveHas_picto];
+	return [result boolValue];
+}
+
+- (void)setPrimitiveHas_pictoValue:(BOOL)value_ {
+	[self setPrimitiveHas_picto:[NSNumber numberWithBool:value_]];
+}
+
+
+
+
+
+@dynamic long_name;
 
 
 
@@ -149,30 +180,35 @@
 
 
 
-@dynamic fgcolor;
+@dynamic short_name;
 
 
 
 
 
 
-@dynamic stops;
+@dynamic src_id;
 
-	
-- (NSMutableSet*)stopsSet {
-	[self willAccessValueForKey:@"stops"];
-	NSMutableSet *result = [self mutableSetValueForKey:@"stops"];
-	[self didAccessValueForKey:@"stops"];
-	return result;
-}
-	
+
+
+
+
+
+@dynamic usage;
+
+
+
+
+
 
 @dynamic headsigns;
 
 	
 - (NSMutableSet*)headsignsSet {
 	[self willAccessValueForKey:@"headsigns"];
-	NSMutableSet *result = [self mutableSetValueForKey:@"headsigns"];
+  
+	NSMutableSet *result = (NSMutableSet*)[self mutableSetValueForKey:@"headsigns"];
+  
 	[self didAccessValueForKey:@"headsigns"];
 	return result;
 }
@@ -183,7 +219,9 @@
 	
 - (NSMutableSet*)polylinesSet {
 	[self willAccessValueForKey:@"polylines"];
-	NSMutableSet *result = [self mutableSetValueForKey:@"polylines"];
+  
+	NSMutableSet *result = (NSMutableSet*)[self mutableSetValueForKey:@"polylines"];
+  
 	[self didAccessValueForKey:@"polylines"];
 	return result;
 }
@@ -194,11 +232,27 @@
 	
 - (NSMutableSet*)stop_timesSet {
 	[self willAccessValueForKey:@"stop_times"];
-	NSMutableSet *result = [self mutableSetValueForKey:@"stop_times"];
+  
+	NSMutableSet *result = (NSMutableSet*)[self mutableSetValueForKey:@"stop_times"];
+  
 	[self didAccessValueForKey:@"stop_times"];
 	return result;
 }
 	
+
+@dynamic stops;
+
+	
+- (NSMutableSet*)stopsSet {
+	[self willAccessValueForKey:@"stops"];
+  
+	NSMutableSet *result = (NSMutableSet*)[self mutableSetValueForKey:@"stops"];
+  
+	[self didAccessValueForKey:@"stops"];
+	return result;
+}
+	
+
 
 
 

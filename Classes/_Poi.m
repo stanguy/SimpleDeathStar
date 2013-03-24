@@ -3,6 +3,20 @@
 
 #import "_Poi.h"
 
+const struct PoiAttributes PoiAttributes = {
+	.address = @"address",
+	.lat = @"lat",
+	.lon = @"lon",
+	.name = @"name",
+	.type = @"type",
+};
+
+const struct PoiRelationships PoiRelationships = {
+};
+
+const struct PoiFetchedProperties PoiFetchedProperties = {
+};
+
 @implementation PoiID
 @end
 
@@ -26,17 +40,27 @@
 	return (PoiID*)[super objectID];
 }
 
++ (NSSet*)keyPathsForValuesAffectingValueForKey:(NSString*)key {
+	NSSet *keyPaths = [super keyPathsForValuesAffectingValueForKey:key];
+	
+	if ([key isEqualToString:@"latValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"lat"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
+	if ([key isEqualToString:@"lonValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"lon"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
+
+	return keyPaths;
+}
 
 
 
-@dynamic type;
 
-
-
-
-
-
-@dynamic name;
+@dynamic address;
 
 
 
@@ -95,7 +119,15 @@
 
 
 
-@dynamic address;
+@dynamic name;
+
+
+
+
+
+
+@dynamic type;
+
 
 
 

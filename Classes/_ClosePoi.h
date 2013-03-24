@@ -4,6 +4,17 @@
 #import <CoreData/CoreData.h>
 
 
+extern const struct ClosePoiAttributes {
+	 NSString *distance;
+} ClosePoiAttributes;
+
+extern const struct ClosePoiRelationships {
+	 NSString *poi;
+} ClosePoiRelationships;
+
+extern const struct ClosePoiFetchedProperties {
+} ClosePoiFetchedProperties;
+
 @class Poi;
 
 
@@ -19,19 +30,26 @@
 
 
 
-@property (nonatomic, retain) NSNumber *distance;
 
-@property short distanceValue;
-- (short)distanceValue;
-- (void)setDistanceValue:(short)value_;
+
+@property (nonatomic, retain) NSNumber* distance;
+
+
+
+@property int16_t distanceValue;
+- (int16_t)distanceValue;
+- (void)setDistanceValue:(int16_t)value_;
 
 //- (BOOL)validateDistance:(id*)value_ error:(NSError**)error_;
 
 
 
 
-@property (nonatomic, retain) Poi* poi;
+
+@property (nonatomic, retain) Poi *poi;
+
 //- (BOOL)validatePoi:(id*)value_ error:(NSError**)error_;
+
 
 
 
@@ -44,11 +62,13 @@
 
 @interface _ClosePoi (CoreDataGeneratedPrimitiveAccessors)
 
+
 - (NSNumber*)primitiveDistance;
 - (void)setPrimitiveDistance:(NSNumber*)value;
 
-- (short)primitiveDistanceValue;
-- (void)setPrimitiveDistanceValue:(short)value_;
+- (int16_t)primitiveDistanceValue;
+- (void)setPrimitiveDistanceValue:(int16_t)value_;
+
 
 
 

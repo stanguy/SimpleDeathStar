@@ -3,6 +3,24 @@
 
 #import "_StopTime.h"
 
+const struct StopTimeAttributes StopTimeAttributes = {
+	.arrival = @"arrival",
+	.departure = @"departure",
+	.stop_sequence = @"stop_sequence",
+	.trip_bearing = @"trip_bearing",
+	.trip_id = @"trip_id",
+};
+
+const struct StopTimeRelationships StopTimeRelationships = {
+	.calendar = @"calendar",
+	.direction = @"direction",
+	.line = @"line",
+	.stop = @"stop",
+};
+
+const struct StopTimeFetchedProperties StopTimeFetchedProperties = {
+};
+
 @implementation StopTimeID
 @end
 
@@ -26,6 +44,33 @@
 	return (StopTimeID*)[super objectID];
 }
 
++ (NSSet*)keyPathsForValuesAffectingValueForKey:(NSString*)key {
+	NSSet *keyPaths = [super keyPathsForValuesAffectingValueForKey:key];
+	
+	if ([key isEqualToString:@"arrivalValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"arrival"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
+	if ([key isEqualToString:@"departureValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"departure"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
+	if ([key isEqualToString:@"stop_sequenceValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"stop_sequence"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
+	if ([key isEqualToString:@"trip_idValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"trip_id"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
+
+	return keyPaths;
+}
+
 
 
 
@@ -33,22 +78,48 @@
 
 
 
-- (int)arrivalValue {
+- (int32_t)arrivalValue {
 	NSNumber *result = [self arrival];
 	return [result intValue];
 }
 
-- (void)setArrivalValue:(int)value_ {
+- (void)setArrivalValue:(int32_t)value_ {
 	[self setArrival:[NSNumber numberWithInt:value_]];
 }
 
-- (int)primitiveArrivalValue {
+- (int32_t)primitiveArrivalValue {
 	NSNumber *result = [self primitiveArrival];
 	return [result intValue];
 }
 
-- (void)setPrimitiveArrivalValue:(int)value_ {
+- (void)setPrimitiveArrivalValue:(int32_t)value_ {
 	[self setPrimitiveArrival:[NSNumber numberWithInt:value_]];
+}
+
+
+
+
+
+@dynamic departure;
+
+
+
+- (int32_t)departureValue {
+	NSNumber *result = [self departure];
+	return [result intValue];
+}
+
+- (void)setDepartureValue:(int32_t)value_ {
+	[self setDeparture:[NSNumber numberWithInt:value_]];
+}
+
+- (int32_t)primitiveDepartureValue {
+	NSNumber *result = [self primitiveDeparture];
+	return [result intValue];
+}
+
+- (void)setPrimitiveDepartureValue:(int32_t)value_ {
+	[self setPrimitiveDeparture:[NSNumber numberWithInt:value_]];
 }
 
 
@@ -59,74 +130,22 @@
 
 
 
-- (short)stop_sequenceValue {
+- (int16_t)stop_sequenceValue {
 	NSNumber *result = [self stop_sequence];
 	return [result shortValue];
 }
 
-- (void)setStop_sequenceValue:(short)value_ {
+- (void)setStop_sequenceValue:(int16_t)value_ {
 	[self setStop_sequence:[NSNumber numberWithShort:value_]];
 }
 
-- (short)primitiveStop_sequenceValue {
+- (int16_t)primitiveStop_sequenceValue {
 	NSNumber *result = [self primitiveStop_sequence];
 	return [result shortValue];
 }
 
-- (void)setPrimitiveStop_sequenceValue:(short)value_ {
+- (void)setPrimitiveStop_sequenceValue:(int16_t)value_ {
 	[self setPrimitiveStop_sequence:[NSNumber numberWithShort:value_]];
-}
-
-
-
-
-
-@dynamic trip_id;
-
-
-
-- (int)trip_idValue {
-	NSNumber *result = [self trip_id];
-	return [result intValue];
-}
-
-- (void)setTrip_idValue:(int)value_ {
-	[self setTrip_id:[NSNumber numberWithInt:value_]];
-}
-
-- (int)primitiveTrip_idValue {
-	NSNumber *result = [self primitiveTrip_id];
-	return [result intValue];
-}
-
-- (void)setPrimitiveTrip_idValue:(int)value_ {
-	[self setPrimitiveTrip_id:[NSNumber numberWithInt:value_]];
-}
-
-
-
-
-
-@dynamic calendar;
-
-
-
-- (short)calendarValue {
-	NSNumber *result = [self calendar];
-	return [result shortValue];
-}
-
-- (void)setCalendarValue:(short)value_ {
-	[self setCalendar:[NSNumber numberWithShort:value_]];
-}
-
-- (short)primitiveCalendarValue {
-	NSNumber *result = [self primitiveCalendar];
-	return [result shortValue];
-}
-
-- (void)setPrimitiveCalendarValue:(short)value_ {
-	[self setPrimitiveCalendar:[NSNumber numberWithShort:value_]];
 }
 
 
@@ -140,33 +159,33 @@
 
 
 
-@dynamic departure;
+@dynamic trip_id;
 
 
 
-- (int)departureValue {
-	NSNumber *result = [self departure];
+- (int32_t)trip_idValue {
+	NSNumber *result = [self trip_id];
 	return [result intValue];
 }
 
-- (void)setDepartureValue:(int)value_ {
-	[self setDeparture:[NSNumber numberWithInt:value_]];
+- (void)setTrip_idValue:(int32_t)value_ {
+	[self setTrip_id:[NSNumber numberWithInt:value_]];
 }
 
-- (int)primitiveDepartureValue {
-	NSNumber *result = [self primitiveDeparture];
+- (int32_t)primitiveTrip_idValue {
+	NSNumber *result = [self primitiveTrip_id];
 	return [result intValue];
 }
 
-- (void)setPrimitiveDepartureValue:(int)value_ {
-	[self setPrimitiveDeparture:[NSNumber numberWithInt:value_]];
+- (void)setPrimitiveTrip_idValue:(int32_t)value_ {
+	[self setPrimitiveTrip_id:[NSNumber numberWithInt:value_]];
 }
 
 
 
 
 
-@dynamic line;
+@dynamic calendar;
 
 	
 
@@ -174,9 +193,14 @@
 
 	
 
+@dynamic line;
+
+	
+
 @dynamic stop;
 
 	
+
 
 
 

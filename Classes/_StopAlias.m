@@ -3,6 +3,19 @@
 
 #import "_StopAlias.h"
 
+const struct StopAliasAttributes StopAliasAttributes = {
+	.old_src_id = @"old_src_id",
+	.src_code = @"src_code",
+	.src_id = @"src_id",
+};
+
+const struct StopAliasRelationships StopAliasRelationships = {
+	.stop = @"stop",
+};
+
+const struct StopAliasFetchedProperties StopAliasFetchedProperties = {
+};
+
 @implementation StopAliasID
 @end
 
@@ -26,6 +39,20 @@
 	return (StopAliasID*)[super objectID];
 }
 
++ (NSSet*)keyPathsForValuesAffectingValueForKey:(NSString*)key {
+	NSSet *keyPaths = [super keyPathsForValuesAffectingValueForKey:key];
+	
+
+	return keyPaths;
+}
+
+
+
+
+@dynamic old_src_id;
+
+
+
 
 
 
@@ -43,16 +70,10 @@
 
 
 
-@dynamic old_src_id;
-
-
-
-
-
-
 @dynamic stop;
 
 	
+
 
 
 

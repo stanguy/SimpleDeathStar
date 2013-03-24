@@ -4,6 +4,20 @@
 #import <CoreData/CoreData.h>
 
 
+extern const struct PoiAttributes {
+	 NSString *address;
+	 NSString *lat;
+	 NSString *lon;
+	 NSString *name;
+	 NSString *type;
+} PoiAttributes;
+
+extern const struct PoiRelationships {
+} PoiRelationships;
+
+extern const struct PoiFetchedProperties {
+} PoiFetchedProperties;
+
 
 
 
@@ -22,19 +36,21 @@
 
 
 
-@property (nonatomic, retain) NSString *type;
-
-//- (BOOL)validateType:(id*)value_ error:(NSError**)error_;
 
 
-
-@property (nonatomic, retain) NSString *name;
-
-//- (BOOL)validateName:(id*)value_ error:(NSError**)error_;
+@property (nonatomic, retain) NSString* address;
 
 
 
-@property (nonatomic, retain) NSNumber *lat;
+//- (BOOL)validateAddress:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
+@property (nonatomic, retain) NSNumber* lat;
+
+
 
 @property float latValue;
 - (float)latValue;
@@ -44,7 +60,11 @@
 
 
 
-@property (nonatomic, retain) NSNumber *lon;
+
+
+@property (nonatomic, retain) NSNumber* lon;
+
+
 
 @property float lonValue;
 - (float)lonValue;
@@ -54,9 +74,24 @@
 
 
 
-@property (nonatomic, retain) NSString *address;
 
-//- (BOOL)validateAddress:(id*)value_ error:(NSError**)error_;
+
+@property (nonatomic, retain) NSString* name;
+
+
+
+//- (BOOL)validateName:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
+@property (nonatomic, retain) NSString* type;
+
+
+
+//- (BOOL)validateType:(id*)value_ error:(NSError**)error_;
+
 
 
 
@@ -70,12 +105,11 @@
 
 @interface _Poi (CoreDataGeneratedPrimitiveAccessors)
 
-- (NSString*)primitiveType;
-- (void)setPrimitiveType:(NSString*)value;
+
+- (NSString*)primitiveAddress;
+- (void)setPrimitiveAddress:(NSString*)value;
 
 
-- (NSString*)primitiveName;
-- (void)setPrimitiveName:(NSString*)value;
 
 
 - (NSNumber*)primitiveLat;
@@ -85,6 +119,8 @@
 - (void)setPrimitiveLatValue:(float)value_;
 
 
+
+
 - (NSNumber*)primitiveLon;
 - (void)setPrimitiveLon:(NSNumber*)value;
 
@@ -92,8 +128,17 @@
 - (void)setPrimitiveLonValue:(float)value_;
 
 
-- (NSString*)primitiveAddress;
-- (void)setPrimitiveAddress:(NSString*)value;
+
+
+- (NSString*)primitiveName;
+- (void)setPrimitiveName:(NSString*)value;
+
+
+
+
+- (NSString*)primitiveType;
+- (void)setPrimitiveType:(NSString*)value;
+
 
 
 

@@ -3,6 +3,31 @@
 
 #import "_Stop.h"
 
+const struct StopAttributes StopAttributes = {
+	.accessible = @"accessible",
+	.bike_count = @"bike_count",
+	.lat = @"lat",
+	.line_count = @"line_count",
+	.lon = @"lon",
+	.metro_count = @"metro_count",
+	.name = @"name",
+	.old_src_id = @"old_src_id",
+	.pos_count = @"pos_count",
+	.slug = @"slug",
+	.src_id = @"src_id",
+};
+
+const struct StopRelationships StopRelationships = {
+	.city = @"city",
+	.close_pois = @"close_pois",
+	.lines = @"lines",
+	.stop_aliases = @"stop_aliases",
+	.stop_times = @"stop_times",
+};
+
+const struct StopFetchedProperties StopFetchedProperties = {
+};
+
 @implementation StopID
 @end
 
@@ -26,38 +51,37 @@
 	return (StopID*)[super objectID];
 }
 
++ (NSSet*)keyPathsForValuesAffectingValueForKey:(NSString*)key {
+	NSSet *keyPaths = [super keyPathsForValuesAffectingValueForKey:key];
+	
+	if ([key isEqualToString:@"accessibleValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"accessible"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
+	if ([key isEqualToString:@"bike_countValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"bike_count"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
+	if ([key isEqualToString:@"line_countValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"line_count"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
+	if ([key isEqualToString:@"metro_countValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"metro_count"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
+	if ([key isEqualToString:@"pos_countValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"pos_count"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
 
-
-
-@dynamic bike_count;
-
-
-
-- (short)bike_countValue {
-	NSNumber *result = [self bike_count];
-	return [result shortValue];
+	return keyPaths;
 }
-
-- (void)setBike_countValue:(short)value_ {
-	[self setBike_count:[NSNumber numberWithShort:value_]];
-}
-
-- (short)primitiveBike_countValue {
-	NSNumber *result = [self primitiveBike_count];
-	return [result shortValue];
-}
-
-- (void)setPrimitiveBike_countValue:(short)value_ {
-	[self setPrimitiveBike_count:[NSNumber numberWithShort:value_]];
-}
-
-
-
-
-
-@dynamic src_id;
-
-
 
 
 
@@ -88,34 +112,60 @@
 
 
 
-@dynamic metro_count;
+@dynamic bike_count;
 
 
 
-- (short)metro_countValue {
-	NSNumber *result = [self metro_count];
+- (int16_t)bike_countValue {
+	NSNumber *result = [self bike_count];
 	return [result shortValue];
 }
 
-- (void)setMetro_countValue:(short)value_ {
-	[self setMetro_count:[NSNumber numberWithShort:value_]];
+- (void)setBike_countValue:(int16_t)value_ {
+	[self setBike_count:[NSNumber numberWithShort:value_]];
 }
 
-- (short)primitiveMetro_countValue {
-	NSNumber *result = [self primitiveMetro_count];
+- (int16_t)primitiveBike_countValue {
+	NSNumber *result = [self primitiveBike_count];
 	return [result shortValue];
 }
 
-- (void)setPrimitiveMetro_countValue:(short)value_ {
-	[self setPrimitiveMetro_count:[NSNumber numberWithShort:value_]];
+- (void)setPrimitiveBike_countValue:(int16_t)value_ {
+	[self setPrimitiveBike_count:[NSNumber numberWithShort:value_]];
 }
 
 
 
 
 
-@dynamic name;
+@dynamic lat;
 
+
+
+
+
+
+@dynamic line_count;
+
+
+
+- (int16_t)line_countValue {
+	NSNumber *result = [self line_count];
+	return [result shortValue];
+}
+
+- (void)setLine_countValue:(int16_t)value_ {
+	[self setLine_count:[NSNumber numberWithShort:value_]];
+}
+
+- (int16_t)primitiveLine_countValue {
+	NSNumber *result = [self primitiveLine_count];
+	return [result shortValue];
+}
+
+- (void)setPrimitiveLine_countValue:(int16_t)value_ {
+	[self setPrimitiveLine_count:[NSNumber numberWithShort:value_]];
+}
 
 
 
@@ -128,14 +178,33 @@
 
 
 
-@dynamic slug;
+@dynamic metro_count;
+
+
+
+- (int16_t)metro_countValue {
+	NSNumber *result = [self metro_count];
+	return [result shortValue];
+}
+
+- (void)setMetro_countValue:(int16_t)value_ {
+	[self setMetro_count:[NSNumber numberWithShort:value_]];
+}
+
+- (int16_t)primitiveMetro_countValue {
+	NSNumber *result = [self primitiveMetro_count];
+	return [result shortValue];
+}
+
+- (void)setPrimitiveMetro_countValue:(int16_t)value_ {
+	[self setPrimitiveMetro_count:[NSNumber numberWithShort:value_]];
+}
 
 
 
 
 
-
-@dynamic lat;
+@dynamic name;
 
 
 
@@ -153,21 +222,21 @@
 
 
 
-- (short)pos_countValue {
+- (int16_t)pos_countValue {
 	NSNumber *result = [self pos_count];
 	return [result shortValue];
 }
 
-- (void)setPos_countValue:(short)value_ {
+- (void)setPos_countValue:(int16_t)value_ {
 	[self setPos_count:[NSNumber numberWithShort:value_]];
 }
 
-- (short)primitivePos_countValue {
+- (int16_t)primitivePos_countValue {
 	NSNumber *result = [self primitivePos_count];
 	return [result shortValue];
 }
 
-- (void)setPrimitivePos_countValue:(short)value_ {
+- (void)setPrimitivePos_countValue:(int16_t)value_ {
 	[self setPrimitivePos_count:[NSNumber numberWithShort:value_]];
 }
 
@@ -175,41 +244,22 @@
 
 
 
-@dynamic line_count;
-
-
-
-- (short)line_countValue {
-	NSNumber *result = [self line_count];
-	return [result shortValue];
-}
-
-- (void)setLine_countValue:(short)value_ {
-	[self setLine_count:[NSNumber numberWithShort:value_]];
-}
-
-- (short)primitiveLine_countValue {
-	NSNumber *result = [self primitiveLine_count];
-	return [result shortValue];
-}
-
-- (void)setPrimitiveLine_countValue:(short)value_ {
-	[self setPrimitiveLine_count:[NSNumber numberWithShort:value_]];
-}
+@dynamic slug;
 
 
 
 
 
-@dynamic stop_times;
 
-	
-- (NSMutableSet*)stop_timesSet {
-	[self willAccessValueForKey:@"stop_times"];
-	NSMutableSet *result = [self mutableSetValueForKey:@"stop_times"];
-	[self didAccessValueForKey:@"stop_times"];
-	return result;
-}
+@dynamic src_id;
+
+
+
+
+
+
+@dynamic city;
+
 	
 
 @dynamic close_pois;
@@ -217,14 +267,12 @@
 	
 - (NSMutableSet*)close_poisSet {
 	[self willAccessValueForKey:@"close_pois"];
-	NSMutableSet *result = [self mutableSetValueForKey:@"close_pois"];
+  
+	NSMutableSet *result = (NSMutableSet*)[self mutableSetValueForKey:@"close_pois"];
+  
 	[self didAccessValueForKey:@"close_pois"];
 	return result;
 }
-	
-
-@dynamic city;
-
 	
 
 @dynamic lines;
@@ -232,7 +280,9 @@
 	
 - (NSMutableSet*)linesSet {
 	[self willAccessValueForKey:@"lines"];
-	NSMutableSet *result = [self mutableSetValueForKey:@"lines"];
+  
+	NSMutableSet *result = (NSMutableSet*)[self mutableSetValueForKey:@"lines"];
+  
 	[self didAccessValueForKey:@"lines"];
 	return result;
 }
@@ -243,11 +293,27 @@
 	
 - (NSMutableSet*)stop_aliasesSet {
 	[self willAccessValueForKey:@"stop_aliases"];
-	NSMutableSet *result = [self mutableSetValueForKey:@"stop_aliases"];
+  
+	NSMutableSet *result = (NSMutableSet*)[self mutableSetValueForKey:@"stop_aliases"];
+  
 	[self didAccessValueForKey:@"stop_aliases"];
 	return result;
 }
 	
+
+@dynamic stop_times;
+
+	
+- (NSMutableSet*)stop_timesSet {
+	[self willAccessValueForKey:@"stop_times"];
+  
+	NSMutableSet *result = (NSMutableSet*)[self mutableSetValueForKey:@"stop_times"];
+  
+	[self didAccessValueForKey:@"stop_times"];
+	return result;
+}
+	
+
 
 
 

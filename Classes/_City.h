@@ -4,6 +4,18 @@
 #import <CoreData/CoreData.h>
 
 
+extern const struct CityAttributes {
+	 NSString *name;
+	 NSString *stop_count;
+} CityAttributes;
+
+extern const struct CityRelationships {
+	 NSString *stops;
+} CityRelationships;
+
+extern const struct CityFetchedProperties {
+} CityFetchedProperties;
+
 @class Stop;
 
 
@@ -20,25 +32,36 @@
 
 
 
-@property (nonatomic, retain) NSString *name;
+
+
+@property (nonatomic, retain) NSString* name;
+
+
 
 //- (BOOL)validateName:(id*)value_ error:(NSError**)error_;
 
 
 
-@property (nonatomic, retain) NSNumber *stop_count;
 
-@property short stop_countValue;
-- (short)stop_countValue;
-- (void)setStop_countValue:(short)value_;
+
+@property (nonatomic, retain) NSNumber* stop_count;
+
+
+
+@property int16_t stop_countValue;
+- (int16_t)stop_countValue;
+- (void)setStop_countValue:(int16_t)value_;
 
 //- (BOOL)validateStop_count:(id*)value_ error:(NSError**)error_;
 
 
 
 
-@property (nonatomic, retain) NSSet* stops;
+
+@property (nonatomic, retain) NSSet *stops;
+
 - (NSMutableSet*)stopsSet;
+
 
 
 
@@ -56,15 +79,19 @@
 
 @interface _City (CoreDataGeneratedPrimitiveAccessors)
 
+
 - (NSString*)primitiveName;
 - (void)setPrimitiveName:(NSString*)value;
+
+
 
 
 - (NSNumber*)primitiveStop_count;
 - (void)setPrimitiveStop_count:(NSNumber*)value;
 
-- (short)primitiveStop_countValue;
-- (void)setPrimitiveStop_countValue:(short)value_;
+- (int16_t)primitiveStop_countValue;
+- (void)setPrimitiveStop_countValue:(int16_t)value_;
+
 
 
 

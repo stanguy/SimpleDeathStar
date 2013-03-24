@@ -4,11 +4,36 @@
 #import <CoreData/CoreData.h>
 
 
-@class StopTime;
-@class ClosePoi;
+extern const struct StopAttributes {
+	 NSString *accessible;
+	 NSString *bike_count;
+	 NSString *lat;
+	 NSString *line_count;
+	 NSString *lon;
+	 NSString *metro_count;
+	 NSString *name;
+	 NSString *old_src_id;
+	 NSString *pos_count;
+	 NSString *slug;
+	 NSString *src_id;
+} StopAttributes;
+
+extern const struct StopRelationships {
+	 NSString *city;
+	 NSString *close_pois;
+	 NSString *lines;
+	 NSString *stop_aliases;
+	 NSString *stop_times;
+} StopRelationships;
+
+extern const struct StopFetchedProperties {
+} StopFetchedProperties;
+
 @class City;
+@class ClosePoi;
 @class Line;
 @class StopAlias;
+@class StopTime;
 
 
 
@@ -33,23 +58,11 @@
 
 
 
-@property (nonatomic, retain) NSNumber *bike_count;
-
-@property short bike_countValue;
-- (short)bike_countValue;
-- (void)setBike_countValue:(short)value_;
-
-//- (BOOL)validateBike_count:(id*)value_ error:(NSError**)error_;
 
 
-
-@property (nonatomic, retain) NSString *src_id;
-
-//- (BOOL)validateSrc_id:(id*)value_ error:(NSError**)error_;
+@property (nonatomic, retain) NSNumber* accessible;
 
 
-
-@property (nonatomic, retain) NSNumber *accessible;
 
 @property BOOL accessibleValue;
 - (BOOL)accessibleValue;
@@ -59,89 +72,156 @@
 
 
 
-@property (nonatomic, retain) NSNumber *metro_count;
 
-@property short metro_countValue;
-- (short)metro_countValue;
-- (void)setMetro_countValue:(short)value_;
 
-//- (BOOL)validateMetro_count:(id*)value_ error:(NSError**)error_;
+@property (nonatomic, retain) NSNumber* bike_count;
 
 
 
-@property (nonatomic, retain) NSString *name;
+@property int16_t bike_countValue;
+- (int16_t)bike_countValue;
+- (void)setBike_countValue:(int16_t)value_;
 
-//- (BOOL)validateName:(id*)value_ error:(NSError**)error_;
-
-
-
-@property (nonatomic, retain) NSDecimalNumber *lon;
-
-//- (BOOL)validateLon:(id*)value_ error:(NSError**)error_;
+//- (BOOL)validateBike_count:(id*)value_ error:(NSError**)error_;
 
 
 
-@property (nonatomic, retain) NSString *slug;
-
-//- (BOOL)validateSlug:(id*)value_ error:(NSError**)error_;
 
 
+@property (nonatomic, retain) NSDecimalNumber* lat;
 
-@property (nonatomic, retain) NSDecimalNumber *lat;
+
 
 //- (BOOL)validateLat:(id*)value_ error:(NSError**)error_;
 
 
 
-@property (nonatomic, retain) NSString *old_src_id;
-
-//- (BOOL)validateOld_src_id:(id*)value_ error:(NSError**)error_;
 
 
-
-@property (nonatomic, retain) NSNumber *pos_count;
-
-@property short pos_countValue;
-- (short)pos_countValue;
-- (void)setPos_countValue:(short)value_;
-
-//- (BOOL)validatePos_count:(id*)value_ error:(NSError**)error_;
+@property (nonatomic, retain) NSNumber* line_count;
 
 
 
-@property (nonatomic, retain) NSNumber *line_count;
-
-@property short line_countValue;
-- (short)line_countValue;
-- (void)setLine_countValue:(short)value_;
+@property int16_t line_countValue;
+- (int16_t)line_countValue;
+- (void)setLine_countValue:(int16_t)value_;
 
 //- (BOOL)validateLine_count:(id*)value_ error:(NSError**)error_;
 
 
 
 
-@property (nonatomic, retain) NSSet* stop_times;
-- (NSMutableSet*)stop_timesSet;
+
+@property (nonatomic, retain) NSDecimalNumber* lon;
 
 
 
-@property (nonatomic, retain) NSSet* close_pois;
-- (NSMutableSet*)close_poisSet;
+//- (BOOL)validateLon:(id*)value_ error:(NSError**)error_;
 
 
 
-@property (nonatomic, retain) City* city;
+
+
+@property (nonatomic, retain) NSNumber* metro_count;
+
+
+
+@property int16_t metro_countValue;
+- (int16_t)metro_countValue;
+- (void)setMetro_countValue:(int16_t)value_;
+
+//- (BOOL)validateMetro_count:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
+@property (nonatomic, retain) NSString* name;
+
+
+
+//- (BOOL)validateName:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
+@property (nonatomic, retain) NSString* old_src_id;
+
+
+
+//- (BOOL)validateOld_src_id:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
+@property (nonatomic, retain) NSNumber* pos_count;
+
+
+
+@property int16_t pos_countValue;
+- (int16_t)pos_countValue;
+- (void)setPos_countValue:(int16_t)value_;
+
+//- (BOOL)validatePos_count:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
+@property (nonatomic, retain) NSString* slug;
+
+
+
+//- (BOOL)validateSlug:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
+@property (nonatomic, retain) NSString* src_id;
+
+
+
+//- (BOOL)validateSrc_id:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
+@property (nonatomic, retain) City *city;
+
 //- (BOOL)validateCity:(id*)value_ error:(NSError**)error_;
 
 
 
-@property (nonatomic, retain) NSSet* lines;
+
+@property (nonatomic, retain) NSSet *close_pois;
+
+- (NSMutableSet*)close_poisSet;
+
+
+
+
+@property (nonatomic, retain) NSSet *lines;
+
 - (NSMutableSet*)linesSet;
 
 
 
-@property (nonatomic, retain) NSSet* stop_aliases;
+
+@property (nonatomic, retain) NSSet *stop_aliases;
+
 - (NSMutableSet*)stop_aliasesSet;
+
+
+
+
+@property (nonatomic, retain) NSSet *stop_times;
+
+- (NSMutableSet*)stop_timesSet;
+
 
 
 
@@ -149,11 +229,6 @@
 @end
 
 @interface _Stop (CoreDataGeneratedAccessors)
-
-- (void)addStop_times:(NSSet*)value_;
-- (void)removeStop_times:(NSSet*)value_;
-- (void)addStop_timesObject:(StopTime*)value_;
-- (void)removeStop_timesObject:(StopTime*)value_;
 
 - (void)addClose_pois:(NSSet*)value_;
 - (void)removeClose_pois:(NSSet*)value_;
@@ -170,19 +245,14 @@
 - (void)addStop_aliasesObject:(StopAlias*)value_;
 - (void)removeStop_aliasesObject:(StopAlias*)value_;
 
+- (void)addStop_times:(NSSet*)value_;
+- (void)removeStop_times:(NSSet*)value_;
+- (void)addStop_timesObject:(StopTime*)value_;
+- (void)removeStop_timesObject:(StopTime*)value_;
+
 @end
 
 @interface _Stop (CoreDataGeneratedPrimitiveAccessors)
-
-- (NSNumber*)primitiveBike_count;
-- (void)setPrimitiveBike_count:(NSNumber*)value;
-
-- (short)primitiveBike_countValue;
-- (void)setPrimitiveBike_countValue:(short)value_;
-
-
-- (NSString*)primitiveSrc_id;
-- (void)setPrimitiveSrc_id:(NSString*)value;
 
 
 - (NSNumber*)primitiveAccessible;
@@ -192,61 +262,88 @@
 - (void)setPrimitiveAccessibleValue:(BOOL)value_;
 
 
-- (NSNumber*)primitiveMetro_count;
-- (void)setPrimitiveMetro_count:(NSNumber*)value;
-
-- (short)primitiveMetro_countValue;
-- (void)setPrimitiveMetro_countValue:(short)value_;
 
 
-- (NSString*)primitiveName;
-- (void)setPrimitiveName:(NSString*)value;
+- (NSNumber*)primitiveBike_count;
+- (void)setPrimitiveBike_count:(NSNumber*)value;
+
+- (int16_t)primitiveBike_countValue;
+- (void)setPrimitiveBike_countValue:(int16_t)value_;
 
 
-- (NSDecimalNumber*)primitiveLon;
-- (void)setPrimitiveLon:(NSDecimalNumber*)value;
-
-
-- (NSString*)primitiveSlug;
-- (void)setPrimitiveSlug:(NSString*)value;
 
 
 - (NSDecimalNumber*)primitiveLat;
 - (void)setPrimitiveLat:(NSDecimalNumber*)value;
 
 
-- (NSString*)primitiveOld_src_id;
-- (void)setPrimitiveOld_src_id:(NSString*)value;
-
-
-- (NSNumber*)primitivePos_count;
-- (void)setPrimitivePos_count:(NSNumber*)value;
-
-- (short)primitivePos_countValue;
-- (void)setPrimitivePos_countValue:(short)value_;
 
 
 - (NSNumber*)primitiveLine_count;
 - (void)setPrimitiveLine_count:(NSNumber*)value;
 
-- (short)primitiveLine_countValue;
-- (void)setPrimitiveLine_countValue:(short)value_;
+- (int16_t)primitiveLine_countValue;
+- (void)setPrimitiveLine_countValue:(int16_t)value_;
 
 
 
 
-- (NSMutableSet*)primitiveStop_times;
-- (void)setPrimitiveStop_times:(NSMutableSet*)value;
+- (NSDecimalNumber*)primitiveLon;
+- (void)setPrimitiveLon:(NSDecimalNumber*)value;
 
 
 
-- (NSMutableSet*)primitiveClose_pois;
-- (void)setPrimitiveClose_pois:(NSMutableSet*)value;
+
+- (NSNumber*)primitiveMetro_count;
+- (void)setPrimitiveMetro_count:(NSNumber*)value;
+
+- (int16_t)primitiveMetro_countValue;
+- (void)setPrimitiveMetro_countValue:(int16_t)value_;
+
+
+
+
+- (NSString*)primitiveName;
+- (void)setPrimitiveName:(NSString*)value;
+
+
+
+
+- (NSString*)primitiveOld_src_id;
+- (void)setPrimitiveOld_src_id:(NSString*)value;
+
+
+
+
+- (NSNumber*)primitivePos_count;
+- (void)setPrimitivePos_count:(NSNumber*)value;
+
+- (int16_t)primitivePos_countValue;
+- (void)setPrimitivePos_countValue:(int16_t)value_;
+
+
+
+
+- (NSString*)primitiveSlug;
+- (void)setPrimitiveSlug:(NSString*)value;
+
+
+
+
+- (NSString*)primitiveSrc_id;
+- (void)setPrimitiveSrc_id:(NSString*)value;
+
+
 
 
 
 - (City*)primitiveCity;
 - (void)setPrimitiveCity:(City*)value;
+
+
+
+- (NSMutableSet*)primitiveClose_pois;
+- (void)setPrimitiveClose_pois:(NSMutableSet*)value;
 
 
 
@@ -257,6 +354,11 @@
 
 - (NSMutableSet*)primitiveStop_aliases;
 - (void)setPrimitiveStop_aliases:(NSMutableSet*)value;
+
+
+
+- (NSMutableSet*)primitiveStop_times;
+- (void)setPrimitiveStop_times:(NSMutableSet*)value;
 
 
 @end
