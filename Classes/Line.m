@@ -41,7 +41,10 @@
             break;
     }
     if (nil != usage) {
-        predicate = [NSPredicate predicateWithFormat:@"usage = %@", usage ];
+        predicate = [NSPredicate predicateWithFormat:@"usage = %@ AND is_hidden = FALSE", usage ];
+        [fetchRequest setPredicate:predicate];
+    } else {
+        predicate = [NSPredicate predicateWithFormat:@"is_hidden = FALSE" ];
         [fetchRequest setPredicate:predicate];
     }
     
