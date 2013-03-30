@@ -9,6 +9,7 @@ const struct LineAttributes LineAttributes = {
 	.fgcolor = @"fgcolor",
 	.forced_id = @"forced_id",
 	.has_picto = @"has_picto",
+	.is_hidden = @"is_hidden",
 	.long_name = @"long_name",
 	.old_src_id = @"old_src_id",
 	.short_name = @"short_name",
@@ -64,6 +65,11 @@ const struct LineFetchedProperties LineFetchedProperties = {
 	}
 	if ([key isEqualToString:@"has_pictoValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"has_picto"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
+	if ([key isEqualToString:@"is_hiddenValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"is_hidden"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
 		return keyPaths;
 	}
@@ -160,6 +166,32 @@ const struct LineFetchedProperties LineFetchedProperties = {
 
 - (void)setPrimitiveHas_pictoValue:(BOOL)value_ {
 	[self setPrimitiveHas_picto:[NSNumber numberWithBool:value_]];
+}
+
+
+
+
+
+@dynamic is_hidden;
+
+
+
+- (BOOL)is_hiddenValue {
+	NSNumber *result = [self is_hidden];
+	return [result boolValue];
+}
+
+- (void)setIs_hiddenValue:(BOOL)value_ {
+	[self setIs_hidden:[NSNumber numberWithBool:value_]];
+}
+
+- (BOOL)primitiveIs_hiddenValue {
+	NSNumber *result = [self primitiveIs_hidden];
+	return [result boolValue];
+}
+
+- (void)setPrimitiveIs_hiddenValue:(BOOL)value_ {
+	[self setPrimitiveIs_hidden:[NSNumber numberWithBool:value_]];
 }
 
 
