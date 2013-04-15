@@ -9,6 +9,8 @@
 #import "AboutViewController.h"
 #import "ADViewComposer.h"
 
+#import "Agency.h"
+
 @interface AboutViewController ()
 
 @property (retain,nonatomic) IBOutlet UIActivityIndicatorView* activity;
@@ -121,6 +123,12 @@
 #pragma WebView
 
 -(void)webViewDidFinishLoad:(UIWebView *)pwebView {
+    if ( ABOUT_ABOUT == self.type ) {
+        Agency* agency = [Agency first];
+        if ( agency ) {
+            [webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"document.getElementById('feeddate').innerHTML = '%@';", agency.feed_ref]];
+        }
+    }
     if ( webView.hidden ) {
         webView.hidden = NO;
         self.activity.hidden = YES;

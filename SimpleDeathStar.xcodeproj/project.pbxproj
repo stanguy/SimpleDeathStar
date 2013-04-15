@@ -436,6 +436,10 @@
 		968ACD161657ACD7003D70AD /* ISColumnsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 968ACD151657ACD7003D70AD /* ISColumnsController.m */; };
 		968ACD181657AD3B003D70AD /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 968ACD171657AD3A003D70AD /* QuartzCore.framework */; };
 		968ACD1B1657ADB9003D70AD /* MultiColumnsHomeScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 968ACD1A1657ADB9003D70AD /* MultiColumnsHomeScreenViewController.m */; };
+		968CAE34171CACEC006FD928 /* _Agency.m in Sources */ = {isa = PBXBuildFile; fileRef = 968CAE33171CACEC006FD928 /* _Agency.m */; };
+		968CAE35171CACEC006FD928 /* _Agency.m in Sources */ = {isa = PBXBuildFile; fileRef = 968CAE33171CACEC006FD928 /* _Agency.m */; };
+		968CAE38171CACF5006FD928 /* Agency.m in Sources */ = {isa = PBXBuildFile; fileRef = 968CAE37171CACF5006FD928 /* Agency.m */; };
+		968CAE39171CACF5006FD928 /* Agency.m in Sources */ = {isa = PBXBuildFile; fileRef = 968CAE37171CACF5006FD928 /* Agency.m */; };
 		969229BE12C6B799007C965D /* HomeScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 969229BC12C6B799007C965D /* HomeScreenViewController.m */; };
 		969229BF12C6B799007C965D /* HomeScreenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 969229BD12C6B799007C965D /* HomeScreenViewController.xib */; };
 		9694BE8B16CFD6AD00135522 /* home_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 9694BE8916CFD6AD00135522 /* home_bg.png */; };
@@ -889,6 +893,10 @@
 		968ACD171657AD3A003D70AD /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		968ACD191657ADB9003D70AD /* MultiColumnsHomeScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultiColumnsHomeScreenViewController.h; sourceTree = "<group>"; };
 		968ACD1A1657ADB9003D70AD /* MultiColumnsHomeScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultiColumnsHomeScreenViewController.m; sourceTree = "<group>"; };
+		968CAE32171CACEC006FD928 /* _Agency.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _Agency.h; sourceTree = "<group>"; };
+		968CAE33171CACEC006FD928 /* _Agency.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _Agency.m; sourceTree = "<group>"; };
+		968CAE36171CACF5006FD928 /* Agency.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Agency.h; sourceTree = "<group>"; };
+		968CAE37171CACF5006FD928 /* Agency.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Agency.m; sourceTree = "<group>"; };
 		9692298C12C6B4A1007C965D /* Transit.xcdatamodel */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.xcdatamodel; path = Transit.xcdatamodel; sourceTree = "<group>"; };
 		969229BB12C6B799007C965D /* HomeScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeScreenViewController.h; sourceTree = "<group>"; };
 		969229BC12C6B799007C965D /* HomeScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeScreenViewController.m; sourceTree = "<group>"; };
@@ -1242,6 +1250,8 @@
 		962B81AA12C6C141007EA09F /* ManagedObjects */ = {
 			isa = PBXGroup;
 			children = (
+				968CAE36171CACF5006FD928 /* Agency.h */,
+				968CAE37171CACF5006FD928 /* Agency.m */,
 				96B1E1C112DB860F008007BD /* Auto */,
 				9631C11812C758890002EB78 /* City.h */,
 				9631C11912C758890002EB78 /* City.m */,
@@ -1353,6 +1363,8 @@
 		96B1E1C112DB860F008007BD /* Auto */ = {
 			isa = PBXGroup;
 			children = (
+				968CAE32171CACEC006FD928 /* _Agency.h */,
+				968CAE33171CACEC006FD928 /* _Agency.m */,
 				9630AB1C16FA6F9000E493CB /* _GTFSCalendarDate.h */,
 				9630AB1D16FA6F9000E493CB /* _GTFSCalendarDate.m */,
 				9630AB2016FA6F9000E493CB /* _GTFSCalendar.h */,
@@ -2154,6 +2166,8 @@
 				9630AB2616FA6F9000E493CB /* GTFSCalendarDate.m in Sources */,
 				9630AB2816FA6F9000E493CB /* _GTFSCalendar.m in Sources */,
 				9630AB2A16FA6F9000E493CB /* GTFSCalendar.m in Sources */,
+				968CAE34171CACEC006FD928 /* _Agency.m in Sources */,
+				968CAE38171CACF5006FD928 /* Agency.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2219,6 +2233,8 @@
 				9630AB2716FA6F9000E493CB /* GTFSCalendarDate.m in Sources */,
 				9630AB2916FA6F9000E493CB /* _GTFSCalendar.m in Sources */,
 				9630AB2B16FA6F9000E493CB /* GTFSCalendar.m in Sources */,
+				968CAE35171CACEC006FD928 /* _Agency.m in Sources */,
+				968CAE39171CACF5006FD928 /* Agency.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
