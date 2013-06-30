@@ -24,8 +24,10 @@ int AboutMenuValues[] = {
     ABOUT_PANIC,
     ABOUT_SUPPORT,
     ABOUT_ONLINE,
+#ifndef VERSION_STLO
     ABOUT_TWITS,
     ABOUT_MSBM,
+#endif
     -1
 };
 
@@ -37,8 +39,10 @@ int AboutMenuValuesLocal[] = {
 int AboutMenuValuesRemote[] = {
     ABOUT_SUPPORT,
     ABOUT_ONLINE,
+#ifndef VERSION_STLO
     ABOUT_TWITS,
     ABOUT_MSBM,
+#endif
     -1
 };
 
@@ -53,8 +57,10 @@ int AboutMenuValuesRemote[] = {
                            NSLocalizedString( @"Pas de panique", @"" ),
                            NSLocalizedString( @"Support", @"" ),
                            NSLocalizedString( @"En ligne", @"" ),
+#ifndef VERSION_STLO
                            @"@starbusmetro",
                            @"m.starbusmetro.fr",
+#endif
                             nil ];
     type_ = kHelpFull;
     return self;
@@ -72,7 +78,10 @@ int AboutMenuValuesRemote[] = {
         case kHelpRemote:
             self.menu = [NSArray arrayWithObjects:NSLocalizedString( @"Support", @"" ),
                          NSLocalizedString( @"En ligne", @"" ),
-                         @"@starbusmetro", @"m.starbusmetro.fr", nil ];
+#ifndef VERSION_STLO
+                         @"@starbusmetro", @"m.starbusmetro.fr",
+#endif
+                         nil ];
             self.title = NSLocalizedString( @"Et ailleurs", @"" );
             break;
         default:

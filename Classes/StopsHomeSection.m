@@ -17,8 +17,10 @@
 
 -(id) init {
     self = [super init];
-    self.menu = [NSArray
-                 arrayWithObjects:NSLocalizedString( @"Arrêts par ville", @"" ),
+    self.menu = [NSArray arrayWithObjects:
+#ifndef VERSION_STLO
+                 NSLocalizedString( @"Arrêts par ville", @"" ),
+#endif
                  NSLocalizedString( @"Tous les arrêts", @"" ),
                  NSLocalizedString( @"Sur la carte", @""),
                  nil];
@@ -31,7 +33,11 @@
 
 -(void)selectRow:(NSInteger)row from:(UIViewController*)controller{
     UIViewController* nextController = nil;
+#ifndef VERSION_STLO
     switch ( row ) {
+#else
+    switch ( row + 1 ) {
+#endif
         case 0:
             nextController = [[CityViewController alloc] initWithNibName:@"CityViewController" bundle:nil];
             break;

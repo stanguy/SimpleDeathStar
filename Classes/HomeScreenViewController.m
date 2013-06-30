@@ -10,6 +10,7 @@
 
 #import "CloseStopsHomeSection.h"
 #import "FavoritesHomeSection.h"
+#import "LinesHomeSection.h"
 #import "LineTypesHomeSection.h"
 #import "StopsHomeSection.h"
 #import "HelpHomeSection.h"
@@ -56,9 +57,15 @@
     
     switch ( homeStyle ) {
         case kHomeStyleStart:
+#ifndef VERSION_STLO
             sectionClasses = [NSArray arrayWithObjects:
                               [[[LineTypesHomeSection alloc] init] autorelease],
                               [[[StopsHomeSection alloc] init] autorelease], nil];
+#else
+            sectionClasses = [NSArray arrayWithObjects:
+                              [[[LinesHomeSection alloc] init] autorelease],
+                              [[[StopsHomeSection alloc] init] autorelease], nil];
+#endif
             break;
         default:
         case kHomeStyleHelp:
@@ -69,12 +76,22 @@
                               nil];
             break;
         case kHomeStyleFull:
+#ifndef VERSION_STLO
             sectionClasses = [NSArray arrayWithObjects:
                               [[[LineTypesHomeSection alloc] init] autorelease],
                               [[[StopsHomeSection alloc] init] autorelease],
                               [[[FavoritesHomeSection alloc] init] autorelease],
                               [[[CloseStopsHomeSection alloc] init] autorelease],
                               [[[HelpHomeSection alloc] init] autorelease], nil];
+#else
+            sectionClasses = [NSArray arrayWithObjects:
+                              [[[FavoritesHomeSection alloc] init] autorelease],
+                              [[[CloseStopsHomeSection alloc] init] autorelease],
+                              [[[LinesHomeSection alloc] init] autorelease],
+                              [[[StopsHomeSection alloc] init] autorelease],
+                              [[[HelpHomeSection alloc] init] autorelease]
+                              ,nil];
+#endif
             break;
             
     }
