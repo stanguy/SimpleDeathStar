@@ -475,6 +475,20 @@
 		96B939CC1477161A00206618 /* TableWithAdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96B939CA1477161900206618 /* TableWithAdViewController.m */; };
 		96B9FF9E12F232DD008C9F2E /* TripViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96B9FF9D12F232DD008C9F2E /* TripViewCell.xib */; };
 		96B9FFA312F233C2008C9F2E /* TripViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 96B9FFA212F233C2008C9F2E /* TripViewCell.m */; };
+		96BD8B9F1780913800052D4E /* MultiColumnsHomeScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 968ACD1A1657ADB9003D70AD /* MultiColumnsHomeScreenViewController.m */; };
+		96BD8BA01780913F00052D4E /* ColumnedHomeScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 968ACD111657A818003D70AD /* ColumnedHomeScreenViewController.m */; };
+		96BD8BA11780915600052D4E /* ISColumnsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 968ACD151657ACD7003D70AD /* ISColumnsController.m */; };
+		96BD8BA21780919F00052D4E /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 968ACD171657AD3A003D70AD /* QuartzCore.framework */; };
+		96BD8BA517809B3B00052D4E /* LinesHomeSection.m in Sources */ = {isa = PBXBuildFile; fileRef = 96BD8BA417809B3B00052D4E /* LinesHomeSection.m */; };
+		96BD8BA61780A1B300052D4E /* normalize.css in Resources */ = {isa = PBXBuildFile; fileRef = 965EF5A616D0332700ABC2BA /* normalize.css */; };
+		96BD8BA71780A1B700052D4E /* help.css in Resources */ = {isa = PBXBuildFile; fileRef = 965EF5A716D0332700ABC2BA /* help.css */; };
+		96BD8BA81780A1BA00052D4E /* help.js in Sources */ = {isa = PBXBuildFile; fileRef = 965EF5A816D0332700ABC2BA /* help.js */; };
+		96BD8BA91780A1BF00052D4E /* jquery.js in Sources */ = {isa = PBXBuildFile; fileRef = 965EF5A916D0332700ABC2BA /* jquery.js */; };
+		96BD8BAA1780A42E00052D4E /* home_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 9694BE8916CFD6AD00135522 /* home_bg.png */; };
+		96BD8BAB1780A43100052D4E /* home_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9694BE8A16CFD6AD00135522 /* home_bg@2x.png */; };
+		96BD8BAC1780A7D000052D4E /* help.js in Resources */ = {isa = PBXBuildFile; fileRef = 965EF5A816D0332700ABC2BA /* help.js */; };
+		96BD8BAD1780A7D000052D4E /* jquery.js in Resources */ = {isa = PBXBuildFile; fileRef = 965EF5A916D0332700ABC2BA /* jquery.js */; };
+		96BD8BAF1780AD0200052D4E /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 96AE4C47147AD96100488607 /* Settings.bundle */; };
 		96CACA6A14ABD4E30012C10B /* FavTimeRelativeViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 96CACA6914ABD4E20012C10B /* FavTimeRelativeViewCell.m */; };
 		96CACA6B14ABD4E30012C10B /* FavTimeRelativeViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 96CACA6914ABD4E20012C10B /* FavTimeRelativeViewCell.m */; };
 		96CB93AC12EE1E8100EFB75C /* favorites_add.png in Resources */ = {isa = PBXBuildFile; fileRef = 96CB93A612EE1E8100EFB75C /* favorites_add.png */; };
@@ -938,6 +952,9 @@
 		96B9FF9D12F232DD008C9F2E /* TripViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TripViewCell.xib; sourceTree = "<group>"; };
 		96B9FFA112F233C2008C9F2E /* TripViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TripViewCell.h; sourceTree = "<group>"; };
 		96B9FFA212F233C2008C9F2E /* TripViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TripViewCell.m; sourceTree = "<group>"; };
+		96BD8BA317809B3B00052D4E /* LinesHomeSection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LinesHomeSection.h; sourceTree = "<group>"; };
+		96BD8BA417809B3B00052D4E /* LinesHomeSection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LinesHomeSection.m; sourceTree = "<group>"; };
+		96BD8BAE1780AC1F00052D4E /* StLo.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = StLo.gpx; sourceTree = "<group>"; };
 		96CACA6814ABD4E20012C10B /* FavTimeRelativeViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FavTimeRelativeViewCell.h; sourceTree = "<group>"; };
 		96CACA6914ABD4E20012C10B /* FavTimeRelativeViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FavTimeRelativeViewCell.m; sourceTree = "<group>"; };
 		96CB93A612EE1E8100EFB75C /* favorites_add.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = favorites_add.png; sourceTree = "<group>"; };
@@ -1018,6 +1035,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				96BD8BA21780919F00052D4E /* QuartzCore.framework in Frameworks */,
 				9685666F1440BA1600907877 /* iAd.framework in Frameworks */,
 				96234B581434CD6900CCCAFD /* libMaptimizeKit.a in Frameworks */,
 				96234B591434CD6900CCCAFD /* Foundation.framework in Frameworks */,
@@ -1143,6 +1161,7 @@
 				962B828312C6CE60007EA09F /* Transit.xcdatamodeld */,
 				96FB3AD21434D32C00830FC3 /* TransitStLo.sqlite */,
 				96B1E19512DB851D008007BD /* UserData.xcdatamodeld */,
+				96BD8BAE1780AC1F00052D4E /* StLo.gpx */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -1619,6 +1638,8 @@
 				968ACD1A1657ADB9003D70AD /* MultiColumnsHomeScreenViewController.m */,
 				969E010F16B331DD0000A8C4 /* TimePresenterSection.h */,
 				969E011016B331DD0000A8C4 /* TimePresenterSection.m */,
+				96BD8BA317809B3B00052D4E /* LinesHomeSection.h */,
+				96BD8BA417809B3B00052D4E /* LinesHomeSection.m */,
 			);
 			name = Home;
 			sourceTree = "<group>";
@@ -2020,6 +2041,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				96BD8BAC1780A7D000052D4E /* help.js in Resources */,
+				96BD8BAD1780A7D000052D4E /* jquery.js in Resources */,
 				96234AB01434CD6900CCCAFD /* MainWindow.xib in Resources */,
 				96234AB11434CD6900CCCAFD /* HomeScreenViewController.xib in Resources */,
 				96234AB21434CD6900CCCAFD /* LineViewController.xib in Resources */,
@@ -2089,6 +2112,11 @@
 				960F07C114901279003ED2A6 /* Default@2x.png in Resources */,
 				963CCA4F16500727004081D3 /* Default-568h@2x.png in Resources */,
 				9694BE9416D00DB500135522 /* README.md in Resources */,
+				96BD8BA61780A1B300052D4E /* normalize.css in Resources */,
+				96BD8BA71780A1B700052D4E /* help.css in Resources */,
+				96BD8BAA1780A42E00052D4E /* home_bg.png in Resources */,
+				96BD8BAB1780A43100052D4E /* home_bg@2x.png in Resources */,
+				96BD8BAF1780AD0200052D4E /* Settings.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2235,6 +2263,12 @@
 				9630AB2B16FA6F9000E493CB /* GTFSCalendar.m in Sources */,
 				968CAE35171CACEC006FD928 /* _Agency.m in Sources */,
 				968CAE39171CACF5006FD928 /* Agency.m in Sources */,
+				96BD8B9F1780913800052D4E /* MultiColumnsHomeScreenViewController.m in Sources */,
+				96BD8BA01780913F00052D4E /* ColumnedHomeScreenViewController.m in Sources */,
+				96BD8BA11780915600052D4E /* ISColumnsController.m in Sources */,
+				96BD8BA517809B3B00052D4E /* LinesHomeSection.m in Sources */,
+				96BD8BA81780A1BA00052D4E /* help.js in Sources */,
+				96BD8BA91780A1BF00052D4E /* jquery.js in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
