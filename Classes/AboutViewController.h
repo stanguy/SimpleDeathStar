@@ -14,6 +14,7 @@ enum AboutType {
     ABOUT_ABOUT,
     ABOUT_PANIC,
     ABOUT_ONLINE,
+    ABOUT_SUPPORT,
     ABOUT_TWITS,
     ABOUT_MSBM
 };

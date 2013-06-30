@@ -51,6 +51,7 @@
         currentLocale = [knownLanguages objectAtIndex:0];
     }
     //NSLog( @"%@", currentLocale );
+    NSString* support_url = @"http://maps.dthg.net/blog";
 #ifdef VERSION_STLO
     NSString* about_format = @"about_stlo_%@";
     NSString* online_url = @"http://maps.dthg.net/city/saint-lo";
@@ -67,6 +68,11 @@
         case ABOUT_PANIC:
             self.navigationItem.title = NSLocalizedString( @"Pas de panique", @"" );
             fileUrl = [NSURL fileURLWithPath: [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"panic_%@", currentLocale] ofType:@"html"]];
+            break;
+        case ABOUT_SUPPORT:
+            self.navigationItem.title = NSLocalizedString( @"Support", @"" );
+            fileUrl = [NSURL URLWithString:support_url];
+            open_external = YES;
             break;
         case ABOUT_ONLINE:
             self.navigationItem.title = NSLocalizedString( @"En ligne", @"" );
