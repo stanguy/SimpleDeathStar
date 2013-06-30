@@ -89,10 +89,14 @@ enum SHEET_IDS {
         favImage = [UIImage imageNamed:@"favorites_add"];
     }
     self.favButton = [[[UIBarButtonItem alloc] initWithImage:favImage style:UIBarButtonItemStylePlain target:self action:@selector(toggleFavorite:)] autorelease];
-    self.poiButton = [[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"app_globe"] style:UIBarButtonItemStylePlain target:self action:@selector(selectOption:)] autorelease];
     UIBarButtonItem *flexible = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease];
-    
+
+#ifndef VERSION_STLO
+    self.poiButton = [[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"app_globe"] style:UIBarButtonItemStylePlain target:self action:@selector(selectOption:)] autorelease];
     self.toolbarItems = [NSArray arrayWithObjects:self.dateChangeItem , flexible, self.poiButton, flexible, self.favButton, nil];
+#else
+    self.toolbarItems = [NSArray arrayWithObjects:self.dateChangeItem , flexible, self.favButton, nil];
+#endif
 
     self.activity.hidden = YES;
     self.activity.hidesWhenStopped = YES;
@@ -566,6 +570,8 @@ enum SHEET_IDS {
     TAKE_SCREENSHOT(@"realtime");
 }
 
+#ifdef VERSION_STLO
+#else
 #ifndef KEOLIS_API_KEY
 #error "Missing Key for the API"
 #endif
@@ -626,6 +632,7 @@ enum SHEET_IDS {
     }
     [self reloadData];
 }
+#endif
 
 - (void)exchangeButton:(UIBarButtonItem*)current with:(UIBarButtonItem*)other{
     NSMutableArray *toolbarButtons = [self.toolbarItems mutableCopy];
